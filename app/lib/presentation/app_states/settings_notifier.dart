@@ -10,21 +10,13 @@ class SettingsNotifier extends ValueNotifier<Settings> {
   }
 
   Future<void> _fetch() async {
-    try {
-      value = await _repository.fetch();
-    } on Exception catch (e, s) {
-      Logger.error(e, s);
-    }
+    value = await _repository.fetch();
   }
 
   Future<void> updateThemeMode(ThemeMode mode) async {
-    try {
-      value = await _repository.update(
-        settings: value.copyWith(themeModeIndex: mode.index),
-      );
-    } on Exception catch (e, s) {
-      Logger.error(e, s);
-    }
+    value = await _repository.update(
+      settings: value.copyWith(themeModeIndex: mode.index),
+    );
   }
 }
 

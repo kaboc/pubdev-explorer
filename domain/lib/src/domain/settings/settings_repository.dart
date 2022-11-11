@@ -6,11 +6,21 @@ class SettingsRepository {
   SettingsDao get _dao => localDatabasePot().settingsDao;
 
   Future<Settings> fetch() async {
-    return _dao.fetchSettings();
+    try {
+      return _dao.fetchSettings();
+    } on Exception catch (e, s) {
+      Logger.error(e, s);
+      rethrow;
+    }
   }
 
   Future<Settings> update({required Settings settings}) async {
-    await _dao.addOrUpdateSettings(settings: settings);
-    return settings;
+    try {
+      await _dao.addOrUpdateSettings(settings: settings);
+      return settings;
+    } on Exception catch (e, s) {
+      Logger.error(e, s);
+      rethrow;
+    }
   }
 }

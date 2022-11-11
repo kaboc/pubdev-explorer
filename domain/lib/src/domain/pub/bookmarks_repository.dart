@@ -6,10 +6,15 @@ BookmarksDao get _dao => localDatabasePot().bookmarksDao;
 
 class BookmarksRepository {
   Future<List<Package>> fetch({required int limit, DateTime? before}) {
-    return _dao.fetch(
-      limit: limit,
-      before: before ?? DateTime.now(),
-    );
+    try {
+      return _dao.fetch(
+        limit: limit,
+        before: before ?? DateTime.now(),
+      );
+    } on Exception catch (e, s) {
+      Logger.error(e, s);
+      rethrow;
+    }
   }
 
   Future<List<Package>> search({
@@ -17,11 +22,16 @@ class BookmarksRepository {
     required int limit,
     DateTime? before,
   }) {
-    return _dao.search(
-      words: words,
-      limit: limit,
-      before: before ?? DateTime.now(),
-    );
+    try {
+      return _dao.search(
+        words: words,
+        limit: limit,
+        before: before ?? DateTime.now(),
+      );
+    } on Exception catch (e, s) {
+      Logger.error(e, s);
+      rethrow;
+    }
   }
 
   Future<Package> toggleBookmark({required Package package}) async {
@@ -29,10 +39,15 @@ class BookmarksRepository {
       bookmarked: package.bookmarkedAt == null,
     );
 
-    package.bookmarkedAt == null
-        ? await _dao.addOrUpdateBookmark(package: updatedPackage)
-        : await _dao.deleteBookmark(package: updatedPackage);
+    try {
+      package.bookmarkedAt == null
+          ? await _dao.addOrUpdateBookmark(package: updatedPackage)
+          : await _dao.deleteBookmark(package: updatedPackage);
 
-    return updatedPackage;
+      return updatedPackage;
+    } on Exception catch (e, s) {
+      Logger.error(e, s);
+      rethrow;
+    }
   }
 }
