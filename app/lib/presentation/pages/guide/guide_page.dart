@@ -29,66 +29,71 @@ class GuidePage extends StatelessWidget {
         backgroundColor: context.primaryColor.withOpacity(0.6),
         body: GestureDetector(
           onTap: () => Navigator.of(context).pop(),
-          child: SingleChildScrollView(
-            primary: true,
-            padding: const EdgeInsets.all(16.0),
-            child: Center(
-              child: SizedBox(
-                width: 500.0,
-                // This GestureDetector prevents the card from being
-                // affected by the GestureDetector up in the tree.
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Card(
-                    elevation: 8.0,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(16.0)),
-                    ),
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.fromLTRB(16.0, 32.0, 16.0, 32.0),
-                      child: Column(
-                        children: [
-                          const _Heading('Explore page shortcuts'),
-                          const SizedBox(height: 10.0),
-                          const _Table({
-                            '←': 'Slides to the previous package',
-                            '→': 'Slides to the next package',
-                            'b': 'Bookmarks the package',
-                            'F5': 'Fetches the latest package info',
-                            'Ctrl + F5': 'Fetches the latest package list',
-                            'Alt + →': 'Opens the Bookmarks page',
-                            'F1': 'Opens this guide',
-                          }),
-                          const SizedBox(height: 32.0),
-                          const _Heading('Bookmarks page shortcuts'),
-                          const SizedBox(height: 10.0),
-                          const _Table({
-                            '↑': 'Scrolls up',
-                            '↓': 'Scrolls down',
-                            'Page Up': 'Scrolls up a page',
-                            'Page Down': 'Scrolls down a page',
-                            'Ctrl + f':
-                                'Focuses the search box and selects all',
-                            'Esc': 'Clears the search words',
-                            'Alt + ←': 'Goes back to the Explore page',
-                            'F1': 'Opens this guide',
-                          }),
-                          const SizedBox(height: 32.0),
-                          const _Heading("This guide's shortcuts"),
-                          const SizedBox(height: 10.0),
-                          const _Table({
-                            'Esc': "Closes the guide you're reading",
-                          }),
-                          const SizedBox(height: 32.0),
-                          const _Heading('GitHub'),
-                          const SizedBox(height: 10.0),
-                          LinkedText(
-                            'https://github.com/kaboc/pubdev-explorer',
-                            url: 'https://github.com/kaboc/pubdev-explorer',
-                            style: TextStyle(color: context.secondaryColor),
-                          ),
-                        ],
+          child: SizedBox(
+            // This height is necessary for GestureDetector to
+            // cover the whole page below the app bar.
+            height: double.infinity,
+            child: SingleChildScrollView(
+              primary: true,
+              padding: const EdgeInsets.all(16.0),
+              child: Center(
+                child: SizedBox(
+                  width: 500.0,
+                  // This GestureDetector prevents the card from being
+                  // affected by the GestureDetector up in the tree.
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Card(
+                      elevation: 8.0,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(16.0)),
+                      ),
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(16.0, 32.0, 16.0, 32.0),
+                        child: Column(
+                          children: [
+                            const _Heading('Explore page shortcuts'),
+                            const SizedBox(height: 10.0),
+                            const _Table({
+                              '←': 'Slides to the previous package',
+                              '→': 'Slides to the next package',
+                              'b': 'Bookmarks the package',
+                              'F5': 'Fetches the latest package info',
+                              'Ctrl + F5': 'Fetches the latest package list',
+                              'Alt + →': 'Opens the Bookmarks page',
+                              'F1': 'Opens this guide',
+                            }),
+                            const SizedBox(height: 32.0),
+                            const _Heading('Bookmarks page shortcuts'),
+                            const SizedBox(height: 10.0),
+                            const _Table({
+                              '↑': 'Scrolls up',
+                              '↓': 'Scrolls down',
+                              'Page Up': 'Scrolls up a page',
+                              'Page Down': 'Scrolls down a page',
+                              'Ctrl + f':
+                                  'Focuses the search box and selects all',
+                              'Esc': 'Clears the search words',
+                              'Alt + ←': 'Goes back to the Explore page',
+                              'F1': 'Opens this guide',
+                            }),
+                            const SizedBox(height: 32.0),
+                            const _Heading("This guide's shortcuts"),
+                            const SizedBox(height: 10.0),
+                            const _Table({
+                              'Esc': "Closes the guide you're reading",
+                            }),
+                            const SizedBox(height: 32.0),
+                            const _Heading('GitHub'),
+                            const SizedBox(height: 10.0),
+                            LinkedText(
+                              'https://github.com/kaboc/pubdev-explorer',
+                              url: 'https://github.com/kaboc/pubdev-explorer',
+                              style: TextStyle(color: context.secondaryColor),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
