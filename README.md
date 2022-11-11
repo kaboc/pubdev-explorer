@@ -5,6 +5,10 @@ An app to explore and bookmark packages hosted on [pub.dev](https://pub.dev/).
 Packages are shown in descending order starting from the most recently updated one
 on platforms other than the web.
 
+[**Web App**](https://kaboc.github.io/pubdev-explorer/)
+
+<img src="https://user-images.githubusercontent.com/20254485/201298837-1500c704-c0c7-487e-8790-d304cd1a82a4.jpg" height="360">
+
 ## About this app
 
 This is a sample app using the following packages created by the same author.
