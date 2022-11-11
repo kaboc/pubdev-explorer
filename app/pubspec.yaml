@@ -1,0 +1,40 @@
+name: pubdev_explorer
+description: An app to explore and bookmark packages hosted on pub.dev.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  pubdev_explorer_domain:
+    path: ../domain
+
+  # Packages by the app author
+  async_phase_notifier:
+    git: https://github.com/kaboc/async-phase-notifier.git
+  custom_text: ^0.6.0-dev.6
+  grab: ^0.2.2
+  pot: ^0.4.1
+
+  # Other packages
+  collection: ^1.17.0
+  drift: ^2.2.0
+  equatable: ^2.0.5
+  intl: ^0.17.0
+  path: ^1.8.2
+  path_provider: ^2.0.11
+  sqlite3_flutter_libs: ^0.5.11+1
+  url_launcher: ^6.1.6
+
+dev_dependencies:
+  flutter_lints: ^2.0.1
+
+dependency_overrides:
+  collection: ^1.17.0
+
+flutter:
+  uses-material-design: true

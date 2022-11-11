@@ -1,0 +1,14 @@
+targets:
+  $default:
+    builders:
+      source_gen|combining_builder:
+        generate_for:
+          include:
+            - lib/src/infrastructure/**/*.dart
+        options:
+          build_extensions:
+            '^lib/src/infrastructure/{{}}.dart': 'lib/src/generated/infrastructure/{{}}.g.dart'
+          ignore_for_file:
+            - type=lint
+            - strict_raw_type
+            - duplicate_ignore
