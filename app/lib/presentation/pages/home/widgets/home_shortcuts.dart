@@ -32,6 +32,7 @@ class HomeShortcuts extends StatelessWidget {
         const SingleActivator(LogicalKeyboardKey.f5): const _RefreshIntent(),
         LogicalKeySet(LogicalKeyboardKey.meta, LogicalKeyboardKey.keyR):
             const _RefreshIntent(),
+        const SingleActivator(LogicalKeyboardKey.keyR): const _RefreshIntent(),
         LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.f5):
             const _RestartIntent(),
         LogicalKeySet(
@@ -39,6 +40,8 @@ class HomeShortcuts extends StatelessWidget {
           LogicalKeyboardKey.meta,
           LogicalKeyboardKey.keyR,
         ): const _RestartIntent(),
+        LogicalKeySet(LogicalKeyboardKey.shift, LogicalKeyboardKey.keyR):
+            const _RestartIntent(),
         LogicalKeySet(LogicalKeyboardKey.alt, LogicalKeyboardKey.arrowRight):
             const _GoToBookmarksIntent(),
         const SingleActivator(LogicalKeyboardKey.f1): const _OpenGuideIntent(),
@@ -75,6 +78,7 @@ class HomeShortcuts extends StatelessWidget {
           ),
         },
         child: FocusScope(
+          autofocus: true,
           child: child,
         ),
       ),

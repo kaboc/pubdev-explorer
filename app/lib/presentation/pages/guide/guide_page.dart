@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:pubdev_explorer/presentation/common/_common.dart';
 import 'package:pubdev_explorer/presentation/pages/guide/widgets/guide_shortcuts.dart';
+import 'package:pubdev_explorer/presentation/pages/guide/widgets/guide_table.dart';
 import 'package:pubdev_explorer/presentation/widgets/_widgets.dart';
 
 class GuidePage extends StatelessWidget {
@@ -39,66 +40,19 @@ class GuidePage extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Center(
                 child: SizedBox(
-                  width: isMacOs ? 540.0 : 500.0,
+                  width: isMacOs && !kIsWeb ? 540.0 : 500.0,
                   // This GestureDetector prevents the card from being
                   // affected by the GestureDetector up in the tree.
                   child: GestureDetector(
                     onTap: () {},
-                    child: Card(
+                    child: const Card(
                       elevation: 8.0,
-                      shape: const RoundedRectangleBorder(
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(16.0)),
                       ),
                       child: Padding(
-                        padding:
-                            const EdgeInsets.fromLTRB(16.0, 32.0, 16.0, 32.0),
-                        child: Column(
-                          children: [
-                            const _Heading('Explore page shortcuts'),
-                            const SizedBox(height: 10.0),
-                            _Table({
-                              '←': 'Slides to the previous package',
-                              '→': 'Slides to the next package',
-                              'b': 'Bookmarks the package',
-                              isMacOs && !kIsWeb ? 'Command + r' : 'F5':
-                                  'Fetches the latest package info',
-                              isMacOs && !kIsWeb
-                                      ? 'Shift + Command + r'
-                                      : 'Ctrl + F5':
-                                  'Fetches the latest package list',
-                              'Alt + →': 'Opens the Bookmarks page',
-                              isMacOs ? 'Shift + ?' : 'F1': 'Opens this guide',
-                            }),
-                            const SizedBox(height: 32.0),
-                            const _Heading('Bookmarks page shortcuts'),
-                            const SizedBox(height: 10.0),
-                            _Table({
-                              '↑': 'Scrolls up',
-                              '↓': 'Scrolls down',
-                              'Page Up': 'Scrolls up a page',
-                              'Page Down': 'Scrolls down a page',
-                              isMacOs ? 'Command + f' : 'Ctrl + f':
-                                  'Focuses the search box and selects all',
-                              'Esc': 'Clears the search words',
-                              'Alt + ←': 'Goes back to the Explore page',
-                              isMacOs ? 'Shift + ?' : 'F1': 'Opens this guide',
-                            }),
-                            const SizedBox(height: 32.0),
-                            const _Heading("This guide's shortcuts"),
-                            const SizedBox(height: 10.0),
-                            const _Table({
-                              'Esc': "Closes the guide you're reading",
-                            }),
-                            const SizedBox(height: 32.0),
-                            const _Heading('GitHub'),
-                            const SizedBox(height: 10.0),
-                            LinkedText(
-                              'https://github.com/kaboc/pubdev-explorer',
-                              url: 'https://github.com/kaboc/pubdev-explorer',
-                              style: TextStyle(color: context.secondaryColor),
-                            ),
-                          ],
-                        ),
+                        padding: EdgeInsets.fromLTRB(16.0, 32.0, 16.0, 32.0),
+                        child: _Body(),
                       ),
                     ),
                   ),
@@ -112,55 +66,62 @@ class GuidePage extends StatelessWidget {
   }
 }
 
-class _Heading extends StatelessWidget {
-  const _Heading(this.text);
-
-  final String text;
+class _Body extends StatelessWidget {
+  const _Body();
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: context.headlineSmall.copyWith(
-        fontWeight: FontWeight.bold,
-      ),
-    );
-  }
-}
-
-class _Table extends StatelessWidget {
-  const _Table(this.content);
-
-  final Map<String, String> content;
-
-  @override
-  Widget build(BuildContext context) {
-    return Table(
-      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-      columnWidths: {
-        0: FlexColumnWidth(isMacOs ? 0.4 : 0.32),
-        1: IntrinsicColumnWidth(),
-        2: FlexColumnWidth(isMacOs ? 0.6 : 0.68),
-      },
+    return Column(
       children: [
-        for (final key in content.keys)
-          TableRow(
-            children: [
-              TableCell(
-                child: Text(
-                  key,
-                  textAlign: TextAlign.right,
-                  style: context.theme.textTheme.bodyLarge,
-                ),
-              ),
-              const TableCell(
-                child: SizedBox(width: 28.0),
-              ),
-              TableCell(
-                child: Text(content[key]!),
-              ),
-            ],
-          ),
+        const GuideHeading('Explore page shortcuts'),
+        const SizedBox(height: 10.0),
+        GuideTable({
+          'Left': 'Slides to the previous package',
+          'Right': 'Slides to the next package',
+          'b': 'Bookmarks the package',
+          if (isMacOs)
+            if (kIsWeb) ...{
+              'r': 'Fetches the latest package info',
+              'Shift + r': 'Fetches the latest package list',
+            } else ...{
+              'Command + r': 'Fetches the latest package info',
+              'Shift + Command + r': 'Fetches the latest package list',
+            }
+          else ...{
+            'F5': 'Fetches the latest package info',
+            'Ctrl + F5': 'Fetches the latest package list',
+          },
+          'Alt + Right': 'Opens the Bookmarks page',
+          isMacOs ? 'Shift + ?' : 'F1': 'Opens this guide',
+        }),
+        const SizedBox(height: 32.0),
+        const GuideHeading('Bookmarks page shortcuts'),
+        const SizedBox(height: 10.0),
+        GuideTable({
+          'Up': 'Scrolls up',
+          'Down': 'Scrolls down',
+          isMacOs ? 'Fn + Up' : 'Page Up': 'Scrolls up a page',
+          isMacOs ? 'Fn + Down' : 'Page Down': 'Scrolls down a page',
+          isMacOs ? 'Command + f' : 'Ctrl + f':
+              'Focuses the search box and selects all',
+          'Esc': 'Clears the search words',
+          'Alt + Left': 'Goes back to the Explore page',
+          isMacOs ? 'Shift + ?' : 'F1': 'Opens this guide',
+        }),
+        const SizedBox(height: 32.0),
+        const GuideHeading("This guide's shortcuts"),
+        const SizedBox(height: 10.0),
+        const GuideTable({
+          'Esc': "Closes the guide you're reading",
+        }),
+        const SizedBox(height: 32.0),
+        const GuideHeading('GitHub'),
+        const SizedBox(height: 10.0),
+        LinkedText(
+          'https://github.com/kaboc/pubdev-explorer',
+          url: 'https://github.com/kaboc/pubdev-explorer',
+          style: TextStyle(color: context.secondaryColor),
+        ),
       ],
     );
   }
