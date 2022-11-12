@@ -79,15 +79,13 @@ class _Body extends StatelessWidget {
           'Left': 'Slides to the previous package',
           'Right': 'Slides to the next package',
           'b': 'Bookmarks the package',
-          if (isMacOs)
-            if (kIsWeb) ...{
-              'r': 'Fetches the latest package info',
-              'Shift + r': 'Fetches the latest package list',
-            } else ...{
-              'Command + r': 'Fetches the latest package info',
-              'Shift + Command + r': 'Fetches the latest package list',
-            }
-          else ...{
+          if (kIsWeb) ...{
+            'r': 'Fetches the latest package info',
+            'Shift + r': 'Fetches the latest package list',
+          } else if (isMacOs) ...{
+            'Command + r': 'Fetches the latest package info',
+            'Shift + Command + r': 'Fetches the latest package list',
+          } else ...{
             'F5': 'Fetches the latest package info',
             'Ctrl + F5': 'Fetches the latest package list',
           },
