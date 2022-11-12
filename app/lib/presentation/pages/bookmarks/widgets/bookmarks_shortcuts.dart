@@ -22,6 +22,8 @@ class BookmarksShortcuts extends StatelessWidget {
         shortcuts: {
           LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.keyF):
               RequestFocusIntent(searchFocusNode),
+          LogicalKeySet(LogicalKeyboardKey.meta, LogicalKeyboardKey.keyF):
+              RequestFocusIntent(searchFocusNode),
           const SingleActivator(LogicalKeyboardKey.escape):
               const _SearchClearIntent(),
           // Settings for the arrow up/down keys are necessary to
@@ -34,7 +36,9 @@ class BookmarksShortcuts extends StatelessWidget {
           LogicalKeySet(LogicalKeyboardKey.alt, LogicalKeyboardKey.arrowLeft):
               const _BackToHomeIntent(),
           const SingleActivator(LogicalKeyboardKey.f1):
-              const _OpenShortcutGuideIntent(),
+              const _OpenGuideIntent(),
+          LogicalKeySet(LogicalKeyboardKey.shift, LogicalKeyboardKey.question):
+              const _OpenGuideIntent(),
         },
         child: Actions(
           actions: {
@@ -42,7 +46,7 @@ class BookmarksShortcuts extends StatelessWidget {
             _SearchClearIntent: CallbackAction<_SearchClearIntent>(
               onInvoke: (_) => searchController.clear(),
             ),
-            _OpenShortcutGuideIntent: CallbackAction<_OpenShortcutGuideIntent>(
+            _OpenGuideIntent: CallbackAction<_OpenGuideIntent>(
               onInvoke: (_) => Navigator.of(context).push(GuidePage.route()),
             ),
             _BackToHomeIntent: CallbackAction<_BackToHomeIntent>(
@@ -62,8 +66,8 @@ class _SearchClearIntent extends Intent {
   const _SearchClearIntent();
 }
 
-class _OpenShortcutGuideIntent extends Intent {
-  const _OpenShortcutGuideIntent();
+class _OpenGuideIntent extends Intent {
+  const _OpenGuideIntent();
 }
 
 class _BackToHomeIntent extends Intent {

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:pubdev_explorer/presentation/common/_common.dart';
@@ -38,7 +39,7 @@ class GuidePage extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Center(
                 child: SizedBox(
-                  width: 500.0,
+                  width: isMacOs ? 540.0 : 500.0,
                   // This GestureDetector prevents the card from being
                   // affected by the GestureDetector up in the tree.
                   child: GestureDetector(
@@ -55,28 +56,32 @@ class GuidePage extends StatelessWidget {
                           children: [
                             const _Heading('Explore page shortcuts'),
                             const SizedBox(height: 10.0),
-                            const _Table({
+                            _Table({
                               '←': 'Slides to the previous package',
                               '→': 'Slides to the next package',
                               'b': 'Bookmarks the package',
-                              'F5': 'Fetches the latest package info',
-                              'Ctrl + F5': 'Fetches the latest package list',
+                              isMacOs && !kIsWeb ? 'Command + r' : 'F5':
+                                  'Fetches the latest package info',
+                              isMacOs && !kIsWeb
+                                      ? 'Shift + Command + r'
+                                      : 'Ctrl + F5':
+                                  'Fetches the latest package list',
                               'Alt + →': 'Opens the Bookmarks page',
-                              'F1': 'Opens this guide',
+                              isMacOs ? 'Shift + ?' : 'F1': 'Opens this guide',
                             }),
                             const SizedBox(height: 32.0),
                             const _Heading('Bookmarks page shortcuts'),
                             const SizedBox(height: 10.0),
-                            const _Table({
+                            _Table({
                               '↑': 'Scrolls up',
                               '↓': 'Scrolls down',
                               'Page Up': 'Scrolls up a page',
                               'Page Down': 'Scrolls down a page',
-                              'Ctrl + f':
+                              isMacOs ? 'Command + f' : 'Ctrl + f':
                                   'Focuses the search box and selects all',
                               'Esc': 'Clears the search words',
                               'Alt + ←': 'Goes back to the Explore page',
-                              'F1': 'Opens this guide',
+                              isMacOs ? 'Shift + ?' : 'F1': 'Opens this guide',
                             }),
                             const SizedBox(height: 32.0),
                             const _Heading("This guide's shortcuts"),
@@ -132,10 +137,10 @@ class _Table extends StatelessWidget {
   Widget build(BuildContext context) {
     return Table(
       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-      columnWidths: const {
-        0: FlexColumnWidth(0.32),
+      columnWidths: {
+        0: FlexColumnWidth(isMacOs ? 0.4 : 0.32),
         1: IntrinsicColumnWidth(),
-        2: FlexColumnWidth(0.68),
+        2: FlexColumnWidth(isMacOs ? 0.6 : 0.68),
       },
       children: [
         for (final key in content.keys)

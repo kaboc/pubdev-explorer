@@ -20,6 +20,8 @@ bool get isDesktop =>
     defaultTargetPlatform != TargetPlatform.android &&
     defaultTargetPlatform != TargetPlatform.iOS;
 
+bool get isMacOs => defaultTargetPlatform == TargetPlatform.macOS;
+
 extension FormattedDateTime on DateTime? {
   String get formatted =>
       this == null ? '' : DateFormat.yMMMd('en_US').format(this!);

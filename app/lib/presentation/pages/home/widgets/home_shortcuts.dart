@@ -30,12 +30,20 @@ class HomeShortcuts extends StatelessWidget {
         const SingleActivator(LogicalKeyboardKey.keyB):
             const _BookmarkToggleIntent(),
         const SingleActivator(LogicalKeyboardKey.f5): const _RefreshIntent(),
+        LogicalKeySet(LogicalKeyboardKey.meta, LogicalKeyboardKey.keyR):
+            const _RefreshIntent(),
         LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.f5):
             const _RestartIntent(),
+        LogicalKeySet(
+          LogicalKeyboardKey.shift,
+          LogicalKeyboardKey.meta,
+          LogicalKeyboardKey.keyR,
+        ): const _RestartIntent(),
         LogicalKeySet(LogicalKeyboardKey.alt, LogicalKeyboardKey.arrowRight):
             const _GoToBookmarksIntent(),
-        const SingleActivator(LogicalKeyboardKey.f1):
-            const _OpenShortcutGuideIntent(),
+        const SingleActivator(LogicalKeyboardKey.f1): const _OpenGuideIntent(),
+        LogicalKeySet(LogicalKeyboardKey.shift, LogicalKeyboardKey.question):
+            const _OpenGuideIntent(),
       },
       child: Actions(
         actions: {
@@ -62,7 +70,7 @@ class HomeShortcuts extends StatelessWidget {
           _GoToBookmarksIntent: CallbackAction<_GoToBookmarksIntent>(
             onInvoke: (_) => Navigator.of(context).push(BookmarksPage.route()),
           ),
-          _OpenShortcutGuideIntent: CallbackAction<_OpenShortcutGuideIntent>(
+          _OpenGuideIntent: CallbackAction<_OpenGuideIntent>(
             onInvoke: (_) => Navigator.of(context).push(GuidePage.route()),
           ),
         },
@@ -90,8 +98,8 @@ class _GoToBookmarksIntent extends Intent {
   const _GoToBookmarksIntent();
 }
 
-class _OpenShortcutGuideIntent extends Intent {
-  const _OpenShortcutGuideIntent();
+class _OpenGuideIntent extends Intent {
+  const _OpenGuideIntent();
 }
 
 class _SlideAction extends Action<ScrollIntent> {
