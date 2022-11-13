@@ -78,13 +78,13 @@ class _Body extends StatelessWidget {
         GuideTable({
           'Left': 'Slides to the previous package',
           'Right': 'Slides to the next package',
-          'b': 'Bookmarks the package',
+          'B': 'Bookmarks the package',
           if (kIsWeb) ...{
             'r': 'Fetches the latest package info',
-            'Shift + r': 'Fetches the latest package list',
+            'Shift + R': 'Fetches the latest package list',
           } else if (isMacOs) ...{
-            'Command + r': 'Fetches the latest package info',
-            'Shift + Command + r': 'Fetches the latest package list',
+            'Command + R': 'Fetches the latest package info',
+            'Shift + Command + R': 'Fetches the latest package list',
           } else ...{
             'F5': 'Fetches the latest package info',
             'Ctrl + F5': 'Fetches the latest package list',
@@ -100,7 +100,7 @@ class _Body extends StatelessWidget {
           'Down': 'Scrolls down',
           isMacOs ? 'Fn + Up' : 'Page Up': 'Scrolls up a page',
           isMacOs ? 'Fn + Down' : 'Page Down': 'Scrolls down a page',
-          isMacOs ? 'Command + f' : 'Ctrl + f':
+          isMacOs ? 'Command + F' : 'Ctrl + F':
               'Focuses the search box and selects all',
           'Esc': 'Clears the search words',
           'Alt + Left': 'Goes back to the Explore page',

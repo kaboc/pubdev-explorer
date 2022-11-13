@@ -30,7 +30,7 @@ extension FormattedDateTime on DateTime? {
       this == null ? '' : DateFormat('K:mm a, MMM d, y').format(this!);
 }
 
-extension ReplacePackageInList on List<AsyncPhase<Package>> {
+extension PackagePhases on List<AsyncPhase<Package>> {
   AsyncPhase<Package>? at(int index) {
     return index < length ? this[index] : null;
   }
