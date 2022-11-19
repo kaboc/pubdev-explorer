@@ -56,7 +56,7 @@ linter:
     conditional_uri_does_not_exist: true
     deprecated_consistency: true
 #    directives_ordering: true
-#    discarded_futures: true
+    discarded_futures: true
 #    do_not_use_environment: true
     eol_at_end_of_file: true
     invariant_booleans: true
@@ -95,10 +95,12 @@ linter:
     unawaited_futures: true
     unnecessary_await_in_return: true
     unnecessary_lambdas: true
+    unnecessary_null_aware_operator_on_extension_on_nullable: null
     unnecessary_null_checks: true
     unnecessary_parenthesis: true
     unnecessary_raw_strings: true
     unnecessary_statements: true
+    unnecessary_to_list_in_spreads: true
     use_enums: true
     use_if_null_to_convert_nulls_to_bools: true
     use_is_even_rather_than_modulo: true
