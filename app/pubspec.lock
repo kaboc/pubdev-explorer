@@ -344,10 +344,10 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.3"
-  pubdev_explorer_domain:
+  pubdev_explorer_core:
     dependency: "direct main"
     description:
-      path: "../domain"
+      path: "../core"
       relative: true
     source: path
     version: "1.0.0"

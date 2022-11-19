@@ -1,6 +1,6 @@
 import 'package:pot/pot.dart';
 
-import 'package:pubdev_explorer_domain/pubdev_explorer_domain.dart';
+import 'package:pubdev_explorer_core/pubdev_explorer_core.dart';
 
 import 'package:pubdev_explorer/presentation/app_states/settings_notifier.dart';
 import 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmarks_fetcher.dart';
@@ -10,7 +10,7 @@ import 'package:pubdev_explorer/presentation/pages/home/states/home_notifier.dar
 import 'package:pubdev_explorer/presentation/pages/home/states/package_fetcher.dart';
 import 'package:pubdev_explorer/presentation/pages/home/states/package_names_fetcher.dart';
 
-export 'package:pubdev_explorer_domain/pubdev_explorer_domain.dart';
+export 'package:pubdev_explorer_core/pubdev_explorer_core.dart';
 
 export 'package:pubdev_explorer/presentation/app_states/settings_notifier.dart';
 export 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmarks_fetcher.dart';

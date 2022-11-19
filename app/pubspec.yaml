@@ -10,8 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  pubdev_explorer_domain:
-    path: ../domain
+  pubdev_explorer_core:
+    path: ../core
 
   # Packages by the app author
   async_phase_notifier:
