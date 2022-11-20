@@ -12,6 +12,7 @@ class PackageFetcher extends AsyncPhaseNotifier<Package> {
     runAsync(
       (_) => _repository.fetchPackage(
         name: currentPackage.name,
+        cacheDuration: kPackageCacheDuration,
         fromWeb: fromWeb,
       ),
     );

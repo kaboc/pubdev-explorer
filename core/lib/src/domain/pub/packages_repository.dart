@@ -18,10 +18,12 @@ class PackagesRepository {
 
   Future<Package> fetchPackage({
     required String name,
+    required Duration cacheDuration,
     bool fromWeb = false,
   }) async {
     try {
-      var package = fromWeb ? null : await _fetchPackageFromLocal(name);
+      var package =
+          fromWeb ? null : await _fetchPackageFromLocal(name, cacheDuration);
 
       if (package == null) {
         package = await _remoteDao.fetchPackage(name: name);
@@ -29,7 +31,7 @@ class PackagesRepository {
 
         // Fetches from local DB again to obtain the package
         // together with bookmark status.
-        return (await _fetchPackageFromLocal(name))!;
+        return (await _fetchPackageFromLocal(name, cacheDuration))!;
       }
 
       return package;
@@ -39,11 +41,14 @@ class PackagesRepository {
     }
   }
 
-  Future<Package?> _fetchPackageFromLocal(String name) async {
+  Future<Package?> _fetchPackageFromLocal(
+    String name,
+    Duration cacheDuration,
+  ) async {
     try {
       return _localDao.fetchPackage(
         name: name,
-        after: DateTime.now().subtract(const Duration(days: 2)),
+        after: DateTime.now().subtract(cacheDuration),
       );
     } on Exception catch (e, s) {
       Logger.error(e, s);
