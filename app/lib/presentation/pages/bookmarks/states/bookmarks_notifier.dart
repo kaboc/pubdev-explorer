@@ -53,7 +53,7 @@ class BookmarksNotifier extends ValueNotifier<BookmarksState> {
       value = value.copyWith(
         packagePhases: [
           ...value.packagePhases,
-          for (final package in packages) AsyncComplete(data: package),
+          for (final package in packages) AsyncComplete(package),
         ],
       );
 

@@ -2,6 +2,8 @@ import 'package:async_phase_notifier/async_phase_notifier.dart';
 
 import 'package:pubdev_explorer/common/_common.dart';
 
+export 'package:async_phase_notifier/async_phase.dart';
+
 BookmarksRepository get _repository => bookmarksRepositoryPot();
 
 class BookmarksFetcher extends AsyncPhaseNotifier<List<Package>> {

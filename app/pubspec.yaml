@@ -15,10 +15,12 @@ dependencies:
 
   # Packages by the app author
   async_phase_notifier:
-    git: https://github.com/kaboc/async-phase-notifier.git
+    git:
+      url: https://github.com/kaboc/async-phase
+      path: packages/async_phase_notifier
   custom_text: ^0.6.0-dev.6
   grab: ^0.2.2
-  pot: ^0.4.1
+  pot: ^0.4.2
 
   # Other packages
   collection: ^1.17.0
@@ -27,8 +29,8 @@ dependencies:
   intl: ^0.17.0
   path: ^1.8.2
   path_provider: ^2.0.11
-  sqlite3_flutter_libs: ^0.5.11+1
-  url_launcher: ^6.1.6
+  sqlite3_flutter_libs: ^0.5.12
+  url_launcher: ^6.1.7
 
 dev_dependencies:
   flutter_lints: ^2.0.1

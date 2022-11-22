@@ -37,7 +37,7 @@ class HomeNotifier extends ValueNotifier<HomeState> {
         for (final name in phase.data!) {
           if (packagePhases.indexWhere((v) => v.data!.name == name) < 0) {
             packagePhases.add(
-              AsyncInitial(data: Package(name: name)),
+              AsyncInitial(Package(name: name)),
             );
           }
         }
