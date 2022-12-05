@@ -55,7 +55,7 @@ to generate updated code.
 $ dart pub run build_runner build -d
 ```
 
-This project already contains generated code in `core/lib/generated/`, so if you haven't
+This project already contains generated code in `core/lib/src/generated/`, so if you haven't
 changed anything, the above command is unnecessary.
 
 ### Mock data for the web
