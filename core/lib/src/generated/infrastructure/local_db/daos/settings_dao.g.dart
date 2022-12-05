@@ -4,10 +4,7 @@
 
 part of '../../../../infrastructure/local_db/daos/settings_dao.dart';
 
-// **************************************************************************
-// DaoGenerator
-// **************************************************************************
-
+// ignore_for_file: type=lint
 mixin _$SettingsDaoMixin on DatabaseAccessor<Database> {
   $SettingsTableTable get settingsTable => attachedDatabase.settingsTable;
 }

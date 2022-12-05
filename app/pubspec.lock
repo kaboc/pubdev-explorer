@@ -39,20 +39,16 @@ packages:
   async_phase:
     dependency: transitive
     description:
-      path: "packages/async_phase"
-      ref: HEAD
-      resolved-ref: "86f54a09d73407bf3ef9469e32def0d76e00ae20"
-      url: "https://github.com/kaboc/async-phase"
-    source: git
-    version: "0.0.1"
+      name: async_phase
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1+1"
   async_phase_notifier:
     dependency: "direct main"
     description:
-      path: "packages/async_phase_notifier"
-      ref: HEAD
-      resolved-ref: "86f54a09d73407bf3ef9469e32def0d76e00ae20"
-      url: "https://github.com/kaboc/async-phase"
-    source: git
+      name: async_phase_notifier
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.0.1"
   characters:
     dependency: transitive
@@ -68,6 +64,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  ci:
+    dependency: transitive
+    description:
+      name: ci
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
   cli_util:
     dependency: transitive
     description:
@@ -109,21 +112,21 @@ packages:
       name: custom_lint
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.12"
+    version: "0.0.14"
   custom_lint_builder:
     dependency: transitive
     description:
       name: custom_lint_builder
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.12"
+    version: "0.0.14"
   custom_text:
     dependency: "direct main"
     description:
       name: custom_text
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.0-dev.6"
+    version: "0.6.0"
   dart_style:
     dependency: transitive
     description:
@@ -137,7 +140,7 @@ packages:
       name: drift
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "2.3.0"
   equatable:
     dependency: "direct main"
     description:
@@ -189,7 +192,7 @@ packages:
       name: grab
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.2"
+    version: "0.3.0+1"
   grab_lints:
     dependency: "direct dev"
     description:
@@ -199,6 +202,13 @@ packages:
       url: "https://github.com/kaboc/grab-lints.git"
     source: git
     version: "0.0.1"
+  hotreloader:
+    dependency: transitive
+    description:
+      name: hotreloader
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.5"
   http:
     dependency: transitive
     description:
@@ -241,6 +251,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  logging:
+    dependency: transitive
+    description:
+      name: logging
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   material_color_utilities:
     dependency: transitive
     description:
@@ -428,6 +445,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  stream_transform:
+    dependency: transitive
+    description:
+      name: stream_transform
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
   string_scanner:
     dependency: transitive
     description:
@@ -526,6 +550,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  vm_service:
+    dependency: transitive
+    description:
+      name: vm_service
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "9.4.0"
   watcher:
     dependency: transitive
     description:

@@ -4,10 +4,6 @@
 
 part of '../../../infrastructure/local_db/database.dart';
 
-// **************************************************************************
-// DriftDatabaseGenerator
-// **************************************************************************
-
 // ignore_for_file: type=lint
 class SettingsTableData extends DataClass
     implements Insertable<SettingsTableData> {
@@ -127,14 +123,14 @@ class $SettingsTableTable extends SettingsTable
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
   $SettingsTableTable(this.attachedDatabase, [this._alias]);
-  final VerificationMeta _idMeta = const VerificationMeta('id');
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
       'id', aliasedName, false,
       type: DriftSqlType.int,
       requiredDuringInsert: false,
       defaultValue: const Constant(1));
-  final VerificationMeta _themeModeIndexMeta =
+  static const VerificationMeta _themeModeIndexMeta =
       const VerificationMeta('themeModeIndex');
   @override
   late final GeneratedColumn<int> themeModeIndex = GeneratedColumn<int>(
@@ -171,9 +167,9 @@ class $SettingsTableTable extends SettingsTable
   SettingsTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return SettingsTableData(
-      id: attachedDatabase.options.types
+      id: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
-      themeModeIndex: attachedDatabase.options.types
+      themeModeIndex: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}theme_mode_index'])!,
     );
   }
@@ -596,74 +592,81 @@ class $PackagesTableTable extends PackagesTable
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
   $PackagesTableTable(this.attachedDatabase, [this._alias]);
-  final VerificationMeta _nameMeta = const VerificationMeta('name');
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
   @override
   late final GeneratedColumn<String> name = GeneratedColumn<String>(
       'name', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
-  final VerificationMeta _descriptionMeta =
+  static const VerificationMeta _descriptionMeta =
       const VerificationMeta('description');
   @override
   late final GeneratedColumn<String> description = GeneratedColumn<String>(
       'description', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
-  final VerificationMeta _latestMeta = const VerificationMeta('latest');
+  static const VerificationMeta _latestMeta = const VerificationMeta('latest');
   @override
   late final GeneratedColumn<String> latest = GeneratedColumn<String>(
       'latest', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
-  final VerificationMeta _latestAtMeta = const VerificationMeta('latestAt');
+  static const VerificationMeta _latestAtMeta =
+      const VerificationMeta('latestAt');
   @override
   late final GeneratedColumn<DateTime> latestAt = GeneratedColumn<DateTime>(
       'latest_at', aliasedName, true,
       type: DriftSqlType.dateTime, requiredDuringInsert: false);
-  final VerificationMeta _preReleaseMeta = const VerificationMeta('preRelease');
+  static const VerificationMeta _preReleaseMeta =
+      const VerificationMeta('preRelease');
   @override
   late final GeneratedColumn<String> preRelease = GeneratedColumn<String>(
       'pre_release', aliasedName, true,
       type: DriftSqlType.string, requiredDuringInsert: false);
-  final VerificationMeta _preReleaseAtMeta =
+  static const VerificationMeta _preReleaseAtMeta =
       const VerificationMeta('preReleaseAt');
   @override
   late final GeneratedColumn<DateTime> preReleaseAt = GeneratedColumn<DateTime>(
       'pre_release_at', aliasedName, true,
       type: DriftSqlType.dateTime, requiredDuringInsert: false);
-  final VerificationMeta _sdksMeta = const VerificationMeta('sdks');
+  static const VerificationMeta _sdksMeta = const VerificationMeta('sdks');
   @override
   late final GeneratedColumn<String> sdks = GeneratedColumn<String>(
       'sdks', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
-  final VerificationMeta _platformsMeta = const VerificationMeta('platforms');
+  static const VerificationMeta _platformsMeta =
+      const VerificationMeta('platforms');
   @override
   late final GeneratedColumn<String> platforms = GeneratedColumn<String>(
       'platforms', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
-  final VerificationMeta _publisherMeta = const VerificationMeta('publisher');
+  static const VerificationMeta _publisherMeta =
+      const VerificationMeta('publisher');
   @override
   late final GeneratedColumn<String> publisher = GeneratedColumn<String>(
       'publisher', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
-  final VerificationMeta _pointsMeta = const VerificationMeta('points');
+  static const VerificationMeta _pointsMeta = const VerificationMeta('points');
   @override
   late final GeneratedColumn<int> points = GeneratedColumn<int>(
       'points', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
-  final VerificationMeta _maxPointsMeta = const VerificationMeta('maxPoints');
+  static const VerificationMeta _maxPointsMeta =
+      const VerificationMeta('maxPoints');
   @override
   late final GeneratedColumn<int> maxPoints = GeneratedColumn<int>(
       'max_points', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
-  final VerificationMeta _likesMeta = const VerificationMeta('likes');
+  static const VerificationMeta _likesMeta = const VerificationMeta('likes');
   @override
   late final GeneratedColumn<int> likes = GeneratedColumn<int>(
       'likes', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
-  final VerificationMeta _popularityMeta = const VerificationMeta('popularity');
+  static const VerificationMeta _popularityMeta =
+      const VerificationMeta('popularity');
   @override
   late final GeneratedColumn<double> popularity = GeneratedColumn<double>(
       'popularity', aliasedName, false,
       type: DriftSqlType.double, requiredDuringInsert: true);
-  final VerificationMeta _savedAtMeta = const VerificationMeta('savedAt');
+  static const VerificationMeta _savedAtMeta =
+      const VerificationMeta('savedAt');
   @override
   late final GeneratedColumn<DateTime> savedAt = GeneratedColumn<DateTime>(
       'saved_at', aliasedName, false,
@@ -789,33 +792,33 @@ class $PackagesTableTable extends PackagesTable
   PackagesTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return PackagesTableData(
-      name: attachedDatabase.options.types
+      name: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
-      description: attachedDatabase.options.types
+      description: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}description'])!,
-      latest: attachedDatabase.options.types
+      latest: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}latest'])!,
-      latestAt: attachedDatabase.options.types
+      latestAt: attachedDatabase.typeMapping
           .read(DriftSqlType.dateTime, data['${effectivePrefix}latest_at']),
-      preRelease: attachedDatabase.options.types
+      preRelease: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}pre_release']),
-      preReleaseAt: attachedDatabase.options.types.read(
+      preReleaseAt: attachedDatabase.typeMapping.read(
           DriftSqlType.dateTime, data['${effectivePrefix}pre_release_at']),
-      sdks: attachedDatabase.options.types
+      sdks: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}sdks'])!,
-      platforms: attachedDatabase.options.types
+      platforms: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}platforms'])!,
-      publisher: attachedDatabase.options.types
+      publisher: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}publisher'])!,
-      points: attachedDatabase.options.types
+      points: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}points'])!,
-      maxPoints: attachedDatabase.options.types
+      maxPoints: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}max_points'])!,
-      likes: attachedDatabase.options.types
+      likes: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}likes'])!,
-      popularity: attachedDatabase.options.types
+      popularity: attachedDatabase.typeMapping
           .read(DriftSqlType.double, data['${effectivePrefix}popularity'])!,
-      savedAt: attachedDatabase.options.types
+      savedAt: attachedDatabase.typeMapping
           .read(DriftSqlType.dateTime, data['${effectivePrefix}saved_at'])!,
     );
   }
@@ -945,12 +948,13 @@ class $BookmarksTableTable extends BookmarksTable
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
   $BookmarksTableTable(this.attachedDatabase, [this._alias]);
-  final VerificationMeta _nameMeta = const VerificationMeta('name');
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
   @override
   late final GeneratedColumn<String> name = GeneratedColumn<String>(
       'name', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
-  final VerificationMeta _createdAtMeta = const VerificationMeta('createdAt');
+  static const VerificationMeta _createdAtMeta =
+      const VerificationMeta('createdAt');
   @override
   late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
       'created_at', aliasedName, false,
@@ -987,9 +991,9 @@ class $BookmarksTableTable extends BookmarksTable
   BookmarksTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return BookmarksTableData(
-      name: attachedDatabase.options.types
+      name: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
-      createdAt: attachedDatabase.options.types
+      createdAt: attachedDatabase.typeMapping
           .read(DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
     );
   }
@@ -1212,97 +1216,97 @@ class $PackagesWithBookmarkView
       {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return PackagesWithBookmarkData(
-      name: attachedDatabase.options.types
+      name: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
-      description: attachedDatabase.options.types
+      description: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}description'])!,
-      latest: attachedDatabase.options.types
+      latest: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}latest'])!,
-      latestAt: attachedDatabase.options.types
+      latestAt: attachedDatabase.typeMapping
           .read(DriftSqlType.dateTime, data['${effectivePrefix}latest_at']),
-      preRelease: attachedDatabase.options.types
+      preRelease: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}pre_release']),
-      preReleaseAt: attachedDatabase.options.types.read(
+      preReleaseAt: attachedDatabase.typeMapping.read(
           DriftSqlType.dateTime, data['${effectivePrefix}pre_release_at']),
-      sdks: attachedDatabase.options.types
+      sdks: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}sdks'])!,
-      platforms: attachedDatabase.options.types
+      platforms: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}platforms'])!,
-      publisher: attachedDatabase.options.types
+      publisher: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}publisher'])!,
-      points: attachedDatabase.options.types
+      points: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}points'])!,
-      maxPoints: attachedDatabase.options.types
+      maxPoints: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}max_points'])!,
-      likes: attachedDatabase.options.types
+      likes: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}likes'])!,
-      popularity: attachedDatabase.options.types
+      popularity: attachedDatabase.typeMapping
           .read(DriftSqlType.double, data['${effectivePrefix}popularity'])!,
-      savedAt: attachedDatabase.options.types
+      savedAt: attachedDatabase.typeMapping
           .read(DriftSqlType.dateTime, data['${effectivePrefix}saved_at'])!,
-      bookmarkedAt: attachedDatabase.options.types
+      bookmarkedAt: attachedDatabase.typeMapping
           .read(DriftSqlType.dateTime, data['${effectivePrefix}bookmarked_at']),
     );
   }
 
   late final GeneratedColumn<String> name = GeneratedColumn<String>(
       'name', aliasedName, false,
-      type: DriftSqlType.string,
-      generatedAs: GeneratedAs(packages.name, false));
+      generatedAs: GeneratedAs(packages.name, false),
+      type: DriftSqlType.string);
   late final GeneratedColumn<String> description = GeneratedColumn<String>(
       'description', aliasedName, false,
-      type: DriftSqlType.string,
-      generatedAs: GeneratedAs(packages.description, false));
+      generatedAs: GeneratedAs(packages.description, false),
+      type: DriftSqlType.string);
   late final GeneratedColumn<String> latest = GeneratedColumn<String>(
       'latest', aliasedName, false,
-      type: DriftSqlType.string,
-      generatedAs: GeneratedAs(packages.latest, false));
+      generatedAs: GeneratedAs(packages.latest, false),
+      type: DriftSqlType.string);
   late final GeneratedColumn<DateTime> latestAt = GeneratedColumn<DateTime>(
       'latest_at', aliasedName, true,
-      type: DriftSqlType.dateTime,
-      generatedAs: GeneratedAs(packages.latestAt, false));
+      generatedAs: GeneratedAs(packages.latestAt, false),
+      type: DriftSqlType.dateTime);
   late final GeneratedColumn<String> preRelease = GeneratedColumn<String>(
       'pre_release', aliasedName, true,
-      type: DriftSqlType.string,
-      generatedAs: GeneratedAs(packages.preRelease, false));
+      generatedAs: GeneratedAs(packages.preRelease, false),
+      type: DriftSqlType.string);
   late final GeneratedColumn<DateTime> preReleaseAt = GeneratedColumn<DateTime>(
       'pre_release_at', aliasedName, true,
-      type: DriftSqlType.dateTime,
-      generatedAs: GeneratedAs(packages.preReleaseAt, false));
+      generatedAs: GeneratedAs(packages.preReleaseAt, false),
+      type: DriftSqlType.dateTime);
   late final GeneratedColumn<String> sdks = GeneratedColumn<String>(
       'sdks', aliasedName, false,
-      type: DriftSqlType.string,
-      generatedAs: GeneratedAs(packages.sdks, false));
+      generatedAs: GeneratedAs(packages.sdks, false),
+      type: DriftSqlType.string);
   late final GeneratedColumn<String> platforms = GeneratedColumn<String>(
       'platforms', aliasedName, false,
-      type: DriftSqlType.string,
-      generatedAs: GeneratedAs(packages.platforms, false));
+      generatedAs: GeneratedAs(packages.platforms, false),
+      type: DriftSqlType.string);
   late final GeneratedColumn<String> publisher = GeneratedColumn<String>(
       'publisher', aliasedName, false,
-      type: DriftSqlType.string,
-      generatedAs: GeneratedAs(packages.publisher, false));
+      generatedAs: GeneratedAs(packages.publisher, false),
+      type: DriftSqlType.string);
   late final GeneratedColumn<int> points = GeneratedColumn<int>(
       'points', aliasedName, false,
-      type: DriftSqlType.int, generatedAs: GeneratedAs(packages.points, false));
+      generatedAs: GeneratedAs(packages.points, false), type: DriftSqlType.int);
   late final GeneratedColumn<int> maxPoints = GeneratedColumn<int>(
       'max_points', aliasedName, false,
-      type: DriftSqlType.int,
-      generatedAs: GeneratedAs(packages.maxPoints, false));
+      generatedAs: GeneratedAs(packages.maxPoints, false),
+      type: DriftSqlType.int);
   late final GeneratedColumn<int> likes = GeneratedColumn<int>(
       'likes', aliasedName, false,
-      type: DriftSqlType.int, generatedAs: GeneratedAs(packages.likes, false));
+      generatedAs: GeneratedAs(packages.likes, false), type: DriftSqlType.int);
   late final GeneratedColumn<double> popularity = GeneratedColumn<double>(
       'popularity', aliasedName, false,
-      type: DriftSqlType.double,
-      generatedAs: GeneratedAs(packages.popularity, false));
+      generatedAs: GeneratedAs(packages.popularity, false),
+      type: DriftSqlType.double);
   late final GeneratedColumn<DateTime> savedAt = GeneratedColumn<DateTime>(
       'saved_at', aliasedName, false,
-      type: DriftSqlType.dateTime,
-      generatedAs: GeneratedAs(packages.savedAt, false));
+      generatedAs: GeneratedAs(packages.savedAt, false),
+      type: DriftSqlType.dateTime);
   late final GeneratedColumn<DateTime> bookmarkedAt = GeneratedColumn<DateTime>(
       'bookmarked_at', aliasedName, true,
-      type: DriftSqlType.dateTime,
-      generatedAs: GeneratedAs(bookmarks.createdAt, false));
+      generatedAs: GeneratedAs(bookmarks.createdAt, false),
+      type: DriftSqlType.dateTime);
   @override
   $PackagesWithBookmarkView createAlias(String alias) {
     return $PackagesWithBookmarkView(attachedDatabase, alias);
@@ -1327,7 +1331,7 @@ abstract class _$Database extends GeneratedDatabase {
   late final PackagesDao packagesDao = PackagesDao(this as Database);
   late final BookmarksDao bookmarksDao = BookmarksDao(this as Database);
   @override
-  Iterable<TableInfo<Table, dynamic>> get allTables =>
+  Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities =>
