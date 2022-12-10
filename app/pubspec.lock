@@ -42,14 +42,14 @@ packages:
       name: async_phase
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.1+1"
+    version: "0.1.0"
   async_phase_notifier:
     dependency: "direct main"
     description:
       name: async_phase_notifier
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.1"
+    version: "0.1.0"
   characters:
     dependency: transitive
     description:
@@ -285,7 +285,7 @@ packages:
       name: path
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.2"
+    version: "1.8.3"
   path_provider:
     dependency: "direct main"
     description:

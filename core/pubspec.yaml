@@ -11,7 +11,7 @@ dependencies:
   equatable: ^2.0.5
   http: ^0.13.5
   json_annotation: ^4.7.0
-  path: ^1.8.2
+  path: ^1.8.3
   pot: ^0.4.2
 
 dev_dependencies:
