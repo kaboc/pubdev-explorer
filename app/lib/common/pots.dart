@@ -3,9 +3,9 @@ import 'package:pot/pot.dart';
 import 'package:pubdev_explorer_core/pubdev_explorer_core.dart';
 
 import 'package:pubdev_explorer/presentation/app_states/settings_notifier.dart';
+import 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmark_toggler.dart';
 import 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmarks_fetcher.dart';
 import 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmarks_notifier.dart';
-import 'package:pubdev_explorer/presentation/pages/home/states/bookmark_toggler.dart';
 import 'package:pubdev_explorer/presentation/pages/home/states/home_notifier.dart';
 import 'package:pubdev_explorer/presentation/pages/home/states/package_fetcher.dart';
 import 'package:pubdev_explorer/presentation/pages/home/states/package_names_fetcher.dart';
@@ -13,9 +13,9 @@ import 'package:pubdev_explorer/presentation/pages/home/states/package_names_fet
 export 'package:pubdev_explorer_core/pubdev_explorer_core.dart';
 
 export 'package:pubdev_explorer/presentation/app_states/settings_notifier.dart';
+export 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmark_toggler.dart';
 export 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmarks_fetcher.dart';
 export 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmarks_notifier.dart';
-export 'package:pubdev_explorer/presentation/pages/home/states/bookmark_toggler.dart';
 export 'package:pubdev_explorer/presentation/pages/home/states/home_notifier.dart';
 export 'package:pubdev_explorer/presentation/pages/home/states/package_fetcher.dart';
 export 'package:pubdev_explorer/presentation/pages/home/states/package_names_fetcher.dart';
