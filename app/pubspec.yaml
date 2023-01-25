@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.18.0 <3.0.0'
+  sdk: '>=2.19.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -15,19 +15,19 @@ dependencies:
 
   # Packages by the app author
   async_phase_notifier: 0.1.0
-  custom_text: ^0.6.0
+  custom_text: ^0.6.1
   grab: ^0.3.0+1
   pot: ^0.4.2
 
   # Other packages
   collection: ^1.17.0
-  drift: ^2.3.0
+  drift: ^2.4.2
   equatable: ^2.0.5
-  intl: ^0.17.0
+  intl: ^0.18.0
   path: ^1.8.3
-  path_provider: ^2.0.11
+  path_provider: ^2.0.12
   sqlite3_flutter_libs: ^0.5.12
-  url_launcher: ^6.1.7
+  url_launcher: ^6.1.8
 
 dev_dependencies:
   flutter_lints: ^2.0.1
@@ -35,9 +35,6 @@ dev_dependencies:
   custom_lint: ^0.0.14
   grab_lints:
     git: https://github.com/kaboc/grab-lints.git
-
-dependency_overrides:
-  collection: ^1.17.0
 
 flutter:
   uses-material-design: true

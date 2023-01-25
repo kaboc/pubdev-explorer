@@ -74,7 +74,6 @@ extension on ThemeData {
       chipTheme: chipTheme.copyWith(
         backgroundColor: colorScheme.tertiary,
       ),
-      toggleableActiveColor: colorScheme.secondary,
     );
   }
 }

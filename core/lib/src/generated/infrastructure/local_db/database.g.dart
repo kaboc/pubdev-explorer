@@ -5,6 +5,69 @@
 part of '../../../infrastructure/local_db/database.dart';
 
 // ignore_for_file: type=lint
+class $SettingsTableTable extends SettingsTable
+    with TableInfo<$SettingsTableTable, SettingsTableData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $SettingsTableTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultValue: const Constant(1));
+  static const VerificationMeta _themeModeIndexMeta =
+      const VerificationMeta('themeModeIndex');
+  @override
+  late final GeneratedColumn<int> themeModeIndex = GeneratedColumn<int>(
+      'theme_mode_index', aliasedName, false,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultValue: const Constant(0));
+  @override
+  List<GeneratedColumn> get $columns => [id, themeModeIndex];
+  @override
+  String get aliasedName => _alias ?? 'settings_table';
+  @override
+  String get actualTableName => 'settings_table';
+  @override
+  VerificationContext validateIntegrity(Insertable<SettingsTableData> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('theme_mode_index')) {
+      context.handle(
+          _themeModeIndexMeta,
+          themeModeIndex.isAcceptableOrUnknown(
+              data['theme_mode_index']!, _themeModeIndexMeta));
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  SettingsTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return SettingsTableData(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      themeModeIndex: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}theme_mode_index'])!,
+    );
+  }
+
+  @override
+  $SettingsTableTable createAlias(String alias) {
+    return $SettingsTableTable(attachedDatabase, alias);
+  }
+}
+
 class SettingsTableData extends DataClass
     implements Insertable<SettingsTableData> {
   final int id;
@@ -117,66 +180,246 @@ class SettingsTableCompanion extends UpdateCompanion<SettingsTableData> {
   }
 }
 
-class $SettingsTableTable extends SettingsTable
-    with TableInfo<$SettingsTableTable, SettingsTableData> {
+class $PackagesTableTable extends PackagesTable
+    with TableInfo<$PackagesTableTable, PackagesTableData> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $SettingsTableTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  $PackagesTableTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
   @override
-  late final GeneratedColumn<int> id = GeneratedColumn<int>(
-      'id', aliasedName, false,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      defaultValue: const Constant(1));
-  static const VerificationMeta _themeModeIndexMeta =
-      const VerificationMeta('themeModeIndex');
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+      'name', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _descriptionMeta =
+      const VerificationMeta('description');
   @override
-  late final GeneratedColumn<int> themeModeIndex = GeneratedColumn<int>(
-      'theme_mode_index', aliasedName, false,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      defaultValue: const Constant(0));
+  late final GeneratedColumn<String> description = GeneratedColumn<String>(
+      'description', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _latestMeta = const VerificationMeta('latest');
   @override
-  List<GeneratedColumn> get $columns => [id, themeModeIndex];
+  late final GeneratedColumn<String> latest = GeneratedColumn<String>(
+      'latest', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _latestAtMeta =
+      const VerificationMeta('latestAt');
   @override
-  String get aliasedName => _alias ?? 'settings_table';
+  late final GeneratedColumn<DateTime> latestAt = GeneratedColumn<DateTime>(
+      'latest_at', aliasedName, true,
+      type: DriftSqlType.dateTime, requiredDuringInsert: false);
+  static const VerificationMeta _preReleaseMeta =
+      const VerificationMeta('preRelease');
   @override
-  String get actualTableName => 'settings_table';
+  late final GeneratedColumn<String> preRelease = GeneratedColumn<String>(
+      'pre_release', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _preReleaseAtMeta =
+      const VerificationMeta('preReleaseAt');
   @override
-  VerificationContext validateIntegrity(Insertable<SettingsTableData> instance,
+  late final GeneratedColumn<DateTime> preReleaseAt = GeneratedColumn<DateTime>(
+      'pre_release_at', aliasedName, true,
+      type: DriftSqlType.dateTime, requiredDuringInsert: false);
+  static const VerificationMeta _sdksMeta = const VerificationMeta('sdks');
+  @override
+  late final GeneratedColumn<String> sdks = GeneratedColumn<String>(
+      'sdks', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _platformsMeta =
+      const VerificationMeta('platforms');
+  @override
+  late final GeneratedColumn<String> platforms = GeneratedColumn<String>(
+      'platforms', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _publisherMeta =
+      const VerificationMeta('publisher');
+  @override
+  late final GeneratedColumn<String> publisher = GeneratedColumn<String>(
+      'publisher', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _pointsMeta = const VerificationMeta('points');
+  @override
+  late final GeneratedColumn<int> points = GeneratedColumn<int>(
+      'points', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _maxPointsMeta =
+      const VerificationMeta('maxPoints');
+  @override
+  late final GeneratedColumn<int> maxPoints = GeneratedColumn<int>(
+      'max_points', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _likesMeta = const VerificationMeta('likes');
+  @override
+  late final GeneratedColumn<int> likes = GeneratedColumn<int>(
+      'likes', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _popularityMeta =
+      const VerificationMeta('popularity');
+  @override
+  late final GeneratedColumn<double> popularity = GeneratedColumn<double>(
+      'popularity', aliasedName, false,
+      type: DriftSqlType.double, requiredDuringInsert: true);
+  static const VerificationMeta _savedAtMeta =
+      const VerificationMeta('savedAt');
+  @override
+  late final GeneratedColumn<DateTime> savedAt = GeneratedColumn<DateTime>(
+      'saved_at', aliasedName, false,
+      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns => [
+        name,
+        description,
+        latest,
+        latestAt,
+        preRelease,
+        preReleaseAt,
+        sdks,
+        platforms,
+        publisher,
+        points,
+        maxPoints,
+        likes,
+        popularity,
+        savedAt
+      ];
+  @override
+  String get aliasedName => _alias ?? 'packages_table';
+  @override
+  String get actualTableName => 'packages_table';
+  @override
+  VerificationContext validateIntegrity(Insertable<PackagesTableData> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    }
-    if (data.containsKey('theme_mode_index')) {
+    if (data.containsKey('name')) {
       context.handle(
-          _themeModeIndexMeta,
-          themeModeIndex.isAcceptableOrUnknown(
-              data['theme_mode_index']!, _themeModeIndexMeta));
+          _nameMeta, name.isAcceptableOrUnknown(data['name']!, _nameMeta));
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('description')) {
+      context.handle(
+          _descriptionMeta,
+          description.isAcceptableOrUnknown(
+              data['description']!, _descriptionMeta));
+    } else if (isInserting) {
+      context.missing(_descriptionMeta);
+    }
+    if (data.containsKey('latest')) {
+      context.handle(_latestMeta,
+          latest.isAcceptableOrUnknown(data['latest']!, _latestMeta));
+    } else if (isInserting) {
+      context.missing(_latestMeta);
+    }
+    if (data.containsKey('latest_at')) {
+      context.handle(_latestAtMeta,
+          latestAt.isAcceptableOrUnknown(data['latest_at']!, _latestAtMeta));
+    }
+    if (data.containsKey('pre_release')) {
+      context.handle(
+          _preReleaseMeta,
+          preRelease.isAcceptableOrUnknown(
+              data['pre_release']!, _preReleaseMeta));
+    }
+    if (data.containsKey('pre_release_at')) {
+      context.handle(
+          _preReleaseAtMeta,
+          preReleaseAt.isAcceptableOrUnknown(
+              data['pre_release_at']!, _preReleaseAtMeta));
+    }
+    if (data.containsKey('sdks')) {
+      context.handle(
+          _sdksMeta, sdks.isAcceptableOrUnknown(data['sdks']!, _sdksMeta));
+    } else if (isInserting) {
+      context.missing(_sdksMeta);
+    }
+    if (data.containsKey('platforms')) {
+      context.handle(_platformsMeta,
+          platforms.isAcceptableOrUnknown(data['platforms']!, _platformsMeta));
+    } else if (isInserting) {
+      context.missing(_platformsMeta);
+    }
+    if (data.containsKey('publisher')) {
+      context.handle(_publisherMeta,
+          publisher.isAcceptableOrUnknown(data['publisher']!, _publisherMeta));
+    } else if (isInserting) {
+      context.missing(_publisherMeta);
+    }
+    if (data.containsKey('points')) {
+      context.handle(_pointsMeta,
+          points.isAcceptableOrUnknown(data['points']!, _pointsMeta));
+    } else if (isInserting) {
+      context.missing(_pointsMeta);
+    }
+    if (data.containsKey('max_points')) {
+      context.handle(_maxPointsMeta,
+          maxPoints.isAcceptableOrUnknown(data['max_points']!, _maxPointsMeta));
+    } else if (isInserting) {
+      context.missing(_maxPointsMeta);
+    }
+    if (data.containsKey('likes')) {
+      context.handle(
+          _likesMeta, likes.isAcceptableOrUnknown(data['likes']!, _likesMeta));
+    } else if (isInserting) {
+      context.missing(_likesMeta);
+    }
+    if (data.containsKey('popularity')) {
+      context.handle(
+          _popularityMeta,
+          popularity.isAcceptableOrUnknown(
+              data['popularity']!, _popularityMeta));
+    } else if (isInserting) {
+      context.missing(_popularityMeta);
+    }
+    if (data.containsKey('saved_at')) {
+      context.handle(_savedAtMeta,
+          savedAt.isAcceptableOrUnknown(data['saved_at']!, _savedAtMeta));
+    } else if (isInserting) {
+      context.missing(_savedAtMeta);
     }
     return context;
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => {id};
+  Set<GeneratedColumn> get $primaryKey => {name};
   @override
-  SettingsTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
+  PackagesTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return SettingsTableData(
-      id: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
-      themeModeIndex: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}theme_mode_index'])!,
+    return PackagesTableData(
+      name: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
+      description: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}description'])!,
+      latest: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}latest'])!,
+      latestAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}latest_at']),
+      preRelease: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}pre_release']),
+      preReleaseAt: attachedDatabase.typeMapping.read(
+          DriftSqlType.dateTime, data['${effectivePrefix}pre_release_at']),
+      sdks: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}sdks'])!,
+      platforms: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}platforms'])!,
+      publisher: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}publisher'])!,
+      points: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}points'])!,
+      maxPoints: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}max_points'])!,
+      likes: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}likes'])!,
+      popularity: attachedDatabase.typeMapping
+          .read(DriftSqlType.double, data['${effectivePrefix}popularity'])!,
+      savedAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}saved_at'])!,
     );
   }
 
   @override
-  $SettingsTableTable createAlias(String alias) {
-    return $SettingsTableTable(attachedDatabase, alias);
+  $PackagesTableTable createAlias(String alias) {
+    return $PackagesTableTable(attachedDatabase, alias);
   }
 }
 
@@ -586,114 +829,31 @@ class PackagesTableCompanion extends UpdateCompanion<PackagesTableData> {
   }
 }
 
-class $PackagesTableTable extends PackagesTable
-    with TableInfo<$PackagesTableTable, PackagesTableData> {
+class $BookmarksTableTable extends BookmarksTable
+    with TableInfo<$BookmarksTableTable, BookmarksTableData> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $PackagesTableTable(this.attachedDatabase, [this._alias]);
+  $BookmarksTableTable(this.attachedDatabase, [this._alias]);
   static const VerificationMeta _nameMeta = const VerificationMeta('name');
   @override
   late final GeneratedColumn<String> name = GeneratedColumn<String>(
       'name', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _descriptionMeta =
-      const VerificationMeta('description');
+  static const VerificationMeta _createdAtMeta =
+      const VerificationMeta('createdAt');
   @override
-  late final GeneratedColumn<String> description = GeneratedColumn<String>(
-      'description', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _latestMeta = const VerificationMeta('latest');
-  @override
-  late final GeneratedColumn<String> latest = GeneratedColumn<String>(
-      'latest', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _latestAtMeta =
-      const VerificationMeta('latestAt');
-  @override
-  late final GeneratedColumn<DateTime> latestAt = GeneratedColumn<DateTime>(
-      'latest_at', aliasedName, true,
-      type: DriftSqlType.dateTime, requiredDuringInsert: false);
-  static const VerificationMeta _preReleaseMeta =
-      const VerificationMeta('preRelease');
-  @override
-  late final GeneratedColumn<String> preRelease = GeneratedColumn<String>(
-      'pre_release', aliasedName, true,
-      type: DriftSqlType.string, requiredDuringInsert: false);
-  static const VerificationMeta _preReleaseAtMeta =
-      const VerificationMeta('preReleaseAt');
-  @override
-  late final GeneratedColumn<DateTime> preReleaseAt = GeneratedColumn<DateTime>(
-      'pre_release_at', aliasedName, true,
-      type: DriftSqlType.dateTime, requiredDuringInsert: false);
-  static const VerificationMeta _sdksMeta = const VerificationMeta('sdks');
-  @override
-  late final GeneratedColumn<String> sdks = GeneratedColumn<String>(
-      'sdks', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _platformsMeta =
-      const VerificationMeta('platforms');
-  @override
-  late final GeneratedColumn<String> platforms = GeneratedColumn<String>(
-      'platforms', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _publisherMeta =
-      const VerificationMeta('publisher');
-  @override
-  late final GeneratedColumn<String> publisher = GeneratedColumn<String>(
-      'publisher', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _pointsMeta = const VerificationMeta('points');
-  @override
-  late final GeneratedColumn<int> points = GeneratedColumn<int>(
-      'points', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _maxPointsMeta =
-      const VerificationMeta('maxPoints');
-  @override
-  late final GeneratedColumn<int> maxPoints = GeneratedColumn<int>(
-      'max_points', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _likesMeta = const VerificationMeta('likes');
-  @override
-  late final GeneratedColumn<int> likes = GeneratedColumn<int>(
-      'likes', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _popularityMeta =
-      const VerificationMeta('popularity');
-  @override
-  late final GeneratedColumn<double> popularity = GeneratedColumn<double>(
-      'popularity', aliasedName, false,
-      type: DriftSqlType.double, requiredDuringInsert: true);
-  static const VerificationMeta _savedAtMeta =
-      const VerificationMeta('savedAt');
-  @override
-  late final GeneratedColumn<DateTime> savedAt = GeneratedColumn<DateTime>(
-      'saved_at', aliasedName, false,
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+      'created_at', aliasedName, false,
       type: DriftSqlType.dateTime, requiredDuringInsert: true);
   @override
-  List<GeneratedColumn> get $columns => [
-        name,
-        description,
-        latest,
-        latestAt,
-        preRelease,
-        preReleaseAt,
-        sdks,
-        platforms,
-        publisher,
-        points,
-        maxPoints,
-        likes,
-        popularity,
-        savedAt
-      ];
+  List<GeneratedColumn> get $columns => [name, createdAt];
   @override
-  String get aliasedName => _alias ?? 'packages_table';
+  String get aliasedName => _alias ?? 'bookmarks_table';
   @override
-  String get actualTableName => 'packages_table';
+  String get actualTableName => 'bookmarks_table';
   @override
-  VerificationContext validateIntegrity(Insertable<PackagesTableData> instance,
+  VerificationContext validateIntegrity(Insertable<BookmarksTableData> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -703,85 +863,11 @@ class $PackagesTableTable extends PackagesTable
     } else if (isInserting) {
       context.missing(_nameMeta);
     }
-    if (data.containsKey('description')) {
-      context.handle(
-          _descriptionMeta,
-          description.isAcceptableOrUnknown(
-              data['description']!, _descriptionMeta));
+    if (data.containsKey('created_at')) {
+      context.handle(_createdAtMeta,
+          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
     } else if (isInserting) {
-      context.missing(_descriptionMeta);
-    }
-    if (data.containsKey('latest')) {
-      context.handle(_latestMeta,
-          latest.isAcceptableOrUnknown(data['latest']!, _latestMeta));
-    } else if (isInserting) {
-      context.missing(_latestMeta);
-    }
-    if (data.containsKey('latest_at')) {
-      context.handle(_latestAtMeta,
-          latestAt.isAcceptableOrUnknown(data['latest_at']!, _latestAtMeta));
-    }
-    if (data.containsKey('pre_release')) {
-      context.handle(
-          _preReleaseMeta,
-          preRelease.isAcceptableOrUnknown(
-              data['pre_release']!, _preReleaseMeta));
-    }
-    if (data.containsKey('pre_release_at')) {
-      context.handle(
-          _preReleaseAtMeta,
-          preReleaseAt.isAcceptableOrUnknown(
-              data['pre_release_at']!, _preReleaseAtMeta));
-    }
-    if (data.containsKey('sdks')) {
-      context.handle(
-          _sdksMeta, sdks.isAcceptableOrUnknown(data['sdks']!, _sdksMeta));
-    } else if (isInserting) {
-      context.missing(_sdksMeta);
-    }
-    if (data.containsKey('platforms')) {
-      context.handle(_platformsMeta,
-          platforms.isAcceptableOrUnknown(data['platforms']!, _platformsMeta));
-    } else if (isInserting) {
-      context.missing(_platformsMeta);
-    }
-    if (data.containsKey('publisher')) {
-      context.handle(_publisherMeta,
-          publisher.isAcceptableOrUnknown(data['publisher']!, _publisherMeta));
-    } else if (isInserting) {
-      context.missing(_publisherMeta);
-    }
-    if (data.containsKey('points')) {
-      context.handle(_pointsMeta,
-          points.isAcceptableOrUnknown(data['points']!, _pointsMeta));
-    } else if (isInserting) {
-      context.missing(_pointsMeta);
-    }
-    if (data.containsKey('max_points')) {
-      context.handle(_maxPointsMeta,
-          maxPoints.isAcceptableOrUnknown(data['max_points']!, _maxPointsMeta));
-    } else if (isInserting) {
-      context.missing(_maxPointsMeta);
-    }
-    if (data.containsKey('likes')) {
-      context.handle(
-          _likesMeta, likes.isAcceptableOrUnknown(data['likes']!, _likesMeta));
-    } else if (isInserting) {
-      context.missing(_likesMeta);
-    }
-    if (data.containsKey('popularity')) {
-      context.handle(
-          _popularityMeta,
-          popularity.isAcceptableOrUnknown(
-              data['popularity']!, _popularityMeta));
-    } else if (isInserting) {
-      context.missing(_popularityMeta);
-    }
-    if (data.containsKey('saved_at')) {
-      context.handle(_savedAtMeta,
-          savedAt.isAcceptableOrUnknown(data['saved_at']!, _savedAtMeta));
-    } else if (isInserting) {
-      context.missing(_savedAtMeta);
+      context.missing(_createdAtMeta);
     }
     return context;
   }
@@ -789,43 +875,19 @@ class $PackagesTableTable extends PackagesTable
   @override
   Set<GeneratedColumn> get $primaryKey => {name};
   @override
-  PackagesTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
+  BookmarksTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return PackagesTableData(
+    return BookmarksTableData(
       name: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
-      description: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}description'])!,
-      latest: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}latest'])!,
-      latestAt: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}latest_at']),
-      preRelease: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}pre_release']),
-      preReleaseAt: attachedDatabase.typeMapping.read(
-          DriftSqlType.dateTime, data['${effectivePrefix}pre_release_at']),
-      sdks: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}sdks'])!,
-      platforms: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}platforms'])!,
-      publisher: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}publisher'])!,
-      points: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}points'])!,
-      maxPoints: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}max_points'])!,
-      likes: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}likes'])!,
-      popularity: attachedDatabase.typeMapping
-          .read(DriftSqlType.double, data['${effectivePrefix}popularity'])!,
-      savedAt: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}saved_at'])!,
+      createdAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
     );
   }
 
   @override
-  $PackagesTableTable createAlias(String alias) {
-    return $PackagesTableTable(attachedDatabase, alias);
+  $BookmarksTableTable createAlias(String alias) {
+    return $BookmarksTableTable(attachedDatabase, alias);
   }
 }
 
@@ -939,68 +1001,6 @@ class BookmarksTableCompanion extends UpdateCompanion<BookmarksTableData> {
           ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
-  }
-}
-
-class $BookmarksTableTable extends BookmarksTable
-    with TableInfo<$BookmarksTableTable, BookmarksTableData> {
-  @override
-  final GeneratedDatabase attachedDatabase;
-  final String? _alias;
-  $BookmarksTableTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _nameMeta = const VerificationMeta('name');
-  @override
-  late final GeneratedColumn<String> name = GeneratedColumn<String>(
-      'name', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _createdAtMeta =
-      const VerificationMeta('createdAt');
-  @override
-  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
-      'created_at', aliasedName, false,
-      type: DriftSqlType.dateTime, requiredDuringInsert: true);
-  @override
-  List<GeneratedColumn> get $columns => [name, createdAt];
-  @override
-  String get aliasedName => _alias ?? 'bookmarks_table';
-  @override
-  String get actualTableName => 'bookmarks_table';
-  @override
-  VerificationContext validateIntegrity(Insertable<BookmarksTableData> instance,
-      {bool isInserting = false}) {
-    final context = VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('name')) {
-      context.handle(
-          _nameMeta, name.isAcceptableOrUnknown(data['name']!, _nameMeta));
-    } else if (isInserting) {
-      context.missing(_nameMeta);
-    }
-    if (data.containsKey('created_at')) {
-      context.handle(_createdAtMeta,
-          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
-    } else if (isInserting) {
-      context.missing(_createdAtMeta);
-    }
-    return context;
-  }
-
-  @override
-  Set<GeneratedColumn> get $primaryKey => {name};
-  @override
-  BookmarksTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return BookmarksTableData(
-      name: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
-      createdAt: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
-    );
-  }
-
-  @override
-  $BookmarksTableTable createAlias(String alias) {
-    return $BookmarksTableTable(attachedDatabase, alias);
   }
 }
 

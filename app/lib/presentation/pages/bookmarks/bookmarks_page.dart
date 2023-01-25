@@ -44,7 +44,7 @@ class _BookmarksPageState extends State<BookmarksPage> {
     });
 
     _notifier.onFirstFetchComplete = () {
-      final scrollController = PrimaryScrollController.of(context)!;
+      final scrollController = PrimaryScrollController.of(context);
       if (scrollController.hasClients) {
         scrollController.jumpTo(0.0);
       }
@@ -130,7 +130,7 @@ class _BookmarksPageState extends State<BookmarksPage> {
                           ),
                         )
                       : _ListView(
-                          controller: PrimaryScrollController.of(context)!,
+                          controller: PrimaryScrollController.of(context),
                           packagePhases: packagePhases,
                         ),
                   complete: (_) => packagePhases.isEmpty
@@ -143,7 +143,7 @@ class _BookmarksPageState extends State<BookmarksPage> {
                           ),
                         )
                       : _ListView(
-                          controller: PrimaryScrollController.of(context)!,
+                          controller: PrimaryScrollController.of(context),
                           packagePhases: packagePhases,
                         ),
                 ),
