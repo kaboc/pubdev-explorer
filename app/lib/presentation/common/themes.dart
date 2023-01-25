@@ -38,6 +38,11 @@ class AppTheme {
       ),
       scaffoldBackgroundColor: const Color(0xFF212121),
       cardColor: const Color(0xFF303030),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: _tertiaryColor,
+        ),
+      ),
     );
   }
 }
