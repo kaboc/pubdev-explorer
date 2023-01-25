@@ -14,7 +14,7 @@ dependencies:
     path: ../core
 
   # Packages by the app author
-  async_phase_notifier: 0.1.0
+  async_phase_notifier: 0.2.0
   custom_text: ^0.6.1
   grab: ^0.3.0+1
   pot: ^0.4.2

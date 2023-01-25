@@ -56,9 +56,9 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         body: SafeArea(
-          child: AsyncErrorListener(
+          child: AsyncPhaseListener(
             notifier: _packageFetcher,
-            onError: (context, e, s) {
+            onError: (e, s) {
               final messenger = ScaffoldMessenger.of(context);
               messenger.showMaterialBanner(
                 MaterialBanner(

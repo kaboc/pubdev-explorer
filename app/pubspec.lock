@@ -45,18 +45,18 @@ packages:
     dependency: transitive
     description:
       name: async_phase
-      sha256: f50284103b3ff2332f04b1c845fdb9b2c27c048513cce01ad06675ed558d6bbd
+      sha256: "5b219b52be472919464b06750a07518e8fb75e7b89d80adca2d57cada2e260dd"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.0"
+    version: "0.2.0"
   async_phase_notifier:
     dependency: "direct main"
     description:
       name: async_phase_notifier
-      sha256: "92573464906c2b83d29611f4e2b1c9a4f07776c5b7cbf193193a405f1dfaeb91"
+      sha256: "0969e125c2a6f3b983e32ba00de419c6cdf32d91dfa7d92067c435caa0d11260"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.0"
+    version: "0.2.0"
   characters:
     dependency: transitive
     description:
@@ -658,4 +658,4 @@ packages:
     version: "3.1.1"
 sdks:
   dart: ">=2.19.0 <4.0.0"
-  flutter: ">=3.3.0"
+  flutter: ">=3.7.0"
