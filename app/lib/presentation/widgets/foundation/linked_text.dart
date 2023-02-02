@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:custom_text/custom_text.dart';
@@ -30,7 +31,7 @@ class _LinkedTextState extends State<LinkedText> {
 
     return Link(
       uri: Uri.tryParse(widget.url),
-      target: LinkTarget.blank,
+      target: kIsWeb ? LinkTarget.blank : LinkTarget.self,
       builder: (_, followLink) {
         return Actions(
           actions: {
