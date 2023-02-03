@@ -7,6 +7,8 @@ PubDao get _remoteDao => pubDaoPot();
 PackagesDao get _localDao => localDatabasePot().packagesDao;
 
 class PackagesRepository {
+  const PackagesRepository();
+
   Future<List<String>> fetchPackageNames({int page = 0}) async {
     try {
       return _remoteDao.fetchPackageNames(page: page);

@@ -11,6 +11,8 @@ import 'package:pubdev_explorer_core/src/infrastructure/pub_api/models/package_n
 const _kPubApiUrl = 'https://pub.dev/api/';
 
 class PubDao {
+  const PubDao();
+
   Future<List<String>> fetchPackageNames({int page = 1}) async {
     final url = '${_kPubApiUrl}search'
         '?q=is%3Anull-safe+license%3Aosi-approved&sort=updated&page=$page';

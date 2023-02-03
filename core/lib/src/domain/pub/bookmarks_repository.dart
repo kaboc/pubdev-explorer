@@ -5,6 +5,8 @@ import 'package:pubdev_explorer_core/src/infrastructure/local_db/daos/bookmarks_
 BookmarksDao get _dao => localDatabasePot().bookmarksDao;
 
 class BookmarksRepository {
+  const BookmarksRepository();
+
   Future<List<Package>> fetch({required int limit, DateTime? before}) {
     try {
       return _dao.fetch(

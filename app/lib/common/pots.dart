@@ -21,15 +21,15 @@ export 'package:pubdev_explorer/presentation/pages/home/states/package_fetcher.d
 export 'package:pubdev_explorer/presentation/pages/home/states/package_names_fetcher.dart';
 
 final settingsRepositoryPot = Pot(
-  SettingsRepository.new,
+  () => const SettingsRepository(),
 );
 
 final packagesRepositoryPot = Pot(
-  PackagesRepository.new,
+  () => const PackagesRepository(),
 );
 
 final bookmarksRepositoryPot = Pot(
-  BookmarksRepository.new,
+  () => const BookmarksRepository(),
 );
 
 final settingsNotifierPot = Pot(

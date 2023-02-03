@@ -12,7 +12,7 @@ LazyDatabase openConnection({bool inMemory = false}) {
     }
 
     // Another way is to use getDatabasesPath() of sqflite.
-    // On Android, it is probably better as it return the
+    // On Android, it is probably better as it returns the
     // default database path.
     final dirPath = await _getAppSupportDirPath();
     final file = File(path.join(dirPath, 'app.sqlite'));
