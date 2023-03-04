@@ -52,7 +52,7 @@ class _LinkedTextState extends State<LinkedText> {
                 decoration: _focused ? TextDecoration.underline : null,
               ),
               hoverStyle: hoverStyle,
-              onTap: (_, __) => followLink!.call(),
+              onTap: (_) => followLink!.call(),
             ),
           ),
         );
