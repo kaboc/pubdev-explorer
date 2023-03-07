@@ -89,7 +89,7 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "kaboc" "\0"
+            VALUE "CompanyName", "com.example" "\0"
             VALUE "FileDescription", "An app to explore and bookmark packages hosted on pub.dev." "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "pubdev_explorer" "\0"
