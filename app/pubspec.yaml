@@ -32,5 +32,9 @@ dependencies:
 dev_dependencies:
   flutter_lints: ^2.0.1
 
+#  custom_lint: ^0.3.2
+#  grab_lints:
+#    git: https://github.com/kaboc/grab-lints.git
+
 flutter:
   uses-material-design: true
