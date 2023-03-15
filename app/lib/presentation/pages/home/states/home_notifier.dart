@@ -27,6 +27,53 @@ class HomeNotifier extends ValueNotifier<HomeState> {
     super.dispose();
   }
 
+  void onIndexChanged(int index) {
+    value = value.copyWith(index: index);
+
+    if (value.isIndexOutOfRange && !value.isFirst) {
+      return;
+    }
+    if (value.isLast) {
+      fetchList();
+    } else {
+      fetchPackage(currentPackage: value.currentPackage);
+    }
+  }
+
+  void fetchList() {
+    if (value.endReached) {
+      return;
+    }
+
+    if (_packageNamesFetcher.value.isWaiting) {
+      Future<void>.delayed(const Duration(seconds: 1), fetchList);
+      return;
+    }
+
+    _packageNamesFetcher.fetch(page: value.page + 1);
+  }
+
+  void fetchPackage({Package? currentPackage, bool fromWeb = false}) {
+    if (currentPackage != null && (currentPackage.isEmpty || fromWeb)) {
+      _packageFetcher.fetch(currentPackage: currentPackage, fromWeb: fromWeb);
+    }
+  }
+
+  void toggleBookmark({required Package package}) {
+    _bookmarkToggler.toggle(package: package);
+  }
+
+  void restart() {
+    value = const HomeState();
+    fetchList();
+  }
+}
+
+//======================================================================
+
+/// Private extension containing listeners
+/// triggered by updates in other notifiers.
+extension on HomeNotifier {
   void _onPackageNamesFetched() {
     final phase = _packageNamesFetcher.value;
     if (phase.isComplete) {
@@ -74,46 +121,5 @@ class HomeNotifier extends ValueNotifier<HomeState> {
         packagePhase: _bookmarkToggler.value,
       ),
     );
-  }
-
-  void onIndexChanged(int index) {
-    value = value.copyWith(index: index);
-
-    if (value.isIndexOutOfRange && !value.isFirst) {
-      return;
-    }
-    if (value.isLast) {
-      fetchList();
-    } else {
-      fetchPackage(currentPackage: value.currentPackage);
-    }
-  }
-
-  void fetchList() {
-    if (value.endReached) {
-      return;
-    }
-
-    if (_packageNamesFetcher.value.isWaiting) {
-      Future<void>.delayed(const Duration(seconds: 1), fetchList);
-      return;
-    }
-
-    _packageNamesFetcher.fetch(page: value.page + 1);
-  }
-
-  void fetchPackage({Package? currentPackage, bool fromWeb = false}) {
-    if (currentPackage != null && (currentPackage.isEmpty || fromWeb)) {
-      _packageFetcher.fetch(currentPackage: currentPackage, fromWeb: fromWeb);
-    }
-  }
-
-  void toggleBookmark({required Package package}) {
-    _bookmarkToggler.toggle(package: package);
-  }
-
-  void restart() {
-    value = const HomeState();
-    fetchList();
   }
 }

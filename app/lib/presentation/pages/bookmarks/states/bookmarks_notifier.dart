@@ -39,49 +39,6 @@ class BookmarksNotifier extends ValueNotifier<BookmarksState> {
     super.dispose();
   }
 
-  void _onFetched() {
-    final phase = _fetcher.value;
-    if (phase.isComplete) {
-      final packages = phase.data!;
-      if (packages.length > kBookmarksFetchLimit) {
-        packages.removeAt(kBookmarksFetchLimit);
-        _currentLastAt = packages.last.bookmarkedAt;
-      } else {
-        _hasMore = false;
-      }
-
-      value = value.copyWith(
-        packagePhases: [
-          ...value.packagePhases,
-          for (final package in packages) AsyncComplete(package),
-        ],
-      );
-
-      if (value.packagePhases.length <= kBookmarksFetchLimit) {
-        onFirstFetchComplete?.call();
-      }
-    }
-  }
-
-  void _onToggled() {
-    final phase = _toggler.value;
-    if (phase.isComplete) {
-      value = value.copyWith(
-        packagePhases: value.packagePhases.copyAndReplace(
-          packagePhase: phase,
-        ),
-      );
-    }
-  }
-
-  void _onPackageFetched() {
-    value = value.copyWith(
-      packagePhases: value.packagePhases.copyAndReplace(
-        packagePhase: _packageFetcher.value,
-      ),
-    );
-  }
-
   void onSearchWordsChanged(String text) {
     _debounceTimer?.cancel();
 
@@ -134,5 +91,54 @@ class BookmarksNotifier extends ValueNotifier<BookmarksState> {
 
   void toggleBookmark({required Package package}) {
     _toggler.toggle(package: package);
+  }
+}
+
+//======================================================================
+
+/// Private extension containing listeners
+/// triggered by updates in other notifiers.
+extension on BookmarksNotifier {
+  void _onFetched() {
+    final phase = _fetcher.value;
+    if (phase.isComplete) {
+      final packages = phase.data!;
+      if (packages.length > kBookmarksFetchLimit) {
+        packages.removeAt(kBookmarksFetchLimit);
+        _currentLastAt = packages.last.bookmarkedAt;
+      } else {
+        _hasMore = false;
+      }
+
+      value = value.copyWith(
+        packagePhases: [
+          ...value.packagePhases,
+          for (final package in packages) AsyncComplete(package),
+        ],
+      );
+
+      if (value.packagePhases.length <= kBookmarksFetchLimit) {
+        onFirstFetchComplete?.call();
+      }
+    }
+  }
+
+  void _onToggled() {
+    final phase = _toggler.value;
+    if (phase.isComplete) {
+      value = value.copyWith(
+        packagePhases: value.packagePhases.copyAndReplace(
+          packagePhase: phase,
+        ),
+      );
+    }
+  }
+
+  void _onPackageFetched() {
+    value = value.copyWith(
+      packagePhases: value.packagePhases.copyAndReplace(
+        packagePhase: _packageFetcher.value,
+      ),
+    );
   }
 }
