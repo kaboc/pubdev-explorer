@@ -17,11 +17,14 @@ The app shows an example of how those packages are combined. The author himself,
 still examining and considering how they are made good use of to make the app more maintainable
 and easier to evolve, so the current app design is not necessarily the best.
 
-- [pot](https://pub.dev/packages/pot)
-    - An easy and safe DI solution.
-    - This is a little similar to providers of pkg:riverpod in that the instance is assigned
-      to a global variable and can be accessed from anywhere, but different in that a Pot is
-      just a service locator with only a few handy features but with no complexity.
+- [pottery](https://pub.dev/packages/pottery)
+    - A utility widget for [pot](https://pub.dev/packages/pot).
+    - Pot is an easy and safe DI solution. It is a little similar to providers of pkg:riverpod
+      in that the instance is assigned to a global variable and can be accessed from anywhere,
+      but different in that Pot is just a service locator with only a few handy features and
+      no complexity.
+    - Pottery limits the scope of pots in the widget tree, making it possible to use pots
+      in a similar manner to using MultiProvider of pkg:provider.
 - [grab](https://pub.dev/packages/grab)
     - A package to control rebuilds of a widget based on updates of a `Listenable` such as
       `ChangeNotifier` and `ValueNotifier`.
@@ -52,7 +55,7 @@ the classes from which code is generated, run the command below in the `core/` d
 to generate updated code.
 
 ```shell
-$ dart pub run build_runner build -d
+$ dart run build_runner build -d
 ```
 
 This project already contains generated code in `core/lib/src/generated/`, so if you haven't
@@ -70,4 +73,3 @@ To use the data on other platforms, pass the `USE_MOCK` environment variable as 
 ```dart
 flutter run --dart-define=USE_MOCK=true
 ```
-
