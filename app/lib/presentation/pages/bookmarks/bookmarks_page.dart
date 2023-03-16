@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:grab/grab.dart';
+import 'package:pottery/pottery.dart';
 
 import 'package:pubdev_explorer/common/_common.dart';
 import 'package:pubdev_explorer/presentation/common/_common.dart';
@@ -22,7 +23,7 @@ class BookmarksPage extends StatefulWidget with Grabful {
           bookmarksFetcherPot: BookmarksFetcher.new,
           bookmarksNotifierPot: BookmarksNotifier.new,
         },
-        child: const BookmarksPage._(),
+        builder: (_) => const BookmarksPage._(),
       ),
     );
   }

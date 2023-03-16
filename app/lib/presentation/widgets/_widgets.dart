@@ -11,4 +11,3 @@ export 'package:pubdev_explorer/presentation/widgets/card/version_table.dart';
 export 'package:pubdev_explorer/presentation/widgets/foundation/bottom_detector.dart';
 export 'package:pubdev_explorer/presentation/widgets/foundation/fading_page_route.dart';
 export 'package:pubdev_explorer/presentation/widgets/foundation/linked_text.dart';
-export 'package:pubdev_explorer/presentation/widgets/foundation/pottery.dart';

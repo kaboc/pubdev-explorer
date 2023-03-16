@@ -1,4 +1,4 @@
-import 'package:pot/pot.dart';
+import 'package:pottery/pottery.dart';
 
 import 'package:pubdev_explorer_core/pubdev_explorer_core.dart';
 

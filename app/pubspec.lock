@@ -260,13 +260,21 @@ packages:
     source: hosted
     version: "2.1.4"
   pot:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: pot
       sha256: "9adf8558286dfbec9f4496853db0770ad43fa6b5e8345941195406340665ff56"
       url: "https://pub.dev"
     source: hosted
     version: "0.4.2"
+  pottery:
+    dependency: "direct main"
+    description:
+      name: pottery
+      sha256: "50896adb2199ed42a25d35008a5347f81c4fb02bf86f20bf6f4b9f10e30a0b11"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1"
   process:
     dependency: transitive
     description:
