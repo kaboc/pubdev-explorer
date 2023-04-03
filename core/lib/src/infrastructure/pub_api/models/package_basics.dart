@@ -18,9 +18,7 @@ class PackageBasics {
   factory PackageBasics.fromJson(JsonMap json) => _$PackageBasicsFromJson(json);
 
   final String name;
-
   final _Version latest;
-
   final List<_Version> versions;
 }
 

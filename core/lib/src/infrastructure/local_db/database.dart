@@ -18,10 +18,10 @@ part '../../generated/infrastructure/local_db/database.g.dart';
 class Database extends _$Database {
   Database({required QueryExecutor executor}) : super(executor);
 
+  @override
+  int get schemaVersion => 1;
+
   Future<void> dispose() async {
     await close();
   }
-
-  @override
-  int get schemaVersion => 1;
 }

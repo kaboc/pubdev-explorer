@@ -15,15 +15,11 @@ part '../../../generated/infrastructure/local_db/daos/bookmarks_dao.g.dart';
 class BookmarksDao extends DatabaseAccessor<Database> with _$BookmarksDaoMixin {
   BookmarksDao(super.db);
 
-  $BookmarksTableTable get _table => db.bookmarksTable;
-
-  $PackagesWithBookmarkView get _view => db.packagesWithBookmark;
-
   Future<List<Package>> fetch({
     required int limit,
     required DateTime before,
   }) async {
-    final stmt = select(_view)
+    final stmt = select(packagesWithBookmark)
       ..orderBy([
         (t) =>
             OrderingTerm(expression: t.bookmarkedAt, mode: OrderingMode.desc),
@@ -45,7 +41,7 @@ class BookmarksDao extends DatabaseAccessor<Database> with _$BookmarksDaoMixin {
       return [];
     }
 
-    final stmt = select(_view)
+    final stmt = select(packagesWithBookmark)
       ..orderBy([
         (t) =>
             OrderingTerm(expression: t.bookmarkedAt, mode: OrderingMode.desc),
@@ -68,11 +64,13 @@ class BookmarksDao extends DatabaseAccessor<Database> with _$BookmarksDaoMixin {
   }
 
   Future<void> addOrUpdateBookmark({required Package package}) async {
-    await into(_table).insertOnConflictUpdate(package.asBookmarkCompanion);
+    await into(bookmarksTable)
+        .insertOnConflictUpdate(package.asBookmarkCompanion);
   }
 
   Future<void> deleteBookmark({required Package package}) async {
-    final stmt = delete(_table)..where((t) => t.name.equals(package.name));
+    final stmt = delete(bookmarksTable)
+      ..where((t) => t.name.equals(package.name));
     await stmt.go();
   }
 }

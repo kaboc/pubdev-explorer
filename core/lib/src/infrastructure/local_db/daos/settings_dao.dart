@@ -11,15 +11,13 @@ part '../../../generated/infrastructure/local_db/daos/settings_dao.g.dart';
 class SettingsDao extends DatabaseAccessor<Database> with _$SettingsDaoMixin {
   SettingsDao(super.db);
 
-  $SettingsTableTable get _table => db.settingsTable;
-
   Future<Settings> fetchSettings() async {
-    final stmt = select(_table)..where((t) => t.id.equals(1));
+    final stmt = select(settingsTable)..where((t) => t.id.equals(1));
     final settings = await stmt.getSingleOrNull();
     return settings?.asSettings ?? const Settings();
   }
 
   Future<void> addOrUpdateSettings({required Settings settings}) async {
-    await into(_table).insertOnConflictUpdate(settings.asCompanion);
+    await into(settingsTable).insertOnConflictUpdate(settings.asCompanion);
   }
 }

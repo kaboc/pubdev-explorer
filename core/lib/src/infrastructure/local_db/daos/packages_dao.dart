@@ -15,15 +15,11 @@ part '../../../generated/infrastructure/local_db/daos/packages_dao.g.dart';
 class PackagesDao extends DatabaseAccessor<Database> with _$PackagesDaoMixin {
   PackagesDao(super.db);
 
-  $PackagesTableTable get _table => db.packagesTable;
-
-  $PackagesWithBookmarkView get _view => db.packagesWithBookmark;
-
   Future<Package?> fetchPackage({
     required String name,
     required DateTime after,
   }) async {
-    final stmt = select(_view)
+    final stmt = select(packagesWithBookmark)
       ..where((t) => t.name.equals(name))
       ..where((t) => t.savedAt.isBiggerThanValue(after));
     final data = await stmt.getSingleOrNull();
@@ -32,6 +28,6 @@ class PackagesDao extends DatabaseAccessor<Database> with _$PackagesDaoMixin {
 
   Future<void> addOrUpdatePackage({required Package package}) async {
     final companion = package.asCompanion;
-    await into(_table).insertOnConflictUpdate(companion);
+    await into(packagesTable).insertOnConflictUpdate(companion);
   }
 }
