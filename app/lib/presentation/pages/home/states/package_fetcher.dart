@@ -10,7 +10,7 @@ class PackageFetcher extends AsyncPhaseNotifier<Package> {
   PackageFetcher() : super(const Package.none());
 
   void fetch({required Package currentPackage, bool fromWeb = false}) {
-    value = AsyncWaiting(currentPackage);
+    value = AsyncComplete(currentPackage);
     runAsync(
       (_) => _repository.fetchPackage(
         name: currentPackage.name,
