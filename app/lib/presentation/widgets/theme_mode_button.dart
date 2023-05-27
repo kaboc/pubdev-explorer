@@ -12,7 +12,7 @@ class ThemeModeButton extends StatelessWidget with Grab {
 
   @override
   Widget build(BuildContext context) {
-    final currentMode = context.grabAt(_notifier, (Settings s) => s.themeMode);
+    final currentMode = _notifier.grabAt(context, (s) => s.themeMode);
 
     return PopupMenuButton<ThemeMode>(
       tooltip: 'Theme mode',

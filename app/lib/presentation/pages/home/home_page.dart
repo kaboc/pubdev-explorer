@@ -35,14 +35,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final length = context.grabAt(
-      _notifier,
-      (HomeState s) => s.packagePhases.length,
-    );
-    final endReached = context.grabAt(
-      _notifier,
-      (HomeState s) => s.endReached,
-    );
+    final length = _notifier.grabAt(context, (s) => s.packagePhases.length);
+    final endReached = _notifier.grabAt(context, (s) => s.endReached);
 
     return HomeShortcuts(
       pageController: _controller,
@@ -149,7 +143,7 @@ class _Item extends StatelessWidget with Grab {
   @override
   Widget build(BuildContext context) {
     final packagePhase =
-        context.grabAt(_notifier, (HomeState s) => s.packagePhases.at(index));
+        _notifier.grabAt(context, (s) => s.packagePhases.at(index));
 
     return packagePhase == null
         ? const SizedBox.shrink()
@@ -182,8 +176,7 @@ class _PendingItem extends StatelessWidget with Grab {
 
   @override
   Widget build(BuildContext context) {
-    final listPhase =
-        context.grab<AsyncPhase<List<String>>>(_packageNamesFetcher);
+    final listPhase = _packageNamesFetcher.grab(context);
 
     return listPhase.when(
       waiting: (_) => const Center(

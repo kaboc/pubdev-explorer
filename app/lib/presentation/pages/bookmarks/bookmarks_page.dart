@@ -61,15 +61,10 @@ class _BookmarksPageState extends State<BookmarksPage> {
 
   @override
   Widget build(BuildContext context) {
-    final bookmarksPhase = context.grab<AsyncPhase<List<Package>>>(_fetcher);
-    final packagePhases = context.grabAt(
-      _notifier,
-      (BookmarksState s) => s.packagePhases,
-    );
-    final hasSearchWords = context.grabAt(
-      _searchController,
-      (TextEditingValue v) => v.text.isNotEmpty,
-    );
+    final bookmarksPhase = _fetcher.grab(context);
+    final packagePhases = _notifier.grabAt(context, (s) => s.packagePhases);
+    final hasSearchWords =
+        _searchController.grabAt(context, (v) => v.text.isNotEmpty);
 
     return BookmarksShortcuts(
       searchController: _searchController,
@@ -165,8 +160,7 @@ class _ListView extends StatelessWidget with Grab {
 
   @override
   Widget build(BuildContext context) {
-    final searchWords =
-        context.grabAt(_notifier, (BookmarksState s) => s.searchWords);
+    final searchWords = _notifier.grabAt(context, (s) => s.searchWords);
 
     return BottomDetector(
       extent: 200.0,

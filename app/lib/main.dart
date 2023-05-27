@@ -30,8 +30,7 @@ class App extends StatelessWidget with Grab {
 
   @override
   Widget build(BuildContext context) {
-    final themeMode =
-        context.grabAt(settingsNotifierPot(), (Settings s) => s.themeMode);
+    final themeMode = settingsNotifierPot().grabAt(context, (s) => s.themeMode);
 
     return MaterialApp(
       title: 'pub.dev Explorer',
