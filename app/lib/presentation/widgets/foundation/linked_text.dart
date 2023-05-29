@@ -44,6 +44,10 @@ class _LinkedTextState extends State<LinkedText> {
               setState(() => _focused = focused);
             },
             child: CustomText(
+              // This key is necessary to create a new CustomText
+              // to prevent the previous tap handler from being
+              // used after the url changes.
+              key: ValueKey(widget.url),
               widget.text,
               definitions: const [
                 TextDefinition(matcher: PatternMatcher('.+')),
