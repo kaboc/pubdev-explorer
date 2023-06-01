@@ -26,7 +26,7 @@ class PackagesDao extends DatabaseAccessor<Database> with _$PackagesDaoMixin {
     return data?.asPackage;
   }
 
-  Future<void> addOrUpdatePackage({required Package package}) async {
+  Future<void> upsertPackage({required Package package}) async {
     final companion = package.asCompanion;
     await into(packagesTable).insertOnConflictUpdate(companion);
   }

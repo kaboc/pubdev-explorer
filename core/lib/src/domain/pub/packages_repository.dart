@@ -29,7 +29,7 @@ class PackagesRepository {
 
       if (package == null) {
         package = await _remoteDao.fetchPackage(name: name);
-        await _localDao.addOrUpdatePackage(package: package);
+        await _localDao.upsertPackage(package: package);
 
         // Fetches from local DB again to obtain the package
         // together with bookmark status.

@@ -51,17 +51,17 @@ extension on ThemeData {
   ThemeData get custom {
     return copyWith(
       textTheme: textTheme.copyWith(
-        headlineMedium: textTheme.headlineMedium!.copyWith(
+        headlineMedium: textTheme.headlineMedium?.copyWith(
           fontSize: 28.0,
           fontWeight: FontWeight.bold,
         ),
-        headlineSmall: textTheme.headlineSmall!.copyWith(
+        headlineSmall: textTheme.headlineSmall?.copyWith(
           fontSize: 20.0,
         ),
-        bodyLarge: textTheme.bodyLarge!.copyWith(
+        bodyLarge: textTheme.bodyLarge?.copyWith(
           fontSize: 16.0,
         ),
-        bodySmall: textTheme.bodySmall!.copyWith(
+        bodySmall: textTheme.bodySmall?.copyWith(
           fontSize: 10.0,
           color: colorScheme.tertiary,
         ),
@@ -72,7 +72,7 @@ extension on ThemeData {
       ),
       bannerTheme: bannerTheme.copyWith(
         backgroundColor: Colors.blueGrey,
-        contentTextStyle: textTheme.bodyMedium!.copyWith(
+        contentTextStyle: textTheme.bodyMedium?.copyWith(
           color: Colors.white,
         ),
       ),
@@ -87,16 +87,11 @@ extension ThemeExtension on BuildContext {
   ThemeData get theme => Theme.of(this);
 
   Color get primaryColor => theme.colorScheme.primary;
-
   Color get secondaryColor => theme.colorScheme.secondary;
-
   Color get tertiaryColor => theme.colorScheme.tertiary;
 
   TextStyle get headlineMedium => theme.textTheme.headlineMedium!;
-
   TextStyle get headlineSmall => theme.textTheme.headlineSmall!;
-
   TextStyle get bodyMedium => theme.textTheme.bodyMedium!;
-
   TextStyle get bodySmall => theme.textTheme.bodySmall!;
 }

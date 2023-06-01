@@ -22,11 +22,8 @@ class HomeState extends Equatable {
   List<Object> get props => [packagePhases, page, index, endReached];
 
   bool get isFirst => index == 0;
-
   bool get isLast => index >= packagePhases.length - 1;
-
   bool get isIndexOutOfRange => index >= packagePhases.length;
-
   Package? get currentPackage => packagePhases.at(index)?.data;
 
   HomeState copyWith({

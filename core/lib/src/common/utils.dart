@@ -1,8 +1,4 @@
 extension EnumList<T extends Enum> on List<T> {
-  T? byIndexOrNull(int index) {
-    return index >= 0 && index < length ? this[index] : null;
-  }
-
   T? byNameOrNull(String name) {
     return asNameMap()[name];
   }
