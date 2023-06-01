@@ -49,7 +49,7 @@ class BookmarksDao extends DatabaseAccessor<Database> with _$BookmarksDaoMixin {
       ..limit(limit)
       ..where((t) => t.bookmarkedAt.isSmallerThanValue(before))
       ..where((t) {
-        Expression<bool> filter = Constant(true);
+        Expression<bool> filter = const Constant(true);
         for (final word in words) {
           filter &= t.name.lower().contains(word) |
               t.description.lower().contains(word) |

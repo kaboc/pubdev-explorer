@@ -22,8 +22,6 @@ class SettingsNotifier extends ValueNotifier<Settings> {
 
 extension IndexToThemeMode on Settings {
   ThemeMode get themeMode {
-    return themeModeIndex < ThemeMode.values.length
-        ? ThemeMode.values[themeModeIndex]
-        : ThemeMode.system;
+    return ThemeMode.values.elementAtOrNull(themeModeIndex) ?? ThemeMode.system;
   }
 }

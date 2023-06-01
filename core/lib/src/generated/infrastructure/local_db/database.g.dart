@@ -650,6 +650,7 @@ class PackagesTableCompanion extends UpdateCompanion<PackagesTableData> {
   final Value<int> likes;
   final Value<double> popularity;
   final Value<DateTime> savedAt;
+  final Value<int> rowid;
   const PackagesTableCompanion({
     this.name = const Value.absent(),
     this.description = const Value.absent(),
@@ -665,6 +666,7 @@ class PackagesTableCompanion extends UpdateCompanion<PackagesTableData> {
     this.likes = const Value.absent(),
     this.popularity = const Value.absent(),
     this.savedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
   });
   PackagesTableCompanion.insert({
     required String name,
@@ -681,6 +683,7 @@ class PackagesTableCompanion extends UpdateCompanion<PackagesTableData> {
     required int likes,
     required double popularity,
     required DateTime savedAt,
+    this.rowid = const Value.absent(),
   })  : name = Value(name),
         description = Value(description),
         latest = Value(latest),
@@ -707,6 +710,7 @@ class PackagesTableCompanion extends UpdateCompanion<PackagesTableData> {
     Expression<int>? likes,
     Expression<double>? popularity,
     Expression<DateTime>? savedAt,
+    Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (name != null) 'name': name,
@@ -723,6 +727,7 @@ class PackagesTableCompanion extends UpdateCompanion<PackagesTableData> {
       if (likes != null) 'likes': likes,
       if (popularity != null) 'popularity': popularity,
       if (savedAt != null) 'saved_at': savedAt,
+      if (rowid != null) 'rowid': rowid,
     });
   }
 
@@ -740,7 +745,8 @@ class PackagesTableCompanion extends UpdateCompanion<PackagesTableData> {
       Value<int>? maxPoints,
       Value<int>? likes,
       Value<double>? popularity,
-      Value<DateTime>? savedAt}) {
+      Value<DateTime>? savedAt,
+      Value<int>? rowid}) {
     return PackagesTableCompanion(
       name: name ?? this.name,
       description: description ?? this.description,
@@ -756,6 +762,7 @@ class PackagesTableCompanion extends UpdateCompanion<PackagesTableData> {
       likes: likes ?? this.likes,
       popularity: popularity ?? this.popularity,
       savedAt: savedAt ?? this.savedAt,
+      rowid: rowid ?? this.rowid,
     );
   }
 
@@ -804,6 +811,9 @@ class PackagesTableCompanion extends UpdateCompanion<PackagesTableData> {
     if (savedAt.present) {
       map['saved_at'] = Variable<DateTime>(savedAt.value);
     }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
     return map;
   }
 
@@ -823,7 +833,8 @@ class PackagesTableCompanion extends UpdateCompanion<PackagesTableData> {
           ..write('maxPoints: $maxPoints, ')
           ..write('likes: $likes, ')
           ..write('popularity: $popularity, ')
-          ..write('savedAt: $savedAt')
+          ..write('savedAt: $savedAt, ')
+          ..write('rowid: $rowid')
           ..write(')'))
         .toString();
   }
@@ -955,30 +966,36 @@ class BookmarksTableData extends DataClass
 class BookmarksTableCompanion extends UpdateCompanion<BookmarksTableData> {
   final Value<String> name;
   final Value<DateTime> createdAt;
+  final Value<int> rowid;
   const BookmarksTableCompanion({
     this.name = const Value.absent(),
     this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
   });
   BookmarksTableCompanion.insert({
     required String name,
     required DateTime createdAt,
+    this.rowid = const Value.absent(),
   })  : name = Value(name),
         createdAt = Value(createdAt);
   static Insertable<BookmarksTableData> custom({
     Expression<String>? name,
     Expression<DateTime>? createdAt,
+    Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (name != null) 'name': name,
       if (createdAt != null) 'created_at': createdAt,
+      if (rowid != null) 'rowid': rowid,
     });
   }
 
   BookmarksTableCompanion copyWith(
-      {Value<String>? name, Value<DateTime>? createdAt}) {
+      {Value<String>? name, Value<DateTime>? createdAt, Value<int>? rowid}) {
     return BookmarksTableCompanion(
       name: name ?? this.name,
       createdAt: createdAt ?? this.createdAt,
+      rowid: rowid ?? this.rowid,
     );
   }
 
@@ -991,6 +1008,9 @@ class BookmarksTableCompanion extends UpdateCompanion<BookmarksTableData> {
     if (createdAt.present) {
       map['created_at'] = Variable<DateTime>(createdAt.value);
     }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
     return map;
   }
 
@@ -998,7 +1018,8 @@ class BookmarksTableCompanion extends UpdateCompanion<BookmarksTableData> {
   String toString() {
     return (StringBuffer('BookmarksTableCompanion(')
           ..write('name: $name, ')
-          ..write('createdAt: $createdAt')
+          ..write('createdAt: $createdAt, ')
+          ..write('rowid: $rowid')
           ..write(')'))
         .toString();
   }

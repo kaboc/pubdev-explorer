@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.0 <3.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   flutter:
@@ -14,20 +14,20 @@ dependencies:
     path: ../core
 
   # Packages by the app author
-  async_phase_notifier: ^0.2.0+1
-  custom_text: ^0.8.0
+  async_phase_notifier: ^0.3.0
+  custom_text: ^1.0.0
   grab: ^0.4.0
-  pottery: ^0.0.1
+  pottery: ^0.0.1+2
 
   # Other packages
-  collection: ^1.17.0
-  drift: ^2.5.0
+  collection: ^1.17.1
+  drift: ^2.8.0
   equatable: ^2.0.5
-  intl: ^0.18.0
+  intl: ^0.18.1
   path: ^1.8.3
-  path_provider: ^2.0.13
-  sqlite3_flutter_libs: ^0.5.13
-  url_launcher: ^6.1.10
+  path_provider: ^2.0.15
+  sqlite3_flutter_libs: ^0.5.15
+  url_launcher: ^6.1.11
 
 dev_dependencies:
   flutter_lints: ^2.0.1

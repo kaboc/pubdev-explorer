@@ -53,35 +53,26 @@ class ThemeModeButton extends StatelessWidget with Grab {
 
 extension on ThemeMode {
   String get label {
-    switch (this) {
-      case ThemeMode.system:
-        return 'System default';
-      case ThemeMode.light:
-        return 'Light';
-      case ThemeMode.dark:
-        return 'Dark';
-    }
+    return switch (this) {
+      ThemeMode.system => 'System default',
+      ThemeMode.light => 'Light',
+      ThemeMode.dark => 'Dark',
+    };
   }
 
   IconData get icon {
-    switch (this) {
-      case ThemeMode.system:
-        return Icons.dark_mode;
-      case ThemeMode.light:
-        return Icons.light_mode;
-      case ThemeMode.dark:
-        return Icons.dark_mode;
-    }
+    return switch (this) {
+      ThemeMode.system => Icons.dark_mode,
+      ThemeMode.light => Icons.light_mode,
+      ThemeMode.dark => Icons.dark_mode,
+    };
   }
 
   Color? get color {
-    switch (this) {
-      case ThemeMode.system:
-        return null;
-      case ThemeMode.light:
-        return Colors.yellow;
-      case ThemeMode.dark:
-        return Colors.amber;
-    }
+    return switch (this) {
+      ThemeMode.system => null,
+      ThemeMode.light => Colors.yellow,
+      ThemeMode.dark => Colors.amber,
+    };
   }
 }
