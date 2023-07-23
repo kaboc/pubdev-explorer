@@ -20,9 +20,9 @@ class BookmarksShortcuts extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Shortcuts(
         shortcuts: {
-          LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.keyF):
+          const SingleActivator(LogicalKeyboardKey.keyF, control: true):
               RequestFocusIntent(searchFocusNode),
-          LogicalKeySet(LogicalKeyboardKey.meta, LogicalKeyboardKey.keyF):
+          const SingleActivator(LogicalKeyboardKey.keyF, meta: true):
               RequestFocusIntent(searchFocusNode),
           const SingleActivator(LogicalKeyboardKey.escape):
               const _SearchClearIntent(),
@@ -33,11 +33,11 @@ class BookmarksShortcuts extends StatelessWidget {
               const ScrollIntent(direction: AxisDirection.up),
           const SingleActivator(LogicalKeyboardKey.arrowDown):
               const ScrollIntent(direction: AxisDirection.down),
-          LogicalKeySet(LogicalKeyboardKey.alt, LogicalKeyboardKey.arrowLeft):
+          const SingleActivator(LogicalKeyboardKey.arrowLeft, alt: true):
               const _BackToHomeIntent(),
           const SingleActivator(LogicalKeyboardKey.f1):
               const _OpenGuideIntent(),
-          LogicalKeySet(LogicalKeyboardKey.shift, LogicalKeyboardKey.question):
+          const SingleActivator(LogicalKeyboardKey.question, shift: true):
               const _OpenGuideIntent(),
         },
         child: Actions(

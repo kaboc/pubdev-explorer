@@ -22,31 +22,24 @@ class HomeShortcuts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shortcuts(
-      shortcuts: {
-        const SingleActivator(LogicalKeyboardKey.arrowLeft):
-            const ScrollIntent(direction: AxisDirection.left),
-        const SingleActivator(LogicalKeyboardKey.arrowRight):
-            const ScrollIntent(direction: AxisDirection.right),
-        const SingleActivator(LogicalKeyboardKey.keyB):
-            const _BookmarkToggleIntent(),
-        const SingleActivator(LogicalKeyboardKey.f5): const _RefreshIntent(),
-        LogicalKeySet(LogicalKeyboardKey.meta, LogicalKeyboardKey.keyR):
-            const _RefreshIntent(),
-        const SingleActivator(LogicalKeyboardKey.keyR): const _RefreshIntent(),
-        LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.f5):
-            const _RestartIntent(),
-        LogicalKeySet(
-          LogicalKeyboardKey.shift,
-          LogicalKeyboardKey.meta,
-          LogicalKeyboardKey.keyR,
-        ): const _RestartIntent(),
-        LogicalKeySet(LogicalKeyboardKey.shift, LogicalKeyboardKey.keyR):
-            const _RestartIntent(),
-        LogicalKeySet(LogicalKeyboardKey.alt, LogicalKeyboardKey.arrowRight):
-            const _GoToBookmarksIntent(),
-        const SingleActivator(LogicalKeyboardKey.f1): const _OpenGuideIntent(),
-        LogicalKeySet(LogicalKeyboardKey.shift, LogicalKeyboardKey.question):
-            const _OpenGuideIntent(),
+      shortcuts: const {
+        SingleActivator(LogicalKeyboardKey.arrowLeft):
+            ScrollIntent(direction: AxisDirection.left),
+        SingleActivator(LogicalKeyboardKey.arrowRight):
+            ScrollIntent(direction: AxisDirection.right),
+        SingleActivator(LogicalKeyboardKey.keyB): _BookmarkToggleIntent(),
+        SingleActivator(LogicalKeyboardKey.f5): _RefreshIntent(),
+        SingleActivator(LogicalKeyboardKey.keyR, meta: true): _RefreshIntent(),
+        SingleActivator(LogicalKeyboardKey.keyR): _RefreshIntent(),
+        SingleActivator(LogicalKeyboardKey.f5, control: true): _RestartIntent(),
+        SingleActivator(LogicalKeyboardKey.keyR, shift: true, meta: true):
+            _RestartIntent(),
+        SingleActivator(LogicalKeyboardKey.keyR, shift: true): _RestartIntent(),
+        SingleActivator(LogicalKeyboardKey.arrowRight, alt: true):
+            _GoToBookmarksIntent(),
+        SingleActivator(LogicalKeyboardKey.f1): _OpenGuideIntent(),
+        SingleActivator(LogicalKeyboardKey.question, shift: true):
+            _OpenGuideIntent(),
       },
       child: Actions(
         actions: {
