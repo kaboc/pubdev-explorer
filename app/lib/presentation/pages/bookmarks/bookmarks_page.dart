@@ -43,13 +43,6 @@ class _BookmarksPageState extends State<BookmarksPage> {
     _searchController.addListener(() {
       _notifier.onSearchWordsChanged(_searchController.text);
     });
-
-    _notifier.onFirstFetchComplete = () {
-      final scrollController = PrimaryScrollController.of(context);
-      if (scrollController.hasClients) {
-        scrollController.jumpTo(0.0);
-      }
-    };
   }
 
   @override
@@ -141,7 +134,6 @@ class _BookmarksPageState extends State<BookmarksPage> {
               ] else
                 Expanded(
                   child: _ListView(
-                    controller: PrimaryScrollController.of(context),
                     packagePhases: packagePhases,
                   ),
                 ),
@@ -154,9 +146,8 @@ class _BookmarksPageState extends State<BookmarksPage> {
 }
 
 class _ListView extends StatelessWidget with Grab {
-  const _ListView({required this.controller, required this.packagePhases});
+  const _ListView({required this.packagePhases});
 
-  final ScrollController controller;
   final List<AsyncPhase<Package>> packagePhases;
 
   @override
@@ -168,7 +159,9 @@ class _ListView extends StatelessWidget with Grab {
       extent: 200.0,
       onEnterBottom: _notifier.fetchNextBookmarks,
       child: CustomScrollView(
-        controller: controller,
+        // Use search words as key to jump back to top
+        // when the list is refreshed with new words.
+        key: ValueKey(searchWords.join()),
         slivers: [
           SliverPadding(
             padding: const EdgeInsets.all(16.0),

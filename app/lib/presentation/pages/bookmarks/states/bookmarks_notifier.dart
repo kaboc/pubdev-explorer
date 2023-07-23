@@ -23,7 +23,6 @@ class BookmarksNotifier extends ValueNotifier<BookmarksState> {
     _fetchBookmarks();
   }
 
-  void Function()? onFirstFetchComplete;
   DateTime? _currentLastAt;
   bool _hasMore = true;
   Timer? _debounceTimer;
@@ -116,10 +115,6 @@ extension on BookmarksNotifier {
           for (final package in packages) AsyncComplete(package),
         ],
       );
-
-      if (value.packagePhases.length <= kBookmarksFetchLimit) {
-        onFirstFetchComplete?.call();
-      }
     }
   }
 
