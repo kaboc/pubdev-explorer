@@ -155,9 +155,9 @@ class _ListView extends StatelessWidget with Grab {
     final bookmarksPhase = _fetcher.grab(context);
     final searchWords = _notifier.grabAt(context, (s) => s.searchWords);
 
-    return BottomDetector(
+    return BottomScrollDetector(
       extent: 200.0,
-      onEnterBottom: _notifier.fetchNextBookmarks,
+      onBottomReached: _notifier.fetchNextBookmarks,
       child: CustomScrollView(
         // Use search words as key to jump back to top
         // when the list is refreshed with new words.

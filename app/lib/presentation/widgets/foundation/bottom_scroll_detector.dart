@@ -1,21 +1,21 @@
 import 'package:flutter/widgets.dart';
 
-class BottomDetector extends StatefulWidget {
-  const BottomDetector({
+class BottomScrollDetector extends StatefulWidget {
+  const BottomScrollDetector({
     required this.extent,
-    required this.onEnterBottom,
+    required this.onBottomReached,
     required this.child,
   });
 
   final double extent;
-  final VoidCallback onEnterBottom;
+  final VoidCallback onBottomReached;
   final Widget child;
 
   @override
-  State<BottomDetector> createState() => _BottomDetectorState();
+  State<BottomScrollDetector> createState() => _BottomScrollDetectorState();
 }
 
-class _BottomDetectorState extends State<BottomDetector> {
+class _BottomScrollDetectorState extends State<BottomScrollDetector> {
   double _prevDistance = 0.0;
 
   @override
@@ -25,7 +25,7 @@ class _BottomDetectorState extends State<BottomDetector> {
         final metrics = notification.metrics;
         final currentDistance = metrics.maxScrollExtent - metrics.pixels;
         if (_prevDistance > widget.extent && currentDistance <= widget.extent) {
-          widget.onEnterBottom();
+          widget.onBottomReached();
         }
         _prevDistance = currentDistance;
         return true;
