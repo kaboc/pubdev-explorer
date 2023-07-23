@@ -113,37 +113,38 @@ class _BookmarksPageState extends State<BookmarksPage> {
                 ),
               ),
               const SizedBox(height: 1.0),
-              Expanded(
-                child: bookmarksPhase.when(
-                  waiting: (_) => const Center(
+              if (packagePhases.isEmpty) ...[
+                if (bookmarksPhase.isInitial || bookmarksPhase.isWaiting)
+                  const Expanded(
                     child: CupertinoActivityIndicator(),
+                  )
+                else if (bookmarksPhase.isError)
+                  Expanded(
+                    child: Center(
+                      child: ElevatedButton(
+                        onPressed: _notifier.fetchNextBookmarks,
+                        child: const Text('Retry'),
+                      ),
+                    ),
+                  )
+                else if (bookmarksPhase.isComplete)
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        hasSearchWords
+                            ? 'No matching package was found.'
+                            : 'No packages have been bookmarked yet.',
+                        style: TextStyle(color: context.tertiaryColor),
+                      ),
+                    ),
                   ),
-                  error: (_, __, ___) => packagePhases.isEmpty
-                      ? Center(
-                          child: ElevatedButton(
-                            onPressed: _notifier.fetchNextBookmarks,
-                            child: const Text('Retry'),
-                          ),
-                        )
-                      : _ListView(
-                          controller: PrimaryScrollController.of(context),
-                          packagePhases: packagePhases,
-                        ),
-                  complete: (_) => packagePhases.isEmpty
-                      ? Center(
-                          child: Text(
-                            hasSearchWords
-                                ? 'No matching package was found.'
-                                : 'No packages have been bookmarked yet.',
-                            style: TextStyle(color: context.tertiaryColor),
-                          ),
-                        )
-                      : _ListView(
-                          controller: PrimaryScrollController.of(context),
-                          packagePhases: packagePhases,
-                        ),
+              ] else
+                Expanded(
+                  child: _ListView(
+                    controller: PrimaryScrollController.of(context),
+                    packagePhases: packagePhases,
+                  ),
                 ),
-              ),
             ],
           ),
         ),
@@ -160,42 +161,72 @@ class _ListView extends StatelessWidget with Grab {
 
   @override
   Widget build(BuildContext context) {
+    final bookmarksPhase = _fetcher.grab(context);
     final searchWords = _notifier.grabAt(context, (s) => s.searchWords);
 
     return BottomDetector(
       extent: 200.0,
       onEnterBottom: _notifier.fetchNextBookmarks,
-      builder: (context, _) {
-        return ListView.separated(
-          controller: controller,
-          padding: const EdgeInsets.all(16.0),
-          itemCount: packagePhases.length,
-          itemBuilder: (_, index) {
-            final package = packagePhases.at(index);
+      child: CustomScrollView(
+        controller: controller,
+        slivers: [
+          SliverPadding(
+            padding: const EdgeInsets.all(16.0),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                childCount: packagePhases.length,
+                (_, index) {
+                  final package = packagePhases.at(index);
 
-            return package == null
-                ? const SizedBox.shrink()
-                : Center(
-                    child: SizedBox(
-                      width: kContentMaxWidth - 32.0,
-                      child: PackageCard(
-                        packagePhase: package,
-                        searchWords: searchWords,
-                        onBookmarkPressed: (package) {
-                          _notifier.toggleBookmark(package: package);
-                        },
-                        onRefreshPressed: (package) {
-                          _notifier.fetchPackage(package: package);
-                        },
-                      ),
-                    ),
-                  );
-          },
-          separatorBuilder: (_, __) {
-            return const SizedBox(height: 16.0);
-          },
-        );
-      },
+                  return package == null
+                      ? const SizedBox.shrink()
+                      : Column(
+                          children: [
+                            if (index > 0) const SizedBox(height: 16.0),
+                            Center(
+                              child: SizedBox(
+                                width: kContentMaxWidth - 32.0,
+                                child: PackageCard(
+                                  packagePhase: package,
+                                  searchWords: searchWords,
+                                  onBookmarkPressed: (package) {
+                                    _notifier.toggleBookmark(
+                                      package: package,
+                                    );
+                                  },
+                                  onRefreshPressed: (package) {
+                                    _notifier.fetchPackage(package: package);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                },
+              ),
+            ),
+          ),
+          if (bookmarksPhase.isWaiting)
+            const SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.only(top: 8.0, bottom: 32.0),
+                child: CupertinoActivityIndicator(),
+              ),
+            ),
+          if (bookmarksPhase.isError)
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8.0, bottom: 32.0),
+                child: Center(
+                  child: ElevatedButton(
+                    onPressed: _notifier.fetchNextBookmarks,
+                    child: const Text('Retry'),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

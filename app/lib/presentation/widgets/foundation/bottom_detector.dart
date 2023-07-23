@@ -4,31 +4,23 @@ class BottomDetector extends StatefulWidget {
   const BottomDetector({
     required this.extent,
     required this.onEnterBottom,
-    required this.builder,
+    required this.child,
   });
 
   final double extent;
   final VoidCallback onEnterBottom;
-  final Widget Function(BuildContext, ScrollController) builder;
+  final Widget child;
 
   @override
   State<BottomDetector> createState() => _BottomDetectorState();
 }
 
 class _BottomDetectorState extends State<BottomDetector> {
-  final ScrollController _controller = ScrollController();
-
   double _prevDistance = 0.0;
 
   @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return NotificationListener<ScrollUpdateNotification>(
+    return NotificationListener<ScrollMetricsNotification>(
       onNotification: (notification) {
         final metrics = notification.metrics;
         final currentDistance = metrics.maxScrollExtent - metrics.pixels;
@@ -38,7 +30,7 @@ class _BottomDetectorState extends State<BottomDetector> {
         _prevDistance = currentDistance;
         return true;
       },
-      child: widget.builder(context, _controller),
+      child: widget.child,
     );
   }
 }

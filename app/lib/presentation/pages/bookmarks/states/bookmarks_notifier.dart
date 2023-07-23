@@ -104,7 +104,7 @@ extension on BookmarksNotifier {
     if (phase.isComplete) {
       final packages = phase.data!;
       if (packages.length > kBookmarksFetchLimit) {
-        packages.removeAt(kBookmarksFetchLimit);
+        packages.removeLast();
         _currentLastAt = packages.last.bookmarkedAt;
       } else {
         _hasMore = false;
