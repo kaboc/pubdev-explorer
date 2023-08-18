@@ -1229,7 +1229,7 @@ class $PackagesWithBookmarkView
   @override
   String get entityName => 'packages_with_bookmark';
   @override
-  String? get createViewStmt => null;
+  Map<SqlDialect, String>? get createViewStatements => null;
   @override
   $PackagesWithBookmarkView get asDslTable => this;
   @override
