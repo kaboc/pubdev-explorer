@@ -27,12 +27,13 @@ class PubDao {
   }
 
   Future<Package> fetchPackage({required String name}) async {
-    final results = await Future.wait([
+    final results = await (
       _fetchPackageBasics(name),
       _fetchPackageDetails(name),
-    ]);
-    final basic = results.first as PackageBasics;
-    final details = results.last as PackageDetails;
+    ).wait;
+
+    final basic = results.$1;
+    final details = results.$2;
 
     return basic.asPackage.copyWith(
       sdks: details.tags.sdks,
