@@ -13,17 +13,24 @@ BookmarkToggler get _bookmarkToggler => bookmarkTogglerPot();
 
 class HomeNotifier extends ValueNotifier<HomeState> {
   HomeNotifier() : super(const HomeState()) {
-    _packageNamesFetcher.addListener(_onPackageNamesFetched);
-    _packageFetcher.addListener(_onPackageFetched);
-    _bookmarkToggler.addListener(_onBookmarkToggled);
+    final remove1 = _packageNamesFetcher.listen(_onPackageNamesFetched);
+    final remove2 = _packageFetcher.listen(_onPackageFetched);
+    final remove3 = _bookmarkToggler.listen(_onBookmarkToggled);
+
+    _removeListeners = () {
+      remove1();
+      remove2();
+      remove3();
+    };
+
     fetchList();
   }
 
+  late final void Function() _removeListeners;
+
   @override
   void dispose() {
-    _packageNamesFetcher.removeListener(_onPackageNamesFetched);
-    _packageFetcher.removeListener(_onPackageFetched);
-    _bookmarkToggler.removeListener(_onBookmarkToggled);
+    _removeListeners();
     super.dispose();
   }
 
@@ -74,8 +81,7 @@ class HomeNotifier extends ValueNotifier<HomeState> {
 /// Private extension containing listeners
 /// triggered by updates in other notifiers.
 extension on HomeNotifier {
-  void _onPackageNamesFetched() {
-    final phase = _packageNamesFetcher.value;
+  void _onPackageNamesFetched(AsyncPhase<List<String>> phase) {
     if (phase.isComplete) {
       if (phase.data!.isEmpty) {
         value = value.copyWith(endReached: true);
@@ -107,18 +113,18 @@ extension on HomeNotifier {
     fetchPackage(currentPackage: value.currentPackage);
   }
 
-  void _onPackageFetched() {
+  void _onPackageFetched(AsyncPhase<Package> phase) {
     value = value.copyWith(
       packagePhases: value.packagePhases.copyAndReplace(
-        packagePhase: _packageFetcher.value,
+        packagePhase: phase,
       ),
     );
   }
 
-  void _onBookmarkToggled() {
+  void _onBookmarkToggled(AsyncPhase<Package> phase) {
     value = value.copyWith(
       packagePhases: value.packagePhases.copyAndReplace(
-        packagePhase: _bookmarkToggler.value,
+        packagePhase: phase,
       ),
     );
   }

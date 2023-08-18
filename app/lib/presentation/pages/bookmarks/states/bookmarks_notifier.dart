@@ -16,12 +16,20 @@ PackageFetcher get _packageFetcher => packageFetcherPot();
 
 class BookmarksNotifier extends ValueNotifier<BookmarksState> {
   BookmarksNotifier() : super(const BookmarksState()) {
-    _fetcher.addListener(_onFetched);
-    _toggler.addListener(_onToggled);
-    _packageFetcher.addListener(_onPackageFetched);
+    final remove1 = _fetcher.listenFor(onComplete: _onFetched);
+    final remove2 = _toggler.listen(_onToggled);
+    final remove3 = _packageFetcher.listen(_onPackageFetched);
+
+    _removeListeners = () {
+      remove1();
+      remove2();
+      remove3();
+    };
 
     _fetchBookmarks();
   }
+
+  late final void Function() _removeListeners;
 
   DateTime? _currentLastAt;
   bool _hasMore = true;
@@ -30,11 +38,7 @@ class BookmarksNotifier extends ValueNotifier<BookmarksState> {
   @override
   void dispose() {
     _debounceTimer?.cancel();
-
-    _fetcher.removeListener(_onFetched);
-    _toggler.removeListener(_onToggled);
-    _packageFetcher.removeListener(_onPackageFetched);
-
+    _removeListeners();
     super.dispose();
   }
 
@@ -98,41 +102,34 @@ class BookmarksNotifier extends ValueNotifier<BookmarksState> {
 /// Private extension containing listeners
 /// triggered by updates in other notifiers.
 extension on BookmarksNotifier {
-  void _onFetched() {
-    final phase = _fetcher.value;
-    if (phase.isComplete) {
-      final packages = phase.data!;
-      if (packages.length > kBookmarksFetchLimit) {
-        packages.removeLast();
-        _currentLastAt = packages.last.bookmarkedAt;
-      } else {
-        _hasMore = false;
-      }
-
-      value = value.copyWith(
-        packagePhases: [
-          ...value.packagePhases,
-          for (final package in packages) AsyncComplete(package),
-        ],
-      );
+  void _onFetched(List<Package> packages) {
+    if (packages.length > kBookmarksFetchLimit) {
+      packages.removeLast();
+      _currentLastAt = packages.last.bookmarkedAt;
+    } else {
+      _hasMore = false;
     }
+
+    value = value.copyWith(
+      packagePhases: [
+        ...value.packagePhases,
+        for (final package in packages) AsyncComplete(package),
+      ],
+    );
   }
 
-  void _onToggled() {
-    final phase = _toggler.value;
-    if (phase.isComplete) {
-      value = value.copyWith(
-        packagePhases: value.packagePhases.copyAndReplace(
-          packagePhase: phase,
-        ),
-      );
-    }
-  }
-
-  void _onPackageFetched() {
+  void _onToggled(AsyncPhase<Package> phase) {
     value = value.copyWith(
       packagePhases: value.packagePhases.copyAndReplace(
-        packagePhase: _packageFetcher.value,
+        packagePhase: phase,
+      ),
+    );
+  }
+
+  void _onPackageFetched(AsyncPhase<Package> phase) {
+    value = value.copyWith(
+      packagePhases: value.packagePhases.copyAndReplace(
+        packagePhase: phase,
       ),
     );
   }
