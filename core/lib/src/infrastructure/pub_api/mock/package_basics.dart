@@ -817,7 +817,7 @@ const kMockPackageBasics = {
         'version': '0.10.0',
         'pubspec': {
           'description':
-              "A package which simplifies the task of updating your Flutter app's launcher icon."
+              "A package which simplifies the task of updating your Flutter app's launcher icon.",
         },
         'published': '2022-08-07T04:49:47.000Z',
       },
@@ -859,7 +859,7 @@ const kMockPackageBasics = {
         'version': '3.0.0',
         'pubspec': {
           'description':
-              "A versatile mapping package for Flutter, based off leaflet.js, that's simple and easy to learn, yet completely customizable and configurable."
+              "A versatile mapping package for Flutter, based off leaflet.js, that's simple and easy to learn, yet completely customizable and configurable.",
         },
         'published': '2022-09-05T16:42:06.000Z',
       },
@@ -887,7 +887,7 @@ const kMockPackageBasics = {
         'version': '2.2.14',
         'pubspec': {
           'description':
-              "Customize Flutter's default white native splash screen with background color and splash image. Supports dark mode, full screen, and more."
+              "Customize Flutter's default white native splash screen with background color and splash image. Supports dark mode, full screen, and more.",
         },
         'published': '2022-11-06T15:08:02.000Z',
       },
@@ -1004,7 +1004,7 @@ const kMockPackageBasics = {
         'version': '5.1.0',
         'pubspec': {
           'description':
-              "A collection of loading indicators animated with flutter. Heavily inspired by @tobiasahlin's SpinKit."
+              "A collection of loading indicators animated with flutter. Heavily inspired by @tobiasahlin's SpinKit.",
         },
         'published': '2021-08-28T09:52:49.000Z',
       },
