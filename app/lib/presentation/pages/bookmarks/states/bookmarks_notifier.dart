@@ -9,9 +9,7 @@ import 'package:pubdev_explorer/presentation/common/_common.dart';
 export 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmarks_state.dart';
 
 BookmarksFetcher get _fetcher => bookmarksFetcherPot();
-
 BookmarkToggler get _toggler => bookmarkTogglerPot();
-
 PackageFetcher get _packageFetcher => packageFetcherPot();
 
 class BookmarksNotifier extends ValueNotifier<BookmarksState> {

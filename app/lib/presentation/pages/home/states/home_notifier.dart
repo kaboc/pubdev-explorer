@@ -6,9 +6,7 @@ import 'package:pubdev_explorer/presentation/common/_common.dart';
 export 'package:pubdev_explorer/presentation/pages/home/states/home_state.dart';
 
 PackageNamesFetcher get _packageNamesFetcher => packageNamesFetcherPot();
-
 PackageFetcher get _packageFetcher => packageFetcherPot();
-
 BookmarkToggler get _bookmarkToggler => bookmarkTogglerPot();
 
 class HomeNotifier extends ValueNotifier<HomeState> {
