@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:pubdev_explorer/common/_common.dart';
@@ -9,8 +10,15 @@ class SettingsNotifier extends ValueNotifier<Settings> {
     _fetch();
   }
 
+  final Completer<void> _completer = Completer();
+
+  Future<void> ensureReady() async {
+    return _completer.future;
+  }
+
   Future<void> _fetch() async {
     value = await _repository.fetch();
+    _completer.complete();
   }
 
   Future<void> updateThemeMode(ThemeMode mode) async {

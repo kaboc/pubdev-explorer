@@ -10,7 +10,7 @@ import 'package:pubdev_explorer/platforms/io.dart'
 import 'package:pubdev_explorer/presentation/common/_common.dart';
 import 'package:pubdev_explorer/presentation/pages/home/home_page.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   if (kIsWeb || kUseMock) {
@@ -20,7 +20,7 @@ void main() {
 
   // SettingNotifier is prepared here so that the user-selected
   // theme mode is applied before the first frame.
-  settingsNotifierPot.create();
+  await settingsNotifierPot().ensureReady();
 
   runApp(const App());
 }
