@@ -114,7 +114,7 @@ class _BookmarksPageState extends State<BookmarksPage> {
                   Expanded(
                     child: Center(
                       child: ElevatedButton(
-                        onPressed: _notifier.fetchNextBookmarks,
+                        onPressed: _notifier.fetchBookmarks,
                         child: const Text('Retry'),
                       ),
                     ),
@@ -151,74 +151,64 @@ class _ListView extends StatelessWidget with Grab {
 
   @override
   Widget build(BuildContext context) {
-    final bookmarksPhase = _fetcher.grab(context);
     final searchWords = _notifier.grabAt(context, (s) => s.searchWords);
+    final hasMore = _notifier.grabAt(context, (s) => s.hasMore);
+    final isFetchError = _fetcher.grabAt(context, (s) => s.isError);
 
     return BottomScrollDetector(
+      // Use search words as key to jump back to top
+      // when the list is refreshed with new words.
+      key: ValueKey(searchWords.join()),
       extent: 200.0,
-      onBottomReached: _notifier.fetchNextBookmarks,
-      child: CustomScrollView(
-        // Use search words as key to jump back to top
-        // when the list is refreshed with new words.
-        key: ValueKey(searchWords.join()),
-        slivers: [
-          SliverPadding(
-            padding: const EdgeInsets.all(16.0),
-            sliver: SliverList(
-              delegate: SliverChildBuilderDelegate(
-                childCount: packagePhases.length,
-                (_, index) {
-                  final package = packagePhases.at(index);
+      padding: const EdgeInsets.all(16.0),
+      onBottomReached:
+          hasMore && !isFetchError ? _notifier.fetchNextBookmarks : null,
+      slivers: [
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            childCount: packagePhases.length,
+            (_, index) {
+              final package = packagePhases.at(index);
 
-                  return package == null
-                      ? const SizedBox.shrink()
-                      : Column(
-                          children: [
-                            if (index > 0) const SizedBox(height: 16.0),
-                            Center(
-                              child: SizedBox(
-                                width: kContentMaxWidth - 32.0,
-                                child: PackageCard(
-                                  packagePhase: package,
-                                  searchWords: searchWords,
-                                  onBookmarkPressed: (package) {
-                                    _notifier.toggleBookmark(
-                                      package: package,
-                                    );
-                                  },
-                                  onRefreshPressed: (package) {
-                                    _notifier.fetchPackage(package: package);
-                                  },
-                                ),
-                              ),
+              return package == null
+                  ? const SizedBox.shrink()
+                  : Column(
+                      children: [
+                        if (index > 0) const SizedBox(height: 16.0),
+                        Center(
+                          child: SizedBox(
+                            width: kContentMaxWidth - 32.0,
+                            child: PackageCard(
+                              packagePhase: package,
+                              searchWords: searchWords,
+                              onBookmarkPressed: (package) {
+                                _notifier.toggleBookmark(
+                                  package: package,
+                                );
+                              },
+                              onRefreshPressed: (package) {
+                                _notifier.fetchPackage(package: package);
+                              },
                             ),
-                          ],
-                        );
-                },
+                          ),
+                        ),
+                      ],
+                    );
+            },
+          ),
+        ),
+        if (isFetchError)
+          SliverToBoxAdapter(
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              alignment: Alignment.center,
+              child: ElevatedButton(
+                onPressed: _notifier.fetchNextBookmarks,
+                child: const Text('Retry'),
               ),
             ),
           ),
-          if (bookmarksPhase.isWaiting)
-            const SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.only(top: 8.0, bottom: 32.0),
-                child: CupertinoActivityIndicator(),
-              ),
-            ),
-          if (bookmarksPhase.isError)
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 8.0, bottom: 32.0),
-                child: Center(
-                  child: ElevatedButton(
-                    onPressed: _notifier.fetchNextBookmarks,
-                    child: const Text('Retry'),
-                  ),
-                ),
-              ),
-            ),
-        ],
-      ),
+      ],
     );
   }
 }

@@ -24,13 +24,12 @@ class BookmarksNotifier extends ValueNotifier<BookmarksState> {
       remove3();
     };
 
-    _fetchBookmarks();
+    fetchBookmarks();
   }
 
   late final void Function() _removeListeners;
 
   DateTime? _currentLastAt;
-  bool _hasMore = true;
   Timer? _debounceTimer;
 
   @override
@@ -52,12 +51,6 @@ class BookmarksNotifier extends ValueNotifier<BookmarksState> {
     }
   }
 
-  void _fetchBookmarks() {
-    _currentLastAt = null;
-    _hasMore = true;
-    fetchNextBookmarks();
-  }
-
   void _searchBookmarks(String text) {
     final spaceSeparated =
         text.replaceAll(RegExp(r'[\s!-/:-@[-`{-~]+'), ' ').trim();
@@ -72,12 +65,21 @@ class BookmarksNotifier extends ValueNotifier<BookmarksState> {
         searchWords: words,
       );
 
-      _fetchBookmarks();
+      fetchBookmarks();
     }
   }
 
-  void fetchNextBookmarks() {
-    if (!_fetcher.value.isWaiting && _hasMore) {
+  Future<void> fetchBookmarks() async {
+    if (!_fetcher.value.isWaiting) {
+      _fetcher.fetch(
+        searchWords: value.searchWords,
+        limit: kBookmarksFetchLimit + 1,
+      );
+    }
+  }
+
+  Future<void> fetchNextBookmarks() async {
+    if (!_fetcher.value.isWaiting && value.hasMore) {
       _fetcher.fetch(
         searchWords: value.searchWords,
         limit: kBookmarksFetchLimit + 1,
@@ -101,11 +103,10 @@ class BookmarksNotifier extends ValueNotifier<BookmarksState> {
 /// triggered by updates in other notifiers.
 extension on BookmarksNotifier {
   void _onFetched(List<Package> packages) {
-    if (packages.length > kBookmarksFetchLimit) {
+    final hasMore = packages.length > kBookmarksFetchLimit;
+    if (hasMore) {
       packages.removeLast();
       _currentLastAt = packages.last.bookmarkedAt;
-    } else {
-      _hasMore = false;
     }
 
     value = value.copyWith(
@@ -113,6 +114,7 @@ extension on BookmarksNotifier {
         ...value.packagePhases,
         for (final package in packages) AsyncComplete(package),
       ],
+      hasMore: hasMore,
     );
   }
 
