@@ -27,7 +27,7 @@ dependencies:
   path: ^1.8.3
   path_provider: ^2.1.0
   sqlite3_flutter_libs: ^0.5.15
-  url_launcher: ^6.1.12
+  url_launcher: ^6.1.14
 
 dev_dependencies:
   flutter_lints: ^2.0.2
