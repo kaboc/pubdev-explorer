@@ -31,21 +31,25 @@ class ArrowButton extends StatelessWidget with Grab {
 
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 600),
-      child: visible
-          ? IconButton(
-              tooltip: toPrev ? 'Prev (newer)' : 'Next (older)',
-              icon: Icon(
-                toPrev ? Icons.arrow_left : Icons.arrow_right,
-                color: context.tertiaryColor,
-              ),
-              iconSize: 48.0,
-              splashRadius: 32.0,
-              onPressed: () => toAdjacentPage(
-                duration: kSlideDuration,
-                curve: kSlideCurve,
-              ),
-            )
-          : const SizedBox.shrink(),
+      child: Visibility(
+        visible: visible,
+        maintainState: true,
+        maintainAnimation: true,
+        maintainSize: true,
+        child: IconButton(
+          tooltip: toPrev ? 'Prev (newer)' : 'Next (older)',
+          icon: Icon(
+            toPrev ? Icons.arrow_left : Icons.arrow_right,
+            color: context.tertiaryColor,
+          ),
+          iconSize: 48.0,
+          splashRadius: 32.0,
+          onPressed: () => toAdjacentPage(
+            duration: kSlideDuration,
+            curve: kSlideCurve,
+          ),
+        ),
+      ),
     );
   }
 }

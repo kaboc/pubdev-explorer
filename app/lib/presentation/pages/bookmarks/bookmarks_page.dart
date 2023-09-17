@@ -158,7 +158,7 @@ class _ListView extends StatelessWidget with Grab {
     return BottomScrollDetector(
       // Use search words as key to jump back to top
       // when the list is refreshed with new words.
-      key: ValueKey(searchWords.join()),
+      key: ValueKey(searchWords),
       extent: 200.0,
       padding: const EdgeInsets.all(16.0),
       onBottomReached:
@@ -176,20 +176,17 @@ class _ListView extends StatelessWidget with Grab {
                       children: [
                         if (index > 0) const SizedBox(height: 16.0),
                         Center(
-                          child: SizedBox(
-                            width: kContentMaxWidth - 32.0,
-                            child: PackageCard(
-                              packagePhase: package,
-                              searchWords: searchWords,
-                              onBookmarkPressed: (package) {
-                                _notifier.toggleBookmark(
-                                  package: package,
-                                );
-                              },
-                              onRefreshPressed: (package) {
-                                _notifier.fetchPackage(package: package);
-                              },
-                            ),
+                          child: PackageCard(
+                            packagePhase: package,
+                            searchWords: searchWords,
+                            onBookmarkPressed: (package) {
+                              _notifier.toggleBookmark(
+                                package: package,
+                              );
+                            },
+                            onRefreshPressed: (package) {
+                              _notifier.fetchPackage(package: package);
+                            },
                           ),
                         ),
                       ],

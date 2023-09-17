@@ -148,21 +148,18 @@ class _Item extends StatelessWidget with Grab {
         : SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
             child: Center(
-              child: SizedBox(
-                width: kContentMaxWidth - 32.0,
-                child: PackageCard(
-                  packagePhase: packagePhase,
-                  onBookmarkPressed: (package) {
-                    _notifier.toggleBookmark(package: package);
-                  },
-                  onRefreshPressed: (package) {
-                    ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
-                    _notifier.fetchPackage(
-                      currentPackage: package,
-                      fromWeb: true,
-                    );
-                  },
-                ),
+              child: PackageCard(
+                packagePhase: packagePhase,
+                onBookmarkPressed: (package) {
+                  _notifier.toggleBookmark(package: package);
+                },
+                onRefreshPressed: (package) {
+                  ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
+                  _notifier.fetchPackage(
+                    currentPackage: package,
+                    fromWeb: true,
+                  );
+                },
               ),
             ),
           );

@@ -5,9 +5,7 @@ import 'package:pubdev_explorer_core/src/infrastructure/local_db/tables/packages
 
 abstract class PackagesWithBookmark extends View {
   PackagesTable get packages;
-
   BookmarksTable get bookmarks;
-
   Expression<DateTime> get bookmarkedAt => bookmarks.createdAt;
 
   @override

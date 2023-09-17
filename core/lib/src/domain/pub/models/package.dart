@@ -54,11 +54,8 @@ class Package extends Equatable {
       ];
 
   bool get isNone => this == const Package.none();
-
   bool get isEmpty => description.isEmpty;
-
   int get roundedPopularity => (popularity * 100).round();
-
   bool get isBookmarked => bookmarkedAt != null;
 
   Package copyWith({

@@ -33,7 +33,8 @@ class PackagesRepository {
 
         // Fetches from local DB again to obtain the package
         // together with bookmark status.
-        return (await _fetchPackageFromLocal(name, cacheDuration))!;
+        package = await _fetchPackageFromLocal(name, cacheDuration);
+        return package!;
       }
 
       return package;
