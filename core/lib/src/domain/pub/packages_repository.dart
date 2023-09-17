@@ -21,11 +21,11 @@ class PackagesRepository {
   Future<Package> fetchPackage({
     required String name,
     required Duration cacheDuration,
-    bool fromWeb = false,
+    required bool useCache,
   }) async {
     try {
       var package =
-          fromWeb ? null : await _fetchPackageFromLocal(name, cacheDuration);
+          useCache ? await _fetchPackageFromLocal(name, cacheDuration) : null;
 
       if (package == null) {
         package = await _remoteDao.fetchPackage(name: name);

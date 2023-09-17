@@ -3,22 +3,16 @@ import 'package:pottery/pottery.dart';
 import 'package:pubdev_explorer_core/pubdev_explorer_core.dart';
 
 import 'package:pubdev_explorer/presentation/app_states/settings_notifier.dart';
-import 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmark_toggler.dart';
-import 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmarks_fetcher.dart';
 import 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmarks_notifier.dart';
 import 'package:pubdev_explorer/presentation/pages/home/states/home_notifier.dart';
-import 'package:pubdev_explorer/presentation/pages/home/states/package_fetcher.dart';
-import 'package:pubdev_explorer/presentation/pages/home/states/package_names_fetcher.dart';
+import 'package:pubdev_explorer/presentation/pages/home/states/packages_notifier.dart';
 
 export 'package:pubdev_explorer_core/pubdev_explorer_core.dart';
 
 export 'package:pubdev_explorer/presentation/app_states/settings_notifier.dart';
-export 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmark_toggler.dart';
-export 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmarks_fetcher.dart';
 export 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmarks_notifier.dart';
 export 'package:pubdev_explorer/presentation/pages/home/states/home_notifier.dart';
-export 'package:pubdev_explorer/presentation/pages/home/states/package_fetcher.dart';
-export 'package:pubdev_explorer/presentation/pages/home/states/package_names_fetcher.dart';
+export 'package:pubdev_explorer/presentation/pages/home/states/packages_notifier.dart';
 
 final settingsRepositoryPot = Pot(
   () => const SettingsRepository(),
@@ -41,20 +35,8 @@ final settingsNotifierPot = Pot(
 // For use in limited places
 //----------------------------------
 
-final packageNamesFetcherPot = Pot.pending<PackageNamesFetcher>(
-  disposer: (fetcher) => fetcher.dispose(),
-);
-
-final packageFetcherPot = Pot.pending<PackageFetcher>(
-  disposer: (fetcher) => fetcher.dispose(),
-);
-
-final bookmarksFetcherPot = Pot.pending<BookmarksFetcher>(
-  disposer: (fetcher) => fetcher.dispose(),
-);
-
-final bookmarkTogglerPot = Pot.pending<BookmarkToggler>(
-  disposer: (toggler) => toggler.dispose(),
+final packagesNotifierPot = Pot.pending<PackagesNotifier>(
+  disposer: (notifier) => notifier.dispose(),
 );
 
 final homeNotifierPot = Pot.pending<HomeNotifier>(

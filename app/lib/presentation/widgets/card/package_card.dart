@@ -1,27 +1,33 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:grab/grab.dart';
+
 import 'package:pubdev_explorer/common/_common.dart';
 import 'package:pubdev_explorer/presentation/common/_common.dart';
 import 'package:pubdev_explorer/presentation/widgets/_widgets.dart';
 
-class PackageCard extends StatelessWidget {
+PackagesNotifier get _notifier => packagesNotifierPot();
+
+class PackageCard extends StatelessWidget with Grab {
   const PackageCard({
-    required this.packagePhase,
-    required this.onBookmarkPressed,
-    required this.onRefreshPressed,
+    required this.packageName,
     this.searchWords = const [],
   });
 
-  final AsyncPhase<Package> packagePhase;
-  final void Function(Package) onBookmarkPressed;
-  final void Function(Package) onRefreshPressed;
+  final String packageName;
   final List<String> searchWords;
 
   @override
   Widget build(BuildContext context) {
-    final package = packagePhase.data!;
+    final packagePhase = _notifier.grabAt(context, (s) => s[packageName]);
+    final package = packagePhase?.data;
 
+    if (packagePhase == null || package == null) {
+      return const SizedBox.shrink();
+    }
+
+    final isWaiting = packagePhase.isWaiting;
     const pubUrl = 'https://pub.dev/';
 
     return ConstrainedBox(
@@ -29,7 +35,7 @@ class PackageCard extends StatelessWidget {
         maxWidth: kContentMaxWidth - 32.0,
       ),
       child: Opacity(
-        opacity: packagePhase.isWaiting ? 0.5 : 1.0,
+        opacity: isWaiting ? 0.5 : 1.0,
         child: Card(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -45,15 +51,15 @@ class PackageCard extends StatelessWidget {
                         child: Stack(
                           children: [
                             HighlightedText(
-                              package.name,
+                              packageName,
                               keywords: searchWords,
                               style: context.headlineMedium.copyWith(
                                 color: Colors.transparent,
                               ),
                             ),
                             LinkedText(
-                              package.name,
-                              url: '$pubUrl/packages/${package.name}',
+                              packageName,
+                              url: '$pubUrl/packages/$packageName',
                               style: context.headlineMedium.copyWith(
                                 color: context.secondaryColor,
                               ),
@@ -74,9 +80,9 @@ class PackageCard extends StatelessWidget {
                               Icons.bookmark_outline,
                               color: context.tertiaryColor,
                             ),
-                      onPressed: packagePhase.isWaiting
+                      onPressed: isWaiting
                           ? null
-                          : () => onBookmarkPressed(package),
+                          : () => _notifier.toggleBookmark(package: package),
                     ),
                   ],
                 ),
@@ -84,15 +90,14 @@ class PackageCard extends StatelessWidget {
                   const SizedBox(height: 60.0),
                   SizedBox(
                     height: 24.0,
-                    child: packagePhase.isWaiting
-                        ? const CupertinoActivityIndicator()
-                        : null,
+                    child:
+                        isWaiting ? const CupertinoActivityIndicator() : null,
                   ),
                   const SizedBox(height: 40.0),
                   Align(
                     alignment: Alignment.bottomRight,
                     child: RefreshButton(
-                      onPressed: () => onRefreshPressed(package),
+                      onPressed: () => _refresh(context),
                     ),
                   ),
                 ] else ...[
@@ -158,9 +163,7 @@ class PackageCard extends StatelessWidget {
                         ),
                       ),
                       RefreshButton(
-                        onPressed: packagePhase.isWaiting
-                            ? null
-                            : () => onRefreshPressed(package),
+                        onPressed: isWaiting ? null : () => _refresh(context),
                       ),
                     ],
                   ),
@@ -170,6 +173,15 @@ class PackageCard extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  void _refresh(BuildContext context) {
+    ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
+
+    _notifier.fetchPackage(
+      name: packageName,
+      useCache: false,
     );
   }
 }

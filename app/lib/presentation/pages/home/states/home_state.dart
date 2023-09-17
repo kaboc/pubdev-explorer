@@ -1,42 +1,38 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:pubdev_explorer/common/_common.dart';
-import 'package:pubdev_explorer/presentation/common/_common.dart';
-
-export 'package:async_phase_notifier/async_phase.dart';
-
 class HomeState extends Equatable {
   const HomeState({
-    this.packagePhases = const [],
+    this.packageNames = const {},
     this.page = 0,
     this.index = 0,
-    this.endReached = false,
+    this.hasMore = true,
   });
 
-  final List<AsyncPhase<Package>> packagePhases;
+  final Set<String> packageNames;
   final int page;
   final int index;
-  final bool endReached;
+  final bool hasMore;
 
   @override
-  List<Object> get props => [packagePhases, page, index, endReached];
+  List<Object> get props => [packageNames, page, index, hasMore];
 
   bool get isFirst => index == 0;
-  bool get isLast => index >= packagePhases.length - 1;
-  bool get isIndexOutOfRange => index >= packagePhases.length;
-  Package? get currentPackage => packagePhases.at(index)?.data;
+  bool get isLast => index >= packageNames.length - 1;
+  bool get isIndexOutOfRange => index < 0 || index >= packageNames.length;
+  String get currentPackageName =>
+      isIndexOutOfRange ? '' : packageNames.elementAtOrNull(index) ?? '';
 
   HomeState copyWith({
-    List<AsyncPhase<Package>>? packagePhases,
+    Set<String>? packageNames,
     int? page,
     int? index,
-    bool? endReached,
+    bool? hasMore,
   }) {
     return HomeState(
-      packagePhases: packagePhases ?? this.packagePhases,
+      packageNames: packageNames ?? this.packageNames,
       page: page ?? this.page,
       index: index ?? this.index,
-      endReached: endReached ?? this.endReached,
+      hasMore: hasMore ?? this.hasMore,
     );
   }
 }

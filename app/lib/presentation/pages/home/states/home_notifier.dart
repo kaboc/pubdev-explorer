@@ -1,129 +1,76 @@
-import 'package:flutter/foundation.dart';
+import 'dart:async';
+
+import 'package:async_phase_notifier/async_phase_notifier.dart';
 
 import 'package:pubdev_explorer/common/_common.dart';
-import 'package:pubdev_explorer/presentation/common/_common.dart';
 
 export 'package:pubdev_explorer/presentation/pages/home/states/home_state.dart';
 
-PackageNamesFetcher get _packageNamesFetcher => packageNamesFetcherPot();
-PackageFetcher get _packageFetcher => packageFetcherPot();
-BookmarkToggler get _bookmarkToggler => bookmarkTogglerPot();
+PackagesRepository get _repository => packagesRepositoryPot();
+PackagesNotifier get _packagesNotifier => packagesNotifierPot();
 
-class HomeNotifier extends ValueNotifier<HomeState> {
+class HomeNotifier extends AsyncPhaseNotifier<HomeState> {
   HomeNotifier() : super(const HomeState()) {
-    final remove1 = _packageNamesFetcher.listen(_onPackageNamesFetched);
-    final remove2 = _packageFetcher.listen(_onPackageFetched);
-    final remove3 = _bookmarkToggler.listen(_onBookmarkToggled);
-
-    _removeListeners = () {
-      remove1();
-      remove2();
-      remove3();
-    };
-
-    fetchList();
+    fetchNames();
   }
 
-  late final void Function() _removeListeners;
+  Future<void> onIndexChanged(int index) async {
+    final newData = value.data!.copyWith(index: index);
+    value = value.copyWith(newData);
 
-  @override
-  void dispose() {
-    _removeListeners();
-    super.dispose();
-  }
-
-  void onIndexChanged(int index) {
-    value = value.copyWith(index: index);
-
-    if (value.isIndexOutOfRange && !value.isFirst) {
+    if (newData.isIndexOutOfRange) {
       return;
     }
-    if (value.isLast) {
-      fetchList();
-    } else {
-      fetchPackage(currentPackage: value.currentPackage);
-    }
-  }
-
-  void fetchList() {
-    if (value.endReached) {
-      return;
+    if (newData.isLast) {
+      unawaited(
+        fetchNames(),
+      );
     }
 
-    if (_packageNamesFetcher.value.isWaiting) {
-      Future<void>.delayed(const Duration(seconds: 1), fetchList);
-      return;
-    }
-
-    _packageNamesFetcher.fetch(page: value.page + 1);
-  }
-
-  void fetchPackage({Package? currentPackage, bool fromWeb = false}) {
-    if (currentPackage != null && (currentPackage.isEmpty || fromWeb)) {
-      _packageFetcher.fetch(currentPackage: currentPackage, fromWeb: fromWeb);
-    }
-  }
-
-  void toggleBookmark({required Package package}) {
-    _bookmarkToggler.toggle(package: package);
-  }
-
-  void restart() {
-    value = const HomeState();
-    fetchList();
-  }
-}
-
-//======================================================================
-
-/// Private extension containing listeners
-/// triggered by updates in other notifiers.
-extension on HomeNotifier {
-  void _onPackageNamesFetched(AsyncPhase<List<String>> phase) {
-    if (phase.isComplete) {
-      if (phase.data!.isEmpty) {
-        value = value.copyWith(endReached: true);
-      } else {
-        final packagePhases = List.of(value.packagePhases);
-        for (final name in phase.data!) {
-          if (packagePhases.indexWhere((v) => v.data!.name == name) < 0) {
-            packagePhases.add(
-              AsyncInitial(Package(name: name)),
-            );
-          }
-        }
-
-        value = value.copyWith(
-          page: value.page + 1,
-          packagePhases: packagePhases,
-        );
-
-        if (value.isLast) {
-          // Another fetch is necessary because the length of
-          // the map hasn't changed, meaning all the fetched
-          // packages already existed in there.
-          fetchList();
-          return;
-        }
-      }
-    }
-
-    fetchPackage(currentPackage: value.currentPackage);
-  }
-
-  void _onPackageFetched(AsyncPhase<Package> phase) {
-    value = value.copyWith(
-      packagePhases: value.packagePhases.copyAndReplace(
-        packagePhase: phase,
-      ),
+    await _packagesNotifier.fetchPackage(
+      name: newData.currentPackageName,
+      useCache: true,
     );
   }
 
-  void _onBookmarkToggled(AsyncPhase<Package> phase) {
-    value = value.copyWith(
-      packagePhases: value.packagePhases.copyAndReplace(
-        packagePhase: phase,
-      ),
+  Future<void> fetchNames() async {
+    if (!value.data!.hasMore) {
+      return;
+    }
+    if (value.isWaiting) {
+      Future<void>.delayed(const Duration(seconds: 1), fetchNames);
+      return;
+    }
+
+    await runAsync((data) async {
+      final newPage = data!.page + 1;
+      final names = await _repository.fetchPackageNames(page: newPage);
+      final newData = value.data!;
+
+      return newData.copyWith(
+        page: newPage,
+        hasMore: names.isNotEmpty,
+        packageNames: {...newData.packageNames, ...names},
+      );
+    });
+
+    final newData = value.data!;
+    if (newData.isLast && !newData.isFirst) {
+      // Another fetch is necessary if the current index is
+      // still the end because it means all the fetched packages
+      // were already in the existing list.
+      await fetchNames();
+      return;
+    }
+
+    await _packagesNotifier.fetchPackage(
+      name: newData.currentPackageName,
+      useCache: true,
     );
+  }
+
+  Future<void> restart() async {
+    value = const AsyncInitial(HomeState());
+    await fetchNames();
   }
 }

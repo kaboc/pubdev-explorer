@@ -9,8 +9,8 @@ import 'package:pubdev_explorer/presentation/common/_common.dart';
 import 'package:pubdev_explorer/presentation/pages/bookmarks/widgets/bookmarks_shortcuts.dart';
 import 'package:pubdev_explorer/presentation/widgets/_widgets.dart';
 
-BookmarksFetcher get _fetcher => bookmarksFetcherPot();
 BookmarksNotifier get _notifier => bookmarksNotifierPot();
+PackagesNotifier get _packagesNotifier => packagesNotifierPot();
 
 class BookmarksPage extends StatefulWidget with Grabful {
   const BookmarksPage._();
@@ -19,7 +19,6 @@ class BookmarksPage extends StatefulWidget with Grabful {
     return FadingPageRoute<void>(
       builder: (_) => Pottery(
         pots: {
-          bookmarksFetcherPot: BookmarksFetcher.new,
           bookmarksNotifierPot: BookmarksNotifier.new,
         },
         builder: (_) => const BookmarksPage._(),
@@ -53,8 +52,8 @@ class _BookmarksPageState extends State<BookmarksPage> {
 
   @override
   Widget build(BuildContext context) {
-    final bookmarksPhase = _fetcher.grab(context);
-    final packagePhases = _notifier.grabAt(context, (s) => s.packagePhases);
+    final bookmarksPhase = _notifier.grab(context);
+    final names = _notifier.grabAt(context, (s) => s.data!.packageNames);
     final hasSearchWords =
         _searchController.grabAt(context, (v) => v.text.isNotEmpty);
 
@@ -105,7 +104,7 @@ class _BookmarksPageState extends State<BookmarksPage> {
                 ),
               ),
               const SizedBox(height: 1.0),
-              if (packagePhases.isEmpty) ...[
+              if (names.isEmpty) ...[
                 if (bookmarksPhase.isInitial || bookmarksPhase.isWaiting)
                   const Expanded(
                     child: CupertinoActivityIndicator(),
@@ -133,7 +132,7 @@ class _BookmarksPageState extends State<BookmarksPage> {
               ] else
                 Expanded(
                   child: _ListView(
-                    packagePhases: packagePhases,
+                    packageNames: names,
                   ),
                 ),
             ],
@@ -145,15 +144,15 @@ class _BookmarksPageState extends State<BookmarksPage> {
 }
 
 class _ListView extends StatelessWidget with Grab {
-  const _ListView({required this.packagePhases});
+  const _ListView({required this.packageNames});
 
-  final List<AsyncPhase<Package>> packagePhases;
+  final Set<String> packageNames;
 
   @override
   Widget build(BuildContext context) {
-    final searchWords = _notifier.grabAt(context, (s) => s.searchWords);
-    final hasMore = _notifier.grabAt(context, (s) => s.hasMore);
-    final isFetchError = _fetcher.grabAt(context, (s) => s.isError);
+    final searchWords = _notifier.grabAt(context, (s) => s.data!.searchWords);
+    final hasMore = _notifier.grabAt(context, (s) => s.data!.hasMore);
+    final isFetchError = _notifier.grabAt(context, (s) => s.isError);
 
     return BottomScrollDetector(
       // Use search words as key to jump back to top
@@ -166,31 +165,19 @@ class _ListView extends StatelessWidget with Grab {
       slivers: [
         SliverList(
           delegate: SliverChildBuilderDelegate(
-            childCount: packagePhases.length,
+            childCount: packageNames.length,
             (_, index) {
-              final package = packagePhases.at(index);
-
-              return package == null
-                  ? const SizedBox.shrink()
-                  : Column(
-                      children: [
-                        if (index > 0) const SizedBox(height: 16.0),
-                        Center(
-                          child: PackageCard(
-                            packagePhase: package,
-                            searchWords: searchWords,
-                            onBookmarkPressed: (package) {
-                              _notifier.toggleBookmark(
-                                package: package,
-                              );
-                            },
-                            onRefreshPressed: (package) {
-                              _notifier.fetchPackage(package: package);
-                            },
-                          ),
-                        ),
-                      ],
-                    );
+              return Column(
+                children: [
+                  if (index > 0) const SizedBox(height: 16.0),
+                  Center(
+                    child: PackageCard(
+                      packageName: packageNames.elementAtOrNull(index) ?? '',
+                      searchWords: searchWords,
+                    ),
+                  ),
+                ],
+              );
             },
           ),
         ),

@@ -40,9 +40,7 @@ class App extends StatelessWidget with Grab {
       scrollBehavior: const CustomScrollBehavior(),
       home: Pottery(
         pots: {
-          packageNamesFetcherPot: PackageNamesFetcher.new,
-          packageFetcherPot: PackageFetcher.new,
-          bookmarkTogglerPot: BookmarkToggler.new,
+          packagesNotifierPot: PackagesNotifier.new,
           homeNotifierPot: HomeNotifier.new,
         },
         builder: (_) => const HomePage(),

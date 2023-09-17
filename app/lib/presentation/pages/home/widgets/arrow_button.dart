@@ -23,8 +23,8 @@ class ArrowButton extends StatelessWidget with Grab {
     final toPrev = direction == PageDirection.prev;
 
     final visible = toPrev
-        ? _notifier.grabAt(context, (s) => !s.isFirst)
-        : _notifier.grabAt(context, (s) => !s.isLast);
+        ? _notifier.grabAt(context, (s) => !s.data!.isFirst)
+        : _notifier.grabAt(context, (s) => !s.data!.isLast);
 
     final toAdjacentPage =
         toPrev ? pageController.previousPage : pageController.nextPage;

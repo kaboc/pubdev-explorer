@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 
-import 'package:pubdev_explorer/common/_common.dart';
-
 class CustomScrollBehavior extends MaterialScrollBehavior {
   const CustomScrollBehavior();
 
@@ -28,19 +26,4 @@ extension FormattedDateTime on DateTime? {
 
   String get formattedWithTime =>
       this == null ? '' : DateFormat('K:mm a, MMM d, y').format(this!);
-}
-
-extension PackagePhases on List<AsyncPhase<Package>> {
-  AsyncPhase<Package>? at(int index) {
-    return index < length ? this[index] : null;
-  }
-
-  List<AsyncPhase<Package>> copyAndReplace({
-    required AsyncPhase<Package> packagePhase,
-  }) {
-    final index = indexWhere((v) => v.data!.name == packagePhase.data!.name);
-    return index < 0
-        ? List.of(this)
-        : (List.of(this)..replaceRange(index, index + 1, [packagePhase]));
-  }
 }

@@ -12,8 +12,7 @@ import 'package:pubdev_explorer/presentation/pages/home/widgets/home_shortcuts.d
 import 'package:pubdev_explorer/presentation/widgets/_widgets.dart';
 
 HomeNotifier get _notifier => homeNotifierPot();
-PackageNamesFetcher get _packageNamesFetcher => packageNamesFetcherPot();
-PackageFetcher get _packageFetcher => packageFetcherPot();
+PackagesNotifier get _packagesNotifier => packagesNotifierPot();
 
 class HomePage extends StatefulWidget with Grabful {
   const HomePage();
@@ -33,8 +32,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final length = _notifier.grabAt(context, (s) => s.packagePhases.length);
-    final endReached = _notifier.grabAt(context, (s) => s.endReached);
+    final length =
+        _notifier.grabAt(context, (s) => s.data!.packageNames.length);
+    final hasMore = _notifier.grabAt(context, (s) => s.data!.hasMore);
 
     return HomeShortcuts(
       pageController: _controller,
@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
         ),
         body: SafeArea(
           child: AsyncPhaseListener(
-            notifier: _packageFetcher,
+            notifier: _notifier,
             onError: (e, s) {
               final messenger = ScaffoldMessenger.of(context);
               messenger.showMaterialBanner(
@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                       ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
                       _notifier.onIndexChanged(index);
                     },
-                    itemCount: endReached ? length : length + 1,
+                    itemCount: hasMore ? length + 1 : length,
                     itemBuilder: (_, index) =>
                         index == length ? const _PendingItem() : _Item(index),
                   ),
@@ -140,29 +140,17 @@ class _Item extends StatelessWidget with Grab {
 
   @override
   Widget build(BuildContext context) {
-    final packagePhase =
-        _notifier.grabAt(context, (s) => s.packagePhases.at(index));
+    final packageName =
+        _notifier.grabAt(context, (s) => s.data!.currentPackageName);
 
-    return packagePhase == null
-        ? const SizedBox.shrink()
-        : SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
-            child: Center(
-              child: PackageCard(
-                packagePhase: packagePhase,
-                onBookmarkPressed: (package) {
-                  _notifier.toggleBookmark(package: package);
-                },
-                onRefreshPressed: (package) {
-                  ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
-                  _notifier.fetchPackage(
-                    currentPackage: package,
-                    fromWeb: true,
-                  );
-                },
-              ),
-            ),
-          );
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
+      child: Center(
+        child: PackageCard(
+          packageName: packageName,
+        ),
+      ),
+    );
   }
 }
 
@@ -171,7 +159,7 @@ class _PendingItem extends StatelessWidget with Grab {
 
   @override
   Widget build(BuildContext context) {
-    final listPhase = _packageNamesFetcher.grab(context);
+    final listPhase = _notifier.grab(context);
 
     return listPhase.when(
       waiting: (_) => const Center(
@@ -179,7 +167,7 @@ class _PendingItem extends StatelessWidget with Grab {
       ),
       error: (_, __, ___) => Center(
         child: ElevatedButton(
-          onPressed: _notifier.fetchList,
+          onPressed: _notifier.fetchNames,
           child: const Text('Retry'),
         ),
       ),
