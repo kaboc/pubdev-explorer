@@ -12,7 +12,6 @@ import 'package:pubdev_explorer/presentation/pages/home/widgets/home_shortcuts.d
 import 'package:pubdev_explorer/presentation/widgets/_widgets.dart';
 
 HomeNotifier get _notifier => homeNotifierPot();
-PackagesNotifier get _packagesNotifier => packagesNotifierPot();
 
 class HomePage extends StatefulWidget with Grabful {
   const HomePage();

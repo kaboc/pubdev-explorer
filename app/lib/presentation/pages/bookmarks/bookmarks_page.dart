@@ -10,7 +10,6 @@ import 'package:pubdev_explorer/presentation/pages/bookmarks/widgets/bookmarks_s
 import 'package:pubdev_explorer/presentation/widgets/_widgets.dart';
 
 BookmarksNotifier get _notifier => bookmarksNotifierPot();
-PackagesNotifier get _packagesNotifier => packagesNotifierPot();
 
 class BookmarksPage extends StatefulWidget with Grabful {
   const BookmarksPage._();
