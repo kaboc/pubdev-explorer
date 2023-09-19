@@ -8,7 +8,7 @@ import 'package:pubdev_explorer/common/_common.dart';
 export 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmarks_state.dart';
 
 BookmarksRepository get _repository => bookmarksRepositoryPot();
-PackagesNotifier get _packagesNotifier => packagesNotifierPot();
+PackageCaches get _packageCaches => packageCachesPot();
 
 class BookmarksNotifier extends AsyncPhaseNotifier<BookmarksState> {
   BookmarksNotifier() : super(const BookmarksState()) {
@@ -69,7 +69,10 @@ class BookmarksNotifier extends AsyncPhaseNotifier<BookmarksState> {
               before: before,
             );
 
-      _packagesNotifier.addToList(packages);
+      for (final package in packages) {
+        _packageCaches[package.name] ??= PackageNotifier(name: package.name);
+        _packageCaches[package.name]?.updateWith(package);
+      }
 
       if (packages.isNotEmpty) {
         _lastAt = packages.last.bookmarkedAt;

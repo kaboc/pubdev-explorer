@@ -7,7 +7,7 @@ import 'package:pubdev_explorer/common/_common.dart';
 export 'package:pubdev_explorer/presentation/pages/home/states/home_state.dart';
 
 PackagesRepository get _repository => packagesRepositoryPot();
-PackagesNotifier get _packagesNotifier => packagesNotifierPot();
+PackageCaches get _packageCaches => packageCachesPot();
 
 class HomeNotifier extends AsyncPhaseNotifier<HomeState> {
   HomeNotifier() : super(const HomeState()) {
@@ -27,14 +27,12 @@ class HomeNotifier extends AsyncPhaseNotifier<HomeState> {
       );
     }
 
-    await _packagesNotifier.fetchPackage(
-      name: newData.currentPackageName,
-      useCache: true,
-    );
+    await _fetchCurrentPackage();
   }
 
   Future<void> fetchNames() async {
-    if (!value.data!.hasMore) {
+    final data = value.data!;
+    if (!data.hasMore) {
       return;
     }
     if (value.isWaiting) {
@@ -46,6 +44,10 @@ class HomeNotifier extends AsyncPhaseNotifier<HomeState> {
       final newPage = data!.page + 1;
       final names = await _repository.fetchPackageNames(page: newPage);
       final newData = value.data!;
+
+      for (final name in names) {
+        _packageCaches[name] ??= PackageNotifier(name: name);
+      }
 
       return newData.copyWith(
         page: newPage,
@@ -63,10 +65,12 @@ class HomeNotifier extends AsyncPhaseNotifier<HomeState> {
       return;
     }
 
-    await _packagesNotifier.fetchPackage(
-      name: newData.currentPackageName,
-      useCache: true,
-    );
+    await _fetchCurrentPackage();
+  }
+
+  Future<void> _fetchCurrentPackage() async {
+    final notifier = _packageCaches[value.data!.currentPackageName];
+    await notifier?.fetchPackage(useCache: true);
   }
 
   Future<void> restart() async {

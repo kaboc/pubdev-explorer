@@ -7,7 +7,7 @@ import 'package:pubdev_explorer/common/_common.dart';
 import 'package:pubdev_explorer/presentation/common/_common.dart';
 import 'package:pubdev_explorer/presentation/widgets/_widgets.dart';
 
-PackagesNotifier get _notifier => packagesNotifierPot();
+PackageCaches get _packageCaches => packageCachesPot();
 
 class PackageCard extends StatelessWidget with Grab {
   const PackageCard({
@@ -18,9 +18,11 @@ class PackageCard extends StatelessWidget with Grab {
   final String packageName;
   final List<String> searchWords;
 
+  PackageNotifier? get _notifier => _packageCaches[packageName];
+
   @override
   Widget build(BuildContext context) {
-    final packagePhase = _notifier.grabAt(context, (s) => s[packageName]);
+    final packagePhase = _notifier?.grab(context);
     final package = packagePhase?.data;
 
     if (packagePhase == null || package == null) {
@@ -80,9 +82,8 @@ class PackageCard extends StatelessWidget with Grab {
                               Icons.bookmark_outline,
                               color: context.tertiaryColor,
                             ),
-                      onPressed: isWaiting
-                          ? null
-                          : () => _notifier.toggleBookmark(package: package),
+                      onPressed:
+                          isWaiting ? null : () => _notifier?.toggleBookmark(),
                     ),
                   ],
                 ),
@@ -178,10 +179,6 @@ class PackageCard extends StatelessWidget with Grab {
 
   void _refresh(BuildContext context) {
     ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
-
-    _notifier.fetchPackage(
-      name: packageName,
-      useCache: false,
-    );
+    _notifier?.fetchPackage(useCache: false);
   }
 }

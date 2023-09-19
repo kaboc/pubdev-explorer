@@ -5,14 +5,14 @@ import 'package:pubdev_explorer_core/pubdev_explorer_core.dart';
 import 'package:pubdev_explorer/presentation/app_states/settings_notifier.dart';
 import 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmarks_notifier.dart';
 import 'package:pubdev_explorer/presentation/pages/home/states/home_notifier.dart';
-import 'package:pubdev_explorer/presentation/pages/home/states/packages_notifier.dart';
+import 'package:pubdev_explorer/presentation/pages/home/states/package_notifier.dart';
 
 export 'package:pubdev_explorer_core/pubdev_explorer_core.dart';
 
 export 'package:pubdev_explorer/presentation/app_states/settings_notifier.dart';
 export 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmarks_notifier.dart';
 export 'package:pubdev_explorer/presentation/pages/home/states/home_notifier.dart';
-export 'package:pubdev_explorer/presentation/pages/home/states/packages_notifier.dart';
+export 'package:pubdev_explorer/presentation/pages/home/states/package_notifier.dart';
 
 final settingsRepositoryPot = Pot(
   () => const SettingsRepository(),
@@ -35,8 +35,10 @@ final settingsNotifierPot = Pot(
 // For use in limited places
 //----------------------------------
 
-final packagesNotifierPot = Pot.pending<PackagesNotifier>(
-  disposer: (notifier) => notifier.dispose(),
+final packageCachesPot = Pot.pending<PackageCaches>(
+  disposer: (caches) => caches
+    ..forEach((_, notifier) => notifier.dispose())
+    ..clear(),
 );
 
 final homeNotifierPot = Pot.pending<HomeNotifier>(
