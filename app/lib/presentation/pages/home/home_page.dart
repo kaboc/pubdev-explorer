@@ -140,7 +140,7 @@ class _Item extends StatelessWidget with Grab {
   @override
   Widget build(BuildContext context) {
     final packageName =
-        _notifier.grabAt(context, (s) => s.data!.currentPackageName);
+        _notifier.grabAt(context, (s) => s.data!.packageNameAt(index));
 
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),

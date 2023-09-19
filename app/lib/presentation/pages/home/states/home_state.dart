@@ -19,8 +19,11 @@ class HomeState extends Equatable {
   bool get isFirst => index == 0;
   bool get isLast => index >= packageNames.length - 1;
   bool get isIndexOutOfRange => index < 0 || index >= packageNames.length;
-  String get currentPackageName =>
-      isIndexOutOfRange ? '' : packageNames.elementAtOrNull(index) ?? '';
+  String get currentPackageName => packageNameAt(index);
+
+  String packageNameAt(int index) {
+    return isIndexOutOfRange ? '' : packageNames.elementAtOrNull(index) ?? '';
+  }
 
   HomeState copyWith({
     Set<String>? packageNames,
