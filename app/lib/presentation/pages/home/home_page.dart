@@ -51,27 +51,29 @@ class _HomePageState extends State<HomePage> {
             notifier: _notifier,
             onError: (e, s) {
               final messenger = ScaffoldMessenger.of(context);
-              messenger.showMaterialBanner(
-                MaterialBanner(
-                  content: const Text(
-                    'Could not fetch the details.\n'
-                    'It may be because the package was published only '
-                    'a while ago and its analysis is still ongoing.',
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: messenger.hideCurrentMaterialBanner,
-                      child: Text(
-                        'OK',
-                        style: context.bodyMedium.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+              messenger
+                ..hideCurrentMaterialBanner()
+                ..showMaterialBanner(
+                  MaterialBanner(
+                    content: const Text(
+                      'Could not fetch the details.\n'
+                      'It may be because the package was published only '
+                      'a while ago and its analysis is still ongoing.',
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: messenger.hideCurrentMaterialBanner,
+                        child: Text(
+                          'OK',
+                          style: context.bodyMedium.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              );
+                    ],
+                  ),
+                );
             },
             child: Column(
               children: [
