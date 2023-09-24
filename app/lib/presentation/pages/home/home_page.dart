@@ -168,7 +168,10 @@ class _PendingItem extends StatelessWidget with Grab {
       ),
       error: (_, __, ___) => Center(
         child: ElevatedButton(
-          onPressed: _notifier.fetchNames,
+          onPressed: () {
+            ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
+            _notifier.fetchNames();
+          },
           child: const Text('Retry'),
         ),
       ),
