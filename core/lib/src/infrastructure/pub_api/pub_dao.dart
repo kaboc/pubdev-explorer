@@ -15,7 +15,8 @@ class PubDao {
 
   Future<List<String>> fetchPackageNames({int page = 1}) async {
     final url = '${_kPubApiUrl}search'
-        '?q=is%3Anull-safe+license%3Aosi-approved&sort=updated&page=$page';
+        '?q=is%3Adart3-compatible+license%3Aosi-approved'
+        '&sort=updated&page=$page';
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
