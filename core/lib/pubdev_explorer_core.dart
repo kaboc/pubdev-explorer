@@ -11,6 +11,8 @@ void openLocalDatabase({required QueryExecutor executor}) {
   localDatabasePot.replace(() => Database(executor: executor));
 }
 
-void useMock() {
-  pubDaoPot.replace(MockPubDao.new);
+void configureApi({required bool isWeb}) {
+  if (kUseMock || isWeb) {
+    pubDaoPot.replace(MockPubDao.new);
+  }
 }

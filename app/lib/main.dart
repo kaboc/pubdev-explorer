@@ -13,9 +13,7 @@ import 'package:pubdev_explorer/presentation/pages/home/home_page.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  if (kIsWeb || kUseMock) {
-    useMock();
-  }
+  configureApi(isWeb: kIsWeb);
   openLocalDatabase(executor: openConnection());
 
   // SettingNotifier is prepared here so that the user-selected

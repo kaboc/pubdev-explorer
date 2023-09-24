@@ -66,7 +66,7 @@ linter:
     deprecated_member_use_from_same_package: true
 #    directives_ordering: true
 #    discarded_futures: true
-#    do_not_use_environment: true
+    do_not_use_environment: true
     eol_at_end_of_file: true
     implicit_call_tearoffs: true
     implicit_reopen: true
