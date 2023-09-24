@@ -2,6 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:pubdev_explorer/presentation/pages/guide/guide_page.dart';
+import 'package:pubdev_explorer/presentation/pages/home/widgets/home_shortcuts.dart';
 
 class BookmarksShortcuts extends StatelessWidget {
   const BookmarksShortcuts({
@@ -25,7 +26,7 @@ class BookmarksShortcuts extends StatelessWidget {
           const SingleActivator(LogicalKeyboardKey.keyF, meta: true):
               RequestFocusIntent(searchFocusNode),
           const SingleActivator(LogicalKeyboardKey.escape):
-              const _SearchClearIntent(),
+              const SearchClearIntent(),
           // Settings for the arrow up/down keys are necessary to
           // prevent the default behaviour of those keys moving
           // the focus up and down, which is unwanted in this app.
@@ -34,22 +35,21 @@ class BookmarksShortcuts extends StatelessWidget {
           const SingleActivator(LogicalKeyboardKey.arrowDown):
               const ScrollIntent(direction: AxisDirection.down),
           const SingleActivator(LogicalKeyboardKey.arrowLeft, alt: true):
-              const _BackToHomeIntent(),
-          const SingleActivator(LogicalKeyboardKey.f1):
-              const _OpenGuideIntent(),
+              const BackToHomeIntent(),
+          const SingleActivator(LogicalKeyboardKey.f1): const OpenGuideIntent(),
           const SingleActivator(LogicalKeyboardKey.question, shift: true):
-              const _OpenGuideIntent(),
+              const OpenGuideIntent(),
         },
         child: Actions(
           actions: {
-            RequestFocusIntent: _SearchFocusAction(searchController),
-            _SearchClearIntent: CallbackAction<_SearchClearIntent>(
+            RequestFocusIntent: SearchFocusAction(searchController),
+            SearchClearIntent: CallbackAction<SearchClearIntent>(
               onInvoke: (_) => searchController.clear(),
             ),
-            _OpenGuideIntent: CallbackAction<_OpenGuideIntent>(
+            OpenGuideIntent: CallbackAction<OpenGuideIntent>(
               onInvoke: (_) => Navigator.of(context).push(GuidePage.route()),
             ),
-            _BackToHomeIntent: CallbackAction<_BackToHomeIntent>(
+            BackToHomeIntent: CallbackAction<BackToHomeIntent>(
               onInvoke: (_) => Navigator.of(context).pop(),
             ),
           },
@@ -58,34 +58,6 @@ class BookmarksShortcuts extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _SearchClearIntent extends Intent {
-  const _SearchClearIntent();
-}
-
-class _OpenGuideIntent extends Intent {
-  const _OpenGuideIntent();
-}
-
-class _BackToHomeIntent extends Intent {
-  const _BackToHomeIntent();
-}
-
-class _SearchFocusAction extends Action<RequestFocusIntent> {
-  _SearchFocusAction(this.searchController);
-
-  final TextEditingController searchController;
-
-  @override
-  void invoke(RequestFocusIntent intent) {
-    intent.focusNode.requestFocus();
-
-    searchController.selection = TextSelection(
-      baseOffset: 0,
-      extentOffset: searchController.text.length,
     );
   }
 }

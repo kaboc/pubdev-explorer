@@ -39,9 +39,9 @@ class HomeShortcuts extends StatelessWidget {
         SingleActivator(LogicalKeyboardKey.keyR, shift: true): _RestartIntent(),
         SingleActivator(LogicalKeyboardKey.arrowRight, alt: true):
             _GoToBookmarksIntent(),
-        SingleActivator(LogicalKeyboardKey.f1): _OpenGuideIntent(),
+        SingleActivator(LogicalKeyboardKey.f1): OpenGuideIntent(),
         SingleActivator(LogicalKeyboardKey.question, shift: true):
-            _OpenGuideIntent(),
+            OpenGuideIntent(),
       },
       child: Actions(
         actions: {
@@ -65,7 +65,7 @@ class HomeShortcuts extends StatelessWidget {
           _GoToBookmarksIntent: CallbackAction<_GoToBookmarksIntent>(
             onInvoke: (_) => Navigator.of(context).push(BookmarksPage.route()),
           ),
-          _OpenGuideIntent: CallbackAction<_OpenGuideIntent>(
+          OpenGuideIntent: CallbackAction<OpenGuideIntent>(
             onInvoke: (_) => Navigator.of(context).push(GuidePage.route()),
           ),
         },
@@ -94,10 +94,6 @@ class _GoToBookmarksIntent extends Intent {
   const _GoToBookmarksIntent();
 }
 
-class _OpenGuideIntent extends Intent {
-  const _OpenGuideIntent();
-}
-
 class _SlideAction extends Action<ScrollIntent> {
   _SlideAction(this.pageController);
 
@@ -116,5 +112,37 @@ class _SlideAction extends Action<ScrollIntent> {
         curve: kSlideCurve,
       );
     }
+  }
+}
+
+//======================================================
+// Intents and actions shared between multiple pages
+//======================================================
+
+class SearchClearIntent extends Intent {
+  const SearchClearIntent();
+}
+
+class BackToHomeIntent extends Intent {
+  const BackToHomeIntent();
+}
+
+class OpenGuideIntent extends Intent {
+  const OpenGuideIntent();
+}
+
+class SearchFocusAction extends Action<RequestFocusIntent> {
+  SearchFocusAction(this.searchController);
+
+  final TextEditingController searchController;
+
+  @override
+  void invoke(RequestFocusIntent intent) {
+    intent.focusNode.requestFocus();
+
+    searchController.selection = TextSelection(
+      baseOffset: 0,
+      extentOffset: searchController.text.length,
+    );
   }
 }
