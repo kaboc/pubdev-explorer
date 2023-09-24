@@ -57,7 +57,7 @@ class HomeNotifier extends AsyncPhaseNotifier<HomeState> {
     });
 
     final newData = value.data!;
-    if (newData.isLast && !newData.isFirst) {
+    if (!value.isError && newData.isLast && !newData.isFirst) {
       // Another fetch is necessary if the current index is
       // still the end because it means all the fetched packages
       // were already in the existing list.
