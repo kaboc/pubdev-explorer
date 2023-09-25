@@ -11,12 +11,18 @@ import 'package:pubdev_explorer_core/src/infrastructure/pub_api/models/package_n
 class PubDao {
   const PubDao();
 
-  Future<List<String>> fetchPackageNames({int page = 1}) async {
-    final uri = Uri.parse(
-      '${kPubEndpoint}search'
-      '?q=is%3Adart3-compatible+license%3Aosi-approved'
-      '&sort=updated&page=$page',
-    );
+  Future<List<String>> fetchPackageNames({
+    int page = 1,
+    String? keywords,
+  }) async {
+    final queries = [
+      'is%3Adart3-compatible',
+      'license%3Aosi-approved',
+      if (keywords != null) ...keywords.split('\n'),
+    ];
+
+    final uri = Uri.parse('${kPubEndpoint}search?q=${queries.join('+')}'
+        '${keywords == null ? '&sort=updated' : ''}&page=$page');
     final response = await http.get(uri);
 
     if (response.statusCode == 200) {

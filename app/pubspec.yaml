@@ -17,7 +17,11 @@ dependencies:
   async_phase_notifier: ^0.4.1
   custom_text: ^1.1.0
   grab: ^0.4.1
-  pottery: ^0.0.1+3
+  pottery:
+    git:
+      url: git@github.com:kaboc/pot.git
+      path: packages/pottery
+      ref: 18cd420f932aa52fa4a057e7220ffffb20173c06
 
   # Other packages
   collection: ^1.17.1

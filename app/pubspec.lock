@@ -431,10 +431,11 @@ packages:
   pottery:
     dependency: "direct main"
     description:
-      name: pottery
-      sha256: "8ea00dfa4c445f4a02cb9ac8c027becd4e7c29061f72aadb1c9b0fb8cf2c02fb"
-      url: "https://pub.dev"
-    source: hosted
+      path: "packages/pottery"
+      ref: "18cd420f932aa52fa4a057e7220ffffb20173c06"
+      resolved-ref: "18cd420f932aa52fa4a057e7220ffffb20173c06"
+      url: "git@github.com:kaboc/pot.git"
+    source: git
     version: "0.0.1+3"
   pub_semver:
     dependency: transitive

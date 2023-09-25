@@ -12,8 +12,15 @@ const _kNameLimit = 10;
 
 class MockPubDao implements PubDao {
   @override
-  Future<List<String>> fetchPackageNames({int page = 1}) async {
+  Future<List<String>> fetchPackageNames({
+    int page = 1,
+    String? keywords,
+  }) async {
     await Future<void>.delayed(const Duration(milliseconds: 200));
+
+    if (keywords != null) {
+      throw UnimplementedError();
+    }
 
     final maxLen = kMockPackageNames.length;
     final start = (page - 1) * _kNameLimit;

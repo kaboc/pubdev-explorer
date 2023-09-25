@@ -6,7 +6,6 @@ import 'package:pubdev_explorer/presentation/common/_common.dart';
 import 'package:pubdev_explorer/presentation/pages/bookmarks/bookmarks_page.dart';
 import 'package:pubdev_explorer/presentation/pages/guide/guide_page.dart';
 
-HomeNotifier get _notifier => homeNotifierPot();
 PackageCaches get _packageCaches => packageCachesPot();
 
 class HomeShortcuts extends StatelessWidget {
@@ -18,8 +17,10 @@ class HomeShortcuts extends StatelessWidget {
   final PageController pageController;
   final Widget child;
 
-  PackageNotifier? get _currentPackageNotifier =>
-      _packageCaches[_notifier.value.data!.currentPackageName];
+  PackageNotifier? _currentPackageNotifier(BuildContext context) {
+    final notifier = homeNotifierPot.of(context);
+    return _packageCaches[notifier.value.data!.currentPackageName];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,19 +49,19 @@ class HomeShortcuts extends StatelessWidget {
           ScrollIntent: _SlideAction(pageController),
           _BookmarkToggleIntent: CallbackAction<_BookmarkToggleIntent>(
             onInvoke: (_) {
-              _currentPackageNotifier?.toggleBookmark();
+              _currentPackageNotifier(context)?.toggleBookmark();
               return;
             },
           ),
           _RefreshIntent: CallbackAction<_RefreshIntent>(
             onInvoke: (_) {
               ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
-              _currentPackageNotifier?.fetchPackage(useCache: false);
+              _currentPackageNotifier(context)?.fetchPackage(useCache: false);
               return;
             },
           ),
           _RestartIntent: CallbackAction<_RestartIntent>(
-            onInvoke: (_) => _notifier.restart(),
+            onInvoke: (_) => homeNotifierPot.of(context).restart(),
           ),
           _GoToBookmarksIntent: CallbackAction<_GoToBookmarksIntent>(
             onInvoke: (_) => Navigator.of(context).push(BookmarksPage.route()),

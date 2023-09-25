@@ -9,9 +9,12 @@ PackagesDao get _localDao => localDatabasePot().packagesDao;
 class PackagesRepository {
   const PackagesRepository();
 
-  Future<List<String>> fetchPackageNames({int page = 0}) async {
+  Future<List<String>> fetchPackageNames({
+    int page = 0,
+    String? keywords,
+  }) async {
     try {
-      return _remoteDao.fetchPackageNames(page: page);
+      return _remoteDao.fetchPackageNames(page: page, keywords: keywords);
     } on Exception catch (e, s) {
       Logger.error(e, s);
       rethrow;

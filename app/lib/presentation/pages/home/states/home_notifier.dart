@@ -10,9 +10,13 @@ PackagesRepository get _repository => packagesRepositoryPot();
 PackageCaches get _packageCaches => packageCachesPot();
 
 class HomeNotifier extends AsyncPhaseNotifier<HomeState> {
-  HomeNotifier() : super(const HomeState()) {
+  HomeNotifier({String? keywords})
+      : isSearch = keywords != null,
+        super(HomeState(keywords: keywords)) {
     fetchNames();
   }
+
+  final bool isSearch;
 
   Future<void> onIndexChanged(int index) async {
     final newData = value.data!.copyWith(index: index);
@@ -30,18 +34,31 @@ class HomeNotifier extends AsyncPhaseNotifier<HomeState> {
     await _fetchCurrentPackage();
   }
 
-  Future<void> fetchNames() async {
+  Future<void> fetchNames({String? keywords}) async {
     final data = value.data!;
-    if (!data.hasMore) {
+    final trimmed = keywords?.trim();
+
+    if (trimmed != null) {
+      if (trimmed.isEmpty || trimmed == data.keywords) {
+        return;
+      }
+      value = value.copyWith(
+        HomeState(keywords: trimmed),
+      );
+    } else if (!data.hasMore) {
       return;
     }
+
     if (value.isWaiting) {
       return;
     }
 
     await runAsync((data) async {
       final newPage = data!.page + 1;
-      final names = await _repository.fetchPackageNames(page: newPage);
+      final names = await _repository.fetchPackageNames(
+        page: newPage,
+        keywords: trimmed ?? data.keywords,
+      );
       final newData = value.data!;
 
       for (final name in names) {
