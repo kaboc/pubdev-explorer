@@ -7,7 +7,7 @@ An app to explore and bookmark packages hosted on [pub.dev](https://pub.dev/).
 Packages are shown in descending order starting from the most recently updated one
 on platforms other than the web.
 
-<img src="https://user-images.githubusercontent.com/20254485/201298837-1500c704-c0c7-487e-8790-d304cd1a82a4.jpg" width="360"> <img src="https://user-images.githubusercontent.com/20254485/209143909-4652169c-02de-4164-9e38-6d0dc31a2643.png" width="360">
+<img src="https://github.com/kaboc/pubdev-explorer/assets/20254485/28595978-bd11-4dac-81eb-90a1b5d47487" width="240"> <img src="https://github.com/kaboc/pubdev-explorer/assets/20254485/56149003-2127-405d-9ee9-0f588308caee" width="240"> <img src="https://github.com/kaboc/pubdev-explorer/assets/20254485/9c38a02f-42ad-446e-bf1b-d1e90d6f7627" width="240">
 
 ## About this app
 
