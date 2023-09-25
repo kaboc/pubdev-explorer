@@ -8,16 +8,16 @@ import 'package:pubdev_explorer_core/src/infrastructure/pub_api/models/package_b
 import 'package:pubdev_explorer_core/src/infrastructure/pub_api/models/package_metrics.dart';
 import 'package:pubdev_explorer_core/src/infrastructure/pub_api/models/package_names.dart';
 
-const _kPubApiUrl = 'https://pub.dev/api/';
-
 class PubDao {
   const PubDao();
 
   Future<List<String>> fetchPackageNames({int page = 1}) async {
-    final url = '${_kPubApiUrl}search'
-        '?q=is%3Adart3-compatible+license%3Aosi-approved'
-        '&sort=updated&page=$page';
-    final response = await http.get(Uri.parse(url));
+    final uri = Uri.parse(
+      '${kPubEndpoint}search'
+      '?q=is%3Adart3-compatible+license%3Aosi-approved'
+      '&sort=updated&page=$page',
+    );
+    final response = await http.get(uri);
 
     if (response.statusCode == 200) {
       final jsonMap = await jsonDecode(response.body) as JsonMap;
@@ -48,7 +48,7 @@ class PubDao {
   }
 
   Future<PackageBasics> _fetchPackageBasics(String name) async {
-    final url = '${_kPubApiUrl}packages/$name';
+    final url = '${kPubEndpoint}packages/$name';
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
@@ -60,7 +60,7 @@ class PubDao {
   }
 
   Future<PackageDetails> _fetchPackageDetails(String name) async {
-    final url = '${_kPubApiUrl}packages/$name/metrics';
+    final url = '${kPubEndpoint}packages/$name/metrics';
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {

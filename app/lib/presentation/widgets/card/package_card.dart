@@ -5,7 +5,12 @@ import 'package:grab/grab.dart';
 
 import 'package:pubdev_explorer/common/_common.dart';
 import 'package:pubdev_explorer/presentation/common/_common.dart';
-import 'package:pubdev_explorer/presentation/widgets/_widgets.dart';
+import 'package:pubdev_explorer/presentation/widgets/card/highlighted_text.dart';
+import 'package:pubdev_explorer/presentation/widgets/card/metrics.dart';
+import 'package:pubdev_explorer/presentation/widgets/card/refresh_button.dart';
+import 'package:pubdev_explorer/presentation/widgets/card/tag_list.dart';
+import 'package:pubdev_explorer/presentation/widgets/card/version_table.dart';
+import 'package:pubdev_explorer/presentation/widgets/foundation/linked_text.dart';
 
 PackageCaches get _packageCaches => packageCachesPot();
 
@@ -30,12 +35,13 @@ class PackageCard extends StatelessWidget with Grab {
     }
 
     final isWaiting = packagePhase.isWaiting;
-    const pubUrl = 'https://pub.dev/';
 
-    return ConstrainedBox(
-      constraints: const BoxConstraints(
-        maxWidth: kContentMaxWidth - 32.0,
-      ),
+    final publisher = package.publisher;
+    final packageUrl = '$kPubUrl/packages/$packageName';
+    final publisherUrl = '$kPubUrl/publishers/$publisher';
+
+    return SizedBox(
+      width: kContentMaxWidth - 32.0,
       child: Opacity(
         opacity: isWaiting ? 0.5 : 1.0,
         child: Card(
@@ -61,7 +67,7 @@ class PackageCard extends StatelessWidget with Grab {
                             ),
                             LinkedText(
                               packageName,
-                              url: '$pubUrl/packages/$packageName',
+                              url: packageUrl,
                               style: context.headlineMedium.copyWith(
                                 color: context.secondaryColor,
                               ),
@@ -134,7 +140,7 @@ class PackageCard extends StatelessWidget with Grab {
                           child: Stack(
                             children: [
                               HighlightedText(
-                                package.publisher,
+                                publisher,
                                 keywords: searchWords,
                                 style: const TextStyle(
                                   color: Colors.transparent,
@@ -142,7 +148,7 @@ class PackageCard extends StatelessWidget with Grab {
                               ),
                               LinkedText(
                                 package.publisher,
-                                url: '$pubUrl/publishers/${package.publisher}',
+                                url: publisherUrl,
                                 style: TextStyle(color: context.secondaryColor),
                               ),
                             ],

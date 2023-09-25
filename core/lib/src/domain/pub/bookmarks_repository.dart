@@ -1,5 +1,5 @@
 import 'package:pubdev_explorer_core/src/common/_common.dart';
-import 'package:pubdev_explorer_core/src/domain/pub/_pub.dart';
+import 'package:pubdev_explorer_core/src/domain/pub/models/package.dart';
 import 'package:pubdev_explorer_core/src/infrastructure/local_db/daos/bookmarks_dao.dart';
 
 BookmarksDao get _dao => localDatabasePot().bookmarksDao;

@@ -7,6 +7,7 @@ import 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmarks_no
 import 'package:pubdev_explorer/presentation/pages/home/states/home_notifier.dart';
 import 'package:pubdev_explorer/presentation/pages/home/states/package_notifier.dart';
 
+export 'package:pottery/pottery.dart';
 export 'package:pubdev_explorer_core/pubdev_explorer_core.dart';
 
 export 'package:pubdev_explorer/presentation/app_states/settings_notifier.dart';

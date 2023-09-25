@@ -73,7 +73,7 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const GuideHeading('Explore page shortcuts'),
+        const GuideHeading('Shortcuts for explorer page'),
         const SizedBox(height: 10.0),
         GuideTable({
           'Left': 'Slides to the previous package',
@@ -93,21 +93,20 @@ class _Body extends StatelessWidget {
           isMacOs ? 'Shift + ?' : 'F1': 'Opens this guide',
         }),
         const SizedBox(height: 32.0),
-        const GuideHeading('Bookmarks page shortcuts'),
+        const GuideHeading('Shortcuts for bookmarks page'),
         const SizedBox(height: 10.0),
         GuideTable({
           'Up': 'Scrolls up',
           'Down': 'Scrolls down',
           isMacOs ? 'Fn + Up' : 'Page Up': 'Scrolls up a page',
           isMacOs ? 'Fn + Down' : 'Page Down': 'Scrolls down a page',
-          isMacOs ? 'Command + F' : 'Ctrl + F':
-              'Focuses the search box and selects all',
+          isMacOs ? 'Command + F' : 'Ctrl + F': 'Focuses the search box',
           'Esc': 'Clears the search words',
-          'Alt + Left': 'Goes back to the Explore page',
+          'Alt + Left': 'Goes back to the explorer page',
           isMacOs ? 'Shift + ?' : 'F1': 'Opens this guide',
         }),
         const SizedBox(height: 32.0),
-        const GuideHeading("This guide's shortcuts"),
+        const GuideHeading('Shortcuts for this guide'),
         const SizedBox(height: 10.0),
         const GuideTable({
           'Esc': "Closes the guide you're reading",

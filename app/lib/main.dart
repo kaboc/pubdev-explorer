@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:grab/grab.dart';
-import 'package:pottery/pottery.dart';
 
 import 'package:pubdev_explorer/common/_common.dart';
 import 'package:pubdev_explorer/platforms/io.dart'

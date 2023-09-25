@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 const Color _primaryColor = Color(0xFF132030);
 const Color _secondaryColor = Color(0xFF0175C2);
-const Color _secondaryDarkColor = Color(0xFF55CCFF);
+const Color _secondaryColorDark = Color(0xFF55CCFF);
 const Color _tertiaryColor = Color(0xFF757575);
 const Color _tertiaryColorDark = Color(0xFF858585);
 
@@ -27,7 +27,7 @@ class AppTheme {
     final data = ThemeData.from(
       colorScheme: const ColorScheme.dark(
         primary: _primaryColor,
-        secondary: _secondaryDarkColor,
+        secondary: _secondaryColorDark,
         tertiary: _tertiaryColorDark,
       ),
     ).custom;
