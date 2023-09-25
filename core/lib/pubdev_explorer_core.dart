@@ -9,7 +9,8 @@ export 'package:pubdev_explorer_core/src/infrastructure/pub_api/mock/mock_pub_da
 
 late final bool _isWeb;
 
-bool get isMockUsed => kUseMock || _isWeb;
+bool get isMockUsed =>
+    kUseMock || (_isWeb && kPubEndpoint == kDefaultPubEndpoint);
 
 void openLocalDatabase({required QueryExecutor executor}) {
   localDatabasePot.replace(() => Database(executor: executor));
