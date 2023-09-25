@@ -12,11 +12,14 @@ PackageCaches get _packageCaches => packageCachesPot();
 class HomeNotifier extends AsyncPhaseNotifier<HomeState> {
   HomeNotifier({String? keywords})
       : isSearch = keywords != null,
+        isPublisherSearch =
+            RegExp(r'^publisher:\w').hasMatch(keywords?.trim() ?? ''),
         super(HomeState(keywords: keywords)) {
     fetchNames();
   }
 
   final bool isSearch;
+  final bool isPublisherSearch;
 
   Future<void> onIndexChanged(int index) async {
     final newData = value.data!.copyWith(index: index);

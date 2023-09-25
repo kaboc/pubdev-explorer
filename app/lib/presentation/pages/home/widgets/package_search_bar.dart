@@ -11,11 +11,13 @@ class PackageSearchBar extends StatefulWidget with Grabful {
     required this.controller,
     required this.focusNode,
     this.initialValue,
+    this.enabled = true,
   });
 
   final TextEditingController controller;
   final FocusNode focusNode;
   final String? initialValue;
+  final bool enabled;
 
   @override
   State<PackageSearchBar> createState() => _PackageSearchBarState();
@@ -45,6 +47,7 @@ class _PackageSearchBarState extends State<PackageSearchBar> {
       focusNode: widget.focusNode,
       keyboardType: TextInputType.emailAddress,
       onFieldSubmitted: (_) => _search(context),
+      enabled: widget.enabled,
       decoration: InputDecoration(
         isDense: true,
         filled: true,
@@ -68,7 +71,7 @@ class _PackageSearchBarState extends State<PackageSearchBar> {
         ),
         suffixIcon: Material(
           color: Colors.transparent,
-          child: hasKeywords
+          child: widget.enabled && hasKeywords
               ? IconButton(
                   tooltip: 'Clear',
                   icon: Icon(Icons.close, color: context.tertiaryColor),

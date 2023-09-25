@@ -4,63 +4,83 @@ import 'package:flutter/widgets.dart';
 import 'package:custom_text/custom_text.dart';
 import 'package:url_launcher/link.dart';
 
-class LinkedText extends StatefulWidget {
+class LinkedText extends StatelessWidget {
   const LinkedText(
     this.text, {
-    required this.url,
+    required this.onTap,
     this.style,
-  });
+  }) : url = null;
+
+  const LinkedText.external(
+    this.text, {
+    required String this.url,
+    this.style,
+  }) : onTap = null;
 
   final String text;
   final TextStyle? style;
-  final String url;
+  final VoidCallback? onTap;
+  final String? url;
 
   @override
-  State<LinkedText> createState() => _LinkedTextState();
+  Widget build(BuildContext context) {
+    return url == null
+        ? _Text(text, style, onTap)
+        : Link(
+            uri: Uri.tryParse(url!),
+            target: kIsWeb ? LinkTarget.blank : LinkTarget.self,
+            builder: (_, followLink) {
+              return _Text(text, style, followLink);
+            },
+          );
+  }
 }
 
-class _LinkedTextState extends State<LinkedText> {
+class _Text extends StatefulWidget {
+  const _Text(this.text, this.style, this.onTap);
+
+  final String text;
+  final TextStyle? style;
+  final VoidCallback? onTap;
+
+  @override
+  State<_Text> createState() => _TextState();
+}
+
+class _TextState extends State<_Text> {
   bool _focused = false;
 
   @override
   Widget build(BuildContext context) {
-    final matchStyle = widget.style ?? DefaultTextStyle.of(context).style;
-    final hoverStyle = matchStyle.copyWith(
-      color: matchStyle.color?.withOpacity(0.7),
-    );
+    final tappable = widget.onTap != null;
 
-    return Link(
-      uri: Uri.tryParse(widget.url),
-      target: kIsWeb ? LinkTarget.blank : LinkTarget.self,
-      builder: (_, followLink) {
-        return Actions(
-          actions: {
-            ActivateIntent: CallbackAction<ActivateIntent>(
-              onInvoke: (_) => followLink?.call(),
-            ),
-          },
-          child: Focus(
-            onFocusChange: (focused) {
-              setState(() => _focused = focused);
-            },
-            child: CustomText(
-              // This key is necessary to create a new CustomText
-              // to prevent the previous tap handler from being
-              // used after the url changes.
-              key: ValueKey(widget.url),
-              widget.text,
-              definitions: const [
-                TextDefinition(matcher: PatternMatcher('.+')),
-              ],
-              matchStyle: matchStyle.copyWith(
-                decoration: _focused ? TextDecoration.underline : null,
-              ),
-              hoverStyle: hoverStyle,
-              onTap: (_) => followLink!.call(),
-            ),
-          ),
-        );
+    final matchStyle =
+        tappable ? widget.style ?? DefaultTextStyle.of(context).style : null;
+    final hoverStyle =
+        matchStyle?.copyWith(color: matchStyle.color?.withOpacity(0.7));
+
+    return Actions(
+      actions: {
+        ActivateIntent: CallbackAction<ActivateIntent>(
+          onInvoke: (_) => widget.onTap?.call(),
+        ),
       },
+      child: Focus(
+        onFocusChange: (focused) {
+          setState(() => _focused = focused);
+        },
+        child: CustomText(
+          widget.text,
+          definitions: const [
+            TextDefinition(matcher: PatternMatcher('.+')),
+          ],
+          matchStyle: matchStyle?.copyWith(
+            decoration: _focused ? TextDecoration.underline : null,
+          ),
+          hoverStyle: hoverStyle,
+          onTap: tappable ? (_) => widget.onTap?.call() : null,
+        ),
+      ),
     );
   }
 }

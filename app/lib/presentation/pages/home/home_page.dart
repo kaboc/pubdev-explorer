@@ -66,6 +66,8 @@ class _HomePageState extends State<HomePage> {
           appBar: AppBar(
             title: keywords == null
                 ? const Text('pub.dev explorer')
+                : notifier.isPublisherSearch
+                    ? const Text('Publisher')
                     : Text('Search - $keywords'),
             actions: const [
               HelpButton(),
@@ -119,6 +121,7 @@ class _HomePageState extends State<HomePage> {
                         controller: _searchController,
                         focusNode: _searchFocusNode,
                         initialValue: keywords,
+                        enabled: !notifier.isPublisherSearch,
                       ),
                     ),
                   ),

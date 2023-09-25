@@ -5,6 +5,7 @@ import 'package:grab/grab.dart';
 
 import 'package:pubdev_explorer/common/_common.dart';
 import 'package:pubdev_explorer/presentation/common/_common.dart';
+import 'package:pubdev_explorer/presentation/pages/home/home_page.dart';
 import 'package:pubdev_explorer/presentation/widgets/card/highlighted_text.dart';
 import 'package:pubdev_explorer/presentation/widgets/card/metrics.dart';
 import 'package:pubdev_explorer/presentation/widgets/card/refresh_button.dart';
@@ -35,6 +36,7 @@ class PackageCard extends StatelessWidget with Grab {
     }
 
     final isWaiting = packagePhase.isWaiting;
+    final isPublisherSearch = homeNotifierPot.of(context).isPublisherSearch;
 
     final publisher = package.publisher;
     final packageUrl = '$kPubUrl/packages/$packageName';
@@ -65,7 +67,7 @@ class PackageCard extends StatelessWidget with Grab {
                                 color: Colors.transparent,
                               ),
                             ),
-                            LinkedText(
+                            LinkedText.external(
                               packageName,
                               url: packageUrl,
                               style: context.headlineMedium.copyWith(
@@ -146,11 +148,28 @@ class PackageCard extends StatelessWidget with Grab {
                                   color: Colors.transparent,
                                 ),
                               ),
-                              LinkedText(
-                                package.publisher,
-                                url: publisherUrl,
-                                style: TextStyle(color: context.secondaryColor),
-                              ),
+                              if (isMockUsed)
+                                LinkedText.external(
+                                  publisher,
+                                  url: publisherUrl,
+                                  style: TextStyle(
+                                    color: context.secondaryColor,
+                                  ),
+                                )
+                              else
+                                LinkedText(
+                                  publisher,
+                                  style: TextStyle(
+                                    color: context.secondaryColor,
+                                  ),
+                                  onTap: isPublisherSearch
+                                      ? null
+                                      : () => Navigator.of(context).push(
+                                            HomePage.route(
+                                              keywords: 'publisher:$publisher',
+                                            ),
+                                          ),
+                                ),
                             ],
                           ),
                         ),
