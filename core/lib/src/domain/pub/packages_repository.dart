@@ -14,7 +14,7 @@ class PackagesRepository {
     String? keywords,
   }) async {
     try {
-      return _remoteDao.fetchPackageNames(page: page, keywords: keywords);
+      return await _remoteDao.fetchPackageNames(page: page, keywords: keywords);
     } on Exception catch (e, s) {
       Logger.error(e, s);
       rethrow;
