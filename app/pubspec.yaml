@@ -19,7 +19,7 @@ dependencies:
   grab: ^0.4.1
   pottery:
     git:
-      url: git@github.com:kaboc/pot.git
+      url: https://github.com/kaboc/pot.git
       path: packages/pottery
       ref: 18cd420f932aa52fa4a057e7220ffffb20173c06
 
