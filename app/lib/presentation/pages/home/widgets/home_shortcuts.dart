@@ -11,10 +11,14 @@ PackageCaches get _packageCaches => packageCachesPot();
 class HomeShortcuts extends StatelessWidget {
   const HomeShortcuts({
     required this.pageController,
+    required this.searchController,
+    required this.searchFocusNode,
     required this.child,
   });
 
   final PageController pageController;
+  final TextEditingController searchController;
+  final FocusNode searchFocusNode;
   final Widget child;
 
   PackageNotifier? _currentPackageNotifier(BuildContext context) {
@@ -25,24 +29,34 @@ class HomeShortcuts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shortcuts(
-      shortcuts: const {
-        SingleActivator(LogicalKeyboardKey.arrowLeft):
-            ScrollIntent(direction: AxisDirection.left),
-        SingleActivator(LogicalKeyboardKey.arrowRight):
-            ScrollIntent(direction: AxisDirection.right),
-        SingleActivator(LogicalKeyboardKey.keyB): _BookmarkToggleIntent(),
-        SingleActivator(LogicalKeyboardKey.f5): _RefreshIntent(),
-        SingleActivator(LogicalKeyboardKey.keyR, meta: true): _RefreshIntent(),
-        SingleActivator(LogicalKeyboardKey.keyR): _RefreshIntent(),
-        SingleActivator(LogicalKeyboardKey.f5, control: true): _RestartIntent(),
-        SingleActivator(LogicalKeyboardKey.keyR, shift: true, meta: true):
-            _RestartIntent(),
-        SingleActivator(LogicalKeyboardKey.keyR, shift: true): _RestartIntent(),
-        SingleActivator(LogicalKeyboardKey.arrowRight, alt: true):
-            _GoToBookmarksIntent(),
-        SingleActivator(LogicalKeyboardKey.f1): OpenGuideIntent(),
-        SingleActivator(LogicalKeyboardKey.question, shift: true):
-            OpenGuideIntent(),
+      shortcuts: {
+        const SingleActivator(LogicalKeyboardKey.arrowLeft):
+            const ScrollIntent(direction: AxisDirection.left),
+        const SingleActivator(LogicalKeyboardKey.arrowRight):
+            const ScrollIntent(direction: AxisDirection.right),
+        const SingleActivator(LogicalKeyboardKey.keyB):
+            const _BookmarkToggleIntent(),
+        const SingleActivator(LogicalKeyboardKey.f5): const _RefreshIntent(),
+        const SingleActivator(LogicalKeyboardKey.keyR, meta: true):
+            const _RefreshIntent(),
+        const SingleActivator(LogicalKeyboardKey.keyR): const _RefreshIntent(),
+        const SingleActivator(LogicalKeyboardKey.f5, control: true):
+            const _RestartIntent(),
+        const SingleActivator(LogicalKeyboardKey.keyR, shift: true, meta: true):
+            const _RestartIntent(),
+        const SingleActivator(LogicalKeyboardKey.keyR, shift: true):
+            const _RestartIntent(),
+        const SingleActivator(LogicalKeyboardKey.arrowRight, alt: true):
+            const _GoToBookmarksIntent(),
+        const SingleActivator(LogicalKeyboardKey.keyF, control: true):
+            RequestFocusIntent(searchFocusNode),
+        const SingleActivator(LogicalKeyboardKey.keyF, meta: true):
+            RequestFocusIntent(searchFocusNode),
+        const SingleActivator(LogicalKeyboardKey.arrowLeft, alt: true):
+            const BackToHomeIntent(),
+        const SingleActivator(LogicalKeyboardKey.f1): const OpenGuideIntent(),
+        const SingleActivator(LogicalKeyboardKey.question, shift: true):
+            const OpenGuideIntent(),
       },
       child: Actions(
         actions: {
@@ -65,6 +79,19 @@ class HomeShortcuts extends StatelessWidget {
           ),
           _GoToBookmarksIntent: CallbackAction<_GoToBookmarksIntent>(
             onInvoke: (_) => Navigator.of(context).push(BookmarksPage.route()),
+          ),
+          RequestFocusIntent: SearchFocusAction(searchController),
+          SearchClearIntent: CallbackAction<SearchClearIntent>(
+            onInvoke: (_) => searchController.clear(),
+          ),
+          BackToHomeIntent: CallbackAction<BackToHomeIntent>(
+            onInvoke: (_) {
+              final navigator = Navigator.of(context);
+              if (navigator.canPop()) {
+                navigator.pop();
+              }
+              return;
+            },
           ),
           OpenGuideIntent: CallbackAction<OpenGuideIntent>(
             onInvoke: (_) => Navigator.of(context).push(GuidePage.route()),

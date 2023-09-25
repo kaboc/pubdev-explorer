@@ -62,6 +62,8 @@ class _HomePageState extends State<HomePage> {
       onTap: _searchFocusNode.unfocus,
       child: HomeShortcuts(
         pageController: _pageController,
+        searchController: _searchController,
+        searchFocusNode: _searchFocusNode,
         child: Scaffold(
           appBar: AppBar(
             title: keywords == null
