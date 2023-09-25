@@ -6,6 +6,7 @@ import 'package:pottery/pottery.dart';
 
 import 'package:pubdev_explorer/common/_common.dart';
 import 'package:pubdev_explorer/presentation/common/_common.dart';
+import 'package:pubdev_explorer/presentation/pages/bookmarks/widgets/bookmark_search_field.dart';
 import 'package:pubdev_explorer/presentation/pages/bookmarks/widgets/bookmarks_shortcuts.dart';
 import 'package:pubdev_explorer/presentation/widgets/_widgets.dart';
 
@@ -71,38 +72,21 @@ class _BookmarksPageState extends State<BookmarksPage> {
         body: SafeArea(
           child: Column(
             children: [
-              TextField(
-                controller: _searchController,
-                focusNode: _searchFocusNode,
-                autofocus: isDesktop,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  isDense: true,
-                  filled: true,
-                  fillColor: context.theme.cardColor,
-                  contentPadding:
-                      const EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 16.0),
-                  hintText: 'Search',
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: context.secondaryColor),
-                  ),
-                  suffixIcon: Material(
-                    color: Colors.transparent,
-                    child: hasSearchWords
-                        ? IconButton(
-                            tooltip: 'Clear',
-                            icon: Icon(
-                              Icons.close,
-                              color: context.tertiaryColor,
-                            ),
-                            splashRadius: 18.0,
-                            onPressed: _searchController.clear,
-                          )
-                        : null,
+              if (names.isNotEmpty || hasSearchWords) ...[
+                Container(
+                  width: kContentMaxWidth,
+                  alignment: Alignment.centerRight,
+                  padding: const EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 12.0),
+                  child: SizedBox(
+                    width: 200.0,
+                    child: BookmarkSearchField(
+                      controller: _searchController,
+                      focusNode: _searchFocusNode,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 1.0),
+                const SizedBox(height: 1.0),
+              ],
               if (names.isEmpty) ...[
                 if (bookmarksPhase.isInitial || bookmarksPhase.isWaiting)
                   const Expanded(
@@ -158,7 +142,7 @@ class _ListView extends StatelessWidget with Grab {
       // when the list is refreshed with new words.
       key: ValueKey(searchWords),
       extent: 200.0,
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
       onBottomReached:
           hasMore && !isFetchError ? _notifier.fetchNextBookmarks : null,
       slivers: [
