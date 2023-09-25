@@ -36,7 +36,6 @@ class HomeNotifier extends AsyncPhaseNotifier<HomeState> {
       return;
     }
     if (value.isWaiting) {
-      Future<void>.delayed(const Duration(seconds: 1), fetchNames);
       return;
     }
 
@@ -57,12 +56,13 @@ class HomeNotifier extends AsyncPhaseNotifier<HomeState> {
     });
 
     final newData = value.data!;
-    if (!value.isError && newData.isLast && !newData.isFirst) {
+    if (!value.isError && newData.isLast) {
       // Another fetch is necessary if the current index is
       // still the end because it means all the fetched packages
       // were already in the existing list.
-      await fetchNames();
-      return;
+      unawaited(
+        fetchNames(),
+      );
     }
 
     await _fetchCurrentPackage();
