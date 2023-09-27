@@ -19,13 +19,15 @@ class PubDao {
       'is:dart3-compatible',
       if (keywords != null) ...keywords,
     ];
+    final params = [
+      queries.map(Uri.encodeQueryComponent).join('+'),
+      if (keywords == null || keywords.any((v) => v.startsWith('publisher:')))
+        'sort=updated',
+      'page=$page',
+    ];
 
     final response = await http.get(
-      Uri.parse(
-        '${kPubEndpoint}search'
-        '?q=${queries.map(Uri.encodeQueryComponent).join('+')}'
-        '${keywords == null ? '&sort=updated' : ''}&page=$page',
-      ),
+      Uri.parse('${kPubEndpoint}search?q=${params.join('&')}'),
     );
 
     if (response.statusCode == 200) {
