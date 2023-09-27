@@ -16,4 +16,3 @@ jobs:
         with:
           workingDir: app
           baseHref: /pubdev-explorer/
-          customArgs: --dart-define="PUB_ENDPOINT=https://nsfunnybrown9o79drtm-fct-pub.functions.fnc.fr-par.scw.cloud/"
