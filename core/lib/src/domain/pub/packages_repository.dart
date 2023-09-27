@@ -11,7 +11,7 @@ class PackagesRepository {
 
   Future<List<String>> fetchPackageNames({
     int page = 0,
-    String? keywords,
+    List<String>? keywords,
   }) async {
     try {
       return await _remoteDao.fetchPackageNames(page: page, keywords: keywords);

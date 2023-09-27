@@ -30,7 +30,7 @@ class App extends StatelessWidget with Grab {
     final themeMode = settingsNotifierPot().grabAt(context, (s) => s.themeMode);
 
     return MaterialApp(
-      title: 'pub.dev Explorer',
+      title: 'pub.dev explorer',
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: themeMode,

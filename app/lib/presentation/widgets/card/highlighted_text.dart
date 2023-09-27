@@ -6,23 +6,23 @@ import 'package:pubdev_explorer/presentation/common/_common.dart';
 class HighlightedText extends StatelessWidget {
   const HighlightedText(
     this.text, {
-    required this.keywords,
+    required this.words,
     this.style,
   });
 
   final String text;
-  final List<String> keywords;
+  final List<String> words;
   final TextStyle? style;
 
   @override
   Widget build(BuildContext context) {
-    return keywords.isEmpty
+    return words.isEmpty
         ? Text(text, style: style)
         : CustomText(
             text,
             parserOptions: const ParserOptions(caseSensitive: false),
             definitions: [
-              TextDefinition(matcher: PatternMatcher(keywords.join('|'))),
+              TextDefinition(matcher: PatternMatcher(words.join('|'))),
             ],
             style: style,
             matchStyle: TextStyle(

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:async_phase_notifier/async_phase_notifier.dart';
+import 'package:collection/collection.dart';
 
 import 'package:pubdev_explorer/common/_common.dart';
 
@@ -10,10 +11,11 @@ PackagesRepository get _repository => packagesRepositoryPot();
 PackageCaches get _packageCaches => packageCachesPot();
 
 class HomeNotifier extends AsyncPhaseNotifier<HomeState> {
-  HomeNotifier({String? keywords})
+  HomeNotifier({List<String>? keywords})
       : isSearch = keywords != null,
-        isPublisherSearch =
-            RegExp(r'^publisher:\w').hasMatch(keywords?.trim() ?? ''),
+        isPublisherSearch = (keywords ?? []).any(
+          (w) => w.startsWith('publisher:'),
+        ),
         super(HomeState(keywords: keywords)) {
     fetchNames();
   }
@@ -37,16 +39,17 @@ class HomeNotifier extends AsyncPhaseNotifier<HomeState> {
     await _fetchCurrentPackage();
   }
 
-  Future<void> fetchNames({String? keywords}) async {
+  Future<void> fetchNames({List<String>? keywords}) async {
     final data = value.data!;
-    final trimmed = keywords?.trim();
+    final prevKeywords = data.keywords;
 
-    if (trimmed != null) {
-      if (trimmed.isEmpty || trimmed == data.keywords) {
+    if (keywords != null) {
+      const equality = DeepCollectionEquality.unordered();
+      if (keywords.isEmpty || equality.equals(keywords, prevKeywords)) {
         return;
       }
       value = value.copyWith(
-        HomeState(keywords: trimmed),
+        HomeState(keywords: keywords),
       );
     } else if (!data.hasMore) {
       return;
@@ -60,7 +63,7 @@ class HomeNotifier extends AsyncPhaseNotifier<HomeState> {
       final newPage = data!.page + 1;
       final names = await _repository.fetchPackageNames(
         page: newPage,
-        keywords: trimmed ?? data.keywords,
+        keywords: keywords ?? prevKeywords,
       );
       final newData = value.data!;
 

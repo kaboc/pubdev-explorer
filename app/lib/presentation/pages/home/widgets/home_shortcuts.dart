@@ -144,7 +144,7 @@ class _SlideAction extends Action<ScrollIntent> {
 }
 
 //======================================================
-// Intents and actions shared between multiple pages
+// Intents and actions shared among multiple pages
 //======================================================
 
 class SearchClearIntent extends Intent {

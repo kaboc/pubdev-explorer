@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:async_phase_notifier/async_phase_notifier.dart';
 import 'package:grab/grab.dart';
 
 import 'package:pubdev_explorer/common/_common.dart';
 import 'package:pubdev_explorer/presentation/common/_common.dart';
-import 'package:pubdev_explorer/presentation/pages/bookmarks/bookmarks_page.dart';
 import 'package:pubdev_explorer/presentation/pages/home/widgets/arrow_button.dart';
 import 'package:pubdev_explorer/presentation/pages/home/widgets/home_shortcuts.dart';
 import 'package:pubdev_explorer/presentation/pages/home/widgets/package_search_bar.dart';
@@ -16,7 +14,7 @@ import 'package:pubdev_explorer/presentation/widgets/_widgets.dart';
 class HomePage extends StatefulWidget with Grabful {
   const HomePage();
 
-  static Route<void> route({required String keywords}) {
+  static Route<void> route({required List<String> keywords}) {
     return FadingPageRoute<void>(
       builder: (_) => ScopedPottery(
         pots: {
@@ -40,6 +38,8 @@ class _HomePageState extends State<HomePage> {
   final _searchController = TextEditingController();
   final _searchFocusNode = FocusNode();
 
+  ScaffoldMessengerState get _messenger => ScaffoldMessenger.of(context);
+
   @override
   void dispose() {
     _pageController.dispose();
@@ -57,6 +57,7 @@ class _HomePageState extends State<HomePage> {
     final length = notifier.grabAt(context, (s) => s.data!.packageNames.length);
     final hasMore = notifier.grabAt(context, (s) => s.data!.hasMore);
     final keywords = notifier.grabAt(context, (s) => s.data!.keywords);
+    final joinedKeywords = keywords?.join(' ');
 
     return GestureDetector(
       onTap: _searchFocusNode.unfocus,
@@ -66,11 +67,11 @@ class _HomePageState extends State<HomePage> {
         searchFocusNode: _searchFocusNode,
         child: Scaffold(
           appBar: AppBar(
-            title: keywords == null
-                ? const Text('pub.dev explorer')
-                : notifier.isPublisherSearch
+            title: notifier.isSearch
+                ? notifier.isPublisherSearch
                     ? const Text('Publisher')
-                    : Text('Search - $keywords'),
+                    : Text('Search - $joinedKeywords')
+                : const Text('pub.dev explorer'),
             actions: const [
               HelpButton(),
               ThemeModeButton(),
@@ -80,102 +81,38 @@ class _HomePageState extends State<HomePage> {
           body: SafeArea(
             child: AsyncPhaseListener(
               notifier: notifier,
-              onError: (e, __) {
-                final messenger = ScaffoldMessenger.of(context)
-                  ..hideCurrentMaterialBanner();
-
+              onError: (e, _) {
+                // Shows a message in the center of the screen instead of
+                // a material banner if the error is UnimplementedError.
                 if (e is! UnimplementedError) {
-                  messenger.showMaterialBanner(
-                    MaterialBanner(
-                      content: const Text(
-                        'Could not fetch the details.\n'
-                        'It may be because the package was published only '
-                        'a while ago and its analysis is still ongoing.',
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: messenger.hideCurrentMaterialBanner,
-                          child: Text(
-                            'OK',
-                            style: context.bodyMedium.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
+                  _showErrorBanner();
                 }
               },
               child: Column(
                 children: [
-                  Shortcuts.manager(
-                    manager: ShortcutManager(
-                      modal: true,
-                      shortcuts: {
-                        const SingleActivator(LogicalKeyboardKey.escape):
-                            const SearchClearIntent(),
-                      },
-                    ),
-                    child: DefaultTextEditingShortcuts(
-                      child: PackageSearchBar(
-                        controller: _searchController,
-                        focusNode: _searchFocusNode,
-                        initialValue: keywords,
-                        enabled: !notifier.isPublisherSearch,
-                      ),
-                    ),
+                  PackageSearchBar(
+                    controller: _searchController,
+                    focusNode: _searchFocusNode,
+                    initialValue: joinedKeywords,
+                    enabled: !notifier.isPublisherSearch,
                   ),
                   Expanded(
                     child: PageView.builder(
                       controller: _pageController,
+                      itemCount: hasMore ? length + 1 : length,
+                      itemBuilder: (_, index) {
+                        return index == length
+                            ? const _PendingItem()
+                            : _Item(index, _searchController);
+                      },
                       onPageChanged: (index) {
-                        ScaffoldMessenger.of(context)
-                            .hideCurrentMaterialBanner();
+                        _messenger.hideCurrentMaterialBanner();
                         notifier.onIndexChanged(index);
                       },
-                      itemCount: hasMore ? length + 1 : length,
-                      itemBuilder: (_, index) => index == length
-                          ? const _PendingItem()
-                          : _Item(index, _searchController),
                     ),
                   ),
-                  SizedBox(
-                    width: kContentMaxWidth,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: ArrowButton(
-                              pageController: _pageController,
-                              direction: PageDirection.prev,
-                            ),
-                          ),
-                        ),
-                        IconButton(
-                          tooltip: 'View bookmarks',
-                          icon: Icon(
-                            Icons.bookmarks,
-                            color: context.tertiaryColor,
-                          ),
-                          iconSize: 32.0,
-                          onPressed: () => Navigator.of(context).push(
-                            BookmarksPage.route(),
-                          ),
-                        ),
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: ArrowButton(
-                              pageController: _pageController,
-                              direction: PageDirection.next,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                  Navigation(
+                    pageController: _pageController,
                   ),
                 ],
               ),
@@ -184,6 +121,32 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  void _showErrorBanner() {
+    _messenger
+      ..hideCurrentMaterialBanner()
+      ..showMaterialBanner(
+        MaterialBanner(
+          content: const Text(
+            'Could not fetch the details.\n'
+            'It may be because the package was published only '
+            'a while ago and its analysis is still ongoing.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: _messenger.hideCurrentMaterialBanner,
+              child: Text(
+                'OK',
+                style: context.bodyMedium.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
   }
 }
 
@@ -202,9 +165,7 @@ class _Item extends StatelessWidget with Grab {
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
       child: Center(
-        child: PackageCard(
-          packageName: packageName,
-        ),
+        child: PackageCard(name: packageName),
       ),
     );
   }

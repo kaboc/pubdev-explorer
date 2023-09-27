@@ -5,26 +5,23 @@ import 'package:grab/grab.dart';
 
 import 'package:pubdev_explorer/common/_common.dart';
 import 'package:pubdev_explorer/presentation/common/_common.dart';
-import 'package:pubdev_explorer/presentation/pages/home/home_page.dart';
 import 'package:pubdev_explorer/presentation/widgets/card/highlighted_text.dart';
 import 'package:pubdev_explorer/presentation/widgets/card/metrics.dart';
+import 'package:pubdev_explorer/presentation/widgets/card/package_name.dart';
+import 'package:pubdev_explorer/presentation/widgets/card/publisher_link.dart';
 import 'package:pubdev_explorer/presentation/widgets/card/refresh_button.dart';
 import 'package:pubdev_explorer/presentation/widgets/card/tag_list.dart';
 import 'package:pubdev_explorer/presentation/widgets/card/version_table.dart';
-import 'package:pubdev_explorer/presentation/widgets/foundation/linked_text.dart';
 
 PackageCaches get _packageCaches => packageCachesPot();
 
 class PackageCard extends StatelessWidget with Grab {
-  const PackageCard({
-    required this.packageName,
-    this.searchWords = const [],
-  });
+  const PackageCard({required this.name, this.highlights = const []});
 
-  final String packageName;
-  final List<String> searchWords;
+  final String name;
+  final List<String> highlights;
 
-  PackageNotifier? get _notifier => _packageCaches[packageName];
+  PackageNotifier? get _notifier => _packageCaches[name];
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +33,6 @@ class PackageCard extends StatelessWidget with Grab {
     }
 
     final isWaiting = packagePhase.isWaiting;
-    final isPublisherSearch = homeNotifierPot.of(context).isPublisherSearch;
-
-    final publisher = package.publisher;
-    final packageUrl = '$kPubUrl/packages/$packageName';
-    final publisherUrl = '$kPubUrl/publishers/$publisher';
 
     return SizedBox(
       width: kContentMaxWidth - 32.0,
@@ -58,23 +50,9 @@ class PackageCard extends StatelessWidget with Grab {
                     Expanded(
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Stack(
-                          children: [
-                            HighlightedText(
-                              packageName,
-                              keywords: searchWords,
-                              style: context.headlineMedium.copyWith(
-                                color: Colors.transparent,
-                              ),
-                            ),
-                            LinkedText.external(
-                              packageName,
-                              url: packageUrl,
-                              style: context.headlineMedium.copyWith(
-                                color: context.secondaryColor,
-                              ),
-                            ),
-                          ],
+                        child: PackageName(
+                          name: name,
+                          highlights: highlights,
                         ),
                       ),
                     ),
@@ -115,7 +93,7 @@ class PackageCard extends StatelessWidget with Grab {
                   const SizedBox(height: 24.0),
                   HighlightedText(
                     package.description,
-                    keywords: searchWords,
+                    words: highlights,
                     style: const TextStyle(fontSize: 15.0),
                   ),
                   const SizedBox(height: 24.0),
@@ -130,50 +108,9 @@ class PackageCard extends StatelessWidget with Grab {
                   ),
                   if (package.publisher.isNotEmpty) ...[
                     const SizedBox(height: 16.0),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.verified_outlined,
-                          size: context.bodyMedium.fontSize,
-                          color: context.tertiaryColor,
-                        ),
-                        const SizedBox(width: 4.0),
-                        Flexible(
-                          child: Stack(
-                            children: [
-                              HighlightedText(
-                                publisher,
-                                keywords: searchWords,
-                                style: const TextStyle(
-                                  color: Colors.transparent,
-                                ),
-                              ),
-                              if (isMockUsed)
-                                LinkedText.external(
-                                  publisher,
-                                  url: publisherUrl,
-                                  style: TextStyle(
-                                    color: context.secondaryColor,
-                                  ),
-                                )
-                              else
-                                LinkedText(
-                                  publisher,
-                                  style: TextStyle(
-                                    color: context.secondaryColor,
-                                  ),
-                                  onTap: isPublisherSearch
-                                      ? null
-                                      : () => Navigator.of(context).push(
-                                            HomePage.route(
-                                              keywords: 'publisher:$publisher',
-                                            ),
-                                          ),
-                                ),
-                            ],
-                          ),
-                        ),
-                      ],
+                    PublisherLink(
+                      package: package,
+                      highlights: highlights,
                     ),
                   ],
                   const SizedBox(height: 16.0),

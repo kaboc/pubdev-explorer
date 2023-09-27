@@ -13,17 +13,20 @@ class PubDao {
 
   Future<List<String>> fetchPackageNames({
     int page = 1,
-    String? keywords,
+    List<String>? keywords,
   }) async {
     final queries = [
-      'is%3Adart3-compatible',
-      'license%3Aosi-approved',
-      if (keywords != null) ...keywords.split('\n'),
+      'is:dart3-compatible',
+      if (keywords != null) ...keywords,
     ];
 
-    final uri = Uri.parse('${kPubEndpoint}search?q=${queries.join('+')}'
-        '${keywords == null ? '&sort=updated' : ''}&page=$page');
-    final response = await http.get(uri);
+    final response = await http.get(
+      Uri.parse(
+        '${kPubEndpoint}search'
+        '?q=${queries.map(Uri.encodeQueryComponent).join('+')}'
+        '${keywords == null ? '&sort=updated' : ''}&page=$page',
+      ),
+    );
 
     if (response.statusCode == 200) {
       final jsonMap = await jsonDecode(response.body) as JsonMap;

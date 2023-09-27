@@ -14,7 +14,7 @@ class MockPubDao implements PubDao {
   @override
   Future<List<String>> fetchPackageNames({
     int page = 1,
-    String? keywords,
+    List<String>? keywords,
   }) async {
     await Future<void>.delayed(const Duration(milliseconds: 200));
 

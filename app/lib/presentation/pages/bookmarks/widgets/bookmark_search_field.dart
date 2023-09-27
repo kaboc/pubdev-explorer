@@ -17,7 +17,7 @@ class BookmarkSearchField extends StatelessWidget with Grab {
   Widget build(BuildContext context) {
     // ignore: avoid_types_on_closure_parameters
     final isFocused = focusNode.grabAt(context, (FocusNode n) => n.hasFocus);
-    final hasKeywords = controller.grabAt(context, (c) => c.text.isNotEmpty);
+    final hasInput = controller.grabAt(context, (c) => c.text.isNotEmpty);
 
     const border = OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(8.0)),
@@ -46,7 +46,7 @@ class BookmarkSearchField extends StatelessWidget with Grab {
         ),
         suffixIcon: Material(
           color: Colors.transparent,
-          child: hasKeywords
+          child: hasInput
               ? IconButton(
                   tooltip: 'Clear',
                   icon: Icon(

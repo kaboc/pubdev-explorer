@@ -38,7 +38,7 @@ class _BookmarksPageState extends State<BookmarksPage> {
     super.initState();
 
     _searchController.addListener(() {
-      _notifier.onSearchWordsChanged(_searchController.text);
+      _notifier.onKeywordsChanged(_searchController.text);
     });
   }
 
@@ -53,7 +53,7 @@ class _BookmarksPageState extends State<BookmarksPage> {
   Widget build(BuildContext context) {
     final bookmarksPhase = _notifier.grab(context);
     final names = _notifier.grabAt(context, (s) => s.data!.packageNames);
-    final hasSearchWords =
+    final isSearching =
         _searchController.grabAt(context, (v) => v.text.isNotEmpty);
 
     return GestureDetector(
@@ -73,11 +73,11 @@ class _BookmarksPageState extends State<BookmarksPage> {
           body: SafeArea(
             child: Column(
               children: [
-                if (names.isNotEmpty || hasSearchWords) ...[
+                if (names.isNotEmpty || isSearching) ...[
                   Container(
                     width: kContentMaxWidth,
                     alignment: Alignment.centerRight,
-                    padding: const EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 12.0),
+                    padding: const EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 16.0),
                     child: SizedBox(
                       width: 200.0,
                       child: BookmarkSearchField(
@@ -106,7 +106,7 @@ class _BookmarksPageState extends State<BookmarksPage> {
                     Expanded(
                       child: Center(
                         child: Text(
-                          hasSearchWords
+                          isSearching
                               ? 'No matching package was found.'
                               : 'No packages have been bookmarked yet.',
                           style: TextStyle(color: context.tertiaryColor),
@@ -135,14 +135,14 @@ class _ListView extends StatelessWidget with Grab {
 
   @override
   Widget build(BuildContext context) {
-    final searchWords = _notifier.grabAt(context, (s) => s.data!.searchWords);
+    final keywords = _notifier.grabAt(context, (s) => s.data!.keywords);
     final hasMore = _notifier.grabAt(context, (s) => s.data!.hasMore);
     final isFetchError = _notifier.grabAt(context, (s) => s.isError);
 
     return BottomScrollDetector(
-      // Use search words as key to jump back to top
+      // Uses search words as key to jump back to top
       // when the list is refreshed with new words.
-      key: ValueKey(searchWords),
+      key: ValueKey(keywords),
       extent: 200.0,
       padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
       onBottomReached:
@@ -157,8 +157,8 @@ class _ListView extends StatelessWidget with Grab {
                   if (index > 0) const SizedBox(height: 16.0),
                   Center(
                     child: PackageCard(
-                      packageName: packageNames.elementAtOrNull(index) ?? '',
-                      searchWords: searchWords,
+                      name: packageNames.elementAtOrNull(index) ?? '',
+                      highlights: keywords,
                     ),
                   ),
                 ],

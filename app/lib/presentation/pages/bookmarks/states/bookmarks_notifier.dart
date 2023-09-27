@@ -24,7 +24,7 @@ class BookmarksNotifier extends AsyncPhaseNotifier<BookmarksState> {
     super.dispose();
   }
 
-  void onSearchWordsChanged(String text) {
+  void onKeywordsChanged(String text) {
     _debounceTimer?.cancel();
 
     _debounceTimer = Timer(
@@ -38,11 +38,12 @@ class BookmarksNotifier extends AsyncPhaseNotifier<BookmarksState> {
             : spaceSeparated.split(' ').map((v) => v.toLowerCase()).toList();
 
         final data = value.data!;
-        if (!const ListEquality<String>().equals(words, data.searchWords)) {
+        const equality = DeepCollectionEquality.unordered();
+        if (!equality.equals(words, data.keywords)) {
           value = value.copyWith(
             data.copyWith(
               packageNames: {},
-              searchWords: words,
+              keywords: words,
             ),
           );
 
@@ -58,13 +59,13 @@ class BookmarksNotifier extends AsyncPhaseNotifier<BookmarksState> {
     }
 
     await runAsync((data) async {
-      final packages = data!.searchWords.isEmpty
+      final packages = data!.keywords.isEmpty
           ? await _repository.fetch(
               limit: kBookmarksFetchLimit,
               before: before,
             )
           : await _repository.search(
-              words: data.searchWords,
+              words: data.keywords,
               limit: kBookmarksFetchLimit,
               before: before,
             );
