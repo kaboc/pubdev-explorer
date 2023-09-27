@@ -163,7 +163,7 @@ class _Item extends StatelessWidget with Grab {
         notifier.grabAt(context, (s) => s.data!.packageNameAt(index));
 
     return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
+      padding: const EdgeInsets.all(16.0),
       child: Center(
         child: PackageCard(name: packageName),
       ),
