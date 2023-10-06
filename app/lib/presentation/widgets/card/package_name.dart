@@ -12,7 +12,7 @@ class PackageName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final packageUrl = '$kPubUrl/packages/$name';
+    final packageUrl = '${kPubUrl}packages/$name';
 
     return Stack(
       children: [

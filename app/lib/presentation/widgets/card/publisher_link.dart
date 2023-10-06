@@ -17,7 +17,7 @@ class PublisherLink extends StatelessWidget {
     final isPublisherSearch = homeNotifierPot.of(context).isPublisherSearch;
 
     final publisher = package.publisher;
-    final publisherUrl = '$kPubUrl/publishers/$publisher';
+    final publisherUrl = '${kPubUrl}publishers/$publisher';
 
     return Row(
       children: [
