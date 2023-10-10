@@ -173,10 +173,10 @@ packages:
     dependency: "direct main"
     description:
       name: drift
-      sha256: "0acf8f1f584ebc9fe7462049736f65a699a2557eed9a2f77fc6465a84dd4a716"
+      sha256: c66df5f88616f5b1fb8d83266738d4f3671c692b2aa680fd8fe53e57a4e149be
       url: "https://pub.dev"
     source: hosted
-    version: "2.11.1"
+    version: "2.12.1"
   equatable:
     dependency: "direct main"
     description:
@@ -246,12 +246,11 @@ packages:
   grab_lints:
     dependency: "direct dev"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: ead4e830a7820103e6a12b0303d3fae0c236b8a7
-      url: "https://github.com/kaboc/grab-lints.git"
-    source: git
-    version: "0.3.1"
+      name: grab_lints
+      sha256: b620d0d7b05d8556e805ba7199557e740f129d24a286896805a2a65e6d06e8c9
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.2"
   hotreloader:
     dependency: transitive
     description:
@@ -408,10 +407,10 @@ packages:
     dependency: transitive
     description:
       name: platform
-      sha256: ae68c7bfcd7383af3629daafb32fb4e8681c7154428da4febcff06200585f102
+      sha256: "0a279f0707af40c890e80b1e9df8bb761694c074ba7e1d4ab1bc4b728e200b59"
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.2"
+    version: "3.1.3"
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -424,19 +423,18 @@ packages:
     dependency: transitive
     description:
       name: pot
-      sha256: "0bd2445f8103dcab06d6d63aede97e067bda454706e8c414310e67906cebc1f8"
+      sha256: dd57ab5c92f52ebec503c7a81e5cde1235a54da938671248b2178df391a560a5
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.2+1"
+    version: "0.5.0"
   pottery:
     dependency: "direct main"
     description:
-      path: "packages/pottery"
-      ref: "18cd420f932aa52fa4a057e7220ffffb20173c06"
-      resolved-ref: "18cd420f932aa52fa4a057e7220ffffb20173c06"
-      url: "https://github.com/kaboc/pot.git"
-    source: git
-    version: "0.0.1+3"
+      name: pottery
+      sha256: "1eeac6728d13c623b5f2ad1250dc1dadb4d7fb9cdc8855b6b2648e8fe3e703bc"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   pub_semver:
     dependency: transitive
     description:
@@ -661,10 +659,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: "9e82a402b7f3d518fb9c02d0e9ae45952df31b9bf34d77baf19da2de03fc2aaa"
+      sha256: "350a11abd2d1d97e0cc7a28a81b781c08002aa2864d9e3f192ca0ffa18b06ed3"
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.7"
+    version: "5.0.9"
   xdg_directories:
     dependency: transitive
     description:

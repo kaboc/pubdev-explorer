@@ -29,9 +29,10 @@ class $SettingsTableTable extends SettingsTable
   @override
   List<GeneratedColumn> get $columns => [id, themeModeIndex];
   @override
-  String get aliasedName => _alias ?? 'settings_table';
+  String get aliasedName => _alias ?? actualTableName;
   @override
-  String get actualTableName => 'settings_table';
+  String get actualTableName => $name;
+  static const String $name = 'settings_table';
   @override
   VerificationContext validateIntegrity(Insertable<SettingsTableData> instance,
       {bool isInserting = false}) {
@@ -283,9 +284,10 @@ class $PackagesTableTable extends PackagesTable
         savedAt
       ];
   @override
-  String get aliasedName => _alias ?? 'packages_table';
+  String get aliasedName => _alias ?? actualTableName;
   @override
-  String get actualTableName => 'packages_table';
+  String get actualTableName => $name;
+  static const String $name = 'packages_table';
   @override
   VerificationContext validateIntegrity(Insertable<PackagesTableData> instance,
       {bool isInserting = false}) {
@@ -860,9 +862,10 @@ class $BookmarksTableTable extends BookmarksTable
   @override
   List<GeneratedColumn> get $columns => [name, createdAt];
   @override
-  String get aliasedName => _alias ?? 'bookmarks_table';
+  String get aliasedName => _alias ?? actualTableName;
   @override
-  String get actualTableName => 'bookmarks_table';
+  String get actualTableName => $name;
+  static const String $name = 'bookmarks_table';
   @override
   VerificationContext validateIntegrity(Insertable<BookmarksTableData> instance,
       {bool isInserting = false}) {
