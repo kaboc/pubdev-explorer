@@ -10,12 +10,14 @@ class BottomScrollDetector extends StatefulWidget {
     required this.slivers,
     required this.onBottomReached,
     this.padding = EdgeInsets.zero,
+    this.primary,
   });
 
   final double extent;
   final List<Widget> slivers;
   final EdgeInsets padding;
   final AsyncCallback? onBottomReached;
+  final bool? primary;
 
   @override
   State<BottomScrollDetector> createState() => _BottomScrollDetectorState();
@@ -46,6 +48,7 @@ class _BottomScrollDetectorState extends State<BottomScrollDetector> {
         return true;
       },
       child: CustomScrollView(
+        primary: widget.primary,
         slivers: [
           SliverToBoxAdapter(
             child: SizedBox(height: widget.padding.top),

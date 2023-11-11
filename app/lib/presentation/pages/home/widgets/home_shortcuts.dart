@@ -34,6 +34,10 @@ class HomeShortcuts extends StatelessWidget {
             const ScrollIntent(direction: AxisDirection.left),
         const SingleActivator(LogicalKeyboardKey.arrowRight):
             const ScrollIntent(direction: AxisDirection.right),
+        const SingleActivator(LogicalKeyboardKey.pageUp):
+            const ScrollIntent(direction: AxisDirection.left),
+        const SingleActivator(LogicalKeyboardKey.pageDown):
+            const ScrollIntent(direction: AxisDirection.right),
         const SingleActivator(LogicalKeyboardKey.keyB):
             const _BookmarkToggleIntent(),
         const SingleActivator(LogicalKeyboardKey.f5): const _RefreshIntent(),
@@ -52,6 +56,8 @@ class HomeShortcuts extends StatelessWidget {
             RequestFocusIntent(searchFocusNode),
         const SingleActivator(LogicalKeyboardKey.keyF, meta: true):
             RequestFocusIntent(searchFocusNode),
+        const SingleActivator(LogicalKeyboardKey.escape):
+            const SearchClearIntent(),
         const SingleActivator(LogicalKeyboardKey.arrowLeft, alt: true):
             const BackToHomeIntent(),
         const SingleActivator(LogicalKeyboardKey.f1): const OpenGuideIntent(),

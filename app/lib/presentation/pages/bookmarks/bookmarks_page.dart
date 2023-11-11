@@ -145,6 +145,7 @@ class _ListView extends StatelessWidget with Grab {
       key: ValueKey(keywords),
       extent: 200.0,
       padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
+      primary: true,
       onBottomReached:
           hasMore && !isFetchError ? _notifier.fetchNextBookmarks : null,
       slivers: [

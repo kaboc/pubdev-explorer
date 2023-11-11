@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:grab/grab.dart';
 
 import 'package:pubdev_explorer/common/_common.dart';
 import 'package:pubdev_explorer/presentation/common/_common.dart';
 import 'package:pubdev_explorer/presentation/pages/home/home_page.dart';
-import 'package:pubdev_explorer/presentation/pages/home/widgets/home_shortcuts.dart';
 
 class PackageSearchBar extends StatefulWidget with Grabful {
   const PackageSearchBar({
@@ -44,56 +42,43 @@ class _PackageSearchBarState extends State<PackageSearchBar> {
     final hasInput =
         widget.controller.grabAt(context, (c) => c.text.isNotEmpty);
 
-    return Shortcuts.manager(
-      manager: ShortcutManager(
-        modal: true,
-        shortcuts: {
-          const SingleActivator(LogicalKeyboardKey.escape):
-              const SearchClearIntent(),
-          const SingleActivator(LogicalKeyboardKey.tab):
-              const NextFocusIntent(),
-        },
-      ),
-      child: DefaultTextEditingShortcuts(
-        child: TextFormField(
-          controller: widget.controller,
-          focusNode: widget.focusNode,
-          keyboardType: TextInputType.emailAddress,
-          onFieldSubmitted: (_) => _search(context),
-          enabled: widget.enabled,
-          decoration: InputDecoration(
-            isDense: true,
-            filled: true,
-            fillColor: context.theme.cardColor,
-            contentPadding: const EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 16.0),
-            hintText: 'Search packages',
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: context.secondaryColor),
+    return TextFormField(
+      controller: widget.controller,
+      focusNode: widget.focusNode,
+      keyboardType: TextInputType.emailAddress,
+      onFieldSubmitted: (_) => _search(context),
+      enabled: widget.enabled,
+      decoration: InputDecoration(
+        isDense: true,
+        filled: true,
+        fillColor: context.theme.cardColor,
+        contentPadding: const EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 16.0),
+        hintText: 'Search packages',
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: context.secondaryColor),
+        ),
+        prefixIcon: Material(
+          color: Colors.transparent,
+          child: IconButton(
+            tooltip: 'Search',
+            icon: Icon(
+              Icons.search,
+              color: isFocused ? context.secondaryColor : null,
             ),
-            prefixIcon: Material(
-              color: Colors.transparent,
-              child: IconButton(
-                tooltip: 'Search',
-                icon: Icon(
-                  Icons.search,
-                  color: isFocused ? context.secondaryColor : null,
-                ),
-                splashRadius: 18.0,
-                onPressed: () => _search(context),
-              ),
-            ),
-            suffixIcon: Material(
-              color: Colors.transparent,
-              child: widget.enabled && hasInput
-                  ? IconButton(
-                      tooltip: 'Clear',
-                      icon: Icon(Icons.close, color: context.tertiaryColor),
-                      splashRadius: 18.0,
-                      onPressed: widget.controller.clear,
-                    )
-                  : null,
-            ),
+            splashRadius: 18.0,
+            onPressed: () => _search(context),
           ),
+        ),
+        suffixIcon: Material(
+          color: Colors.transparent,
+          child: widget.enabled && hasInput
+              ? IconButton(
+                  tooltip: 'Clear',
+                  icon: Icon(Icons.close, color: context.tertiaryColor),
+                  splashRadius: 18.0,
+                  onPressed: widget.controller.clear,
+                )
+              : null,
         ),
       ),
     );
