@@ -48,12 +48,12 @@ class BookmarkSearchField extends StatelessWidget with Grab {
           child: hasInput
               ? IconButton(
                   tooltip: 'Clear',
+                  splashRadius: 18.0,
+                  onPressed: controller.clear,
                   icon: Icon(
                     Icons.close,
                     color: context.tertiaryColor,
                   ),
-                  splashRadius: 18.0,
-                  onPressed: controller.clear,
                 )
               : null,
         ),

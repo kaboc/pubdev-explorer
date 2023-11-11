@@ -149,23 +149,21 @@ class _ListView extends StatelessWidget with Grab {
       onBottomReached:
           hasMore && !isFetchError ? _notifier.fetchNextBookmarks : null,
       slivers: [
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            childCount: packageNames.length,
-            (_, index) {
-              return Column(
-                children: [
-                  if (index > 0) const SizedBox(height: 16.0),
-                  Center(
-                    child: PackageCard(
-                      name: packageNames.elementAtOrNull(index) ?? '',
-                      highlights: keywords,
-                    ),
+        SliverList.builder(
+          itemCount: packageNames.length,
+          itemBuilder: (_, index) {
+            return Column(
+              children: [
+                if (index > 0) const SizedBox(height: 16.0),
+                Center(
+                  child: PackageCard(
+                    name: packageNames.elementAtOrNull(index) ?? '',
+                    highlights: keywords,
                   ),
-                ],
-              );
-            },
-          ),
+                ),
+              ],
+            );
+          },
         ),
         if (isFetchError)
           SliverToBoxAdapter(

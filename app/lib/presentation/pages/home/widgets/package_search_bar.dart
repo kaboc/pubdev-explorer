@@ -61,12 +61,12 @@ class _PackageSearchBarState extends State<PackageSearchBar> {
           color: Colors.transparent,
           child: IconButton(
             tooltip: 'Search',
+            splashRadius: 18.0,
+            onPressed: () => _search(context),
             icon: Icon(
               Icons.search,
               color: isFocused ? context.secondaryColor : null,
             ),
-            splashRadius: 18.0,
-            onPressed: () => _search(context),
           ),
         ),
         suffixIcon: Material(
@@ -74,9 +74,9 @@ class _PackageSearchBarState extends State<PackageSearchBar> {
           child: widget.enabled && hasInput
               ? IconButton(
                   tooltip: 'Clear',
-                  icon: Icon(Icons.close, color: context.tertiaryColor),
                   splashRadius: 18.0,
                   onPressed: widget.controller.clear,
+                  icon: Icon(Icons.close, color: context.tertiaryColor),
                 )
               : null,
         ),

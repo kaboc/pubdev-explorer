@@ -8,18 +8,19 @@ class CustomScrollBehavior extends MaterialScrollBehavior {
   const CustomScrollBehavior();
 
   @override
-  Set<PointerDeviceKind> get dragDevices => {
-        PointerDeviceKind.touch,
-        PointerDeviceKind.mouse,
-      };
+  Set<PointerDeviceKind> get dragDevices => PointerDeviceKind.values.toSet();
 }
 
 bool get isMacOs => defaultTargetPlatform == TargetPlatform.macOS;
 
 extension FormattedDateTime on DateTime? {
-  String get formatted =>
-      this == null ? '' : DateFormat.yMMMd('en_US').format(this!);
+  String get formatted {
+    final self = this;
+    return self == null ? '' : DateFormat.yMMMd('en_US').format(self);
+  }
 
-  String get formattedWithTime =>
-      this == null ? '' : DateFormat('K:mm a, MMM d, y').format(this!);
+  String get formattedWithTime {
+    final self = this;
+    return self == null ? '' : DateFormat('K:mm a, MMM d, y').format(self);
+  }
 }

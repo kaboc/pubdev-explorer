@@ -25,6 +25,8 @@ class BookmarksShortcuts extends StatelessWidget {
             RequestFocusIntent(searchFocusNode),
         const SingleActivator(LogicalKeyboardKey.escape):
             const SearchClearIntent(),
+        const SingleActivator(LogicalKeyboardKey.arrowLeft, alt: true):
+            const BackToHomeIntent(),
         // Settings for the arrow up/down keys are necessary to
         // prevent the default behaviour of those keys moving
         // the focus up and down, which is unwanted in this app.
@@ -32,8 +34,6 @@ class BookmarksShortcuts extends StatelessWidget {
             const ScrollIntent(direction: AxisDirection.up),
         const SingleActivator(LogicalKeyboardKey.arrowDown):
             const ScrollIntent(direction: AxisDirection.down),
-        const SingleActivator(LogicalKeyboardKey.arrowLeft, alt: true):
-            const BackToHomeIntent(),
         const SingleActivator(LogicalKeyboardKey.f1): const OpenGuideIntent(),
         const SingleActivator(LogicalKeyboardKey.question, shift: true):
             const OpenGuideIntent(),

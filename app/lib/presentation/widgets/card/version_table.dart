@@ -24,7 +24,7 @@ class VersionTable extends StatelessWidget {
             _Tooltip(
               message: package.latest.publishedAt!.formattedWithTime,
               above: package.preRelease != null,
-              child: Text(package.latest.publishedAt!.formatted),
+              child: Text(package.latest.publishedAt.formatted),
             ),
           ],
         ),
@@ -34,7 +34,7 @@ class VersionTable extends StatelessWidget {
               Text(package.preRelease!.version),
               const SizedBox.shrink(),
               _Tooltip(
-                message: package.preRelease!.publishedAt!.formattedWithTime,
+                message: package.preRelease!.publishedAt.formattedWithTime,
                 child: Text(
                   package.preRelease!.publishedAt.formatted,
                   overflow: TextOverflow.ellipsis,

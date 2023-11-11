@@ -11,12 +11,12 @@ class RefreshButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       tooltip: 'Refresh',
+      onPressed: onPressed,
       icon: Icon(
         Icons.refresh,
         size: 20.0,
         color: context.tertiaryColor,
       ),
-      onPressed: onPressed,
     );
   }
 }

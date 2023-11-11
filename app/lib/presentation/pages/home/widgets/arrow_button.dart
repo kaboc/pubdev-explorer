@@ -30,11 +30,11 @@ class Navigation extends StatelessWidget {
           ),
           IconButton(
             tooltip: 'View bookmarks',
+            iconSize: 32.0,
             icon: Icon(
               Icons.bookmarks,
               color: context.tertiaryColor,
             ),
-            iconSize: 32.0,
             onPressed: () => Navigator.of(context).push(
               BookmarksPage.route(),
             ),
@@ -76,19 +76,16 @@ class _ArrowButton extends StatelessWidget with Grab {
 
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 600),
-      child: Visibility(
+      child: Visibility.maintain(
         visible: visible,
-        maintainState: true,
-        maintainAnimation: true,
-        maintainSize: true,
         child: IconButton(
           tooltip: toPrev ? 'Prev' : 'Next',
+          splashRadius: 32.0,
+          iconSize: 48.0,
           icon: Icon(
             toPrev ? Icons.arrow_left : Icons.arrow_right,
             color: context.tertiaryColor,
           ),
-          iconSize: 48.0,
-          splashRadius: 32.0,
           onPressed: () => toAdjacentPage(
             duration: kSlideDuration,
             curve: kSlideCurve,
