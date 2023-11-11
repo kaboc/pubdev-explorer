@@ -26,7 +26,6 @@ class BookmarkSearchField extends StatelessWidget with Grab {
     return TextField(
       controller: controller,
       focusNode: focusNode,
-      autofocus: isDesktop,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
         isDense: true,

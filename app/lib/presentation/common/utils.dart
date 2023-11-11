@@ -14,10 +14,6 @@ class CustomScrollBehavior extends MaterialScrollBehavior {
       };
 }
 
-bool get isDesktop =>
-    defaultTargetPlatform != TargetPlatform.android &&
-    defaultTargetPlatform != TargetPlatform.iOS;
-
 bool get isMacOs => defaultTargetPlatform == TargetPlatform.macOS;
 
 extension FormattedDateTime on DateTime? {
