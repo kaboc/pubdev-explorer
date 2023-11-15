@@ -29,11 +29,13 @@ class BookmarkSearchField extends StatelessWidget with Grab {
       keyboardType: TextInputType.emailAddress,
       onTapOutside: (_) => focusNode.unfocus(),
       decoration: InputDecoration(
-        isDense: true,
+        hintText: 'Search',
         filled: true,
         fillColor: context.theme.cardColor,
-        contentPadding: const EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 16.0),
-        hintText: 'Search',
+        isDense: true,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
+        prefixIconConstraints: BoxConstraints.tight(const Size(40.0, 40.0)),
+        suffixIconConstraints: BoxConstraints.tight(const Size(40.0, 40.0)),
         enabledBorder: border.copyWith(
           borderSide: BorderSide(color: context.tertiaryColor),
         ),
