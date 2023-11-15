@@ -56,71 +56,68 @@ class _BookmarksPageState extends State<BookmarksPage> {
     final isSearching =
         _searchController.grabAt(context, (v) => v.text.isNotEmpty);
 
-    return GestureDetector(
-      onTap: _searchFocusNode.unfocus,
-      child: BookmarksShortcuts(
-        searchController: _searchController,
-        searchFocusNode: _searchFocusNode,
-        child: Scaffold(
-          appBar: AppBar(
-            title: const Text('Bookmarks'),
-            actions: const [
-              HelpButton(),
-              ThemeModeButton(),
-              SizedBox(width: 4.0),
-            ],
-          ),
-          body: SafeArea(
-            child: Column(
-              children: [
-                if (names.isNotEmpty || isSearching) ...[
-                  Container(
-                    width: kContentMaxWidth,
-                    alignment: Alignment.centerRight,
-                    padding: const EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 16.0),
-                    child: SizedBox(
-                      width: 200.0,
-                      child: BookmarkSearchField(
-                        controller: _searchController,
-                        focusNode: _searchFocusNode,
-                      ),
+    return BookmarksShortcuts(
+      searchController: _searchController,
+      searchFocusNode: _searchFocusNode,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Bookmarks'),
+          actions: const [
+            HelpButton(),
+            ThemeModeButton(),
+            SizedBox(width: 4.0),
+          ],
+        ),
+        body: SafeArea(
+          child: Column(
+            children: [
+              if (names.isNotEmpty || isSearching) ...[
+                Container(
+                  width: kContentMaxWidth,
+                  alignment: Alignment.centerRight,
+                  padding: const EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 16.0),
+                  child: SizedBox(
+                    width: 200.0,
+                    child: BookmarkSearchField(
+                      controller: _searchController,
+                      focusNode: _searchFocusNode,
                     ),
                   ),
-                  const SizedBox(height: 1.0),
-                ],
-                if (names.isEmpty) ...[
-                  if (bookmarksPhase.isInitial || bookmarksPhase.isWaiting)
-                    const Expanded(
-                      child: CupertinoActivityIndicator(),
-                    )
-                  else if (bookmarksPhase.isError)
-                    Expanded(
-                      child: Center(
-                        child: ElevatedButton(
-                          onPressed: _notifier.fetchBookmarks,
-                          child: const Text('Retry'),
-                        ),
-                      ),
-                    )
-                  else if (bookmarksPhase.isComplete)
-                    Expanded(
-                      child: Center(
-                        child: Text(
-                          isSearching
-                              ? 'No matching package was found.'
-                              : 'No packages have been bookmarked yet.',
-                          style: TextStyle(color: context.tertiaryColor),
-                        ),
-                      ),
-                    ),
-                ] else
-                  Expanded(
-                    child: _ListView(
-                      packageNames: names,
-                    ),
-                  ),
+                ),
+                const SizedBox(height: 1.0),
               ],
-            ),
+              if (names.isEmpty) ...[
+                if (bookmarksPhase.isInitial || bookmarksPhase.isWaiting)
+                  const Expanded(
+                    child: CupertinoActivityIndicator(),
+                  )
+                else if (bookmarksPhase.isError)
+                  Expanded(
+                    child: Center(
+                      child: ElevatedButton(
+                        onPressed: _notifier.fetchBookmarks,
+                        child: const Text('Retry'),
+                      ),
+                    ),
+                  )
+                else if (bookmarksPhase.isComplete)
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        isSearching
+                            ? 'No matching package was found.'
+                            : 'No packages have been bookmarked yet.',
+                        style: TextStyle(color: context.tertiaryColor),
+                      ),
+                    ),
+                  ),
+              ] else
+                Expanded(
+                  child: _ListView(
+                    packageNames: names,
+                  ),
+                ),
+            ],
           ),
         ),
       ),

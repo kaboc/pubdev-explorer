@@ -48,6 +48,7 @@ class _PackageSearchBarState extends State<PackageSearchBar> {
       keyboardType: TextInputType.emailAddress,
       onFieldSubmitted: (_) => _search(context),
       enabled: widget.enabled,
+      onTapOutside: (_) => widget.focusNode.unfocus(),
       decoration: InputDecoration(
         isDense: true,
         filled: true,

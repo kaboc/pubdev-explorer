@@ -59,63 +59,60 @@ class _HomePageState extends State<HomePage> {
     final keywords = notifier.grabAt(context, (s) => s.data!.keywords);
     final joinedKeywords = keywords?.join(' ');
 
-    return GestureDetector(
-      onTap: _searchFocusNode.unfocus,
-      child: HomeShortcuts(
-        pageController: _pageController,
-        searchController: _searchController,
-        searchFocusNode: _searchFocusNode,
-        child: Scaffold(
-          appBar: AppBar(
-            title: notifier.isSearch
-                ? notifier.isPublisherSearch
-                    ? const Text('Publisher')
-                    : Text('Search - $joinedKeywords')
-                : const Text('pub.dev explorer'),
-            actions: const [
-              HelpButton(),
-              ThemeModeButton(),
-              SizedBox(width: 4.0),
-            ],
-          ),
-          body: SafeArea(
-            child: AsyncPhaseListener(
-              notifier: notifier,
-              onError: (e, _) {
-                // Shows a message in the center of the screen instead of
-                // a material banner if the error is UnimplementedError.
-                if (e is! UnimplementedError) {
-                  _showErrorBanner();
-                }
-              },
-              child: Column(
-                children: [
-                  PackageSearchBar(
-                    controller: _searchController,
-                    focusNode: _searchFocusNode,
-                    initialValue: joinedKeywords,
-                    enabled: !notifier.isPublisherSearch,
+    return HomeShortcuts(
+      pageController: _pageController,
+      searchController: _searchController,
+      searchFocusNode: _searchFocusNode,
+      child: Scaffold(
+        appBar: AppBar(
+          title: notifier.isSearch
+              ? notifier.isPublisherSearch
+                  ? const Text('Publisher')
+                  : Text('Search - $joinedKeywords')
+              : const Text('pub.dev explorer'),
+          actions: const [
+            HelpButton(),
+            ThemeModeButton(),
+            SizedBox(width: 4.0),
+          ],
+        ),
+        body: SafeArea(
+          child: AsyncPhaseListener(
+            notifier: notifier,
+            onError: (e, _) {
+              // Shows a message in the center of the screen instead of
+              // a material banner if the error is UnimplementedError.
+              if (e is! UnimplementedError) {
+                _showErrorBanner();
+              }
+            },
+            child: Column(
+              children: [
+                PackageSearchBar(
+                  controller: _searchController,
+                  focusNode: _searchFocusNode,
+                  initialValue: joinedKeywords,
+                  enabled: !notifier.isPublisherSearch,
+                ),
+                Expanded(
+                  child: PageView.builder(
+                    controller: _pageController,
+                    itemCount: hasMore ? length + 1 : length,
+                    itemBuilder: (_, index) {
+                      return index == length
+                          ? const _PendingItem()
+                          : _Item(index, _searchController);
+                    },
+                    onPageChanged: (index) {
+                      _messenger.hideCurrentMaterialBanner();
+                      notifier.onIndexChanged(index);
+                    },
                   ),
-                  Expanded(
-                    child: PageView.builder(
-                      controller: _pageController,
-                      itemCount: hasMore ? length + 1 : length,
-                      itemBuilder: (_, index) {
-                        return index == length
-                            ? const _PendingItem()
-                            : _Item(index, _searchController);
-                      },
-                      onPageChanged: (index) {
-                        _messenger.hideCurrentMaterialBanner();
-                        notifier.onIndexChanged(index);
-                      },
-                    ),
-                  ),
-                  Navigation(
-                    pageController: _pageController,
-                  ),
-                ],
-              ),
+                ),
+                Navigation(
+                  pageController: _pageController,
+                ),
+              ],
             ),
           ),
         ),
