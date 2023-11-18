@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
-const _kIndicatorAreaHeight = 72.0;
-
+/// See https://gist.github.com/kaboc/079a8e13bd885098a4c713f8bd0e6f62
 class BottomScrollDetector extends StatefulWidget {
   const BottomScrollDetector({
     super.key,
@@ -63,14 +62,14 @@ class _BottomScrollDetectorState extends State<BottomScrollDetector> {
               child: SizedBox(height: widget.padding.bottom),
             )
           else
-            SliverList(
-              delegate: SliverChildListDelegate(const [
+            SliverList.list(
+              children: const [
                 SizedBox.shrink(),
                 SizedBox(
-                  height: _kIndicatorAreaHeight,
+                  height: 72.0,
                   child: CupertinoActivityIndicator(),
                 ),
-              ]),
+              ],
             ),
         ],
       ),
