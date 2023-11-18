@@ -79,6 +79,7 @@ extension on ThemeData {
         ),
         bodyLarge: textTheme.bodyLarge?.copyWith(
           fontSize: 16.0,
+          fontWeight: FontWeight.bold,
         ),
         bodySmall: textTheme.bodySmall?.copyWith(
           fontSize: 10.0,
