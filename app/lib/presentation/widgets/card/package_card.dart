@@ -77,8 +77,11 @@ class PackageCard extends StatelessWidget with Grab {
                   const SizedBox(height: 60.0),
                   SizedBox(
                     height: 24.0,
-                    child:
-                        isWaiting ? const CupertinoActivityIndicator() : null,
+                    child: isWaiting
+                        ? CupertinoActivityIndicator(
+                            color: context.theme.colorScheme.onSurface,
+                          )
+                        : null,
                   ),
                   const SizedBox(height: 40.0),
                   Align(

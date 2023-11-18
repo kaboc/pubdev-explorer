@@ -11,33 +11,52 @@ const Color _tertiaryColorDark = Color(0xFF858585);
 class AppTheme {
   static ThemeData get light {
     final data = ThemeData.from(
-      colorScheme: const ColorScheme.light(
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: _primaryColor,
         primary: _primaryColor,
         secondary: _secondaryColor,
         tertiary: _tertiaryColor,
+        background: const Color(0xFFEEEEEE),
+        surfaceTint: Colors.transparent,
       ),
     ).custom;
 
     return data.copyWith(
-      scaffoldBackgroundColor: const Color(0xFFEEEEEE),
+      appBarTheme: const AppBarTheme(
+        foregroundColor: Color(0xFFE0E0E0),
+        backgroundColor: _primaryColor,
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          foregroundColor: const Color(0xFFE0E0E0),
+          backgroundColor: _tertiaryColor,
+        ),
+      ),
     );
   }
 
   static ThemeData get dark {
     final data = ThemeData.from(
-      colorScheme: const ColorScheme.dark(
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: _primaryColor,
         primary: _primaryColor,
         secondary: _secondaryColorDark,
         tertiary: _tertiaryColorDark,
+        onSurface: const Color(0xFFE0E0E0),
+        background: const Color(0xFF212121),
+        surface: const Color(0xFF303030),
+        onSurfaceVariant: _tertiaryColorDark,
       ),
     ).custom;
 
     return data.copyWith(
-      textTheme: data.textTheme.apply(
-        bodyColor: const Color(0xFFE0E0E0),
+      appBarTheme: const AppBarTheme(
+        foregroundColor: Color(0xFFE0E0E0),
+        backgroundColor: Color(0xFF212121),
       ),
-      scaffoldBackgroundColor: const Color(0xFF212121),
-      cardColor: const Color(0xFF303030),
+      inputDecorationTheme: data.inputDecorationTheme.copyWith(
+        hintStyle: const TextStyle(color: _tertiaryColorDark),
+      ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: _tertiaryColor,
@@ -63,21 +82,22 @@ extension on ThemeData {
         ),
         bodySmall: textTheme.bodySmall?.copyWith(
           fontSize: 10.0,
-          color: colorScheme.tertiary,
         ),
       ),
       textSelectionTheme: textSelectionTheme.copyWith(
         cursorColor: _secondaryColor,
         selectionColor: _secondaryColor.withOpacity(0.4),
       ),
+      inputDecorationTheme: InputDecorationTheme(
+        isDense: true,
+        filled: true,
+        fillColor: cardColor,
+      ),
       bannerTheme: bannerTheme.copyWith(
         backgroundColor: Colors.blueGrey,
         contentTextStyle: textTheme.bodyMedium?.copyWith(
           color: Colors.white,
         ),
-      ),
-      chipTheme: chipTheme.copyWith(
-        backgroundColor: colorScheme.tertiary,
       ),
     );
   }

@@ -46,7 +46,7 @@
 
   <script>
     // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = null;
+    const serviceWorkerVersion = null;
   </script>
   <script defer src="sql-wasm.js"></script>
   <!-- This script adds the flutter initialization JS code -->
@@ -62,9 +62,10 @@
           serviceWorkerVersion: serviceWorkerVersion,
         },
         onEntrypointLoaded: async function(engineInitializer) {
-          const appRunner = await engineInitializer.initializeEngine()
-          appRunner.runApp();
-          document.getElementById('loading').remove();
+          engineInitializer.initializeEngine().then(function(appRunner) {
+            appRunner.runApp();
+            document.getElementById('loading').remove();
+          });
         }
       });
     });

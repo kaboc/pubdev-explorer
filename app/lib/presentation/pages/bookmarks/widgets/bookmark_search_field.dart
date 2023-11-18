@@ -19,10 +19,6 @@ class BookmarkSearchField extends StatelessWidget with Grab {
     final isFocused = focusNode.grabAt(context, (FocusNode n) => n.hasFocus);
     final hasInput = controller.grabAt(context, (c) => c.text.isNotEmpty);
 
-    const border = OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(8.0)),
-    );
-
     return TextField(
       controller: controller,
       focusNode: focusNode,
@@ -30,17 +26,16 @@ class BookmarkSearchField extends StatelessWidget with Grab {
       onTapOutside: (_) => focusNode.unfocus(),
       decoration: InputDecoration(
         hintText: 'Search',
-        filled: true,
-        fillColor: context.theme.cardColor,
-        isDense: true,
         contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
         prefixIconConstraints: BoxConstraints.tight(const Size(40.0, 40.0)),
         suffixIconConstraints: BoxConstraints.tight(const Size(40.0, 40.0)),
-        enabledBorder: border.copyWith(
+        enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: context.tertiaryColor),
+          borderRadius: const BorderRadius.all(Radius.circular(8.0)),
         ),
-        focusedBorder: border.copyWith(
+        focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: context.secondaryColor),
+          borderRadius: const BorderRadius.all(Radius.circular(8.0)),
         ),
         prefixIcon: Icon(
           Icons.search,

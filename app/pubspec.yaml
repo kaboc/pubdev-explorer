@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: '>=3.2.0 <4.0.0'
 
 dependencies:
   flutter:
@@ -20,19 +20,19 @@ dependencies:
   pottery: ^0.1.0
 
   # Other packages
-  collection: ^1.17.1
-  drift: ^2.12.1
+  collection: ^1.18.0
+  drift: ^2.13.1
   equatable: ^2.0.5
   intl: ^0.18.1
   path: ^1.8.3
   path_provider: ^2.1.1
-  sqlite3_flutter_libs: ^0.5.17
-  url_launcher: ^6.1.14
+  sqlite3_flutter_libs: ^0.5.18
+  url_launcher: ^6.2.1
 
 dev_dependencies:
-  flutter_lints: ^2.0.3
+  flutter_lints: ^3.0.1
 
-  custom_lint: ^0.5.3
+  custom_lint: ^0.5.6
   grab_lints: ^0.3.2
 
 flutter:

@@ -24,7 +24,7 @@ class TagList extends StatelessWidget {
             child: Text(
               tag.label,
               style: context.bodySmall.copyWith(
-                color: context.theme.colorScheme.onPrimary,
+                color: context.theme.colorScheme.background,
                 fontWeight: FontWeight.bold,
               ),
             ),

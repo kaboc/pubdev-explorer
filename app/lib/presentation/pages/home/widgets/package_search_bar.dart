@@ -50,13 +50,15 @@ class _PackageSearchBarState extends State<PackageSearchBar> {
       enabled: widget.enabled,
       onTapOutside: (_) => widget.focusNode.unfocus(),
       decoration: InputDecoration(
-        isDense: true,
-        filled: true,
-        fillColor: context.theme.cardColor,
         contentPadding: const EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 16.0),
         hintText: 'Search packages',
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: context.tertiaryColor),
+          borderRadius: BorderRadius.zero,
+        ),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: context.secondaryColor),
+          borderRadius: BorderRadius.zero,
         ),
         prefixIcon: Material(
           color: Colors.transparent,

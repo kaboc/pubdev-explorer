@@ -14,36 +14,39 @@ class ThemeModeButton extends StatelessWidget with Grab {
   Widget build(BuildContext context) {
     final currentMode = _notifier.grabAt(context, (s) => s.themeMode);
 
-    return PopupMenuButton<ThemeMode>(
-      tooltip: 'Theme mode',
-      icon: Icon(
+    return MenuAnchor(
+      // ignore: sort_child_properties_last
+      child: Icon(
         currentMode.icon,
         color: currentMode.color,
       ),
-      splashRadius: 28.0,
-      onSelected: _notifier.updateThemeMode,
-      itemBuilder: (context) => [
+      builder: (context, controller, child) {
+        return IconButton(
+          onPressed: controller.isOpen ? controller.close : controller.open,
+          tooltip: 'Theme mode',
+          icon: child!,
+        );
+      },
+      menuChildren: [
         for (final mode in ThemeMode.values)
-          PopupMenuItem<ThemeMode>(
-            value: mode,
-            textStyle: context.bodyMedium.copyWith(
-              fontWeight: mode == currentMode ? FontWeight.bold : null,
+          MenuItemButton(
+            onPressed: () => _notifier.updateThemeMode(mode),
+            leadingIcon: SizedBox(
+              width: 18.0,
+              child: mode == currentMode
+                  ? Icon(
+                      Icons.check,
+                      size: 18.0,
+                      color: context.bodyMedium.color,
+                    )
+                  : null,
             ),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 18.0,
-                  child: mode == currentMode
-                      ? Icon(
-                          Icons.check,
-                          size: 18.0,
-                          color: context.bodyMedium.color,
-                        )
-                      : null,
-                ),
-                const SizedBox(width: 10.0),
-                Text(mode.label),
-              ],
+            trailingIcon: const SizedBox(width: 16.0),
+            child: Text(
+              mode.label,
+              style: context.bodyMedium.copyWith(
+                fontWeight: mode == currentMode ? FontWeight.bold : null,
+              ),
             ),
           ),
       ],
