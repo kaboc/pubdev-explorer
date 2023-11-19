@@ -45,10 +45,10 @@ class _PackageSearchBarState extends State<PackageSearchBar> {
     return TextFormField(
       controller: widget.controller,
       focusNode: widget.focusNode,
-      keyboardType: TextInputType.emailAddress,
-      onFieldSubmitted: (_) => _search(context),
       enabled: widget.enabled,
+      keyboardType: TextInputType.emailAddress,
       onTapOutside: (_) => widget.focusNode.unfocus(),
+      onFieldSubmitted: (_) => _search(context),
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 16.0),
         hintText: 'Search packages',

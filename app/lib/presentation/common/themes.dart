@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_classes_with_only_static_members
-
 import 'package:flutter/material.dart';
 
 const Color _primaryColor = Color(0xFF132030);
@@ -8,7 +6,8 @@ const Color _secondaryColorDark = Color(0xFF55CCFF);
 const Color _tertiaryColor = Color(0xFF757575);
 const Color _tertiaryColorDark = Color(0xFF858585);
 
-class AppTheme {
+// ignore: avoid_classes_with_only_static_members
+abstract final class AppTheme {
   static ThemeData get light {
     final data = ThemeData.from(
       colorScheme: ColorScheme.fromSeed(
@@ -19,11 +18,10 @@ class AppTheme {
         background: const Color(0xFFEEEEEE),
         surfaceTint: Colors.transparent,
       ),
-    ).custom;
+    ).copyWithCommonTheme();
 
     return data.copyWith(
-      appBarTheme: const AppBarTheme(
-        foregroundColor: Color(0xFFE0E0E0),
+      appBarTheme: data.appBarTheme.copyWith(
         backgroundColor: _primaryColor,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -47,15 +45,11 @@ class AppTheme {
         surface: const Color(0xFF303030),
         onSurfaceVariant: _tertiaryColorDark,
       ),
-    ).custom;
+    ).copyWithCommonTheme();
 
     return data.copyWith(
-      appBarTheme: const AppBarTheme(
-        foregroundColor: Color(0xFFE0E0E0),
-        backgroundColor: Color(0xFF212121),
-      ),
-      inputDecorationTheme: data.inputDecorationTheme.copyWith(
-        hintStyle: const TextStyle(color: _tertiaryColorDark),
+      appBarTheme: data.appBarTheme.copyWith(
+        backgroundColor: const Color(0xFF212121),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -67,7 +61,7 @@ class AppTheme {
 }
 
 extension on ThemeData {
-  ThemeData get custom {
+  ThemeData copyWithCommonTheme() {
     return copyWith(
       textTheme: textTheme.copyWith(
         headlineMedium: textTheme.headlineMedium?.copyWith(
@@ -79,20 +73,23 @@ extension on ThemeData {
         ),
         bodyLarge: textTheme.bodyLarge?.copyWith(
           fontSize: 16.0,
-          fontWeight: FontWeight.bold,
         ),
         bodySmall: textTheme.bodySmall?.copyWith(
           fontSize: 10.0,
         ),
       ),
-      textSelectionTheme: textSelectionTheme.copyWith(
-        cursorColor: _secondaryColor,
-        selectionColor: _secondaryColor.withOpacity(0.4),
+      appBarTheme: const AppBarTheme(
+        foregroundColor: Color(0xFFE0E0E0),
       ),
       inputDecorationTheme: InputDecorationTheme(
         isDense: true,
         filled: true,
-        fillColor: cardColor,
+        fillColor: colorScheme.surface,
+        hintStyle: const TextStyle(color: _tertiaryColorDark),
+      ),
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: _secondaryColor,
+        selectionColor: _secondaryColor.withOpacity(0.4),
       ),
       bannerTheme: bannerTheme.copyWith(
         backgroundColor: Colors.blueGrey,

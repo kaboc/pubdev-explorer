@@ -27,8 +27,6 @@ class BookmarkSearchField extends StatelessWidget with Grab {
       decoration: InputDecoration(
         hintText: 'Search',
         contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
-        prefixIconConstraints: BoxConstraints.tight(const Size(40.0, 40.0)),
-        suffixIconConstraints: BoxConstraints.tight(const Size(40.0, 40.0)),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: context.tertiaryColor),
           borderRadius: const BorderRadius.all(Radius.circular(8.0)),

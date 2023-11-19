@@ -41,7 +41,7 @@ class GuideTable extends StatelessWidget {
                 child: Text(
                   key,
                   textAlign: TextAlign.right,
-                  style: context.theme.textTheme.bodyLarge,
+                  style: context.theme.textTheme.titleMedium,
                 ),
               ),
               const TableCell(
