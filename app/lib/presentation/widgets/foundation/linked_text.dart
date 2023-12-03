@@ -4,20 +4,25 @@ import 'package:flutter/widgets.dart';
 import 'package:custom_text/custom_text.dart';
 import 'package:url_launcher/link.dart';
 
+import 'package:pubdev_explorer/presentation/common/_common.dart';
+
 class LinkedText extends StatelessWidget {
   const LinkedText(
     this.text, {
+    this.spans,
     required this.onTap,
     this.style,
   }) : url = null;
 
   const LinkedText.external(
     this.text, {
+    this.spans,
     required String this.url,
     this.style,
   }) : onTap = null;
 
   final String text;
+  final List<InlineSpan>? spans;
   final TextStyle? style;
   final VoidCallback? onTap;
   final String? url;
@@ -25,21 +30,22 @@ class LinkedText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return url == null
-        ? _Text(text, style, onTap)
+        ? _Text(text, spans, style, onTap)
         : Link(
             uri: Uri.tryParse(url!),
             target: kIsWeb ? LinkTarget.blank : LinkTarget.self,
             builder: (_, followLink) {
-              return _Text(text, style, followLink);
+              return _Text(text, spans, style, followLink);
             },
           );
   }
 }
 
 class _Text extends StatefulWidget {
-  const _Text(this.text, this.style, this.onTap);
+  const _Text(this.text, this.spans, this.style, this.onTap);
 
   final String text;
+  final List<InlineSpan>? spans;
   final TextStyle? style;
   final VoidCallback? onTap;
 
@@ -53,11 +59,8 @@ class _TextState extends State<_Text> {
   @override
   Widget build(BuildContext context) {
     final tappable = widget.onTap != null;
-
-    final matchStyle =
-        tappable ? widget.style ?? DefaultTextStyle.of(context).style : null;
-    final hoverStyle =
-        matchStyle?.copyWith(color: matchStyle.color?.withOpacity(0.7));
+    final style = (widget.style ?? DefaultTextStyle.of(context).style)
+        .copyWith(color: context.secondaryColor);
 
     return Actions(
       actions: {
@@ -69,15 +72,16 @@ class _TextState extends State<_Text> {
         onFocusChange: (focused) {
           setState(() => _focused = focused);
         },
-        child: CustomText(
-          widget.text,
-          definitions: const [
-            TextDefinition(matcher: PatternMatcher('.+')),
+        child: CustomText.spans(
+          spans: widget.spans ?? [TextSpan(text: widget.text)],
+          definitions: [
+            TextDefinition(matcher: PatternMatcher(widget.text)),
           ],
-          matchStyle: matchStyle?.copyWith(
+          style: style,
+          matchStyle: TextStyle(
             decoration: _focused ? TextDecoration.underline : null,
           ),
-          hoverStyle: hoverStyle,
+          hoverStyle: TextStyle(color: style.color?.withOpacity(0.7)),
           onTap: tappable ? (_) => widget.onTap?.call() : null,
         ),
       ),

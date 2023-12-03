@@ -4,7 +4,6 @@ import 'package:pubdev_explorer/common/_common.dart';
 import 'package:pubdev_explorer/presentation/common/_common.dart';
 import 'package:pubdev_explorer/presentation/pages/home/home_page.dart';
 import 'package:pubdev_explorer/presentation/widgets/card/highlighted_text.dart';
-import 'package:pubdev_explorer/presentation/widgets/foundation/linked_text.dart';
 
 class PublisherLink extends StatelessWidget {
   const PublisherLink({required this.package, required this.highlights});
@@ -28,23 +27,17 @@ class PublisherLink extends StatelessWidget {
         ),
         const SizedBox(width: 4.0),
         Flexible(
-          child: Stack(
-            children: [
-              HighlightedText(
-                publisher,
-                words: highlights,
-                style: const TextStyle(color: Colors.transparent),
-              ),
-              if (isMockUsed)
-                LinkedText.external(
+          child: isMockUsed
+              ? HighlightedText.externalLink(
                   publisher,
+                  linkText: publisher,
+                  words: highlights,
                   url: publisherUrl,
-                  style: TextStyle(color: context.secondaryColor),
                 )
-              else
-                LinkedText(
+              : HighlightedText.link(
                   publisher,
-                  style: TextStyle(color: context.secondaryColor),
+                  linkText: publisher,
+                  words: highlights,
                   onTap: isPublisherSearch
                       ? null
                       : () => Navigator.of(context).push(
@@ -53,8 +46,6 @@ class PublisherLink extends StatelessWidget {
                             ),
                           ),
                 ),
-            ],
-          ),
         ),
       ],
     );
