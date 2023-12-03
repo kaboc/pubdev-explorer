@@ -50,8 +50,8 @@ class _PackageSearchBarState extends State<PackageSearchBar> {
       onTapOutside: (_) => widget.focusNode.unfocus(),
       onFieldSubmitted: (_) => _search(context),
       decoration: InputDecoration(
-        contentPadding: const EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 16.0),
         hintText: 'Search packages',
+        contentPadding: const EdgeInsets.fromLTRB(20.0, 16.0, 20.0, 16.0),
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: context.tertiaryColor),
           borderRadius: BorderRadius.zero,
