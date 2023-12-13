@@ -36,15 +36,15 @@ class BookmarksNotifier extends AsyncPhaseNotifier<BookmarksState> {
 
         final words = spaceSeparated.isEmpty
             ? <String>[]
-            : spaceSeparated.split(' ').map((v) => v.toLowerCase()).toList();
+            : spaceSeparated.split(' ').map((v) => v.toLowerCase());
 
         final data = value.data!;
-        const equality = DeepCollectionEquality.unordered();
+        const equality = UnorderedIterableEquality<String>();
         if (!equality.equals(words, data.keywords)) {
           value = value.copyWith(
             data.copyWith(
               packageNames: {},
-              keywords: words,
+              keywords: words.toList(),
             ),
           );
 
