@@ -3,7 +3,6 @@ import 'package:pottery/pottery.dart';
 import 'package:pubdev_explorer_core/pubdev_explorer_core.dart';
 
 import 'package:pubdev_explorer/presentation/app_states/settings_notifier.dart';
-import 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmarks_notifier.dart';
 import 'package:pubdev_explorer/presentation/pages/home/states/home_notifier.dart';
 import 'package:pubdev_explorer/presentation/pages/home/states/package_notifier.dart';
 
@@ -11,7 +10,6 @@ export 'package:pottery/pottery.dart';
 export 'package:pubdev_explorer_core/pubdev_explorer_core.dart';
 
 export 'package:pubdev_explorer/presentation/app_states/settings_notifier.dart';
-export 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmarks_notifier.dart';
 export 'package:pubdev_explorer/presentation/pages/home/states/home_notifier.dart';
 export 'package:pubdev_explorer/presentation/pages/home/states/package_notifier.dart';
 
@@ -43,9 +41,5 @@ final packageCachesPot = Pot.pending<PackageCaches>(
 );
 
 final homeNotifierPot = Pot.pending<HomeNotifier>(
-  disposer: (notifier) => notifier.dispose(),
-);
-
-final bookmarksNotifierPot = Pot.pending<BookmarksNotifier>(
   disposer: (notifier) => notifier.dispose(),
 );

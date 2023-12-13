@@ -4,6 +4,7 @@ import 'package:async_phase_notifier/async_phase_notifier.dart';
 import 'package:collection/collection.dart';
 
 import 'package:pubdev_explorer/common/_common.dart';
+import 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmarks_state.dart';
 
 export 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmarks_state.dart';
 

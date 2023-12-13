@@ -5,20 +5,24 @@ import 'package:grab/grab.dart';
 
 import 'package:pubdev_explorer/common/_common.dart';
 import 'package:pubdev_explorer/presentation/common/_common.dart';
+import 'package:pubdev_explorer/presentation/pages/bookmarks/states/bookmarks_notifier.dart';
 import 'package:pubdev_explorer/presentation/pages/bookmarks/widgets/bookmark_search_field.dart';
 import 'package:pubdev_explorer/presentation/pages/bookmarks/widgets/bookmarks_shortcuts.dart';
 import 'package:pubdev_explorer/presentation/widgets/_widgets.dart';
 
-BookmarksNotifier get _notifier => bookmarksNotifierPot();
+final _bookmarksNotifierPot = Pot.pending<BookmarksNotifier>();
 
 class BookmarksPage extends StatefulWidget with Grabful {
   const BookmarksPage._();
 
   static Route<void> route() {
     return FadingPageRoute<void>(
-      builder: (_) => Pottery(
+      builder: (_) => ScopedPottery(
         pots: {
-          bookmarksNotifierPot: BookmarksNotifier.new,
+          _bookmarksNotifierPot: BookmarksNotifier.new,
+        },
+        disposer: (pots) {
+          pots.values.whereType<ChangeNotifier>().forEach((v) => v.dispose());
         },
         builder: (_) => const BookmarksPage._(),
       ),
@@ -38,7 +42,9 @@ class _BookmarksPageState extends State<BookmarksPage> {
     super.initState();
 
     _searchController.addListener(() {
-      _notifier.onKeywordsChanged(_searchController.text);
+      _bookmarksNotifierPot
+          .of(context)
+          .onKeywordsChanged(_searchController.text);
     });
   }
 
@@ -51,8 +57,9 @@ class _BookmarksPageState extends State<BookmarksPage> {
 
   @override
   Widget build(BuildContext context) {
-    final bookmarksPhase = _notifier.grab(context);
-    final names = _notifier.grabAt(context, (s) => s.data!.packageNames);
+    final notifier = _bookmarksNotifierPot.of(context);
+    final bookmarksPhase = notifier.grab(context);
+    final names = notifier.grabAt(context, (s) => s.data!.packageNames);
     final isSearching =
         _searchController.grabAt(context, (v) => v.text.isNotEmpty);
 
@@ -95,7 +102,9 @@ class _BookmarksPageState extends State<BookmarksPage> {
                   Expanded(
                     child: Center(
                       child: ElevatedButton(
-                        onPressed: _notifier.fetchBookmarks,
+                        onPressed: () {
+                          _bookmarksNotifierPot.of(context).fetchBookmarks();
+                        },
                         child: const Text('Retry'),
                       ),
                     ),
@@ -132,9 +141,10 @@ class _ListView extends StatelessWidget with Grab {
 
   @override
   Widget build(BuildContext context) {
-    final keywords = _notifier.grabAt(context, (s) => s.data!.keywords);
-    final hasMore = _notifier.grabAt(context, (s) => s.data!.hasMore);
-    final isFetchError = _notifier.grabAt(context, (s) => s.isError);
+    final notifier = _bookmarksNotifierPot.of(context);
+    final keywords = notifier.grabAt(context, (s) => s.data!.keywords);
+    final hasMore = notifier.grabAt(context, (s) => s.data!.hasMore);
+    final isFetchError = notifier.grabAt(context, (s) => s.isError);
 
     return BottomScrollDetector(
       // Uses search words as key to jump back to top
@@ -143,8 +153,9 @@ class _ListView extends StatelessWidget with Grab {
       extent: 200.0,
       padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
       primary: true,
-      onBottomReached:
-          hasMore && !isFetchError ? _notifier.fetchNextBookmarks : null,
+      onBottomReached: hasMore && !isFetchError
+          ? () => _bookmarksNotifierPot.of(context).fetchNextBookmarks()
+          : null,
       slivers: [
         SliverList.builder(
           itemCount: packageNames.length,
@@ -168,7 +179,9 @@ class _ListView extends StatelessWidget with Grab {
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               alignment: Alignment.center,
               child: ElevatedButton(
-                onPressed: _notifier.fetchNextBookmarks,
+                onPressed: () {
+                  _bookmarksNotifierPot.of(context).fetchNextBookmarks();
+                },
                 child: const Text('Retry'),
               ),
             ),
