@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget with Grabful {
 
   static Route<void> route({required List<String> keywords}) {
     return FadingPageRoute<void>(
-      builder: (_) => ScopedPottery(
+      builder: (_) => LocalPottery(
         pots: {
           homeNotifierPot: () => HomeNotifier(keywords: keywords),
         },

@@ -431,10 +431,10 @@ packages:
     dependency: "direct main"
     description:
       name: pottery
-      sha256: df43d28ec0df1ef66c99c4da3531a8f89eb026484413aa2a309342a0448e313c
+      sha256: "43342b21b850acc7bf0969e14167e4df619ba010689e7a9b4dbbde6acc315721"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.1"
+    version: "0.2.0"
   pub_semver:
     dependency: transitive
     description:

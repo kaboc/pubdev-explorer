@@ -17,7 +17,7 @@ class BookmarksPage extends StatefulWidget with Grabful {
 
   static Route<void> route() {
     return FadingPageRoute<void>(
-      builder: (_) => ScopedPottery(
+      builder: (_) => LocalPottery(
         pots: {
           _bookmarksNotifierPot: BookmarksNotifier.new,
         },
