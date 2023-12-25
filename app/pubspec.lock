@@ -93,10 +93,10 @@ packages:
     dependency: transitive
     description:
       name: cli_util
-      sha256: b8db3080e59b2503ca9e7922c3df2072cf13992354d5e944074ffa836fba43b7
+      sha256: c05b7406fdabc7a49a3929d4af76bcaccbbffcbcdcf185b082e1ae07da323d19
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.0"
+    version: "0.4.1"
   clock:
     dependency: transitive
     description:
@@ -157,10 +157,10 @@ packages:
     dependency: "direct main"
     description:
       name: custom_text
-      sha256: ac49ae799def27084934f662aa6dda9c96579975385a55be00151d97192c5427
+      sha256: "6df3c81d94498bbc0366d9b859f1283bf9e52e64e4ea40a654c209fc7297fd48"
       url: "https://pub.dev"
     source: hosted
-    version: "1.3.0"
+    version: "1.3.1"
   dart_style:
     dependency: transitive
     description:
@@ -239,10 +239,10 @@ packages:
     dependency: "direct main"
     description:
       name: grab
-      sha256: "5cec4da7ac70e218c2a4884b24abf1f21d4e3f5fba1288d4e5d659e85d96671e"
+      sha256: "4137c242c18f1d57d5f89fe15a0fdbec73b3581c14de5780fcd9cd719e30b1da"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.2"
+    version: "0.4.3"
   grab_lints:
     dependency: "direct dev"
     description:
@@ -319,10 +319,10 @@ packages:
     dependency: transitive
     description:
       name: matcher
-      sha256: "1803e76e6653768d64ed8ff2e1e67bea3ad4b923eb5c56a295c3e634bad5960e"
+      sha256: d2323aa2060500f906aa31a895b4030b6da3ebdcc5619d14ce1aada65cd161cb
       url: "https://pub.dev"
     source: hosted
-    version: "0.12.16"
+    version: "0.12.16+1"
   material_color_utilities:
     dependency: transitive
     description:
@@ -423,18 +423,18 @@ packages:
     dependency: transitive
     description:
       name: pot
-      sha256: a1df7d19ae2d2214a4444826e94e4c6c0dfafb797204302755c967e295220454
+      sha256: "3fc21fd0ed2009d754028e5ec89cf23488c7a0c6dc971fbf2cdd882ee198dc82"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.0"
+    version: "0.7.1"
   pottery:
     dependency: "direct main"
     description:
       name: pottery
-      sha256: "43342b21b850acc7bf0969e14167e4df619ba010689e7a9b4dbbde6acc315721"
+      sha256: "1a95444126dbc32409e659cfa0e1586a23daa76d59d41a9ce18eb89c87488ba7"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0"
+    version: "0.4.1"
   pub_semver:
     dependency: transitive
     description:
@@ -491,10 +491,10 @@ packages:
     dependency: transitive
     description:
       name: sqlite3
-      sha256: "8922805564b78eb7aa9386c10056d377a541ac7270dc6a1589176277ebb4d15d"
+      sha256: c4a4c5a4b2a32e2d0f6837b33d7c91a67903891a5b7dbe706cf4b1f6b0c798c5
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0"
+    version: "2.3.0"
   sqlite3_flutter_libs:
     dependency: "direct main"
     description:
@@ -547,18 +547,18 @@ packages:
     dependency: transitive
     description:
       name: test_api
-      sha256: "5c2f730018264d276c20e4f1503fd1308dfbbae39ec8ee63c5236311ac06954b"
+      sha256: "9955ae474176f7ac8ee4e989dadfb411a58c30415bcfb648fa04b2b8a03afa7f"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.1"
+    version: "0.7.0"
   text_parser:
     dependency: transitive
     description:
       name: text_parser
-      sha256: "185a64381049589816af02562a8184c70c24317f1fc37c251046fef35775b846"
+      sha256: "8846d11d7f1a5a17f4fba28156684318e96928de8da8e7165f787b5665ea7211"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.1"
+    version: "2.2.0"
   typed_data:
     dependency: transitive
     description:
