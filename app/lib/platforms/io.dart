@@ -5,6 +5,8 @@ import 'package:drift/native.dart' show NativeDatabase;
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 
+import 'package:pubdev_explorer/common/constants.dart';
+
 LazyDatabase openConnection({bool inMemory = false}) {
   return LazyDatabase(() async {
     if (inMemory) {
@@ -15,7 +17,7 @@ LazyDatabase openConnection({bool inMemory = false}) {
     // On Android, it is probably better as it returns the
     // default database path.
     final dirPath = await _getAppSupportDirPath();
-    final file = File(path.join(dirPath, 'app.sqlite'));
+    final file = File(path.join(dirPath, kDatabaseName));
 
     // App Inspection on Android Studio/IntelliJ Idea does
     // not support database opened with NativeDatabase.
