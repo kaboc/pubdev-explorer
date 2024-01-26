@@ -4,7 +4,7 @@ import 'package:grab/grab.dart';
 
 import 'package:pubdev_explorer/presentation/common/_common.dart';
 
-class BookmarkSearchField extends StatelessWidget with Grab {
+class BookmarkSearchField extends StatelessWidget {
   const BookmarkSearchField({
     required this.controller,
     required this.focusNode,

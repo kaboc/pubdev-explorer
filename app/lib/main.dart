@@ -19,10 +19,12 @@ Future<void> main() async {
   // theme mode is applied before the first frame.
   await settingsNotifierPot().ensureReady();
 
-  runApp(const App());
+  runApp(
+    const Grab(child: App()),
+  );
 }
 
-class App extends StatelessWidget with Grab {
+class App extends StatelessWidget {
   const App();
 
   @override

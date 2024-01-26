@@ -54,7 +54,7 @@ class Navigation extends StatelessWidget {
   }
 }
 
-class _ArrowButton extends StatelessWidget with Grab {
+class _ArrowButton extends StatelessWidget {
   const _ArrowButton({
     required this.pageController,
     required this.direction,

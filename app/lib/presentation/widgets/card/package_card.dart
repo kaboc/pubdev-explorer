@@ -15,7 +15,7 @@ import 'package:pubdev_explorer/presentation/widgets/card/version_table.dart';
 
 PackageCaches get _packageCaches => packageCachesPot();
 
-class PackageCard extends StatelessWidget with Grab {
+class PackageCard extends StatelessWidget {
   const PackageCard({required this.name, this.highlights = const []});
 
   final String name;

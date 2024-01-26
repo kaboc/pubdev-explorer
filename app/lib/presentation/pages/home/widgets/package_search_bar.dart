@@ -8,7 +8,7 @@ import 'package:pubdev_explorer/presentation/common/_common.dart';
 import 'package:pubdev_explorer/presentation/pages/home/home_page.dart';
 import 'package:pubdev_explorer/presentation/pages/home/widgets/home_shortcuts.dart';
 
-class PackageSearchBar extends StatefulWidget with Grabful {
+class PackageSearchBar extends StatefulWidget {
   const PackageSearchBar({
     required this.controller,
     required this.focusNode,

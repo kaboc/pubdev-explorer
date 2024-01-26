@@ -12,7 +12,7 @@ import 'package:pubdev_explorer/presentation/widgets/_widgets.dart';
 
 final _bookmarksNotifierPot = Pot.pending<BookmarksNotifier>();
 
-class BookmarksPage extends StatefulWidget with Grabful {
+class BookmarksPage extends StatefulWidget {
   const BookmarksPage._();
 
   static Route<void> route() {
@@ -134,7 +134,7 @@ class _BookmarksPageState extends State<BookmarksPage> {
   }
 }
 
-class _ListView extends StatelessWidget with Grab {
+class _ListView extends StatelessWidget {
   const _ListView({required this.packageNames});
 
   final Set<String> packageNames;

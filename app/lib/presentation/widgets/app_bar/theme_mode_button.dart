@@ -7,7 +7,7 @@ import 'package:pubdev_explorer/presentation/common/_common.dart';
 
 SettingsNotifier get _notifier => settingsNotifierPot();
 
-class ThemeModeButton extends StatelessWidget with Grab {
+class ThemeModeButton extends StatelessWidget {
   const ThemeModeButton();
 
   @override

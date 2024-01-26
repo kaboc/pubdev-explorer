@@ -11,7 +11,7 @@ import 'package:pubdev_explorer/presentation/pages/home/widgets/home_shortcuts.d
 import 'package:pubdev_explorer/presentation/pages/home/widgets/package_search_bar.dart';
 import 'package:pubdev_explorer/presentation/widgets/_widgets.dart';
 
-class HomePage extends StatefulWidget with Grabful {
+class HomePage extends StatefulWidget {
   const HomePage();
 
   static Route<void> route({required List<String> keywords}) {
@@ -147,7 +147,7 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class _Item extends StatelessWidget with Grab {
+class _Item extends StatelessWidget {
   const _Item(this.index, this.searchController);
 
   final int index;
@@ -168,7 +168,7 @@ class _Item extends StatelessWidget with Grab {
   }
 }
 
-class _PendingItem extends StatelessWidget with Grab {
+class _PendingItem extends StatelessWidget {
   const _PendingItem();
 
   @override
