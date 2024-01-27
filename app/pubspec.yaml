@@ -15,9 +15,9 @@ dependencies:
 
   # Packages by the app author
   async_phase_notifier: ^0.4.2
-  custom_text: ^1.4.3
+  custom_text: ^1.4.4
   grab: ^1.0.0-dev.1
-  pottery: ^0.4.1
+  pottery: ^0.4.2
 
   # Other packages
   collection: ^1.18.0

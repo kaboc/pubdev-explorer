@@ -61,10 +61,10 @@ packages:
     dependency: "direct main"
     description:
       name: custom_text
-      sha256: "04456e600c8424973fea6c21a426c447dc4ca494dcafea27527751713f29f694"
+      sha256: "6735e57706aee80dea7c18f25ca0d71e68273744a3487938c0af494e8cb54440"
       url: "https://pub.dev"
     source: hosted
-    version: "1.4.3"
+    version: "1.4.4"
   drift:
     dependency: "direct main"
     description:
@@ -263,10 +263,10 @@ packages:
     dependency: "direct main"
     description:
       name: pottery
-      sha256: "1a95444126dbc32409e659cfa0e1586a23daa76d59d41a9ce18eb89c87488ba7"
+      sha256: "10c9c057daa5eb3147611f50cb3f7358f3dd5446764a4ea5a1a219189f69e205"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.1"
+    version: "0.4.2"
   pubdev_explorer_core:
     dependency: "direct main"
     description:
