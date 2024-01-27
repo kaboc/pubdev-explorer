@@ -183,7 +183,7 @@ class _PendingItem extends StatelessWidget {
       error: (_, e, __) => Center(
         child: e is UnimplementedError
             ? const Text(
-                'Search is not supported in this environment.',
+                'Search is not supported on the web.',
               )
             : ElevatedButton(
                 onPressed: () {
