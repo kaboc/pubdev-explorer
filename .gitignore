@@ -1,3 +1,5 @@
 .idea/
-.fvm/
 *.iml
+
+.fvm/
+.fvmrc
