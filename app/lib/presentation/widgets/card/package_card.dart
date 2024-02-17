@@ -5,13 +5,13 @@ import 'package:grab/grab.dart';
 
 import 'package:pubdev_explorer/common/_common.dart';
 import 'package:pubdev_explorer/presentation/common/_common.dart';
-import 'package:pubdev_explorer/presentation/widgets/card/highlighted_text.dart';
 import 'package:pubdev_explorer/presentation/widgets/card/metrics.dart';
 import 'package:pubdev_explorer/presentation/widgets/card/package_name.dart';
 import 'package:pubdev_explorer/presentation/widgets/card/publisher_link.dart';
 import 'package:pubdev_explorer/presentation/widgets/card/refresh_button.dart';
 import 'package:pubdev_explorer/presentation/widgets/card/tag_list.dart';
 import 'package:pubdev_explorer/presentation/widgets/card/version_table.dart';
+import 'package:pubdev_explorer/presentation/widgets/foundation/highlighted_text.dart';
 
 PackageCaches get _packageCaches => packageCachesPot();
 

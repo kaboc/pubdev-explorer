@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pubdev_explorer/common/_common.dart';
 import 'package:pubdev_explorer/presentation/common/_common.dart';
 import 'package:pubdev_explorer/presentation/pages/home/home_page.dart';
-import 'package:pubdev_explorer/presentation/widgets/card/highlighted_text.dart';
+import 'package:pubdev_explorer/presentation/widgets/foundation/highlighted_text.dart';
 
 class PublisherLink extends StatelessWidget {
   const PublisherLink({required this.package, required this.highlights});

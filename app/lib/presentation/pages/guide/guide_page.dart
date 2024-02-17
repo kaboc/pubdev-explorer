@@ -122,9 +122,11 @@ class _Body extends StatelessWidget {
         const SizedBox(height: 32.0),
         const GuideHeading('GitHub'),
         const SizedBox(height: 10.0),
-        const LinkedText.external(
+        const HighlightedText.externalLink(
           'https://github.com/kaboc/pubdev-explorer',
+          linkText: 'https://github.com/kaboc/pubdev-explorer',
           url: 'https://github.com/kaboc/pubdev-explorer',
+          words: [],
         ),
       ],
     );

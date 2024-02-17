@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:pubdev_explorer/presentation/common/_common.dart';
-import 'package:pubdev_explorer/presentation/widgets/card/highlighted_text.dart';
+import 'package:pubdev_explorer/presentation/widgets/foundation/highlighted_text.dart';
 
 class PackageName extends StatelessWidget {
   const PackageName({required this.name, required this.highlights});
