@@ -124,9 +124,6 @@ class _Body extends StatelessWidget {
         const SizedBox(height: 10.0),
         const HighlightedText.externalLink(
           'https://github.com/kaboc/pubdev-explorer',
-          linkText: 'https://github.com/kaboc/pubdev-explorer',
-          url: 'https://github.com/kaboc/pubdev-explorer',
-          words: [],
         ),
       ],
     );

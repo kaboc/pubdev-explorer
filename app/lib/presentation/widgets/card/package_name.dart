@@ -16,7 +16,6 @@ class PackageName extends StatelessWidget {
 
     return HighlightedText.externalLink(
       name,
-      linkText: name,
       words: highlights,
       url: packageUrl,
       style: context.headlineMedium,

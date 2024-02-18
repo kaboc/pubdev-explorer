@@ -30,13 +30,11 @@ class PublisherLink extends StatelessWidget {
           child: isMockUsed
               ? HighlightedText.externalLink(
                   publisher,
-                  linkText: publisher,
                   words: highlights,
                   url: publisherUrl,
                 )
               : HighlightedText.link(
                   publisher,
-                  linkText: publisher,
                   words: highlights,
                   onTap: isPublisherSearch
                       ? null

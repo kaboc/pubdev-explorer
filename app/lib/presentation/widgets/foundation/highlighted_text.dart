@@ -17,19 +17,22 @@ class HighlightedText extends StatefulWidget {
 
   const HighlightedText.link(
     this.text, {
-    required this.words,
-    required String this.linkText,
+    this.words = const [],
+    String? linkText,
     required this.onTap,
     this.style,
-  }) : url = null;
+  })  : linkText = linkText ?? text,
+        url = null;
 
   const HighlightedText.externalLink(
     this.text, {
-    required this.words,
-    required String this.linkText,
-    required String this.url,
+    this.words = const [],
+    String? linkText,
+    String? url,
     this.style,
-  }) : onTap = null;
+  })  : linkText = linkText ?? text,
+        url = url ?? text,
+        onTap = null;
 
   final String text;
   final Iterable<String> words;
