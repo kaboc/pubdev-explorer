@@ -15,7 +15,7 @@ part '../../../generated/infrastructure/local_db/daos/bookmarks_dao.g.dart';
 class BookmarksDao extends DatabaseAccessor<Database> with _$BookmarksDaoMixin {
   BookmarksDao(super.db);
 
-  Future<List<Package>> fetch({
+  Future<Iterable<Package>> fetch({
     required int limit,
     required DateTime before,
   }) async {
@@ -29,11 +29,11 @@ class BookmarksDao extends DatabaseAccessor<Database> with _$BookmarksDaoMixin {
 
     final list = await stmt.get();
 
-    return [for (final data in list) data.asPackage];
+    return list.map((data) => data.asPackage);
   }
 
-  Future<List<Package>> search({
-    required List<String> words,
+  Future<Iterable<Package>> search({
+    required Iterable<String> words,
     required int limit,
     required DateTime before,
   }) async {
@@ -60,7 +60,7 @@ class BookmarksDao extends DatabaseAccessor<Database> with _$BookmarksDaoMixin {
 
     final list = await stmt.get();
 
-    return [for (final data in list) data.asPackage];
+    return list.map((data) => data.asPackage);
   }
 
   Future<void> addOrUpdateBookmark({required Package package}) async {

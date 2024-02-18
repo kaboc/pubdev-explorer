@@ -32,7 +32,7 @@ class App extends StatelessWidget {
     final themeMode = settingsNotifierPot().grabAt(context, (s) => s.themeMode);
 
     return MaterialApp(
-      title: 'pub.dev explorer',
+      title: kAppName,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: themeMode,

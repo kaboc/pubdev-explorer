@@ -10,8 +10,7 @@ part of '../../../../infrastructure/pub_api/models/package_names.dart';
 
 PackageNames _$PackageNamesFromJson(Map<String, dynamic> json) => PackageNames(
       list: (json['packages'] as List<dynamic>?)
-              ?.map((e) => _Name.fromJson(e as Map<String, dynamic>))
-              .toList() ??
+              ?.map((e) => _Name.fromJson(e as Map<String, dynamic>)) ??
           const [],
     );
 

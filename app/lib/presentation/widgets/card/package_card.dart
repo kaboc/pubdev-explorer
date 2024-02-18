@@ -19,7 +19,7 @@ class PackageCard extends StatelessWidget {
   const PackageCard({required this.name, this.highlights = const []});
 
   final String name;
-  final List<String> highlights;
+  final Iterable<String> highlights;
 
   PackageNotifier? get _notifier => _packageCaches[name];
 

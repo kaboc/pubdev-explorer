@@ -44,7 +44,7 @@ class BookmarksNotifier extends AsyncPhaseNotifier<BookmarksState> {
           value = value.copyWith(
             data.copyWith(
               packageNames: {},
-              keywords: words.toList(),
+              keywords: words,
             ),
           );
 

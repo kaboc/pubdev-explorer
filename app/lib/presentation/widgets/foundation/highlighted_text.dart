@@ -32,7 +32,7 @@ class HighlightedText extends StatefulWidget {
   }) : onTap = null;
 
   final String text;
-  final List<String> words;
+  final Iterable<String> words;
   final TextStyle? style;
   final String? linkText;
   final VoidCallback? onTap;

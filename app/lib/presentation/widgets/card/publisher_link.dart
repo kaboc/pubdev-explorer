@@ -9,7 +9,7 @@ class PublisherLink extends StatelessWidget {
   const PublisherLink({required this.package, required this.highlights});
 
   final Package package;
-  final List<String> highlights;
+  final Iterable<String> highlights;
 
   @override
   Widget build(BuildContext context) {

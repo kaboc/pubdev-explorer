@@ -8,7 +8,7 @@ class BookmarksState extends Equatable {
   });
 
   final Set<String> packageNames;
-  final List<String> keywords;
+  final Iterable<String> keywords;
   final bool hasMore;
 
   @override
@@ -16,7 +16,7 @@ class BookmarksState extends Equatable {
 
   BookmarksState copyWith({
     Set<String>? packageNames,
-    List<String>? keywords,
+    Iterable<String>? keywords,
     bool? hasMore,
   }) {
     return BookmarksState(

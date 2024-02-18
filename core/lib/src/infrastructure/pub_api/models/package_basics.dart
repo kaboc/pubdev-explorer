@@ -19,7 +19,7 @@ class PackageBasics {
 
   final String name;
   final _Version latest;
-  final List<_Version> versions;
+  final Iterable<_Version> versions;
 }
 
 @JsonSerializable()
@@ -37,7 +37,7 @@ class _Version extends Equatable {
   @JsonKey(name: 'pubspec')
   final _PubSpec pubSpec;
 
-  @JsonKey(fromJson: dateTimeFromJson)
+  @JsonKey(fromJson: _dateTimeFromJson)
   final DateTime? published;
 
   @override
@@ -45,7 +45,7 @@ class _Version extends Equatable {
 
   JsonMap toJson() => _$VersionToJson(this);
 
-  static DateTime? dateTimeFromJson(String? text) =>
+  static DateTime? _dateTimeFromJson(String? text) =>
       text == null ? null : DateTime.tryParse(text)?.toLocal();
 }
 

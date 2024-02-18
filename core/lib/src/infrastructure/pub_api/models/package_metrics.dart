@@ -37,12 +37,12 @@ class PackageDetails {
   final int likeCount;
   final double popularityScore;
 
-  @JsonKey(fromJson: tagsFromJson)
+  @JsonKey(fromJson: _tagsFromJson)
   final _Tags tags;
 
   JsonMap toJson() => _$PackageDetailsToJson(this);
 
-  static _Tags tagsFromJson(List<Object?> list) {
+  static _Tags _tagsFromJson(Iterable<Object?> list) {
     final l = List<String>.from(list);
 
     return _Tags.fromJson({
@@ -70,17 +70,17 @@ class _Tags {
 
   factory _Tags.fromJson(JsonMap json) => _$TagsFromJson(json);
 
-  @JsonKey(fromJson: sdksFromJson)
-  final List<Sdk> sdks;
-  @JsonKey(fromJson: platformsFromJson)
-  final List<Platform> platforms;
+  @JsonKey(fromJson: _sdksFromJson)
+  final Iterable<Sdk> sdks;
+  @JsonKey(fromJson: _platformsFromJson)
+  final Iterable<Platform> platforms;
   final String publisher;
 
   JsonMap toJson() => _$TagsToJson(this);
 
-  static List<Sdk> sdksFromJson(List<Object?> list) =>
+  static Iterable<Sdk> _sdksFromJson(Iterable<Object?> list) =>
       Sdk.values.fromNames(List<String>.from(list));
 
-  static List<Platform> platformsFromJson(List<Object?> list) =>
+  static Iterable<Platform> _platformsFromJson(Iterable<Object?> list) =>
       Platform.values.fromNames(List<String>.from(list));
 }

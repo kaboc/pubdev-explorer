@@ -13,7 +13,7 @@ class HomeState extends Equatable {
   final int page;
   final int index;
   final bool hasMore;
-  final List<String>? keywords;
+  final Iterable<String>? keywords;
 
   @override
   List<Object?> get props => [packageNames, page, index, hasMore, keywords];
@@ -32,7 +32,7 @@ class HomeState extends Equatable {
     int? page,
     int? index,
     bool? hasMore,
-    List<String>? keywords,
+    Iterable<String>? keywords,
   }) {
     return HomeState(
       packageNames: packageNames ?? this.packageNames,

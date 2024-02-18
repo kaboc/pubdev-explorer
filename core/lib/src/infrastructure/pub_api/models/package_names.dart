@@ -13,7 +13,7 @@ class PackageNames {
   factory PackageNames.fromJson(JsonMap json) => _$PackageNamesFromJson(json);
 
   @JsonKey(name: 'packages')
-  final List<_Name> list;
+  final Iterable<_Name> list;
 }
 
 @JsonSerializable()

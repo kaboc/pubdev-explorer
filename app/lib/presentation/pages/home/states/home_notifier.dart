@@ -11,7 +11,7 @@ PackagesRepository get _repository => packagesRepositoryPot();
 PackageCaches get _packageCaches => packageCachesPot();
 
 class HomeNotifier extends AsyncPhaseNotifier<HomeState> {
-  HomeNotifier({List<String>? keywords})
+  HomeNotifier({Iterable<String>? keywords})
       : isSearch = keywords != null,
         isPublisherSearch = (keywords ?? []).any(
           (w) => w.startsWith('publisher:'),
@@ -39,7 +39,7 @@ class HomeNotifier extends AsyncPhaseNotifier<HomeState> {
     await _fetchCurrentPackage();
   }
 
-  Future<void> fetchNames({List<String>? keywords}) async {
+  Future<void> fetchNames({Iterable<String>? keywords}) async {
     final data = value.data!;
     final prevKeywords = data.keywords;
 

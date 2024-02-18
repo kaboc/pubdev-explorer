@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:pubdev_explorer/common/_common.dart';
-import 'package:pubdev_explorer/presentation/common/_common.dart';
 import 'package:pubdev_explorer/presentation/pages/bookmarks/bookmarks_page.dart';
 import 'package:pubdev_explorer/presentation/pages/guide/guide_page.dart';
 

@@ -14,7 +14,7 @@ import 'package:pubdev_explorer/presentation/widgets/_widgets.dart';
 class HomePage extends StatefulWidget {
   const HomePage();
 
-  static Route<void> route({required List<String> keywords}) {
+  static Route<void> route({required Iterable<String> keywords}) {
     return FadingPageRoute<void>(
       builder: (_) => LocalPottery(
         pots: {
@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
               ? notifier.isPublisherSearch
                   ? const Text('Publisher')
                   : Text('Search - $joinedKeywords')
-              : const Text('pub.dev explorer'),
+              : const Text(kAppName),
           actions: const [
             HelpButton(),
             ThemeModeButton(),

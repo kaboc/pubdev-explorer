@@ -1,13 +1,13 @@
-extension EnumList<T extends Enum> on List<T> {
+extension EnumCollection<T extends Enum> on Iterable<T> {
   T? byNameOrNull(String name) {
     return asNameMap()[name];
   }
 
-  List<T> fromNames(List<String> names) {
-    return names.map(byNameOrNull).whereType<T>().toList();
+  Iterable<T> fromNames(Iterable<String> names) {
+    return names.map(byNameOrNull).whereType<T>();
   }
 
-  List<T> fromCommaSeparatedNames(String names) {
+  Iterable<T> fromCommaSeparatedNames(String names) {
     return fromNames(names.split(','));
   }
 

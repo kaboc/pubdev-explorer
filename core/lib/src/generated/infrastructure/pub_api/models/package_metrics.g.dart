@@ -23,7 +23,7 @@ PackageDetails _$PackageDetailsFromJson(Map<String, dynamic> json) =>
       popularityScore: (json['popularityScore'] as num?)?.toDouble() ?? 0.0,
       tags: json['tags'] == null
           ? const _Tags()
-          : PackageDetails.tagsFromJson(json['tags'] as List),
+          : PackageDetails._tagsFromJson(json['tags'] as List),
     );
 
 Map<String, dynamic> _$PackageDetailsToJson(PackageDetails instance) =>
@@ -38,10 +38,10 @@ Map<String, dynamic> _$PackageDetailsToJson(PackageDetails instance) =>
 _Tags _$TagsFromJson(Map<String, dynamic> json) => _Tags(
       sdks: json['sdks'] == null
           ? const []
-          : _Tags.sdksFromJson(json['sdks'] as List),
+          : _Tags._sdksFromJson(json['sdks'] as List),
       platforms: json['platforms'] == null
           ? const []
-          : _Tags.platformsFromJson(json['platforms'] as List),
+          : _Tags._platformsFromJson(json['platforms'] as List),
       publisher: json['publisher'] as String? ?? '',
     );
 

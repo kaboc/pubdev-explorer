@@ -11,9 +11,9 @@ import 'package:pubdev_explorer_core/src/infrastructure/pub_api/models/package_n
 class PubDao {
   const PubDao();
 
-  Future<List<String>> fetchPackageNames({
+  Future<Iterable<String>> fetchPackageNames({
     int page = 1,
-    List<String>? keywords,
+    Iterable<String>? keywords,
   }) async {
     final queries = [
       'is:dart3-compatible',
@@ -32,7 +32,7 @@ class PubDao {
 
     if (response.statusCode == 200) {
       final jsonMap = await jsonDecode(response.body) as JsonMap;
-      return PackageNames.fromJson(jsonMap).list.map((v) => v.name).toList();
+      return PackageNames.fromJson(jsonMap).list.map((v) => v.name);
     }
 
     throw Exception(response.reasonPhrase);

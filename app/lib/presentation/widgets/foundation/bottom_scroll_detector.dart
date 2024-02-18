@@ -13,7 +13,7 @@ class BottomScrollDetector extends StatefulWidget {
   });
 
   final double extent;
-  final List<Widget> slivers;
+  final Iterable<Widget> slivers;
   final EdgeInsets padding;
   final AsyncCallback? onBottomReached;
   final bool? primary;
@@ -35,11 +35,10 @@ class _BottomScrollDetectorState extends State<BottomScrollDetector> {
         final currentDistance = metrics.maxScrollExtent - metrics.pixels;
 
         if (_isCallbackEnabled &&
-            onBottomReached != null &&
             _prevDistance > widget.extent &&
             currentDistance <= widget.extent) {
           _isCallbackEnabled = false;
-          onBottomReached().then((_) => _isCallbackEnabled = true);
+          onBottomReached?.call().then((_) => _isCallbackEnabled = true);
         }
 
         _prevDistance = currentDistance;

@@ -15,8 +15,7 @@ PackageBasics _$PackageBasicsFromJson(Map<String, dynamic> json) =>
           ? const _Version()
           : _Version.fromJson(json['latest'] as Map<String, dynamic>),
       versions: (json['versions'] as List<dynamic>?)
-              ?.map((e) => _Version.fromJson(e as Map<String, dynamic>))
-              .toList() ??
+              ?.map((e) => _Version.fromJson(e as Map<String, dynamic>)) ??
           const [],
     );
 
@@ -25,7 +24,7 @@ _Version _$VersionFromJson(Map<String, dynamic> json) => _Version(
       pubSpec: json['pubspec'] == null
           ? const _PubSpec()
           : _PubSpec.fromJson(json['pubspec'] as Map<String, dynamic>),
-      published: _Version.dateTimeFromJson(json['published'] as String?),
+      published: _Version._dateTimeFromJson(json['published'] as String?),
     );
 
 Map<String, dynamic> _$VersionToJson(_Version instance) => <String, dynamic>{

@@ -9,9 +9,9 @@ PackagesDao get _localDao => localDatabasePot().packagesDao;
 class PackagesRepository {
   const PackagesRepository();
 
-  Future<List<String>> fetchPackageNames({
+  Future<Iterable<String>> fetchPackageNames({
     int page = 0,
-    List<String>? keywords,
+    Iterable<String>? keywords,
   }) async {
     try {
       return await _remoteDao.fetchPackageNames(page: page, keywords: keywords);
@@ -36,8 +36,7 @@ class PackagesRepository {
 
         // Fetches from local DB again to obtain the package
         // together with bookmark status.
-        package = await _fetchPackageFromLocal(name, cacheDuration);
-        return package!;
+        return await _fetchPackageFromLocal(name, cacheDuration) ?? package;
       }
 
       return package;

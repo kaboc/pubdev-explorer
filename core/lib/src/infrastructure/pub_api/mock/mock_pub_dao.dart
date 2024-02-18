@@ -12,9 +12,9 @@ const _kNameLimit = 10;
 
 class MockPubDao implements PubDao {
   @override
-  Future<List<String>> fetchPackageNames({
+  Future<Iterable<String>> fetchPackageNames({
     int page = 1,
-    List<String>? keywords,
+    Iterable<String>? keywords,
   }) async {
     await Future<void>.delayed(const Duration(milliseconds: 200));
 
@@ -32,10 +32,7 @@ class MockPubDao implements PubDao {
         ? kMockPackageNames.getRange(start, end).toList()
         : <JsonMap>[];
 
-    return PackageNames.fromJson({'packages': names})
-        .list
-        .map((v) => v.name)
-        .toList();
+    return PackageNames.fromJson({'packages': names}).list.map((v) => v.name);
   }
 
   @override

@@ -6,7 +6,7 @@ import 'package:pubdev_explorer/presentation/common/_common.dart';
 class TagList extends StatelessWidget {
   const TagList({required this.tags});
 
-  final List<Tag> tags;
+  final Iterable<Tag> tags;
 
   @override
   Widget build(BuildContext context) {

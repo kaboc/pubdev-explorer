@@ -7,7 +7,7 @@ BookmarksDao get _dao => localDatabasePot().bookmarksDao;
 class BookmarksRepository {
   const BookmarksRepository();
 
-  Future<List<Package>> fetch({required int limit, DateTime? before}) {
+  Future<Iterable<Package>> fetch({required int limit, DateTime? before}) {
     try {
       return _dao.fetch(
         limit: limit,
@@ -19,8 +19,8 @@ class BookmarksRepository {
     }
   }
 
-  Future<List<Package>> search({
-    required List<String> words,
+  Future<Iterable<Package>> search({
+    required Iterable<String> words,
     required int limit,
     DateTime? before,
   }) {

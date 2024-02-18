@@ -26,8 +26,8 @@ class Package extends Equatable {
   final String description;
   final Version latest;
   final Version? preRelease;
-  final List<Sdk> sdks;
-  final List<Platform> platforms;
+  final Iterable<Sdk> sdks;
+  final Iterable<Platform> platforms;
   final String publisher;
   final int points;
   final int maxPoints;
@@ -63,8 +63,8 @@ class Package extends Equatable {
     String? description,
     Version? latest,
     Version? preRelease,
-    List<Sdk>? sdks,
-    List<Platform>? platforms,
+    Iterable<Sdk>? sdks,
+    Iterable<Platform>? platforms,
     String? publisher,
     int? points,
     int? maxPoints,
