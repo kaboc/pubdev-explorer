@@ -18,7 +18,7 @@ class PackageName extends StatelessWidget {
       name,
       words: highlights,
       url: packageUrl,
-      style: context.headlineMedium,
+      style: context.headlineLarge,
     );
   }
 }

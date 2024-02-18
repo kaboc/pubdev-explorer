@@ -64,8 +64,12 @@ extension on ThemeData {
   ThemeData copyWithCommonTheme() {
     return copyWith(
       textTheme: textTheme.copyWith(
-        headlineMedium: textTheme.headlineMedium?.copyWith(
+        headlineLarge: textTheme.headlineLarge?.copyWith(
           fontSize: 28.0,
+          fontWeight: FontWeight.bold,
+        ),
+        headlineMedium: textTheme.headlineMedium?.copyWith(
+          fontSize: 24.0,
           fontWeight: FontWeight.bold,
         ),
         headlineSmall: textTheme.headlineSmall?.copyWith(
@@ -108,6 +112,7 @@ extension ThemeExtension on BuildContext {
   Color get secondaryColor => theme.colorScheme.secondary;
   Color get tertiaryColor => theme.colorScheme.tertiary;
 
+  TextStyle get headlineLarge => theme.textTheme.headlineLarge!;
   TextStyle get headlineMedium => theme.textTheme.headlineMedium!;
   TextStyle get headlineSmall => theme.textTheme.headlineSmall!;
   TextStyle get bodyMedium => theme.textTheme.bodyMedium!;

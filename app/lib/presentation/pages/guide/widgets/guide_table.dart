@@ -12,9 +12,21 @@ class GuideHeading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: context.headlineSmall.copyWith(
-        fontWeight: FontWeight.bold,
-      ),
+      style: context.headlineMedium.copyWith(),
+    );
+  }
+}
+
+class GuideSubHeading extends StatelessWidget {
+  const GuideSubHeading(this.text);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: context.headlineMedium.copyWith(fontSize: 16.0),
     );
   }
 }
