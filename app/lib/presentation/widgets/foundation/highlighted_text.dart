@@ -97,7 +97,9 @@ class _HighlightedTextState extends State<HighlightedText> {
             ),
             TextDefinition(
               matcher: ExactMatcher(widget.words),
-              matchStyle: TextStyle(backgroundColor: Colors.yellow.shade200),
+              matchStyle: TextStyle(
+                backgroundColor: Colors.yellow.withOpacity(0.4),
+              ),
             ),
           ],
         ),
