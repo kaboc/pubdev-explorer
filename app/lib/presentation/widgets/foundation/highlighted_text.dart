@@ -56,9 +56,10 @@ class _HighlightedTextState extends State<HighlightedText> {
       decorationColor: context.secondaryColor,
       decoration: _focused ? TextDecoration.underline : null,
     );
+    final iconColor = context.tertiaryColor.withOpacity(0.6);
 
     final child = CustomText(
-      widget.text,
+      '${widget.text}${widget.url == null ? '' : '<icon>'}',
       style: widget.style,
       definitions: [
         if (linkText == null)
@@ -67,7 +68,7 @@ class _HighlightedTextState extends State<HighlightedText> {
           )
         else
           TextDefinition(
-            matcher: ExactMatcher([linkText]),
+            matcher: PatternMatcher('$linkText\uFFFC?'),
             matchStyle: linkStyle,
             hoverStyle: linkStyle.copyWith(
               color: context.secondaryColor.withOpacity(0.7),
@@ -79,6 +80,20 @@ class _HighlightedTextState extends State<HighlightedText> {
       preBuilder: CustomSpanBuilder(
         parserOptions: const ParserOptions(caseSensitive: false),
         definitions: [
+          SpanDefinition(
+            matcher: ExactMatcher(const ['<icon>']),
+            builder: (element) => WidgetSpan(
+              alignment: PlaceholderAlignment.middle,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 2.0),
+                child: Icon(
+                  Icons.open_in_new,
+                  size: 12.0,
+                  color: iconColor,
+                ),
+              ),
+            ),
+          ),
           TextDefinition(
             matcher: ExactMatcher(widget.words),
             matchStyle: TextStyle(backgroundColor: Colors.yellow.shade200),
