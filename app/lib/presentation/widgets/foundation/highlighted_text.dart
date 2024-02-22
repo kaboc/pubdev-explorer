@@ -58,52 +58,54 @@ class _HighlightedTextState extends State<HighlightedText> {
     );
     final iconColor = context.tertiaryColor.withOpacity(0.6);
 
-    final child = CustomText(
-      '${widget.text}${widget.url == null ? '' : '<icon>'}',
-      style: widget.style,
-      definitions: [
-        if (linkText == null)
-          const TextDefinition(
-            matcher: PatternMatcher(''),
-          )
-        else
-          TextDefinition(
-            matcher: PatternMatcher('$linkText\uFFFC?'),
-            matchStyle: linkStyle,
-            hoverStyle: linkStyle.copyWith(
-              color: context.secondaryColor.withOpacity(0.7),
-              decorationColor: context.secondaryColor.withOpacity(0.7),
-            ),
-            mouseCursor: SystemMouseCursors.click,
-          ),
-      ],
-      preBuilder: CustomSpanBuilder(
-        parserOptions: const ParserOptions(caseSensitive: false),
+    Widget builder(BuildContext context, [VoidCallback? onTap]) {
+      return CustomText(
+        '${widget.text}${widget.url == null ? '' : '<icon>'}',
+        style: widget.style,
         definitions: [
-          SpanDefinition(
-            matcher: ExactMatcher(const ['<icon>']),
-            builder: (element) => WidgetSpan(
-              alignment: PlaceholderAlignment.middle,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 2.0),
-                child: Icon(
-                  Icons.open_in_new,
-                  size: 12.0,
-                  color: iconColor,
+          if (linkText == null)
+            const TextDefinition(
+              matcher: PatternMatcher(''),
+            )
+          else
+            TextDefinition(
+              matcher: PatternMatcher('$linkText\uFFFC?'),
+              matchStyle: linkStyle,
+              hoverStyle: linkStyle.copyWith(
+                color: context.secondaryColor.withOpacity(0.7),
+                decorationColor: context.secondaryColor.withOpacity(0.7),
+              ),
+              onTap: (_) => onTap?.call(),
+            ),
+        ],
+        preBuilder: CustomSpanBuilder(
+          parserOptions: const ParserOptions(caseSensitive: false),
+          definitions: [
+            SpanDefinition(
+              matcher: ExactMatcher(const ['<icon>']),
+              builder: (element) => WidgetSpan(
+                alignment: PlaceholderAlignment.middle,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 2.0),
+                  child: Icon(
+                    Icons.open_in_new,
+                    size: 12.0,
+                    color: iconColor,
+                  ),
                 ),
               ),
             ),
-          ),
-          TextDefinition(
-            matcher: ExactMatcher(widget.words),
-            matchStyle: TextStyle(backgroundColor: Colors.yellow.shade200),
-          ),
-        ],
-      ),
-    );
+            TextDefinition(
+              matcher: ExactMatcher(widget.words),
+              matchStyle: TextStyle(backgroundColor: Colors.yellow.shade200),
+            ),
+          ],
+        ),
+      );
+    }
 
     if (widget.onTap == null && widget.url == null) {
-      return child;
+      return builder(context);
     }
 
     final onTap = widget.onTap;
@@ -116,14 +118,14 @@ class _HighlightedTextState extends State<HighlightedText> {
               return _Actions(
                 onTap: followLink!,
                 onFocusChange: _onFocusChange,
-                child: child,
+                child: builder(context, followLink),
               );
             },
           )
         : _Actions(
             onTap: onTap,
             onFocusChange: _onFocusChange,
-            child: child,
+            child: builder(context, onTap),
           );
   }
 
@@ -145,18 +147,15 @@ class _Actions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Actions(
-        actions: {
-          ActivateIntent: CallbackAction<ActivateIntent>(
-            onInvoke: (_) => onTap(),
-          ),
-        },
-        child: Focus(
-          onFocusChange: onFocusChange,
-          child: child,
+    return Actions(
+      actions: {
+        ActivateIntent: CallbackAction<ActivateIntent>(
+          onInvoke: (_) => onTap(),
         ),
+      },
+      child: Focus(
+        onFocusChange: onFocusChange,
+        child: child,
       ),
     );
   }
