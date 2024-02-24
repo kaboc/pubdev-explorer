@@ -1,10 +1,12 @@
+import 'package:collection/collection.dart';
+
 import 'package:pubdev_explorer_core/src/domain/pub/_pub.dart';
 import 'package:pubdev_explorer_core/src/infrastructure/pub_api/models/package_basics.dart';
 
 extension BasicsToPackage on PackageBasics {
   Package get asPackage {
     final latestVersion = latest;
-    final lastVersion = versions.lastOrNull;
+    final lastVersion = versions.lastWhereOrNull((v) => !v.retracted);
 
     return Package(
       name: name,

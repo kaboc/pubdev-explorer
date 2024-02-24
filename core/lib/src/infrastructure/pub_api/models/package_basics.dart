@@ -30,6 +30,11 @@ extension type const _Version(JsonMap json) {
         _ => '',
       };
 
+  bool get retracted => switch (json) {
+        {'retracted': final bool retracted} => retracted,
+        _ => false,
+      };
+
   _PubSpec get pubSpec => _PubSpec(
         switch (json) {
           {'pubspec': final JsonMap pubSpec} => pubSpec,
