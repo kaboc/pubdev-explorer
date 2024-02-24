@@ -65,8 +65,8 @@ if you haven't changed anything, the above command is unnecessary.
 ### Mock data for the web
 
 The pub.dev API is not available on the web unfortunately, so mock data preset
-in the app is used instead. The data contains the packages by the author and
-150 most popular packages.
+in the app is used instead. The data contains the packages that were top 100
+at some point in the past.
 
 ### Mock data on other platforms 
 
