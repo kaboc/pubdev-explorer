@@ -15,3 +15,9 @@ extension EnumCollection<T extends Enum> on Iterable<T> {
     return map((v) => v.name).join(',');
   }
 }
+
+extension StringToLocalTime on String {
+  DateTime? toLocalTime() {
+    return DateTime.tryParse(this)?.toLocal();
+  }
+}

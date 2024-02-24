@@ -1,86 +1,59 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:collection/collection.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 import 'package:pubdev_explorer_core/src/common/_common.dart';
 import 'package:pubdev_explorer_core/src/domain/pub/_pub.dart';
 
-part '../../../generated/infrastructure/pub_api/models/package_metrics.g.dart';
+extension type const PackageMetrics._(JsonMap json) {
+  const PackageMetrics.fromJson(this.json);
 
-@JsonSerializable(explicitToJson: true, createToJson: false)
-class PackageMetrics {
-  const PackageMetrics({this.details = const PackageDetails()});
-
-  factory PackageMetrics.fromJson(JsonMap json) =>
-      _$PackageMetricsFromJson(json);
-
-  @JsonKey(name: 'score')
-  final PackageDetails details;
+  PackageDetails get details => PackageDetails(
+        switch (json) {
+          {'score': final JsonMap score} => score,
+          _ => {},
+        },
+      );
 }
 
-@JsonSerializable()
-class PackageDetails {
-  const PackageDetails({
-    this.grantedPoints = 0,
-    this.maxPoints = 0,
-    this.likeCount = 0,
-    this.popularityScore = 0.0,
-    this.tags = const _Tags(),
-  });
+extension type const PackageDetails(JsonMap json) {
+  int get grantedPoints => switch (json) {
+        {'grantedPoints': final int grantedPoints} => grantedPoints,
+        _ => 0,
+      };
 
-  factory PackageDetails.fromJson(JsonMap json) =>
-      _$PackageDetailsFromJson(json);
+  int get maxPoints => switch (json) {
+        {'maxPoints': final int maxPoints} => maxPoints,
+        _ => 0,
+      };
 
-  final int grantedPoints;
-  final int maxPoints;
-  final int likeCount;
-  final double popularityScore;
+  int get likeCount => switch (json) {
+        {'likeCount': final int likeCount} => likeCount,
+        _ => 0,
+      };
 
-  @JsonKey(fromJson: _tagsFromJson)
-  final _Tags tags;
+  double get popularityScore => switch (json) {
+        {'popularityScore': final double popularityScore} => popularityScore,
+        _ => 0.0,
+      };
 
-  JsonMap toJson() => _$PackageDetailsToJson(this);
-
-  static _Tags _tagsFromJson(Iterable<Object?> list) {
-    final l = List<String>.from(list);
-
-    return _Tags.fromJson({
-      'sdks': l
-          .where((v) => v.startsWith('sdk:'))
-          .map((v) => v.substring(4))
-          .toList(),
-      'platforms': l
-          .where((v) => v.startsWith('platform:'))
-          .map((v) => v.substring(9))
-          .toList(),
-      'publisher':
-          l.firstWhereOrNull((v) => v.startsWith('publisher:'))?.substring(10),
-    });
-  }
+  _Tags get tags => _Tags(
+        switch (json) {
+          {'tags': final List<Object?> tags} => tags.whereType<String>(),
+          _ => [],
+        },
+      );
 }
 
-@JsonSerializable()
-class _Tags {
-  const _Tags({
-    this.sdks = const [],
-    this.platforms = const [],
-    this.publisher = '',
-  });
+extension type const _Tags(Iterable<String> list) {
+  Iterable<Sdk> get sdks => Sdk.values.fromNames(
+        list.where((v) => v.startsWith('sdk:')).map((v) => v.substring(4)),
+      );
 
-  factory _Tags.fromJson(JsonMap json) => _$TagsFromJson(json);
+  Iterable<Platform> get platforms => Platform.values.fromNames(
+        list.where((v) => v.startsWith('platform:')).map((v) => v.substring(9)),
+      );
 
-  @JsonKey(fromJson: _sdksFromJson)
-  final Iterable<Sdk> sdks;
-  @JsonKey(fromJson: _platformsFromJson)
-  final Iterable<Platform> platforms;
-  final String publisher;
-
-  JsonMap toJson() => _$TagsToJson(this);
-
-  static Iterable<Sdk> _sdksFromJson(Iterable<Object?> list) =>
-      Sdk.values.fromNames(List<String>.from(list));
-
-  static Iterable<Platform> _platformsFromJson(Iterable<Object?> list) =>
-      Platform.values.fromNames(List<String>.from(list));
+  String? get publisher =>
+      list.firstWhereOrNull((v) => v.startsWith('publisher:'))?.substring(10);
 }

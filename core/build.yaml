@@ -9,6 +9,4 @@ targets:
           build_extensions:
             '^lib/src/infrastructure/{{}}.dart': 'lib/src/generated/infrastructure/{{}}.g.dart'
           ignore_for_file:
-            - type=lint
             - strict_raw_type
-            - duplicate_ignore

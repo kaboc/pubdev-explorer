@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: type=lint, strict_raw_type, duplicate_ignore
+// ignore_for_file: strict_raw_type
 
 part of '../../../../infrastructure/local_db/daos/settings_dao.dart';
 

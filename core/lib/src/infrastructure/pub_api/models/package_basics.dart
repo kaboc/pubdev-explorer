@@ -1,61 +1,51 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
-
 import 'package:pubdev_explorer_core/src/common/_common.dart';
 
-part '../../../generated/infrastructure/pub_api/models/package_basics.g.dart';
+extension type const PackageBasics._(JsonMap json) {
+  const PackageBasics.fromJson(this.json);
 
-@JsonSerializable(explicitToJson: true, createToJson: false)
-class PackageBasics {
-  const PackageBasics({
-    this.name = '',
-    this.latest = const _Version(),
-    this.versions = const [],
-  });
+  String get name => switch (json) {
+        {'name': final String name} => name,
+        _ => '',
+      };
 
-  factory PackageBasics.fromJson(JsonMap json) => _$PackageBasicsFromJson(json);
+  _Version get latest => _Version(
+        switch (json) {
+          {'latest': final JsonMap latest} => latest,
+          _ => {},
+        },
+      );
 
-  final String name;
-  final _Version latest;
-  final Iterable<_Version> versions;
+  List<_Version> get versions => [
+        if (json case {'versions': final List<Object?> versions})
+          for (final version in versions)
+            if (version is JsonMap) _Version(version),
+      ];
 }
 
-@JsonSerializable()
-class _Version extends Equatable {
-  const _Version({
-    this.version = '',
-    this.pubSpec = const _PubSpec(),
-    this.published,
-  });
+extension type const _Version(JsonMap json) {
+  String get version => switch (json) {
+        {'version': final String version} => version,
+        _ => '',
+      };
 
-  factory _Version.fromJson(JsonMap json) => _$VersionFromJson(json);
+  _PubSpec get pubSpec => _PubSpec(
+        switch (json) {
+          {'pubspec': final JsonMap pubSpec} => pubSpec,
+          _ => {},
+        },
+      );
 
-  final String version;
-
-  @JsonKey(name: 'pubspec')
-  final _PubSpec pubSpec;
-
-  @JsonKey(fromJson: _dateTimeFromJson)
-  final DateTime? published;
-
-  @override
-  List<Object> get props => [version];
-
-  JsonMap toJson() => _$VersionToJson(this);
-
-  static DateTime? _dateTimeFromJson(String? text) =>
-      text == null ? null : DateTime.tryParse(text)?.toLocal();
+  DateTime? get published => switch (json) {
+        {'published': final String published} => published.toLocalTime(),
+        _ => null,
+      };
 }
 
-@JsonSerializable()
-class _PubSpec {
-  const _PubSpec({this.description = ''});
-
-  factory _PubSpec.fromJson(JsonMap json) => _$PubSpecFromJson(json);
-
-  final String description;
-
-  JsonMap toJson() => _$PubSpecToJson(this);
+extension type const _PubSpec(JsonMap json) {
+  String get description => switch (json) {
+        {'description': final String description} => description,
+        _ => '',
+      };
 }
