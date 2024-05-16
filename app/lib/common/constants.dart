@@ -7,10 +7,10 @@ const kDatabaseName = 'app.sqlite';
 
 // Packages
 const kPubUrl = 'https://pub.dev/';
-const kPackageCacheDuration = Duration(days: 2);
+const kPackageCacheDuration = Duration(days: 4);
 
 // Bookmarks
-const kBookmarksFetchLimit = 20;
+const kBookmarksFetchLimit = 50;
 
 // UI
 const kContentMaxWidth = 900.0;
