@@ -14,7 +14,7 @@ class SettingsDao extends DatabaseAccessor<Database> with _$SettingsDaoMixin {
   Future<Settings> fetchSettings() async {
     final stmt = select(settingsTable)..where((t) => t.id.equals(1));
     final settings = await stmt.getSingleOrNull();
-    return settings?.asSettings ?? const Settings();
+    return settings.asSettings;
   }
 
   Future<void> addOrUpdateSettings({required Settings settings}) async {

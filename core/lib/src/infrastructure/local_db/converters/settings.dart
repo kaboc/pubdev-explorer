@@ -12,10 +12,13 @@ extension SettingsToCompanion on Settings {
   }
 }
 
-extension DataToSettings on SettingsTableData {
+extension DataToSettings on SettingsTableData? {
   Settings get asSettings {
-    return Settings(
-      themeModeIndex: themeModeIndex,
-    );
+    final self = this;
+    return self == null
+        ? const Settings()
+        : Settings(
+            themeModeIndex: self.themeModeIndex,
+          );
   }
 }
