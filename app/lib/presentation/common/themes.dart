@@ -15,12 +15,13 @@ abstract final class AppTheme {
         primary: _primaryColor,
         secondary: _secondaryColor,
         tertiary: _tertiaryColor,
-        background: const Color(0xFFEEEEEE),
-        surfaceTint: Colors.transparent,
+        surface: const Color(0xFFFFFFFF),
+        surfaceContainerLow: const Color(0xFFFFFFFF),
       ),
     ).copyWithCommonTheme();
 
     return data.copyWith(
+      scaffoldBackgroundColor: const Color(0xFFEEEEEE),
       appBarTheme: data.appBarTheme.copyWith(
         backgroundColor: _primaryColor,
       ),
@@ -28,6 +29,11 @@ abstract final class AppTheme {
         style: ElevatedButton.styleFrom(
           foregroundColor: const Color(0xFFE0E0E0),
           backgroundColor: _tertiaryColor,
+        ),
+      ),
+      menuTheme: const MenuThemeData(
+        style: MenuStyle(
+          backgroundColor: WidgetStatePropertyAll(Color(0xFFFFFFFF)),
         ),
       ),
     );
@@ -40,20 +46,26 @@ abstract final class AppTheme {
         primary: _primaryColor,
         secondary: _secondaryColorDark,
         tertiary: _tertiaryColorDark,
-        onSurface: const Color(0xFFE0E0E0),
-        background: const Color(0xFF212121),
         surface: const Color(0xFF303030),
+        onSurface: const Color(0xFFE0E0E0),
+        surfaceContainerLow: const Color(0xFF303030),
         onSurfaceVariant: _tertiaryColorDark,
       ),
     ).copyWithCommonTheme();
 
     return data.copyWith(
+      scaffoldBackgroundColor: const Color(0xFF212121),
       appBarTheme: data.appBarTheme.copyWith(
         backgroundColor: const Color(0xFF212121),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: _tertiaryColor,
+        ),
+      ),
+      menuTheme: const MenuThemeData(
+        style: MenuStyle(
+          backgroundColor: WidgetStatePropertyAll(Color(0xFF404040)),
         ),
       ),
     );
