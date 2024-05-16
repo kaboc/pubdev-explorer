@@ -1,6 +1,17 @@
 // ignore_for_file: lines_longer_than_80_chars, avoid_escaping_inner_quotes
 
 const kMockPackageBasics = {
+  'shared_preferences': {
+    'name': 'shared_preferences',
+    'latest': {
+      'version': '2.2.3',
+      'pubspec': {
+        'description':
+            'Flutter plugin for reading and writing simple key-value pairs. Wraps NSUserDefaults on iOS and SharedPreferences on Android.',
+      },
+      'published': '2024-04-11T17:32:20.807849Z',
+    },
+  },
   'http': {
     'name': 'http',
     'latest': {
@@ -12,48 +23,37 @@ const kMockPackageBasics = {
       'published': '2024-02-15T23:25:27.572746Z',
     },
   },
-  'shared_preferences': {
-    'name': 'shared_preferences',
+  'image_picker': {
+    'name': 'image_picker',
     'latest': {
-      'version': '2.2.2',
+      'version': '1.1.1',
       'pubspec': {
         'description':
-            'Flutter plugin for reading and writing simple key-value pairs. Wraps NSUserDefaults on iOS and SharedPreferences on Android.',
+            'Flutter plugin for selecting images from the Android and iOS image library, and taking new pictures with the camera.',
       },
-      'published': '2023-10-10T21:05:04.251676Z',
+      'published': '2024-04-30T17:14:57.088465Z',
     },
   },
   'provider': {
     'name': 'provider',
     'latest': {
-      'version': '6.1.1',
+      'version': '6.1.2',
       'pubspec': {
         'description':
             'A wrapper around InheritedWidget to make them easier to use and more reusable.',
       },
-      'published': '2023-11-10T00:21:25.288670Z',
-    },
-  },
-  'image_picker': {
-    'name': 'image_picker',
-    'latest': {
-      'version': '1.0.7',
-      'pubspec': {
-        'description':
-            'Flutter plugin for selecting images from the Android and iOS image library, and taking new pictures with the camera.',
-      },
-      'published': '2024-01-09T02:35:17.892961Z',
+      'published': '2024-02-28T17:09:34.887284Z',
     },
   },
   'dio': {
     'name': 'dio',
     'latest': {
-      'version': '5.4.1',
+      'version': '5.4.3+1',
       'pubspec': {
         'description':
-            'A powerful HTTP networking package,\nsupports Interceptors,\nAborting and canceling a request,\nCustom adapters, Transformers, etc.\n',
+            'A powerful HTTP networking package,\nsupports Interceptors,\nAborting and canceling a request,\nCustom adapters, Transformers, etc.',
       },
-      'published': '2024-02-18T11:01:27.574265Z',
+      'published': '2024-04-14T04:32:10.760932Z',
     },
   },
   'cached_network_image': {
@@ -70,56 +70,45 @@ const kMockPackageBasics = {
   'path_provider': {
     'name': 'path_provider',
     'latest': {
-      'version': '2.1.2',
+      'version': '2.1.3',
       'pubspec': {
         'description':
             'Flutter plugin for getting commonly used locations on host platform file systems, such as the temp and app data directories.',
       },
-      'published': '2024-01-09T02:36:01.671925Z',
+      'published': '2024-04-11T17:32:10.648413Z',
     },
   },
   'permission_handler': {
     'name': 'permission_handler',
     'latest': {
-      'version': '11.3.0',
+      'version': '11.3.1',
       'pubspec': {
         'description':
             'Permission plugin for Flutter. This plugin provides a cross-platform (iOS, Android) API to request and check permissions.',
       },
-      'published': '2024-02-12T16:05:50.961563Z',
-    },
-  },
-  'flutter_local_notifications': {
-    'name': 'flutter_local_notifications',
-    'latest': {
-      'version': '16.3.2',
-      'pubspec': {
-        'description':
-            'A cross platform plugin for displaying and scheduling local notifications for Flutter applications with the ability to customise for each platform.',
-      },
-      'published': '2024-01-22T10:20:00.618017Z',
+      'published': '2024-03-27T11:04:29.940714Z',
     },
   },
   'flutter_bloc': {
     'name': 'flutter_bloc',
     'latest': {
-      'version': '8.1.4',
+      'version': '8.1.5',
       'pubspec': {
         'description':
             'Flutter Widgets that make it easy to implement the BLoC (Business Logic Component) design pattern. Built to be used with the bloc state management package.',
       },
-      'published': '2024-02-12T06:12:22.413618Z',
+      'published': '2024-03-24T20:21:43.490022Z',
     },
   },
   'geolocator': {
     'name': 'geolocator',
     'latest': {
-      'version': '11.0.0',
+      'version': '12.0.0',
       'pubspec': {
         'description':
             'Geolocation plugin for Flutter. This plugin provides a cross-platform (iOS, Android) API for generic location (GPS etc.) functions.',
       },
-      'published': '2024-02-15T12:58:20.493907Z',
+      'published': '2024-05-16T06:52:49.008538Z',
     },
   },
   'webview_flutter': {
@@ -133,15 +122,37 @@ const kMockPackageBasics = {
       'published': '2024-02-09T21:07:48.141310Z',
     },
   },
+  'go_router': {
+    'name': 'go_router',
+    'latest': {
+      'version': '14.1.1',
+      'pubspec': {
+        'description':
+            'A declarative router for Flutter based on Navigation 2 supporting deep linking, data-driven routes and more',
+      },
+      'published': '2024-05-14T02:59:15.250533Z',
+    },
+  },
   'flutter_native_splash': {
     'name': 'flutter_native_splash',
     'latest': {
-      'version': '2.3.13',
+      'version': '2.4.0',
       'pubspec': {
         'description':
             'Customize Flutter\'s default white native splash screen with background color and splash image. Supports dark mode, full screen, and more.',
       },
-      'published': '2024-02-18T16:36:13.121267Z',
+      'published': '2024-03-17T15:10:54.709487Z',
+    },
+  },
+  'google_maps_flutter': {
+    'name': 'google_maps_flutter',
+    'latest': {
+      'version': '2.6.1',
+      'pubspec': {
+        'description':
+            'A Flutter plugin for integrating Google Maps in iOS and Android applications.',
+      },
+      'published': '2024-04-17T15:27:38.334183Z',
     },
   },
   'font_awesome_flutter': {
@@ -158,67 +169,67 @@ const kMockPackageBasics = {
   'lottie': {
     'name': 'lottie',
     'latest': {
-      'version': '3.1.0',
+      'version': '3.1.1',
       'pubspec': {
         'description':
             'Render After Effects animations natively on Flutter. This package is a pure Dart implementation of a Lottie player.',
       },
-      'published': '2024-02-21T14:21:51.040739Z',
-    },
-  },
-  'google_maps_flutter': {
-    'name': 'google_maps_flutter',
-    'latest': {
-      'version': '2.5.3',
-      'pubspec': {
-        'description':
-            'A Flutter plugin for integrating Google Maps in iOS and Android applications.',
-      },
-      'published': '2024-01-12T21:34:31.196875Z',
-    },
-  },
-  'go_router': {
-    'name': 'go_router',
-    'latest': {
-      'version': '13.2.0',
-      'pubspec': {
-        'description':
-            'A declarative router for Flutter based on Navigation 2 supporting deep linking, data-driven routes and more',
-      },
-      'published': '2024-02-09T18:06:08.487165Z',
-    },
-  },
-  'sqflite': {
-    'name': 'sqflite',
-    'latest': {
-      'version': '2.3.2',
-      'pubspec': {
-        'description':
-            'Flutter plugin for SQLite, a self-contained, high-reliability, embedded, SQL database engine.',
-      },
-      'published': '2024-01-27T15:53:57.860208Z',
-    },
-  },
-  'get_it': {
-    'name': 'get_it',
-    'latest': {
-      'version': '7.6.7',
-      'pubspec': {
-        'description':
-            'Simple direct Service Locator that allows to decouple the interface from a concrete implementation and  to access the concrete implementation from everywhere in your App"',
-      },
-      'published': '2024-01-18T09:37:54.525413Z',
+      'published': '2024-05-13T15:38:20.037476Z',
     },
   },
   'share_plus': {
     'name': 'share_plus',
     'latest': {
-      'version': '7.2.2',
+      'version': '9.0.0',
       'pubspec': {
         'description':
             'Flutter plugin for sharing content via the platform share UI, using the ACTION_SEND intent on Android and UIActivityViewController on iOS.',
       },
-      'published': '2024-01-30T22:18:00.219163Z',
+      'published': '2024-04-22T19:34:18.490591Z',
+    },
+  },
+  'connectivity_plus': {
+    'name': 'connectivity_plus',
+    'latest': {
+      'version': '6.0.3',
+      'pubspec': {
+        'description':
+            'Flutter plugin for discovering the state of the network (WiFi & mobile/cellular) connectivity on Android and iOS.',
+      },
+      'published': '2024-04-22T19:34:31.976587Z',
+    },
+  },
+  'fl_chart': {
+    'name': 'fl_chart',
+    'latest': {
+      'version': '0.68.0',
+      'pubspec': {
+        'description':
+            'A highly customizable Flutter chart library that supports Line Chart, Bar Chart, Pie Chart, Scatter Chart, and Radar Chart.',
+      },
+      'published': '2024-05-09T01:05:51.069753Z',
+    },
+  },
+  'get_it': {
+    'name': 'get_it',
+    'latest': {
+      'version': '7.7.0',
+      'pubspec': {
+        'description':
+            'Simple direct Service Locator that allows to decouple the interface from a concrete implementation and  to access the concrete implementation from everywhere in your App"',
+      },
+      'published': '2024-04-15T09:08:17.693644Z',
+    },
+  },
+  'sqflite': {
+    'name': 'sqflite',
+    'latest': {
+      'version': '2.3.3+1',
+      'pubspec': {
+        'description':
+            'Flutter plugin for SQLite, a self-contained, high-reliability, embedded, SQL database engine.',
+      },
+      'published': '2024-05-02T15:09:34.768108Z',
     },
   },
   'shimmer': {
@@ -232,17 +243,6 @@ const kMockPackageBasics = {
       'published': '2023-05-21T05:19:50.854913Z',
     },
   },
-  'equatable': {
-    'name': 'equatable',
-    'latest': {
-      'version': '2.0.5',
-      'pubspec': {
-        'description':
-            'A Dart package that helps to implement value based equality without needing to explicitly override == and hashCode.',
-      },
-      'published': '2022-08-19T13:56:14.122054Z',
-    },
-  },
   'google_sign_in': {
     'name': 'google_sign_in',
     'latest': {
@@ -254,48 +254,70 @@ const kMockPackageBasics = {
       'published': '2023-12-13T20:59:11.829931Z',
     },
   },
-  'uuid': {
-    'name': 'uuid',
+  'equatable': {
+    'name': 'equatable',
     'latest': {
-      'version': '4.3.3',
+      'version': '2.0.5',
       'pubspec': {
         'description':
-            'RFC4122 (v1, v4, v5, v6, v7, v8) UUID Generator and Parser for Dart\n',
+            'A Dart package that helps to implement value based equality without needing to explicitly override == and hashCode.',
       },
-      'published': '2024-01-11T06:05:20.764827Z',
-    },
-  },
-  'fl_chart': {
-    'name': 'fl_chart',
-    'latest': {
-      'version': '0.66.2',
-      'pubspec': {
-        'description':
-            'A highly customizable Flutter chart library that supports Line Chart, Bar Chart, Pie Chart, Scatter Chart, and Radar Chart.',
-      },
-      'published': '2024-02-10T12:01:47.545613Z',
+      'published': '2022-08-19T13:56:14.122054Z',
     },
   },
   'package_info_plus': {
     'name': 'package_info_plus',
     'latest': {
-      'version': '5.0.1',
+      'version': '8.0.0',
       'pubspec': {
         'description':
             'Flutter plugin for querying information about the application package, such as CFBundleVersion on iOS or versionCode on Android.',
       },
-      'published': '2023-11-20T22:38:03.296070Z',
+      'published': '2024-04-22T19:34:24.919157Z',
+    },
+  },
+  'uuid': {
+    'name': 'uuid',
+    'latest': {
+      'version': '4.4.0',
+      'pubspec': {
+        'description':
+            'RFC4122 (v1, v4, v5, v6, v7, v8) UUID Generator and Parser for Dart',
+      },
+      'published': '2024-04-08T18:33:46.419163Z',
+    },
+  },
+  'flutter_secure_storage': {
+    'name': 'flutter_secure_storage',
+    'latest': {
+      'version': '9.2.1',
+      'pubspec': {
+        'description':
+            'Flutter Secure Storage provides API to store data in secure storage. Keychain is used in iOS, KeyStore based solution is used in Android.',
+      },
+      'published': '2024-05-16T08:14:26.835542Z',
+    },
+  },
+  'device_info_plus': {
+    'name': 'device_info_plus',
+    'latest': {
+      'version': '10.1.0',
+      'pubspec': {
+        'description':
+            'Flutter plugin providing detailed information about the device (make, model, etc.), and Android or iOS version the app is running on.',
+      },
+      'published': '2024-04-08T19:52:40.467930Z',
     },
   },
   'logger': {
     'name': 'logger',
     'latest': {
-      'version': '2.0.2+1',
+      'version': '2.3.0',
       'pubspec': {
         'description':
             'Small, easy to use and extensible logger which prints beautiful logs.',
       },
-      'published': '2023-09-23T18:06:35.740378Z',
+      'published': '2024-05-12T19:16:06.334788Z',
     },
   },
   'path': {
@@ -312,23 +334,23 @@ const kMockPackageBasics = {
   'camera': {
     'name': 'camera',
     'latest': {
-      'version': '0.10.5+9',
+      'version': '0.11.0',
       'pubspec': {
         'description':
             'A Flutter plugin for controlling the camera. Supports previewing the camera feed, capturing images and video, and streaming image buffers to Dart.',
       },
-      'published': '2024-01-09T02:34:04.818122Z',
+      'published': '2024-05-13T16:17:45.746250Z',
     },
   },
-  'crypto': {
-    'name': 'crypto',
+  'audioplayers': {
+    'name': 'audioplayers',
     'latest': {
-      'version': '3.0.3',
+      'version': '6.0.0',
       'pubspec': {
         'description':
-            'Implementations of SHA, MD5, and HMAC cryptographic functions.',
+            'A Flutter plugin to play multiple audio files simultaneously',
       },
-      'published': '2023-05-04T12:34:29.110431Z',
+      'published': '2024-03-19T09:56:22.087370Z',
     },
   },
   'smooth_page_indicator': {
@@ -342,6 +364,17 @@ const kMockPackageBasics = {
       'published': '2023-04-17T22:16:30.733370Z',
     },
   },
+  'crypto': {
+    'name': 'crypto',
+    'latest': {
+      'version': '3.0.3',
+      'pubspec': {
+        'description':
+            'Implementations of SHA, MD5, and HMAC cryptographic functions.',
+      },
+      'published': '2023-05-04T12:34:29.110431Z',
+    },
+  },
   'percent_indicator': {
     'name': 'percent_indicator',
     'latest': {
@@ -353,15 +386,26 @@ const kMockPackageBasics = {
       'published': '2023-03-03T14:33:56.151732Z',
     },
   },
+  'location': {
+    'name': 'location',
+    'latest': {
+      'version': '6.0.2',
+      'pubspec': {
+        'description':
+            'Cross-platform plugin for easy access to device\'s location in real-time.',
+      },
+      'published': '2024-05-06T20:47:08.274654Z',
+    },
+  },
   'flutter_riverpod': {
     'name': 'flutter_riverpod',
     'latest': {
-      'version': '2.4.10',
+      'version': '2.5.1',
       'pubspec': {
         'description':
-            'A reactive caching and data-binding framework. Riverpod makes working with asynchronous code a breeze.\n',
+            'A reactive caching and data-binding framework. Riverpod makes working with asynchronous code a breeze.',
       },
-      'published': '2024-02-03T05:23:17.753114Z',
+      'published': '2024-03-10T15:03:08.911751Z',
     },
     'versions': [
       {
@@ -381,28 +425,6 @@ const kMockPackageBasics = {
       'published': '2022-05-18T09:16:34.980508Z',
     },
   },
-  'audioplayers': {
-    'name': 'audioplayers',
-    'latest': {
-      'version': '5.2.1',
-      'pubspec': {
-        'description':
-            'A Flutter plugin to play multiple audio files simultaneously',
-      },
-      'published': '2023-11-14T17:10:53.850736Z',
-    },
-  },
-  'flutter_lints': {
-    'name': 'flutter_lints',
-    'latest': {
-      'version': '3.0.1',
-      'pubspec': {
-        'description':
-            'Recommended lints for Flutter apps, packages, and plugins to encourage good coding practices.',
-      },
-      'published': '2023-11-03T17:47:41.277977Z',
-    },
-  },
   'badges': {
     'name': 'badges',
     'latest': {
@@ -414,48 +436,26 @@ const kMockPackageBasics = {
       'published': '2023-08-28T08:23:12.444128Z',
     },
   },
-  'bloc': {
-    'name': 'bloc',
-    'latest': {
-      'version': '8.1.3',
-      'pubspec': {
-        'description':
-            'A predictable state management library that helps implement the BLoC (Business Logic Component) design pattern.',
-      },
-      'published': '2024-02-12T05:54:17.312703Z',
-    },
-  },
-  'local_auth': {
-    'name': 'local_auth',
-    'latest': {
-      'version': '2.2.0',
-      'pubspec': {
-        'description':
-            'Flutter plugin for Android and iOS devices to allow local authentication via fingerprint, touch ID, face ID, passcode, pin, or pattern.',
-      },
-      'published': '2024-02-21T19:36:50.387657Z',
-    },
-  },
   'table_calendar': {
     'name': 'table_calendar',
     'latest': {
-      'version': '3.1.0',
+      'version': '3.1.1',
       'pubspec': {
         'description':
             'Highly customizable, feature-packed calendar widget for Flutter.',
       },
-      'published': '2024-02-09T11:57:03.890383Z',
+      'published': '2024-03-24T13:51:29.564161Z',
     },
   },
-  'json_serializable': {
-    'name': 'json_serializable',
+  'sign_in_with_apple': {
+    'name': 'sign_in_with_apple',
     'latest': {
-      'version': '6.7.1',
+      'version': '6.1.0',
       'pubspec': {
         'description':
-            'Automatically generate code for converting to and from JSON by annotating Dart classes.',
+            'Flutter bridge to initiate Sign in with Apple (on iOS, macOS, and Android). Includes support for keychain entries as well as signing in with an Apple ID.',
       },
-      'published': '2023-06-30T22:17:13.591439Z',
+      'published': '2024-04-06T11:17:45.145353Z',
     },
   },
   'flutter_animate': {
@@ -469,6 +469,39 @@ const kMockPackageBasics = {
       'published': '2024-01-31T18:23:52.901038Z',
     },
   },
+  'flutter_lints': {
+    'name': 'flutter_lints',
+    'latest': {
+      'version': '4.0.0',
+      'pubspec': {
+        'description':
+            'Recommended lints for Flutter apps, packages, and plugins to encourage good coding practices.',
+      },
+      'published': '2024-05-09T17:11:41.604210Z',
+    },
+  },
+  'local_auth': {
+    'name': 'local_auth',
+    'latest': {
+      'version': '2.2.0',
+      'pubspec': {
+        'description':
+            'Flutter plugin for Android and iOS devices to allow local authentication via fingerprint, touch ID, face ID, passcode, pin, or pattern.',
+      },
+      'published': '2024-02-21T19:36:50.387657Z',
+    },
+  },
+  'bloc': {
+    'name': 'bloc',
+    'latest': {
+      'version': '8.1.4',
+      'pubspec': {
+        'description':
+            'A predictable state management library that helps implement the BLoC (Business Logic Component) design pattern.',
+      },
+      'published': '2024-03-24T20:05:55.374314Z',
+    },
+  },
   'animations': {
     'name': 'animations',
     'latest': {
@@ -480,54 +513,26 @@ const kMockPackageBasics = {
       'published': '2024-01-04T03:48:18.774411Z',
     },
   },
-  'pinput': {
-    'name': 'pinput',
-    'latest': {
-      'version': '4.0.0',
-      'pubspec': {
-        'description':
-            'Pin code input (OTP) text field, iOS SMS autofill, Android SMS autofill One Time Code, Password, Passcode, Captcha, Security, Coupon, Wowcher, 2FA, Two step verification',
-      },
-      'published': '2024-02-10T15:34:07.271252Z',
-    },
-  },
-  'sign_in_with_apple': {
-    'name': 'sign_in_with_apple',
-    'latest': {
-      'version': '5.0.0',
-      'pubspec': {
-        'description':
-            'Flutter bridge to initiate Sign in with Apple (on iOS, macOS, and Android). Includes support for keychain entries as well as signing in with an Apple ID.',
-      },
-      'published': '2023-06-14T07:22:16.366144Z',
-    },
-    'versions': [
-      {
-        'version': '6.0.0-dev.1',
-        'published': '2024-02-23T21:01:25.842736Z',
-      },
-    ],
-  },
   'just_audio': {
     'name': 'just_audio',
     'latest': {
-      'version': '0.9.36',
+      'version': '0.9.37',
       'pubspec': {
         'description':
             'A feature-rich audio player for Flutter. Loop, clip and concatenate any sound from any source (asset/file/URL/stream) in a variety of audio formats with gapless playback.',
       },
-      'published': '2023-11-13T09:14:41.538112Z',
+      'published': '2024-03-29T10:00:38.372323Z',
     },
   },
   'flutter_cache_manager': {
     'name': 'flutter_cache_manager',
     'latest': {
-      'version': '3.3.1',
+      'version': '3.3.2',
       'pubspec': {
         'description':
             'Generic cache manager for flutter. Saves web files on the storages of the device and saves the cache info using sqflite.',
       },
-      'published': '2023-07-03T07:44:15.121293Z',
+      'published': '2024-04-25T17:03:41.620436Z',
     },
   },
   'pdf': {
@@ -541,26 +546,15 @@ const kMockPackageBasics = {
       'published': '2024-02-21T18:20:31.954071Z',
     },
   },
-  'logging': {
-    'name': 'logging',
+  'google_mobile_ads': {
+    'name': 'google_mobile_ads',
     'latest': {
-      'version': '1.2.0',
+      'version': '5.1.0',
       'pubspec': {
         'description':
-            'Provides APIs for debugging and error logging, similar to loggers in other languages, such as the Closure JS Logger and java.util.logging.Logger.',
+            'Flutter plugin for Google Mobile Ads, supporting banner, interstitial (full-screen),  rewarded and native ads',
       },
-      'published': '2023-05-23T22:01:57.001755Z',
-    },
-  },
-  'build_runner': {
-    'name': 'build_runner',
-    'latest': {
-      'version': '2.4.8',
-      'pubspec': {
-        'description':
-            'A build system for Dart code generation and modular compilation.',
-      },
-      'published': '2024-01-11T19:11:08.807331Z',
+      'published': '2024-05-08T18:16:51.854631Z',
     },
   },
   'get_storage': {
@@ -574,37 +568,26 @@ const kMockPackageBasics = {
       'published': '2023-02-27T16:12:08.797257Z',
     },
   },
-  'freezed': {
-    'name': 'freezed',
-    'latest': {
-      'version': '2.4.7',
-      'pubspec': {
-        'description':
-            'Code generation for immutable classes that has a simple syntax/API without compromising on the features.\n',
-      },
-      'published': '2024-02-04T15:29:31.096037Z',
-    },
-  },
-  'flutter_typeahead': {
-    'name': 'flutter_typeahead',
-    'latest': {
-      'version': '5.2.0',
-      'pubspec': {
-        'description':
-            'A highly customizable typeahead (autocomplete) text input field for Flutter',
-      },
-      'published': '2024-02-08T23:01:02.213703Z',
-    },
-  },
   'flutter_image_compress': {
     'name': 'flutter_image_compress',
     'latest': {
-      'version': '2.1.0',
+      'version': '2.3.0',
       'pubspec': {
         'description':
             'Compress Pictures. Can effectively reduce the size of the transmission.',
       },
-      'published': '2023-10-20T03:22:07.800334Z',
+      'published': '2024-05-15T00:59:14.741552Z',
+    },
+  },
+  'logging': {
+    'name': 'logging',
+    'latest': {
+      'version': '1.2.0',
+      'pubspec': {
+        'description':
+            'Provides APIs for debugging and error logging, similar to loggers in other languages, such as the Closure JS Logger and java.util.logging.Logger.',
+      },
+      'published': '2023-05-23T22:01:57.001755Z',
     },
   },
   'page_transition': {
@@ -618,92 +601,92 @@ const kMockPackageBasics = {
       'published': '2023-09-10T09:33:13.132496Z',
     },
   },
-  'built_value': {
-    'name': 'built_value',
+  'build_runner': {
+    'name': 'build_runner',
     'latest': {
-      'version': '8.9.1',
+      'version': '2.4.10',
       'pubspec': {
         'description':
-            'Value types with builders, Dart classes as enums, and serialization. This library is the runtime dependency.\n',
+            'A build system for Dart code generation and modular compilation.',
       },
-      'published': '2024-02-19T09:50:19.272294Z',
+      'published': '2024-05-15T15:01:05.493188Z',
     },
   },
-  'uni_links': {
-    'name': 'uni_links',
+  'flutter_typeahead': {
+    'name': 'flutter_typeahead',
     'latest': {
-      'version': '0.5.1',
+      'version': '5.2.0',
       'pubspec': {
         'description':
-            'Flutter plugin for accepting incoming links - App/Deep Links (Android), Universal Links and Custom URL schemes (iOS).',
+            'A highly customizable typeahead (autocomplete) text input field for Flutter',
       },
-      'published': '2021-04-28T06:57:02.794009Z',
+      'published': '2024-02-08T23:01:02.213703Z',
     },
   },
-  'mobile_scanner': {
-    'name': 'mobile_scanner',
+  'freezed': {
+    'name': 'freezed',
     'latest': {
-      'version': '4.0.0',
+      'version': '2.5.3',
       'pubspec': {
         'description':
-            'A universal barcode and QR code scanner for Flutter based on MLKit. Uses CameraX on Android, AVFoundation on iOS and Apple Vision & AVFoundation on macOS.',
+            'Code generation for immutable classes that has a simple syntax/API without compromising on the features.',
       },
-      'published': '2024-01-29T09:41:47.730704Z',
-    },
-  },
-  'animate_do': {
-    'name': 'animate_do',
-    'latest': {
-      'version': '3.3.3',
-      'pubspec': {
-        'description':
-            'Beautiful animations inspired on Animate.css, every animation is a customizable widget.',
-      },
-      'published': '2024-02-01T13:26:36.532264Z',
+      'published': '2024-05-14T10:50:29.873127Z',
     },
   },
   'in_app_review': {
     'name': 'in_app_review',
     'latest': {
-      'version': '2.0.8',
+      'version': '2.0.9',
       'pubspec': {
         'description':
             'Flutter plugin for showing the In-App Review/System Rating pop up on Android, iOS and MacOS. It makes it easy for users to rate your app.',
       },
-      'published': '2023-10-17T08:55:17.403314Z',
+      'published': '2024-03-17T13:35:58.068091Z',
     },
   },
-  'flutter_form_builder': {
-    'name': 'flutter_form_builder',
+  'mobile_scanner': {
+    'name': 'mobile_scanner',
     'latest': {
-      'version': '9.2.1',
+      'version': '5.1.1',
       'pubspec': {
         'description':
-            'This package helps in creation of forms in Flutter by removing the boilerplate code, reusing validation, react to changes, and collect final user input.',
+            'A universal barcode and QR code scanner for Flutter based on MLKit. Uses CameraX on Android, AVFoundation on iOS and Apple Vision & AVFoundation on macOS.',
       },
-      'published': '2024-02-01T15:15:58.279013Z',
+      'published': '2024-05-15T07:01:01.868925Z',
     },
   },
-  'printing': {
-    'name': 'printing',
+  'animate_do': {
+    'name': 'animate_do',
     'latest': {
-      'version': '5.12.0',
+      'version': '3.3.4',
       'pubspec': {
         'description':
-            'Plugin that allows Flutter apps to generate and print documents to compatible printers on Android, iOS, macOS, Windows, and Linux, as well as web print.\n',
+            'Beautiful animations inspired on Animate.css, every animation is a customizable widget.',
       },
-      'published': '2024-02-21T18:20:50.427354Z',
+      'published': '2024-02-29T01:13:34.513090Z',
     },
   },
-  'awesome_notifications': {
-    'name': 'awesome_notifications',
+  'built_value': {
+    'name': 'built_value',
     'latest': {
-      'version': '0.9.2',
+      'version': '8.9.2',
       'pubspec': {
         'description':
-            'A complete solution to create Local and Push Notifications, customizing buttons, images, sounds, emoticons and applying many different layouts for Flutter apps.',
+            'Value types with builders, Dart classes as enums, and serialization. This library is the runtime dependency.',
       },
-      'published': '2024-01-17T11:13:57.720417Z',
+      'published': '2024-04-03T12:30:13.834650Z',
+    },
+  },
+  'upgrader': {
+    'name': 'upgrader',
+    'latest': {
+      'version': '10.3.0',
+      'pubspec': {
+        'description':
+            'Flutter package for prompting users to upgrade when there is a newer version of the app in the store.',
+      },
+      'published': '2024-05-01T12:03:47.545693Z',
     },
   },
   'flutter_keyboard_visibility': {
@@ -717,15 +700,26 @@ const kMockPackageBasics = {
       'published': '2023-12-21T14:32:51.359765Z',
     },
   },
+  'awesome_notifications': {
+    'name': 'awesome_notifications',
+    'latest': {
+      'version': '0.9.3+1',
+      'pubspec': {
+        'description':
+            'A complete solution to create Local and Push Notifications, customizing buttons, images, sounds, emoticons and applying many different layouts for Flutter apps.',
+      },
+      'published': '2024-03-17T12:34:40.767394Z',
+    },
+  },
   'in_app_purchase': {
     'name': 'in_app_purchase',
     'latest': {
-      'version': '3.1.13',
+      'version': '3.2.0',
       'pubspec': {
         'description':
             'A Flutter plugin for in-app purchases. Exposes APIs for making in-app purchases through the App Store and Google Play.',
       },
-      'published': '2024-01-09T02:35:33.786589Z',
+      'published': '2024-04-17T20:45:44.000743Z',
     },
   },
   'email_validator': {
@@ -739,15 +733,15 @@ const kMockPackageBasics = {
       'published': '2022-08-02T08:19:02.257483Z',
     },
   },
-  'wakelock': {
-    'name': 'wakelock',
+  'loading_animation_widget': {
+    'name': 'loading_animation_widget',
     'latest': {
-      'version': '0.6.2',
+      'version': '1.2.1',
       'pubspec': {
         'description':
-            'Plugin that allows you to keep the device screen awake, i.e. prevent the screen from sleeping on Android, iOS, macOS, Windows, and web.',
+            'Loading animation or loading spiner or loader. It\'s used to show loading animation when the app is in loading state or something is processing for uncertain time.',
       },
-      'published': '2022-07-07T21:34:52.414514Z',
+      'published': '2024-03-10T03:26:01.421589Z',
     },
   },
   'mime': {
@@ -764,41 +758,46 @@ const kMockPackageBasics = {
   'flutter_widget_from_html': {
     'name': 'flutter_widget_from_html',
     'latest': {
-      'version': '0.14.11',
+      'version': '0.15.0',
       'pubspec': {
         'description':
             'Flutter package to render html as widgets that supports hyperlink, image, audio, video, iframe and many other tags.',
       },
-      'published': '2024-01-06T17:29:46.026344Z',
-    },
-  },
-  'mockito': {
-    'name': 'mockito',
-    'latest': {
-      'version': '5.4.4',
-      'pubspec': {
-        'description':
-            'A mock framework inspired by Mockito with APIs for Fakes, Mocks, behavior verification, and stubbing.',
-      },
-      'published': '2023-12-14T20:44:21.929951Z',
+      'published': '2024-05-04T17:34:59.995773Z',
     },
   },
   'sentry_flutter': {
     'name': 'sentry_flutter',
     'latest': {
-      'version': '7.16.1',
+      'version': '8.2.0',
       'pubspec': {
         'description':
             'Sentry SDK for Flutter. This package aims to support different Flutter targets by relying on the many platforms supported by Sentry with native SDKs.',
       },
-      'published': '2024-02-14T11:47:13.180331Z',
+      'published': '2024-05-14T11:10:10.893429Z',
     },
-    'versions': [
-      {
-        'version': '8.0.0-beta.2',
-        'published': '2024-02-09T08:24:33.000244Z',
+  },
+  'wakelock': {
+    'name': 'wakelock',
+    'latest': {
+      'version': '0.6.2',
+      'pubspec': {
+        'description':
+            'Plugin that allows you to keep the device screen awake, i.e. prevent the screen from sleeping on Android, iOS, macOS, Windows, and web.',
       },
-    ],
+      'published': '2022-07-07T21:34:52.414514Z',
+    },
+  },
+  'responsive_framework': {
+    'name': 'responsive_framework',
+    'latest': {
+      'version': '1.4.0',
+      'pubspec': {
+        'description':
+            'Easily make Flutter apps responsive. Automatically adapt UI to different screen sizes. Responsiveness made simple.',
+      },
+      'published': '2024-02-25T03:39:11.580447Z',
+    },
   },
   'xml': {
     'name': 'xml',
@@ -811,26 +810,26 @@ const kMockPackageBasics = {
       'published': '2023-12-02T17:36:14.361226Z',
     },
   },
-  'loading_animation_widget': {
-    'name': 'loading_animation_widget',
+  'card_swiper': {
+    'name': 'card_swiper',
     'latest': {
-      'version': '1.2.0+4',
+      'version': '3.0.1',
       'pubspec': {
         'description':
-            'Loading animation or loading spiner or loader. It\'s used to show loading animation when the app is in loading state or something is processing for uncertain time.',
+            'swiper/carousel for flutter, with multiple layouts, infinite loop. Compatible with Android & iOS.',
       },
-      'published': '2022-12-14T11:05:55.110918Z',
+      'published': '2023-07-09T16:42:01.633004Z',
     },
   },
-  'jiffy': {
-    'name': 'jiffy',
+  'googleapis': {
+    'name': 'googleapis',
     'latest': {
-      'version': '6.2.2',
+      'version': '13.1.0',
       'pubspec': {
         'description':
-            'Jiffy is a date time dart package for parsing, manipulating, querying and formatting dates and time',
+            'Auto-generated client libraries for accessing Google APIs described through the API discovery service.',
       },
-      'published': '2023-12-21T13:33:22.201447Z',
+      'published': '2024-03-11T02:23:16.621281Z',
     },
   },
   'country_code_picker': {
@@ -844,17 +843,6 @@ const kMockPackageBasics = {
       'published': '2023-03-10T10:58:07.082542Z',
     },
   },
-  'googleapis': {
-    'name': 'googleapis',
-    'latest': {
-      'version': '12.0.0',
-      'pubspec': {
-        'description':
-            'Auto-generated client libraries for accessing Google APIs described through the API discovery service.',
-      },
-      'published': '2023-11-29T16:28:53.858155Z',
-    },
-  },
   'image_gallery_saver': {
     'name': 'image_gallery_saver',
     'latest': {
@@ -866,15 +854,37 @@ const kMockPackageBasics = {
       'published': '2023-07-03T11:54:49.291059Z',
     },
   },
+  'jiffy': {
+    'name': 'jiffy',
+    'latest': {
+      'version': '6.3.1',
+      'pubspec': {
+        'description':
+            'Jiffy is a date time dart package for parsing, manipulating, querying and formatting dates and time',
+      },
+      'published': '2024-05-15T15:22:57.758279Z',
+    },
+  },
+  'readmore': {
+    'name': 'readmore',
+    'latest': {
+      'version': '3.0.0',
+      'pubspec': {
+        'description':
+            'A Flutter package that allows for dynamic expansion and collapse of text, as well as interactions with text patterns such as hashtags, URLs, and mentions.',
+      },
+      'published': '2024-03-27T23:46:43.720438Z',
+    },
+  },
   'hooks_riverpod': {
     'name': 'hooks_riverpod',
     'latest': {
-      'version': '2.4.10',
+      'version': '2.5.1',
       'pubspec': {
         'description':
-            'A reactive caching and data-binding framework. Riverpod makes working with asynchronous code a breeze.\n',
+            'A reactive caching and data-binding framework. Riverpod makes working with asynchronous code a breeze.',
       },
-      'published': '2024-02-03T05:23:21.052074Z',
+      'published': '2024-03-10T15:03:13.089257Z',
     },
     'versions': [
       {
@@ -882,17 +892,6 @@ const kMockPackageBasics = {
         'published': '2023-11-27T00:24:23.378270Z',
       },
     ],
-  },
-  'card_swiper': {
-    'name': 'card_swiper',
-    'latest': {
-      'version': '3.0.1',
-      'pubspec': {
-        'description':
-            'swiper/carousel for flutter, with multiple layouts, infinite loop. Compatible with Android & iOS.',
-      },
-      'published': '2023-07-09T16:42:01.633004Z',
-    },
   },
   'grouped_list': {
     'name': 'grouped_list',
@@ -903,6 +902,39 @@ const kMockPackageBasics = {
             'A Flutter ListView where the list items can be grouped into sections.',
       },
       'published': '2022-06-18T09:40:59.504601Z',
+    },
+  },
+  'flutter_tts': {
+    'name': 'flutter_tts',
+    'latest': {
+      'version': '4.0.2',
+      'pubspec': {
+        'description':
+            'A flutter plugin for Text to Speech.  This plugin is supported on iOS, macOS, Android, Web, & Windows.',
+      },
+      'published': '2024-03-22T07:42:28.938790Z',
+    },
+  },
+  'mobx': {
+    'name': 'mobx',
+    'latest': {
+      'version': '2.3.3+2',
+      'pubspec': {
+        'description':
+            'MobX is a library for reactively managing the state of your applications. Use the power of observables, actions, and reactions to supercharge your Dart and Flutter apps.',
+      },
+      'published': '2024-04-03T07:27:52.605086Z',
+    },
+  },
+  'flutter_barcode_scanner': {
+    'name': 'flutter_barcode_scanner',
+    'latest': {
+      'version': '2.0.0',
+      'pubspec': {
+        'description':
+            'A plugin for barcode scanning support on Android and iOS. Supports barcodes, QR codes, etc.',
+      },
+      'published': '2021-04-19T21:50:52.131792Z',
     },
   },
   'another_flushbar': {
@@ -922,81 +954,26 @@ const kMockPackageBasics = {
       },
     ],
   },
-  'flutter_barcode_scanner': {
-    'name': 'flutter_barcode_scanner',
+  'toggle_switch': {
+    'name': 'toggle_switch',
     'latest': {
-      'version': '2.0.0',
+      'version': '2.3.0',
       'pubspec': {
         'description':
-            'A plugin for barcode scanning support on Android and iOS. Supports barcodes, QR codes, etc.',
+            'Toggle Switch - A simple toggle switch widget. It can be fully customized with desired icons, width, colors, text, corner radius etc. It also maintains selection state.',
       },
-      'published': '2021-04-19T21:50:52.131792Z',
-    },
-  },
-  'responsive_builder': {
-    'name': 'responsive_builder',
-    'latest': {
-      'version': '0.7.0',
-      'pubspec': {
-        'description':
-            'A set of widgets that can be used to define a readable responsive UI for widgets.',
-      },
-      'published': '2023-05-18T10:17:05.308264Z',
-    },
-  },
-  'vibration': {
-    'name': 'vibration',
-    'latest': {
-      'version': '1.8.4',
-      'pubspec': {
-        'description':
-            'A plugin for handling Vibration API on iOS, Android, and web.',
-      },
-      'published': '2023-11-29T19:41:23.643946Z',
-    },
-  },
-  'sliver_tools': {
-    'name': 'sliver_tools',
-    'latest': {
-      'version': '0.2.12',
-      'pubspec': {
-        'description':
-            'A set of useful sliver tools that are missing from the flutter framework',
-      },
-      'published': '2023-07-17T09:04:57.806250Z',
-    },
-  },
-  'flutter_pdfview': {
-    'name': 'flutter_pdfview',
-    'latest': {
-      'version': '1.3.2',
-      'pubspec': {
-        'description':
-            'A Flutter plugin that provides a PDFView widget on Android and iOS.',
-      },
-      'published': '2023-10-11T06:39:44.293292Z',
+      'published': '2024-03-25T19:02:12.355706Z',
     },
   },
   'map_launcher': {
     'name': 'map_launcher',
     'latest': {
-      'version': '3.1.0',
+      'version': '3.3.0',
       'pubspec': {
         'description':
             'Map Launcher is a flutter plugin to find available maps installed on a device and launch them with a marker or show directions.',
       },
-      'published': '2023-11-19T09:13:40.683964Z',
-    },
-  },
-  'retry': {
-    'name': 'retry',
-    'latest': {
-      'version': '3.1.2',
-      'pubspec': {
-        'description':
-            'Utility for wrapping an asynchronous function in automatic retry logic with exponential back-off, useful when making requests over network.',
-      },
-      'published': '2023-05-16T14:26:11.159498Z',
+      'published': '2024-04-09T11:31:24.726581Z',
     },
   },
   'gap': {
@@ -1010,26 +987,70 @@ const kMockPackageBasics = {
       'published': '2023-06-24T09:22:05.766623Z',
     },
   },
-  'mocktail': {
-    'name': 'mocktail',
+  'flutter_pdfview': {
+    'name': 'flutter_pdfview',
     'latest': {
-      'version': '1.0.3',
+      'version': '1.3.2',
       'pubspec': {
         'description':
-            'A Dart mock library which simplifies mocking with null safety support and no manual mocks or code generation.',
+            'A Flutter plugin that provides a PDFView widget on Android and iOS.',
       },
-      'published': '2024-01-19T06:58:35.519042Z',
+      'published': '2023-10-11T06:39:44.293292Z',
     },
   },
-  'in_app_update': {
-    'name': 'in_app_update',
+  'retry': {
+    'name': 'retry',
     'latest': {
-      'version': '4.2.2',
+      'version': '3.1.2',
       'pubspec': {
         'description':
-            'Enables In App Updates on Android using the official Android APIs.',
+            'Utility for wrapping an asynchronous function in automatic retry logic with exponential back-off, useful when making requests over network.',
       },
-      'published': '2023-10-09T07:53:47.430283Z',
+      'published': '2023-05-16T14:26:11.159498Z',
+    },
+  },
+  'vibration': {
+    'name': 'vibration',
+    'latest': {
+      'version': '1.8.4',
+      'pubspec': {
+        'description':
+            'A plugin for handling Vibration API on iOS, Android, and web.',
+      },
+      'published': '2023-11-29T19:41:23.643946Z',
+    },
+  },
+  'flutter_sound': {
+    'name': 'flutter_sound',
+    'latest': {
+      'version': '9.4.10',
+      'pubspec': {
+        'description':
+            'Europe Stand With Ukraine. Pray for Ukraine. A complete api for audio playback and recording. Audio player, audio recorder.',
+      },
+      'published': '2024-05-15T14:59:37.789461Z',
+    },
+  },
+  'flutter_mobx': {
+    'name': 'flutter_mobx',
+    'latest': {
+      'version': '2.2.1+1',
+      'pubspec': {
+        'description':
+            'Flutter integration for MobX. It provides a set of Observer widgets that automatically rebuild when the tracked observables change.',
+      },
+      'published': '2024-03-28T09:15:29.643110Z',
+    },
+  },
+  'sliver_tools': {
+    'name': 'sliver_tools',
+    'latest': {
+      'version': '0.2.12',
+      'pubspec': {
+        'description':
+            'A set of useful sliver tools that are missing from the flutter framework',
+      },
+      'published': '2023-07-17T09:04:57.806250Z',
     },
   },
   'window_manager': {
@@ -1043,32 +1064,26 @@ const kMockPackageBasics = {
       'published': '2024-01-28T09:12:34.418413Z',
     },
   },
-  'riverpod': {
-    'name': 'riverpod',
-    'latest': {
-      'version': '2.5.0',
-      'pubspec': {
-        'description':
-            'A reactive caching and data-binding framework. Riverpod makes working with asynchronous code a breeze.\n',
-      },
-      'published': '2024-02-03T05:22:51.602041Z',
-    },
-    'versions': [
-      {
-        'version': '3.0.0-dev.3',
-        'published': '2023-11-27T00:24:03.316596Z',
-      },
-    ],
-  },
-  'petitparser': {
-    'name': 'petitparser',
+  'app_links': {
+    'name': 'app_links',
     'latest': {
       'version': '6.0.2',
       'pubspec': {
         'description':
-            'A dynamic parser framework to build efficient grammars and parsers quickly.',
+            'Android App Links, Deep Links, iOs Universal Links and Custom URL schemes handler for Flutter (desktop included).',
       },
-      'published': '2023-11-30T10:30:42.598779Z',
+      'published': '2024-05-13T13:30:30.699014Z',
+    },
+  },
+  'responsive_builder': {
+    'name': 'responsive_builder',
+    'latest': {
+      'version': '0.7.0',
+      'pubspec': {
+        'description':
+            'A set of widgets that can be used to define a readable responsive UI for widgets.',
+      },
+      'published': '2023-05-18T10:17:05.308264Z',
     },
   },
   'confetti': {
@@ -1082,26 +1097,15 @@ const kMockPackageBasics = {
       'published': '2022-05-13T02:57:57.079017Z',
     },
   },
-  'flex_color_scheme': {
-    'name': 'flex_color_scheme',
+  'in_app_update': {
+    'name': 'in_app_update',
     'latest': {
-      'version': '7.3.1',
+      'version': '4.2.2',
       'pubspec': {
         'description':
-            'A Flutter package to use and make beautiful Material design based themes.',
+            'Enables In App Updates on Android using the official Android APIs.',
       },
-      'published': '2023-08-17T20:38:41.774050Z',
-    },
-  },
-  'stack_trace': {
-    'name': 'stack_trace',
-    'latest': {
-      'version': '1.11.1',
-      'pubspec': {
-        'description':
-            'A package for manipulating stack traces and printing them readably.',
-      },
-      'published': '2023-07-07T08:23:50.467999Z',
+      'published': '2023-10-09T07:53:47.430283Z',
     },
   },
   'url_strategy': {
@@ -1113,28 +1117,6 @@ const kMockPackageBasics = {
             'Flutter package that allows setting the web app URL strategy with a single line of code.',
       },
       'published': '2021-02-24T08:57:03.380541Z',
-    },
-  },
-  'english_words': {
-    'name': 'english_words',
-    'latest': {
-      'version': '4.0.0',
-      'pubspec': {
-        'description':
-            'Utilities for working with English words. Counts syllables, generates well-sounding word combinations, and provides access to the top 5000 English words by usage.\n',
-      },
-      'published': '2021-03-24T21:07:45.496950Z',
-    },
-  },
-  'data_table_2': {
-    'name': 'data_table_2',
-    'latest': {
-      'version': '2.5.10',
-      'pubspec': {
-        'description':
-            'In-place substitute for Flutter\'s DataTable and PaginatedDataTable with fixed/sticky headers and few extra features',
-      },
-      'published': '2024-01-04T18:10:20.497429Z',
     },
   },
 };

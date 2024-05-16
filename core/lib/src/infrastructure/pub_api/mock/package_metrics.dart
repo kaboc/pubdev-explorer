@@ -1,12 +1,30 @@
 // ignore_for_files: lines_longer_than_80_chars
 
 const kMockPackageMetrics = {
+  'shared_preferences': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 9025,
+      'popularityScore': 0.9998010807943507,
+      'tags': [
+        'publisher:flutter.dev',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:linux',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
   'http': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 7253,
-      'popularityScore': 0.9998970381302125,
+      'likeCount': 7495,
+      'popularityScore': 0.9998342339952923,
       'tags': [
         'publisher:dart.dev',
         'sdk:dart',
@@ -20,12 +38,12 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'shared_preferences': {
+  'image_picker': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 8672,
-      'popularityScore': 0.9998283968836874,
+      'likeCount': 6582,
+      'popularityScore': 0.9997679275934092,
       'tags': [
         'publisher:flutter.dev',
         'sdk:flutter',
@@ -42,28 +60,10 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 9521,
-      'popularityScore': 0.9996567937673748,
+      'likeCount': 9804,
+      'popularityScore': 0.9996021615887014,
       'tags': [
         'publisher:dash-overflow.net',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
-  'image_picker': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 6305,
-      'popularityScore': 0.9997597556371624,
-      'tags': [
-        'publisher:flutter.dev',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -78,8 +78,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 6647,
-      'popularityScore': 0.9995538318975873,
+      'likeCount': 6958,
+      'popularityScore': 0.9995358551868183,
       'tags': [
         'publisher:flutter.cn',
         'sdk:dart',
@@ -97,8 +97,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 5533,
-      'popularityScore': 0.9996224731441123,
+      'likeCount': 5804,
+      'popularityScore': 0.9995027019858768,
       'tags': [
         'publisher:baseflow.com',
         'sdk:flutter',
@@ -112,8 +112,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 4493,
-      'popularityScore': 0.9997254350138999,
+      'likeCount': 4679,
+      'popularityScore': 0.9997016211915261,
       'tags': [
         'publisher:flutter.dev',
         'sdk:flutter',
@@ -129,8 +129,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 4699,
-      'popularityScore': 0.9995881525208498,
+      'likeCount': 4949,
+      'popularityScore': 0.9995690083877599,
       'tags': [
         'publisher:baseflow.com',
         'sdk:flutter',
@@ -141,28 +141,12 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'flutter_local_notifications': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 5856,
-      'popularityScore': 0.9993479081580121,
-      'tags': [
-        'publisher:dexterx.dev',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:linux',
-        'platform:macos',
-      ],
-    },
-  },
   'flutter_bloc': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 6466,
-      'popularityScore': 0.999141984418437,
+      'likeCount': 6716,
+      'popularityScore': 0.9992706295792859,
       'tags': [
         'publisher:bloclibrary.dev',
         'sdk:flutter',
@@ -179,8 +163,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 4938,
-      'popularityScore': 0.9990047019253869,
+      'likeCount': 5180,
+      'popularityScore': 0.9991380167755197,
       'tags': [
         'publisher:baseflow.com',
         'sdk:flutter',
@@ -196,8 +180,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 3685,
-      'popularityScore': 0.9991763050416995,
+      'likeCount': 3840,
+      'popularityScore': 0.9992043231774028,
       'tags': [
         'publisher:flutter.dev',
         'sdk:flutter',
@@ -206,14 +190,47 @@ const kMockPackageMetrics = {
       ],
     },
   },
+  'go_router': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 4343,
+      'popularityScore': 0.998972250770812,
+      'tags': [
+        'publisher:flutter.dev',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:linux',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
   'flutter_native_splash': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 7228,
-      'popularityScore': 0.9982839688368741,
+      'likeCount': 7597,
+      'popularityScore': 0.9984086463548055,
       'tags': [
         'publisher:jonhanson.net',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:web',
+      ],
+    },
+  },
+  'google_maps_flutter': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 3958,
+      'popularityScore': 0.9988396379670457,
+      'tags': [
+        'publisher:flutter.dev',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -225,8 +242,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 4112,
-      'popularityScore': 0.9987301369392868,
+      'likeCount': 4281,
+      'popularityScore': 0.998740178364221,
       'tags': [
         'publisher:fluttercommunity.dev',
         'sdk:flutter',
@@ -243,8 +260,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 3454,
-      'popularityScore': 0.9988330988090743,
+      'likeCount': 3670,
+      'popularityScore': 0.9988727911679872,
       'tags': [
         'publisher:xaha.dev',
         'sdk:flutter',
@@ -256,79 +273,12 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'google_maps_flutter': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 3795,
-      'popularityScore': 0.9986958163160243,
-      'tags': [
-        'publisher:flutter.dev',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:web',
-      ],
-    },
-  },
-  'go_router': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 4036,
-      'popularityScore': 0.9984898925764492,
-      'tags': [
-        'publisher:flutter.dev',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
-  'sqflite': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 4516,
-      'popularityScore': 0.9983182894601366,
-      'tags': [
-        'publisher:tekartik.com',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:macos',
-      ],
-    },
-  },
-  'get_it': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 3749,
-      'popularityScore': 0.9985242131997117,
-      'tags': [
-        'publisher:fluttercommunity.dev',
-        'sdk:dart',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
   'share_plus': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 2865,
-      'popularityScore': 0.9989017400555994,
+      'likeCount': 3067,
+      'popularityScore': 0.9991048635745782,
       'tags': [
         'publisher:fluttercommunity.dev',
         'sdk:flutter',
@@ -341,68 +291,14 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'shimmer': {
+  'connectivity_plus': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 4399,
-      'popularityScore': 0.9982496482136115,
-      'tags': [
-        'publisher:hunghd.dev',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
-  'equatable': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 2839,
-      'popularityScore': 0.9988674194323369,
+      'likeCount': 3113,
+      'popularityScore': 0.9990385571726951,
       'tags': [
         'publisher:fluttercommunity.dev',
-        'sdk:dart',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
-  'google_sign_in': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 2787,
-      'popularityScore': 0.9987987781858119,
-      'tags': [
-        'publisher:flutter.dev',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
-  'uuid': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 2045,
-      'popularityScore': 0.9993135875347496,
-      'tags': [
-        'publisher:yuli.dev',
-        'sdk:dart',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -417,10 +313,97 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 5300,
-      'popularityScore': 0.9977691594879363,
+      'likeCount': 5618,
+      'popularityScore': 0.9982097271491562,
       'tags': [
-        'publisher:flutter4fun.com',
+        'publisher:flchart.dev',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:linux',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
+  'get_it': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 3932,
+      'popularityScore': 0.9985412591585717,
+      'tags': [
+        'publisher:fluttercommunity.dev',
+        'sdk:dart',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:linux',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
+  'sqflite': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 4697,
+      'popularityScore': 0.9982760335510393,
+      'tags': [
+        'publisher:tekartik.com',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:macos',
+      ],
+    },
+  },
+  'shimmer': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 4597,
+      'popularityScore': 0.9983091867519809,
+      'tags': [
+        'publisher:hunghd.dev',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:linux',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
+  'google_sign_in': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 2915,
+      'popularityScore': 0.9989059443689288,
+      'tags': [
+        'publisher:flutter.dev',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
+  'equatable': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 2960,
+      'popularityScore': 0.9987070251632795,
+      'tags': [
+        'publisher:fluttercommunity.dev',
+        'sdk:dart',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -435,8 +418,63 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 1959,
-      'popularityScore': 0.9992449462882246,
+      'likeCount': 2120,
+      'popularityScore': 0.9993037827802275,
+      'tags': [
+        'publisher:fluttercommunity.dev',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:linux',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
+  'uuid': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 2185,
+      'popularityScore': 0.9992374763783444,
+      'tags': [
+        'publisher:yuli.dev',
+        'sdk:dart',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:linux',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
+  'flutter_secure_storage': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 3522,
+      'popularityScore': 0.998375493153864,
+      'tags': [
+        'publisher:steenbakker.dev',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:linux',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
+  'device_info_plus': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 2340,
+      'popularityScore': 0.9990717103736366,
       'tags': [
         'publisher:fluttercommunity.dev',
         'sdk:flutter',
@@ -453,8 +491,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 2775,
-      'popularityScore': 0.9976661976181488,
+      'likeCount': 2954,
+      'popularityScore': 0.9981102675463316,
       'tags': [
         'publisher:',
         'sdk:dart',
@@ -472,8 +510,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 1336,
-      'popularityScore': 0.9993822287812747,
+      'likeCount': 1400,
+      'popularityScore': 0.999336935981169,
       'tags': [
         'publisher:dart.dev',
         'sdk:dart',
@@ -491,8 +529,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 1966,
-      'popularityScore': 0.9978378007344614,
+      'likeCount': 2068,
+      'popularityScore': 0.9980439611444485,
       'tags': [
         'publisher:flutter.dev',
         'sdk:flutter',
@@ -502,15 +540,14 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'crypto': {
+  'audioplayers': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 1476,
-      'popularityScore': 0.9984555719531867,
+      'likeCount': 2795,
+      'popularityScore': 0.9972814375227929,
       'tags': [
-        'publisher:dart.dev',
-        'sdk:dart',
+        'publisher:blue-fire.xyz',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -525,10 +562,29 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 2975,
-      'popularityScore': 0.9966708995435357,
+      'likeCount': 3173,
+      'popularityScore': 0.9968835991114943,
       'tags': [
         'publisher:codeness.ly',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:linux',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
+  'crypto': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 1553,
+      'popularityScore': 0.9983423399529224,
+      'tags': [
+        'publisher:dart.dev',
+        'sdk:dart',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -543,8 +599,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 2330,
-      'popularityScore': 0.9968768232831108,
+      'likeCount': 2436,
+      'popularityScore': 0.9973145907237344,
       'tags': [
         'publisher:diegoveloper.com',
         'sdk:flutter',
@@ -557,12 +613,28 @@ const kMockPackageMetrics = {
       ],
     },
   },
+  'location': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 2795,
+      'popularityScore': 0.9969167523124358,
+      'tags': [
+        'publisher:bernos.dev',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
   'flutter_riverpod': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 2156,
-      'popularityScore': 0.9967052201667982,
+      'likeCount': 2282,
+      'popularityScore': 0.9971819779199682,
       'tags': [
         'publisher:dash-overflow.net',
         'sdk:flutter',
@@ -579,47 +651,10 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 2101,
-      'popularityScore': 0.9967395407900608,
+      'likeCount': 2195,
+      'popularityScore': 0.9968172927096111,
       'tags': [
         'publisher:sarbagyastha.com.np',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
-  'audioplayers': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 2664,
-      'popularityScore': 0.9960531283248104,
-      'tags': [
-        'publisher:blue-fire.xyz',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
-  'flutter_lints': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 1043,
-      'popularityScore': 0.9987644575625494,
-      'tags': [
-        'publisher:flutter.dev',
-        'sdk:dart',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -634,8 +669,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 3129,
-      'popularityScore': 0.99536671585956,
+      'likeCount': 3252,
+      'popularityScore': 0.9960547690879554,
       'tags': [
         'publisher:yako.io',
         'sdk:flutter',
@@ -648,14 +683,66 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'bloc': {
+  'table_calendar': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 2618,
-      'popularityScore': 0.9948519065106223,
+      'likeCount': 2713,
+      'popularityScore': 0.9962205350926632,
       'tags': [
-        'publisher:bloclibrary.dev',
+        'publisher:',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:linux',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
+  'sign_in_with_apple': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 1770,
+      'popularityScore': 0.9969499055133774,
+      'tags': [
+        'publisher:aboutyou.com',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
+  'flutter_animate': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 2907,
+      'popularityScore': 0.9959221562841892,
+      'tags': [
+        'publisher:gskinner.com',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:linux',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
+  'flutter_lints': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 1089,
+      'popularityScore': 0.9984417995557471,
+      'tags': [
+        'publisher:flutter.dev',
         'sdk:dart',
         'sdk:flutter',
         'platform:android',
@@ -671,8 +758,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 2531,
-      'popularityScore': 0.9948862271338847,
+      'likeCount': 2668,
+      'popularityScore': 0.9957232370785399,
       'tags': [
         'publisher:flutter.dev',
         'sdk:flutter',
@@ -682,47 +769,15 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'table_calendar': {
+  'bloc': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 2596,
-      'popularityScore': 0.9946803033943097,
+      'likeCount': 2728,
+      'popularityScore': 0.9946954878493518,
       'tags': [
-        'publisher:',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
-  'json_serializable': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 3227,
-      'popularityScore': 0.9941654940453719,
-      'tags': [
-        'publisher:google.dev',
+        'publisher:bloclibrary.dev',
         'sdk:dart',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-      ],
-    },
-  },
-  'flutter_animate': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 2579,
-      'popularityScore': 0.9945087002779971,
-      'tags': [
-        'publisher:gskinner.com',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -737,8 +792,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 5612,
-      'popularityScore': 0.9931358753474963,
+      'likeCount': 5839,
+      'popularityScore': 0.9931704406060405,
       'tags': [
         'publisher:flutter.dev',
         'sdk:flutter',
@@ -751,46 +806,12 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'pinput': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 2349,
-      'popularityScore': 0.9943027765384219,
-      'tags': [
-        'publisher:fman.ge',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
-  'sign_in_with_apple': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 1684,
-      'popularityScore': 0.9950235096269349,
-      'tags': [
-        'publisher:aboutyou.com',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
   'just_audio': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 3225,
-      'popularityScore': 0.9935477228266465,
+      'likeCount': 3373,
+      'popularityScore': 0.9937008918211053,
       'tags': [
         'publisher:ryanheise.com',
         'sdk:flutter',
@@ -805,8 +826,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 1436,
-      'popularityScore': 0.9952637539897724,
+      'likeCount': 1510,
+      'popularityScore': 0.9953253986672413,
       'tags': [
         'publisher:baseflow.com',
         'sdk:flutter',
@@ -820,8 +841,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 2388,
-      'popularityScore': 0.9940282115523218,
+      'likeCount': 2509,
+      'popularityScore': 0.9940987302324039,
       'tags': [
         'publisher:nfet.net',
         'sdk:dart',
@@ -835,15 +856,81 @@ const kMockPackageMetrics = {
       ],
     },
   },
+  'google_mobile_ads': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 2135,
+      'popularityScore': 0.9940324238305208,
+      'tags': [
+        'publisher:google.dev',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+      ],
+    },
+  },
+  'get_storage': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 1623,
+      'popularityScore': 0.994463415442761,
+      'tags': [
+        'publisher:getx.site',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:linux',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
+  'flutter_image_compress': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 1337,
+      'popularityScore': 0.9950270198587674,
+      'tags': [
+        'publisher:fluttercandies.com',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
   'logging': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 722,
-      'popularityScore': 0.9980780450972989,
+      'likeCount': 755,
+      'popularityScore': 0.9974803567284422,
       'tags': [
         'publisher:dart.dev',
         'sdk:dart',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:linux',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
+  'page_transition': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 1284,
+      'popularityScore': 0.995060173059709,
+      'tags': [
+        'publisher:yasinilhan.com',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -858,43 +945,10 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 1769,
-      'popularityScore': 0.994371417784947,
+      'likeCount': 1870,
+      'popularityScore': 0.9938335046248715,
       'tags': [
         'publisher:tools.dart.dev',
-        'sdk:dart',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-      ],
-    },
-  },
-  'get_storage': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 1558,
-      'popularityScore': 0.9942684559151594,
-      'tags': [
-        'publisher:getx.site',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
-  'freezed': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 3487,
-      'popularityScore': 0.992518104128771,
-      'tags': [
-        'publisher:dash-overflow.net',
         'sdk:dart',
         'platform:windows',
         'platform:linux',
@@ -906,8 +960,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 1762,
-      'popularityScore': 0.9936506846964341,
+      'likeCount': 1842,
+      'popularityScore': 0.9937340450220469,
       'tags': [
         'publisher:',
         'sdk:flutter',
@@ -916,71 +970,33 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'flutter_image_compress': {
+  'freezed': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 1254,
-      'popularityScore': 0.9942341352918969,
+      'likeCount': 3651,
+      'popularityScore': 0.9920432317740278,
       'tags': [
-        'publisher:',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
-  'page_transition': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 1231,
-      'popularityScore': 0.9940968527988469,
-      'tags': [
-        'publisher:yasinilhan.com',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
-  'built_value': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 656,
-      'popularityScore': 0.9969797851528984,
-      'tags': [
-        'publisher:google.dev',
+        'publisher:dash-overflow.net',
         'sdk:dart',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
         'platform:windows',
         'platform:linux',
         'platform:macos',
-        'platform:web',
       ],
     },
   },
-  'uni_links': {
+  'in_app_review': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 1462,
-      'popularityScore': 0.9929985928544462,
+      'likeCount': 1816,
+      'popularityScore': 0.9932367470079236,
       'tags': [
-        'publisher:',
+        'publisher:britannio.dev',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
-        'platform:web',
+        'platform:macos',
       ],
     },
   },
@@ -988,8 +1004,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 1400,
-      'popularityScore': 0.9928269897381337,
+      'likeCount': 1540,
+      'popularityScore': 0.9934356662135729,
       'tags': [
         'publisher:steenbakker.dev',
         'sdk:flutter',
@@ -1004,8 +1020,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 3942,
-      'popularityScore': 0.9906304698493325,
+      'likeCount': 4153,
+      'popularityScore': 0.9911812485495475,
       'tags': [
         'publisher:fernando-herrera.com',
         'sdk:flutter',
@@ -1018,29 +1034,15 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'in_app_review': {
+  'built_value': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 1716,
-      'popularityScore': 0.9922778597659333,
+      'likeCount': 673,
+      'popularityScore': 0.996452607499254,
       'tags': [
-        'publisher:britannio.dev',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:macos',
-      ],
-    },
-  },
-  'flutter_form_builder': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 2242,
-      'popularityScore': 0.9909393554586952,
-      'tags': [
-        'publisher:flutterformbuilderecosystem.com',
+        'publisher:google.dev',
+        'sdk:dart',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -1051,32 +1053,14 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'printing': {
+  'upgrader': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 1392,
-      'popularityScore': 0.9921062566496207,
+      'likeCount': 1881,
+      'popularityScore': 0.9916785465636707,
       'tags': [
-        'publisher:nfet.net',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
-  'awesome_notifications': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 2721,
-      'popularityScore': 0.9902872636167073,
-      'tags': [
-        'publisher:carda.me',
+        'publisher:larryaasen.com',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -1091,10 +1075,28 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 844,
-      'popularityScore': 0.9939252496825343,
+      'likeCount': 902,
+      'popularityScore': 0.9938666578258131,
       'tags': [
         'publisher:jasonrai.ca',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:linux',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
+  'awesome_notifications': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 2875,
+      'popularityScore': 0.9904518781288333,
+      'tags': [
+        'publisher:carda.me',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -1109,8 +1111,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 1846,
-      'popularityScore': 0.990802072965645,
+      'likeCount': 1939,
+      'popularityScore': 0.9911480953486059,
       'tags': [
         'publisher:flutter.dev',
         'sdk:flutter',
@@ -1124,8 +1126,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 968,
-      'popularityScore': 0.9929299516079212,
+      'likeCount': 1012,
+      'popularityScore': 0.993137287405099,
       'tags': [
         'publisher:',
         'sdk:dart',
@@ -1139,18 +1141,19 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'wakelock': {
+  'loading_animation_widget': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 1440,
-      'popularityScore': 0.9912139204447953,
+      'likeCount': 1403,
+      'popularityScore': 0.9914133209561383,
       'tags': [
-        'publisher:creativemaybeno.dev',
+        'publisher:waterydesert.com',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
         'platform:windows',
+        'platform:linux',
         'platform:macos',
         'platform:web',
       ],
@@ -1160,8 +1163,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 395,
-      'popularityScore': 0.9981123657205615,
+      'likeCount': 428,
+      'popularityScore': 0.9977787355369161,
       'tags': [
         'publisher:tools.dart.dev',
         'sdk:dart',
@@ -1179,8 +1182,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 729,
-      'popularityScore': 0.9933417990870714,
+      'likeCount': 796,
+      'popularityScore': 0.9934688194145145,
       'tags': [
         'publisher:daohoangson.com',
         'sdk:flutter',
@@ -1188,15 +1191,14 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'mockito': {
+  'sentry_flutter': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 1213,
-      'popularityScore': 0.9908707142121701,
+      'likeCount': 792,
+      'popularityScore': 0.9932699002088652,
       'tags': [
-        'publisher:dart.dev',
-        'sdk:dart',
+        'publisher:sentry.io',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -1207,14 +1209,31 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'sentry_flutter': {
+  'wakelock': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 750,
-      'popularityScore': 0.9926210659985585,
+      'likeCount': 1485,
+      'popularityScore': 0.9901534993203593,
       'tags': [
-        'publisher:sentry.io',
+        'publisher:creativemaybeno.dev',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
+  'responsive_framework': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 2830,
+      'popularityScore': 0.9886947584789312,
+      'tags': [
+        'publisher:codelessly.com',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -1229,8 +1248,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 354,
-      'popularityScore': 0.998009403850774,
+      'likeCount': 373,
+      'popularityScore': 0.9978450419387992,
       'tags': [
         'publisher:lukas-renggli.ch',
         'sdk:dart',
@@ -1244,14 +1263,14 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'loading_animation_widget': {
+  'card_swiper': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 1240,
-      'popularityScore': 0.9899440573840821,
+      'likeCount': 1076,
+      'popularityScore': 0.990849716540132,
       'tags': [
-        'publisher:waterydesert.com',
+        'publisher:',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -1262,14 +1281,14 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'jiffy': {
+  'googleapis': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 882,
-      'popularityScore': 0.9911109585750077,
+      'likeCount': 946,
+      'popularityScore': 0.9912807081523721,
       'tags': [
-        'publisher:',
+        'publisher:google.dev',
         'sdk:dart',
         'sdk:flutter',
         'platform:android',
@@ -1285,29 +1304,10 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 745,
-      'popularityScore': 0.9917973710402581,
+      'likeCount': 786,
+      'popularityScore': 0.9921095381759109,
       'tags': [
         'publisher:solusibejo.com',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
-  'googleapis': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 901,
-      'popularityScore': 0.9908363935889076,
-      'tags': [
-        'publisher:google.dev',
-        'sdk:dart',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -1322,8 +1322,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 659,
-      'popularityScore': 0.9924151422589834,
+      'likeCount': 708,
+      'popularityScore': 0.9926731425919173,
       'tags': [
         'publisher:',
         'sdk:flutter',
@@ -1332,14 +1332,15 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'hooks_riverpod': {
+  'jiffy': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 773,
-      'popularityScore': 0.9913512029378454,
+      'likeCount': 941,
+      'popularityScore': 0.9909823293438982,
       'tags': [
-        'publisher:dash-overflow.net',
+        'publisher:',
+        'sdk:dart',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -1350,14 +1351,32 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'card_swiper': {
+  'readmore': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 975,
-      'popularityScore': 0.9901499811236572,
+      'likeCount': 863,
+      'popularityScore': 0.9913470145542552,
       'tags': [
-        'publisher:',
+        'publisher:getx.site',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:linux',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
+  'hooks_riverpod': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 796,
+      'popularityScore': 0.9917780061664954,
+      'tags': [
+        'publisher:dash-overflow.net',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -1372,8 +1391,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 1267,
-      'popularityScore': 0.988948759309469,
+      'likeCount': 1337,
+      'popularityScore': 0.9890262904883467,
       'tags': [
         'publisher:begnis.dev',
         'sdk:flutter',
@@ -1386,14 +1405,32 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'another_flushbar': {
+  'flutter_tts': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 801,
-      'popularityScore': 0.9905275079795449,
+      'likeCount': 1165,
+      'popularityScore': 0.9893909756987037,
       'tags': [
-        'publisher:hamidwakili.com',
+        'publisher:tundralabs.com',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
+  'mobx': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 1209,
+      'popularityScore': 0.9891589032921129,
+      'tags': [
+        'publisher:vyuh.tech',
+        'sdk:dart',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -1408,8 +1445,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 1251,
-      'popularityScore': 0.9885025912070563,
+      'likeCount': 1283,
+      'popularityScore': 0.9885952988761065,
       'tags': [
         'publisher:',
         'sdk:flutter',
@@ -1418,45 +1455,64 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'responsive_builder': {
+  'another_flushbar': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 1502,
-      'popularityScore': 0.9864433538113052,
+      'likeCount': 834,
+      'popularityScore': 0.990252958923184,
       'tags': [
-        'publisher:filledstacks.com',
+        'publisher:hamidwakili.com',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
         'platform:windows',
         'platform:linux',
         'platform:macos',
+        'platform:web',
       ],
     },
   },
-  'vibration': {
+  'toggle_switch': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 633,
-      'popularityScore': 0.9903559048632323,
+      'likeCount': 1272,
+      'popularityScore': 0.9883632264695156,
       'tags': [
-        'publisher:',
+        'publisher:pramod.dev',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:linux',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
+  'map_launcher': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 769,
+      'popularityScore': 0.9901866525213009,
+      'tags': [
+        'publisher:fluttered.dev',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
       ],
     },
   },
-  'sliver_tools': {
+  'gap': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 1131,
-      'popularityScore': 0.9874729725091808,
+      'likeCount': 707,
+      'popularityScore': 0.9904850313297748,
       'tags': [
-        'publisher:pietervanloon.com',
+        'publisher:',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -1471,24 +1527,10 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 491,
-      'popularityScore': 0.9919346535333081,
+      'likeCount': 533,
+      'popularityScore': 0.9922089977787355,
       'tags': [
         'publisher:',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-      ],
-    },
-  },
-  'map_launcher': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 730,
-      'popularityScore': 0.9891890036723067,
-      'tags': [
-        'publisher:fluttered.dev',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -1499,8 +1541,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 752,
-      'popularityScore': 0.9889830799327316,
+      'likeCount': 807,
+      'popularityScore': 0.9896230481052946,
       'tags': [
         'publisher:google.dev',
         'sdk:dart',
@@ -1514,14 +1556,43 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'gap': {
+  'vibration': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 637,
-      'popularityScore': 0.9896008511514569,
+      'likeCount': 672,
+      'popularityScore': 0.9906176441335411,
       'tags': [
         'publisher:',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+      ],
+    },
+  },
+  'flutter_sound': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 1313,
+      'popularityScore': 0.9872691708384445,
+      'tags': [
+        'publisher:tau.canardoux.xyz',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:web',
+      ],
+    },
+  },
+  'flutter_mobx': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 651,
+      'popularityScore': 0.9902861121241255,
+      'tags': [
+        'publisher:vyuh.tech',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -1532,15 +1603,82 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'mocktail': {
+  'sliver_tools': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 936,
-      'popularityScore': 0.9874043312626557,
+      'likeCount': 1185,
+      'popularityScore': 0.9874680900440937,
       'tags': [
-        'publisher:felangel.dev',
-        'sdk:dart',
+        'publisher:pietervanloon.com',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:linux',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
+  'window_manager': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 803,
+      'popularityScore': 0.9887942180817558,
+      'tags': [
+        'publisher:leanflutter.dev',
+        'sdk:flutter',
+        'platform:windows',
+        'platform:linux',
+        'platform:macos',
+      ],
+    },
+  },
+  'app_links': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 567,
+      'popularityScore': 0.9908165633391904,
+      'tags': [
+        'publisher:openapi4j.org',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:linux',
+        'platform:macos',
+        'platform:web',
+      ],
+    },
+  },
+  'responsive_builder': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 1555,
+      'popularityScore': 0.9857772767960746,
+      'tags': [
+        'publisher:filledstacks.com',
+        'sdk:flutter',
+        'platform:android',
+        'platform:ios',
+        'platform:windows',
+        'platform:linux',
+        'platform:macos',
+      ],
+    },
+  },
+  'confetti': {
+    'score': {
+      'grantedPoints': 140,
+      'maxPoints': 140,
+      'likeCount': 1214,
+      'popularityScore': 0.9865398004177304,
+      'tags': [
+        'publisher:funwith.app',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
@@ -1555,8 +1693,8 @@ const kMockPackageMetrics = {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 923,
-      'popularityScore': 0.9872670487696057,
+      'likeCount': 989,
+      'popularityScore': 0.9871365580346783,
       'tags': [
         'publisher:jonasbark.de',
         'sdk:flutter',
@@ -1564,159 +1702,14 @@ const kMockPackageMetrics = {
       ],
     },
   },
-  'window_manager': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 730,
-      'popularityScore': 0.9883996293372688,
-      'tags': [
-        'publisher:leanflutter.dev',
-        'sdk:flutter',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-      ],
-    },
-  },
-  'riverpod': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 3068,
-      'popularityScore': 0.9835261008339912,
-      'tags': [
-        'publisher:dash-overflow.net',
-        'sdk:dart',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
-  'petitparser': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 272,
-      'popularityScore': 0.9969454645296358,
-      'tags': [
-        'publisher:lukas-renggli.ch',
-        'sdk:dart',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
-  'confetti': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 1160,
-      'popularityScore': 0.9860658269554176,
-      'tags': [
-        'publisher:funwith.app',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
-  'flex_color_scheme': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 2283,
-      'popularityScore': 0.9837320245735662,
-      'tags': [
-        'publisher:rydmike.com',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
-  'stack_trace': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 248,
-      'popularityScore': 0.9974945945018362,
-      'tags': [
-        'publisher:tools.dart.dev',
-        'sdk:dart',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
   'url_strategy': {
     'score': {
       'grantedPoints': 140,
       'maxPoints': 140,
-      'likeCount': 490,
-      'popularityScore': 0.9899097367608196,
+      'likeCount': 512,
+      'popularityScore': 0.9906507973344827,
       'tags': [
         'publisher:simpleclub.com',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
-  'english_words': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 516,
-      'popularityScore': 0.9894635686584068,
-      'tags': [
-        'publisher:filiph.net',
-        'sdk:dart',
-        'sdk:flutter',
-        'platform:android',
-        'platform:ios',
-        'platform:windows',
-        'platform:linux',
-        'platform:macos',
-        'platform:web',
-      ],
-    },
-  },
-  'data_table_2': {
-    'score': {
-      'grantedPoints': 140,
-      'maxPoints': 140,
-      'likeCount': 699,
-      'popularityScore': 0.9869924837835055,
-      'tags': [
-        'publisher:saplin.blogspot.com',
         'sdk:flutter',
         'platform:android',
         'platform:ios',
