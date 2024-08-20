@@ -55,9 +55,11 @@ linter:
 #    directives_ordering: true
     discarded_futures: true
     do_not_use_environment: true
+#    document_ignores: true
     eol_at_end_of_file: true
     implicit_reopen: true
     invalid_case_patterns: true
+    invalid_runtime_check_with_js_interop_types: true
     join_return_with_assignment: true
     leading_newlines_in_multiline_strings: true
     lines_longer_than_80_chars: true
@@ -101,6 +103,7 @@ linter:
     tighten_type_of_initializing_formals: true
     type_annotate_public_apis: true
     unawaited_futures: true
+    unintended_html_in_doc_comment: true
     unnecessary_await_in_return: true
     unnecessary_breaks: true
     unnecessary_lambdas: true

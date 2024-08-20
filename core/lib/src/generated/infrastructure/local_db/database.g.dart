@@ -111,6 +111,15 @@ class SettingsTableData extends DataClass
         id: id ?? this.id,
         themeModeIndex: themeModeIndex ?? this.themeModeIndex,
       );
+  SettingsTableData copyWithCompanion(SettingsTableCompanion data) {
+    return SettingsTableData(
+      id: data.id.present ? data.id.value : this.id,
+      themeModeIndex: data.themeModeIndex.present
+          ? data.themeModeIndex.value
+          : this.themeModeIndex,
+    );
+  }
+
   @override
   String toString() {
     return (StringBuffer('SettingsTableData(')
@@ -580,6 +589,30 @@ class PackagesTableData extends DataClass
         popularity: popularity ?? this.popularity,
         savedAt: savedAt ?? this.savedAt,
       );
+  PackagesTableData copyWithCompanion(PackagesTableCompanion data) {
+    return PackagesTableData(
+      name: data.name.present ? data.name.value : this.name,
+      description:
+          data.description.present ? data.description.value : this.description,
+      latest: data.latest.present ? data.latest.value : this.latest,
+      latestAt: data.latestAt.present ? data.latestAt.value : this.latestAt,
+      preRelease:
+          data.preRelease.present ? data.preRelease.value : this.preRelease,
+      preReleaseAt: data.preReleaseAt.present
+          ? data.preReleaseAt.value
+          : this.preReleaseAt,
+      sdks: data.sdks.present ? data.sdks.value : this.sdks,
+      platforms: data.platforms.present ? data.platforms.value : this.platforms,
+      publisher: data.publisher.present ? data.publisher.value : this.publisher,
+      points: data.points.present ? data.points.value : this.points,
+      maxPoints: data.maxPoints.present ? data.maxPoints.value : this.maxPoints,
+      likes: data.likes.present ? data.likes.value : this.likes,
+      popularity:
+          data.popularity.present ? data.popularity.value : this.popularity,
+      savedAt: data.savedAt.present ? data.savedAt.value : this.savedAt,
+    );
+  }
+
   @override
   String toString() {
     return (StringBuffer('PackagesTableData(')
@@ -947,6 +980,13 @@ class BookmarksTableData extends DataClass
         name: name ?? this.name,
         createdAt: createdAt ?? this.createdAt,
       );
+  BookmarksTableData copyWithCompanion(BookmarksTableCompanion data) {
+    return BookmarksTableData(
+      name: data.name.present ? data.name.value : this.name,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+    );
+  }
+
   @override
   String toString() {
     return (StringBuffer('BookmarksTableData(')
@@ -1346,7 +1386,7 @@ class $PackagesWithBookmarkView
 
 abstract class _$Database extends GeneratedDatabase {
   _$Database(QueryExecutor e) : super(e);
-  _$DatabaseManager get managers => _$DatabaseManager(this);
+  $DatabaseManager get managers => $DatabaseManager(this);
   late final $SettingsTableTable settingsTable = $SettingsTableTable(this);
   late final $PackagesTableTable packagesTable = $PackagesTableTable(this);
   late final $BookmarksTableTable bookmarksTable = $BookmarksTableTable(this);
@@ -1363,7 +1403,7 @@ abstract class _$Database extends GeneratedDatabase {
       [settingsTable, packagesTable, bookmarksTable, packagesWithBookmark];
 }
 
-typedef $$SettingsTableTableInsertCompanionBuilder = SettingsTableCompanion
+typedef $$SettingsTableTableCreateCompanionBuilder = SettingsTableCompanion
     Function({
   Value<int> id,
   Value<int> themeModeIndex,
@@ -1373,56 +1413,6 @@ typedef $$SettingsTableTableUpdateCompanionBuilder = SettingsTableCompanion
   Value<int> id,
   Value<int> themeModeIndex,
 });
-
-class $$SettingsTableTableTableManager extends RootTableManager<
-    _$Database,
-    $SettingsTableTable,
-    SettingsTableData,
-    $$SettingsTableTableFilterComposer,
-    $$SettingsTableTableOrderingComposer,
-    $$SettingsTableTableProcessedTableManager,
-    $$SettingsTableTableInsertCompanionBuilder,
-    $$SettingsTableTableUpdateCompanionBuilder> {
-  $$SettingsTableTableTableManager(_$Database db, $SettingsTableTable table)
-      : super(TableManagerState(
-          db: db,
-          table: table,
-          filteringComposer:
-              $$SettingsTableTableFilterComposer(ComposerState(db, table)),
-          orderingComposer:
-              $$SettingsTableTableOrderingComposer(ComposerState(db, table)),
-          getChildManagerBuilder: (p) =>
-              $$SettingsTableTableProcessedTableManager(p),
-          getUpdateCompanionBuilder: ({
-            Value<int> id = const Value.absent(),
-            Value<int> themeModeIndex = const Value.absent(),
-          }) =>
-              SettingsTableCompanion(
-            id: id,
-            themeModeIndex: themeModeIndex,
-          ),
-          getInsertCompanionBuilder: ({
-            Value<int> id = const Value.absent(),
-            Value<int> themeModeIndex = const Value.absent(),
-          }) =>
-              SettingsTableCompanion.insert(
-            id: id,
-            themeModeIndex: themeModeIndex,
-          ),
-        ));
-}
-
-class $$SettingsTableTableProcessedTableManager extends ProcessedTableManager<
-    _$Database,
-    $SettingsTableTable,
-    SettingsTableData,
-    $$SettingsTableTableFilterComposer,
-    $$SettingsTableTableOrderingComposer,
-    $$SettingsTableTableProcessedTableManager,
-    $$SettingsTableTableInsertCompanionBuilder,
-    $$SettingsTableTableUpdateCompanionBuilder> {
-  $$SettingsTableTableProcessedTableManager(super.$state);
-}
 
 class $$SettingsTableTableFilterComposer
     extends FilterComposer<_$Database, $SettingsTableTable> {
@@ -1452,7 +1442,66 @@ class $$SettingsTableTableOrderingComposer
           ColumnOrderings(column, joinBuilders: joinBuilders));
 }
 
-typedef $$PackagesTableTableInsertCompanionBuilder = PackagesTableCompanion
+class $$SettingsTableTableTableManager extends RootTableManager<
+    _$Database,
+    $SettingsTableTable,
+    SettingsTableData,
+    $$SettingsTableTableFilterComposer,
+    $$SettingsTableTableOrderingComposer,
+    $$SettingsTableTableCreateCompanionBuilder,
+    $$SettingsTableTableUpdateCompanionBuilder,
+    (
+      SettingsTableData,
+      BaseReferences<_$Database, $SettingsTableTable, SettingsTableData>
+    ),
+    SettingsTableData,
+    PrefetchHooks Function()> {
+  $$SettingsTableTableTableManager(_$Database db, $SettingsTableTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          filteringComposer:
+              $$SettingsTableTableFilterComposer(ComposerState(db, table)),
+          orderingComposer:
+              $$SettingsTableTableOrderingComposer(ComposerState(db, table)),
+          updateCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            Value<int> themeModeIndex = const Value.absent(),
+          }) =>
+              SettingsTableCompanion(
+            id: id,
+            themeModeIndex: themeModeIndex,
+          ),
+          createCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            Value<int> themeModeIndex = const Value.absent(),
+          }) =>
+              SettingsTableCompanion.insert(
+            id: id,
+            themeModeIndex: themeModeIndex,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$SettingsTableTableProcessedTableManager = ProcessedTableManager<
+    _$Database,
+    $SettingsTableTable,
+    SettingsTableData,
+    $$SettingsTableTableFilterComposer,
+    $$SettingsTableTableOrderingComposer,
+    $$SettingsTableTableCreateCompanionBuilder,
+    $$SettingsTableTableUpdateCompanionBuilder,
+    (
+      SettingsTableData,
+      BaseReferences<_$Database, $SettingsTableTable, SettingsTableData>
+    ),
+    SettingsTableData,
+    PrefetchHooks Function()>;
+typedef $$PackagesTableTableCreateCompanionBuilder = PackagesTableCompanion
     Function({
   required String name,
   required String description,
@@ -1488,108 +1537,6 @@ typedef $$PackagesTableTableUpdateCompanionBuilder = PackagesTableCompanion
   Value<DateTime> savedAt,
   Value<int> rowid,
 });
-
-class $$PackagesTableTableTableManager extends RootTableManager<
-    _$Database,
-    $PackagesTableTable,
-    PackagesTableData,
-    $$PackagesTableTableFilterComposer,
-    $$PackagesTableTableOrderingComposer,
-    $$PackagesTableTableProcessedTableManager,
-    $$PackagesTableTableInsertCompanionBuilder,
-    $$PackagesTableTableUpdateCompanionBuilder> {
-  $$PackagesTableTableTableManager(_$Database db, $PackagesTableTable table)
-      : super(TableManagerState(
-          db: db,
-          table: table,
-          filteringComposer:
-              $$PackagesTableTableFilterComposer(ComposerState(db, table)),
-          orderingComposer:
-              $$PackagesTableTableOrderingComposer(ComposerState(db, table)),
-          getChildManagerBuilder: (p) =>
-              $$PackagesTableTableProcessedTableManager(p),
-          getUpdateCompanionBuilder: ({
-            Value<String> name = const Value.absent(),
-            Value<String> description = const Value.absent(),
-            Value<String> latest = const Value.absent(),
-            Value<DateTime?> latestAt = const Value.absent(),
-            Value<String?> preRelease = const Value.absent(),
-            Value<DateTime?> preReleaseAt = const Value.absent(),
-            Value<String> sdks = const Value.absent(),
-            Value<String> platforms = const Value.absent(),
-            Value<String> publisher = const Value.absent(),
-            Value<int> points = const Value.absent(),
-            Value<int> maxPoints = const Value.absent(),
-            Value<int> likes = const Value.absent(),
-            Value<double> popularity = const Value.absent(),
-            Value<DateTime> savedAt = const Value.absent(),
-            Value<int> rowid = const Value.absent(),
-          }) =>
-              PackagesTableCompanion(
-            name: name,
-            description: description,
-            latest: latest,
-            latestAt: latestAt,
-            preRelease: preRelease,
-            preReleaseAt: preReleaseAt,
-            sdks: sdks,
-            platforms: platforms,
-            publisher: publisher,
-            points: points,
-            maxPoints: maxPoints,
-            likes: likes,
-            popularity: popularity,
-            savedAt: savedAt,
-            rowid: rowid,
-          ),
-          getInsertCompanionBuilder: ({
-            required String name,
-            required String description,
-            required String latest,
-            Value<DateTime?> latestAt = const Value.absent(),
-            Value<String?> preRelease = const Value.absent(),
-            Value<DateTime?> preReleaseAt = const Value.absent(),
-            required String sdks,
-            required String platforms,
-            required String publisher,
-            required int points,
-            required int maxPoints,
-            required int likes,
-            required double popularity,
-            required DateTime savedAt,
-            Value<int> rowid = const Value.absent(),
-          }) =>
-              PackagesTableCompanion.insert(
-            name: name,
-            description: description,
-            latest: latest,
-            latestAt: latestAt,
-            preRelease: preRelease,
-            preReleaseAt: preReleaseAt,
-            sdks: sdks,
-            platforms: platforms,
-            publisher: publisher,
-            points: points,
-            maxPoints: maxPoints,
-            likes: likes,
-            popularity: popularity,
-            savedAt: savedAt,
-            rowid: rowid,
-          ),
-        ));
-}
-
-class $$PackagesTableTableProcessedTableManager extends ProcessedTableManager<
-    _$Database,
-    $PackagesTableTable,
-    PackagesTableData,
-    $$PackagesTableTableFilterComposer,
-    $$PackagesTableTableOrderingComposer,
-    $$PackagesTableTableProcessedTableManager,
-    $$PackagesTableTableInsertCompanionBuilder,
-    $$PackagesTableTableUpdateCompanionBuilder> {
-  $$PackagesTableTableProcessedTableManager(super.$state);
-}
 
 class $$PackagesTableTableFilterComposer
     extends FilterComposer<_$Database, $PackagesTableTable> {
@@ -1739,7 +1686,118 @@ class $$PackagesTableTableOrderingComposer
           ColumnOrderings(column, joinBuilders: joinBuilders));
 }
 
-typedef $$BookmarksTableTableInsertCompanionBuilder = BookmarksTableCompanion
+class $$PackagesTableTableTableManager extends RootTableManager<
+    _$Database,
+    $PackagesTableTable,
+    PackagesTableData,
+    $$PackagesTableTableFilterComposer,
+    $$PackagesTableTableOrderingComposer,
+    $$PackagesTableTableCreateCompanionBuilder,
+    $$PackagesTableTableUpdateCompanionBuilder,
+    (
+      PackagesTableData,
+      BaseReferences<_$Database, $PackagesTableTable, PackagesTableData>
+    ),
+    PackagesTableData,
+    PrefetchHooks Function()> {
+  $$PackagesTableTableTableManager(_$Database db, $PackagesTableTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          filteringComposer:
+              $$PackagesTableTableFilterComposer(ComposerState(db, table)),
+          orderingComposer:
+              $$PackagesTableTableOrderingComposer(ComposerState(db, table)),
+          updateCompanionCallback: ({
+            Value<String> name = const Value.absent(),
+            Value<String> description = const Value.absent(),
+            Value<String> latest = const Value.absent(),
+            Value<DateTime?> latestAt = const Value.absent(),
+            Value<String?> preRelease = const Value.absent(),
+            Value<DateTime?> preReleaseAt = const Value.absent(),
+            Value<String> sdks = const Value.absent(),
+            Value<String> platforms = const Value.absent(),
+            Value<String> publisher = const Value.absent(),
+            Value<int> points = const Value.absent(),
+            Value<int> maxPoints = const Value.absent(),
+            Value<int> likes = const Value.absent(),
+            Value<double> popularity = const Value.absent(),
+            Value<DateTime> savedAt = const Value.absent(),
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              PackagesTableCompanion(
+            name: name,
+            description: description,
+            latest: latest,
+            latestAt: latestAt,
+            preRelease: preRelease,
+            preReleaseAt: preReleaseAt,
+            sdks: sdks,
+            platforms: platforms,
+            publisher: publisher,
+            points: points,
+            maxPoints: maxPoints,
+            likes: likes,
+            popularity: popularity,
+            savedAt: savedAt,
+            rowid: rowid,
+          ),
+          createCompanionCallback: ({
+            required String name,
+            required String description,
+            required String latest,
+            Value<DateTime?> latestAt = const Value.absent(),
+            Value<String?> preRelease = const Value.absent(),
+            Value<DateTime?> preReleaseAt = const Value.absent(),
+            required String sdks,
+            required String platforms,
+            required String publisher,
+            required int points,
+            required int maxPoints,
+            required int likes,
+            required double popularity,
+            required DateTime savedAt,
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              PackagesTableCompanion.insert(
+            name: name,
+            description: description,
+            latest: latest,
+            latestAt: latestAt,
+            preRelease: preRelease,
+            preReleaseAt: preReleaseAt,
+            sdks: sdks,
+            platforms: platforms,
+            publisher: publisher,
+            points: points,
+            maxPoints: maxPoints,
+            likes: likes,
+            popularity: popularity,
+            savedAt: savedAt,
+            rowid: rowid,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$PackagesTableTableProcessedTableManager = ProcessedTableManager<
+    _$Database,
+    $PackagesTableTable,
+    PackagesTableData,
+    $$PackagesTableTableFilterComposer,
+    $$PackagesTableTableOrderingComposer,
+    $$PackagesTableTableCreateCompanionBuilder,
+    $$PackagesTableTableUpdateCompanionBuilder,
+    (
+      PackagesTableData,
+      BaseReferences<_$Database, $PackagesTableTable, PackagesTableData>
+    ),
+    PackagesTableData,
+    PrefetchHooks Function()>;
+typedef $$BookmarksTableTableCreateCompanionBuilder = BookmarksTableCompanion
     Function({
   required String name,
   required DateTime createdAt,
@@ -1751,60 +1809,6 @@ typedef $$BookmarksTableTableUpdateCompanionBuilder = BookmarksTableCompanion
   Value<DateTime> createdAt,
   Value<int> rowid,
 });
-
-class $$BookmarksTableTableTableManager extends RootTableManager<
-    _$Database,
-    $BookmarksTableTable,
-    BookmarksTableData,
-    $$BookmarksTableTableFilterComposer,
-    $$BookmarksTableTableOrderingComposer,
-    $$BookmarksTableTableProcessedTableManager,
-    $$BookmarksTableTableInsertCompanionBuilder,
-    $$BookmarksTableTableUpdateCompanionBuilder> {
-  $$BookmarksTableTableTableManager(_$Database db, $BookmarksTableTable table)
-      : super(TableManagerState(
-          db: db,
-          table: table,
-          filteringComposer:
-              $$BookmarksTableTableFilterComposer(ComposerState(db, table)),
-          orderingComposer:
-              $$BookmarksTableTableOrderingComposer(ComposerState(db, table)),
-          getChildManagerBuilder: (p) =>
-              $$BookmarksTableTableProcessedTableManager(p),
-          getUpdateCompanionBuilder: ({
-            Value<String> name = const Value.absent(),
-            Value<DateTime> createdAt = const Value.absent(),
-            Value<int> rowid = const Value.absent(),
-          }) =>
-              BookmarksTableCompanion(
-            name: name,
-            createdAt: createdAt,
-            rowid: rowid,
-          ),
-          getInsertCompanionBuilder: ({
-            required String name,
-            required DateTime createdAt,
-            Value<int> rowid = const Value.absent(),
-          }) =>
-              BookmarksTableCompanion.insert(
-            name: name,
-            createdAt: createdAt,
-            rowid: rowid,
-          ),
-        ));
-}
-
-class $$BookmarksTableTableProcessedTableManager extends ProcessedTableManager<
-    _$Database,
-    $BookmarksTableTable,
-    BookmarksTableData,
-    $$BookmarksTableTableFilterComposer,
-    $$BookmarksTableTableOrderingComposer,
-    $$BookmarksTableTableProcessedTableManager,
-    $$BookmarksTableTableInsertCompanionBuilder,
-    $$BookmarksTableTableUpdateCompanionBuilder> {
-  $$BookmarksTableTableProcessedTableManager(super.$state);
-}
 
 class $$BookmarksTableTableFilterComposer
     extends FilterComposer<_$Database, $BookmarksTableTable> {
@@ -1834,9 +1838,73 @@ class $$BookmarksTableTableOrderingComposer
           ColumnOrderings(column, joinBuilders: joinBuilders));
 }
 
-class _$DatabaseManager {
+class $$BookmarksTableTableTableManager extends RootTableManager<
+    _$Database,
+    $BookmarksTableTable,
+    BookmarksTableData,
+    $$BookmarksTableTableFilterComposer,
+    $$BookmarksTableTableOrderingComposer,
+    $$BookmarksTableTableCreateCompanionBuilder,
+    $$BookmarksTableTableUpdateCompanionBuilder,
+    (
+      BookmarksTableData,
+      BaseReferences<_$Database, $BookmarksTableTable, BookmarksTableData>
+    ),
+    BookmarksTableData,
+    PrefetchHooks Function()> {
+  $$BookmarksTableTableTableManager(_$Database db, $BookmarksTableTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          filteringComposer:
+              $$BookmarksTableTableFilterComposer(ComposerState(db, table)),
+          orderingComposer:
+              $$BookmarksTableTableOrderingComposer(ComposerState(db, table)),
+          updateCompanionCallback: ({
+            Value<String> name = const Value.absent(),
+            Value<DateTime> createdAt = const Value.absent(),
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              BookmarksTableCompanion(
+            name: name,
+            createdAt: createdAt,
+            rowid: rowid,
+          ),
+          createCompanionCallback: ({
+            required String name,
+            required DateTime createdAt,
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              BookmarksTableCompanion.insert(
+            name: name,
+            createdAt: createdAt,
+            rowid: rowid,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$BookmarksTableTableProcessedTableManager = ProcessedTableManager<
+    _$Database,
+    $BookmarksTableTable,
+    BookmarksTableData,
+    $$BookmarksTableTableFilterComposer,
+    $$BookmarksTableTableOrderingComposer,
+    $$BookmarksTableTableCreateCompanionBuilder,
+    $$BookmarksTableTableUpdateCompanionBuilder,
+    (
+      BookmarksTableData,
+      BaseReferences<_$Database, $BookmarksTableTable, BookmarksTableData>
+    ),
+    BookmarksTableData,
+    PrefetchHooks Function()>;
+
+class $DatabaseManager {
   final _$Database _db;
-  _$DatabaseManager(this._db);
+  $DatabaseManager(this._db);
   $$SettingsTableTableTableManager get settingsTable =>
       $$SettingsTableTableTableManager(_db, _db.settingsTable);
   $$PackagesTableTableTableManager get packagesTable =>
