@@ -5,7 +5,7 @@ import 'package:grab/grab.dart';
 
 import 'package:pubdev_explorer/common/_common.dart';
 import 'package:pubdev_explorer/platforms/io.dart'
-    if (dart.library.html) 'package:pubdev_explorer/platforms/web.dart';
+    if (dart.library.js_interop) 'package:pubdev_explorer/platforms/web.dart';
 import 'package:pubdev_explorer/presentation/common/_common.dart';
 import 'package:pubdev_explorer/presentation/pages/home/home_page.dart';
 
@@ -39,6 +39,7 @@ class App extends StatelessWidget {
       scrollBehavior: const CustomScrollBehavior(),
       home: Pottery(
         pots: {
+// TODO: Type annotation will be unnecessary if Pottery is improved.
           packageCachesPot: () => <String, PackageNotifier>{},
           homeNotifierPot: HomeNotifier.new,
         },
