@@ -59,7 +59,6 @@ linter:
     eol_at_end_of_file: true
     implicit_reopen: true
     invalid_case_patterns: true
-    invalid_runtime_check_with_js_interop_types: true
     join_return_with_assignment: true
     leading_newlines_in_multiline_strings: true
     lines_longer_than_80_chars: true
@@ -108,7 +107,6 @@ linter:
     unnecessary_breaks: true
     unnecessary_lambdas: true
     unnecessary_library_directive: true
-    unnecessary_library_name: true
     unnecessary_null_aware_operator_on_extension_on_nullable: true
     unnecessary_null_checks: true
     unnecessary_parenthesis: true
