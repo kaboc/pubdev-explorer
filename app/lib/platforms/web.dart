@@ -9,7 +9,7 @@ LazyDatabase openConnection({bool inMemory = false}) {
       WasmDatabase.open(
         databaseName: kDatabaseName,
         sqlite3Uri: Uri.parse('sqlite3.wasm'),
-        driftWorkerUri: Uri.parse('drift_worker.dart.js'),
+        driftWorkerUri: Uri.parse('drift_worker.js'),
       ).then((result) => result.resolvedExecutor),
     ),
   );
