@@ -38,7 +38,6 @@ class BookmarksNotifier extends AsyncPhaseNotifier<BookmarksState> {
             ? <String>[]
             : spaceSeparated.split(' ').map((v) => v.toLowerCase());
 
-        final data = value.data!;
         const equality = UnorderedIterableEquality<String>();
         if (!equality.equals(words, data.keywords)) {
           value = value.copyWith(
@@ -59,8 +58,8 @@ class BookmarksNotifier extends AsyncPhaseNotifier<BookmarksState> {
       return;
     }
 
-    await runAsync((data) async {
-      final packages = data!.keywords.isEmpty
+    await update(() async {
+      final phase = data.keywords.isEmpty
           ? await _repository.fetch(
               limit: kBookmarksFetchLimit,
               before: before,
@@ -71,6 +70,11 @@ class BookmarksNotifier extends AsyncPhaseNotifier<BookmarksState> {
               before: before,
             );
 
+      if (phase case AsyncError()) {
+        phase.rethrowError();
+      }
+
+      final packages = phase.data!;
       for (final package in packages) {
         _packageCaches[package.name] ??= PackageNotifier(name: package.name);
         _packageCaches[package.name]?.updateWith(package);
@@ -80,9 +84,9 @@ class BookmarksNotifier extends AsyncPhaseNotifier<BookmarksState> {
         _lastAt = packages.last.bookmarkedAt;
       }
 
-      return value.data!.copyWith(
+      return data.copyWith(
         packageNames: {
-          ...value.data!.packageNames,
+          ...data.packageNames,
           for (final package in packages) package.name,
         },
         hasMore: packages.length == kBookmarksFetchLimit,
@@ -95,7 +99,7 @@ class BookmarksNotifier extends AsyncPhaseNotifier<BookmarksState> {
   }
 
   Future<void> fetchNextBookmarks() async {
-    if (value.data!.hasMore) {
+    if (data.hasMore) {
       await _fetch(before: _lastAt);
     }
   }

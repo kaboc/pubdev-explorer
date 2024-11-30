@@ -1,3 +1,5 @@
+import 'package:async_phase/async_phase.dart';
+
 import 'package:pubdev_explorer_core/src/common/_common.dart';
 import 'package:pubdev_explorer_core/src/domain/pub/models/package.dart';
 import 'package:pubdev_explorer_core/src/infrastructure/local_db/daos/bookmarks_dao.dart';
@@ -7,49 +9,47 @@ BookmarksDao get _dao => localDatabasePot().bookmarksDao;
 class BookmarksRepository {
   const BookmarksRepository();
 
-  Future<Iterable<Package>> fetch({required int limit, DateTime? before}) {
-    try {
-      return _dao.fetch(
+  Future<AsyncPhase<Iterable<Package>>> fetch({
+    required int limit,
+    DateTime? before,
+  }) {
+    return AsyncPhase.from(
+      () => _dao.fetch(
         limit: limit,
         before: before ?? DateTime.now(),
-      );
-    } on Exception catch (e, s) {
-      Logger.error(e, s);
-      rethrow;
-    }
+      ),
+      onError: (_, e, s) => Logger.error(e, s),
+    );
   }
 
-  Future<Iterable<Package>> search({
+  Future<AsyncPhase<Iterable<Package>>> search({
     required Iterable<String> words,
     required int limit,
     DateTime? before,
   }) {
-    try {
-      return _dao.search(
+    return AsyncPhase.from(
+      () => _dao.search(
         words: words,
         limit: limit,
         before: before ?? DateTime.now(),
-      );
-    } on Exception catch (e, s) {
-      Logger.error(e, s);
-      rethrow;
-    }
+      ),
+      onError: (_, e, s) => Logger.error(e, s),
+    );
   }
 
-  Future<Package> toggleBookmark({required Package package}) async {
+  Future<AsyncPhase<Package>> toggleBookmark({required Package package}) async {
     final updatedPackage = package.copyWith(
       bookmarked: package.bookmarkedAt == null,
     );
 
-    try {
-      package.bookmarkedAt == null
-          ? await _dao.addOrUpdateBookmark(package: updatedPackage)
-          : await _dao.deleteBookmark(package: updatedPackage);
-
-      return updatedPackage;
-    } on Exception catch (e, s) {
-      Logger.error(e, s);
-      rethrow;
-    }
+    return AsyncPhase.from(
+      () async {
+        package.bookmarkedAt == null
+            ? await _dao.addOrUpdateBookmark(package: updatedPackage)
+            : await _dao.deleteBookmark(package: updatedPackage);
+        return updatedPackage;
+      },
+      onError: (_, e, s) => Logger.error(e, s),
+    );
   }
 }

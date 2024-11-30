@@ -22,7 +22,7 @@ class HomeShortcuts extends StatelessWidget {
 
   PackageNotifier? _currentPackageNotifier(BuildContext context) {
     final notifier = homeNotifierPot.of(context);
-    return _packageCaches[notifier.value.data!.currentPackageName];
+    return _packageCaches[notifier.data.currentPackageName];
   }
 
   @override

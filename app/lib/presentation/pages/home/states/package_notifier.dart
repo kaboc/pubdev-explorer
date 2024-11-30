@@ -15,26 +15,36 @@ class PackageNotifier extends AsyncPhaseNotifier<Package> {
   }
 
   Future<void> fetchPackage({required bool useCache}) async {
-    final package = value.data!;
-    if (useCache && !package.isEmpty) {
+    if (useCache && !data.isEmpty) {
       return;
     }
 
-    await runAsync(
-      (_) => _repository.fetchPackage(
-        name: value.data!.name,
+    await update(() async {
+      final phase = await _repository.fetchPackage(
+        name: data.name,
         cacheDuration: kPackageCacheDuration,
         useCache: useCache,
-      ),
-    );
+      );
+
+      if (phase case AsyncError()) {
+        phase.rethrowError();
+      }
+      return phase.data!;
+    });
   }
 
   Future<void> toggleBookmark() async {
-    final package = value.data!;
-    if (!package.isEmpty) {
-      await runAsync(
-        (_) => _bookmarksRepository.toggleBookmark(package: package),
-      );
+    if (data.isEmpty) {
+      return;
     }
+
+    await update(() async {
+      final phase = await _bookmarksRepository.toggleBookmark(package: data);
+
+      if (phase case AsyncError()) {
+        phase.rethrowError();
+      }
+      return phase.data!;
+    });
   }
 }

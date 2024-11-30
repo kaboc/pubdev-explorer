@@ -17,13 +17,19 @@ class SettingsNotifier extends ValueNotifier<Settings> {
   }
 
   Future<void> _fetch() async {
-    value = await _repository.fetch();
+    final phase = await _repository.fetch();
+    phase.whenOrNull(
+      complete: (data) => value = data,
+    );
     _completer.complete();
   }
 
   Future<void> updateThemeMode(ThemeMode mode) async {
-    value = await _repository.update(
+    final phase = await _repository.update(
       settings: value.copyWith(themeModeIndex: mode.index),
+    );
+    phase.whenOrNull(
+      complete: (data) => value = data,
     );
   }
 }

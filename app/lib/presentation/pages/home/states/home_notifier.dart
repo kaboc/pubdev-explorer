@@ -24,7 +24,7 @@ class HomeNotifier extends AsyncPhaseNotifier<HomeState> {
   final bool isPublisherSearch;
 
   Future<void> onIndexChanged(int index) async {
-    final newData = value.data!.copyWith(index: index);
+    final newData = data.copyWith(index: index);
     value = value.copyWith(newData);
 
     if (newData.isIndexOutOfRange) {
@@ -40,7 +40,6 @@ class HomeNotifier extends AsyncPhaseNotifier<HomeState> {
   }
 
   Future<void> fetchNames({Iterable<String>? keywords}) async {
-    final data = value.data!;
     final prevKeywords = data.keywords;
 
     if (keywords != null) {
@@ -59,27 +58,30 @@ class HomeNotifier extends AsyncPhaseNotifier<HomeState> {
       return;
     }
 
-    await runAsync((data) async {
-      final newPage = data!.page + 1;
-      final names = await _repository.fetchPackageNames(
+    await update(() async {
+      final newPage = data.page + 1;
+      final phase = await _repository.fetchPackageNames(
         page: newPage,
         keywords: keywords ?? prevKeywords,
       );
-      final newData = value.data!;
 
+      if (phase case AsyncError()) {
+        phase.rethrowError();
+      }
+
+      final names = phase.data!;
       for (final name in names) {
         _packageCaches[name] ??= PackageNotifier(name: name);
       }
 
-      return newData.copyWith(
+      return data.copyWith(
         page: newPage,
         hasMore: names.isNotEmpty,
-        packageNames: {...newData.packageNames, ...names},
+        packageNames: {...data.packageNames, ...names},
       );
     });
 
-    final newData = value.data!;
-    if (!value.isError && newData.isLast) {
+    if (!value.isError && data.isLast) {
       // Another fetch is necessary if the current index is
       // still the end because it means all the fetched packages
       // were already in the existing list.
@@ -92,7 +94,7 @@ class HomeNotifier extends AsyncPhaseNotifier<HomeState> {
   }
 
   Future<void> _fetchCurrentPackage() async {
-    final notifier = _packageCaches[value.data!.currentPackageName];
+    final notifier = _packageCaches[data.currentPackageName];
     await notifier?.fetchPackage(useCache: true);
   }
 
